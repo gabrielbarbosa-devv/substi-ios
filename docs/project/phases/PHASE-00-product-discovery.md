@@ -423,7 +423,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P00-007 — Definir MVP
 
-Estado: READY
+Estado: TODO
 
 Prioridade: P0
 

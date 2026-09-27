@@ -10,7 +10,7 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P00-004 | Definir pessoa usuária | 00 | P1 | DONE |
 | SUB-P00-005 | Mapear jornada da pessoa usuária | 00 | P1 | TODO |
 | SUB-P00-006 | Definir métricas de sucesso | 00 | P1 | TODO |
-| SUB-P00-007 | Definir MVP | 00 | P0 | READY |
+| SUB-P00-007 | Definir MVP | 00 | P0 | TODO |
 | SUB-P00-008 | Definir itens fora do escopo | 00 | P0 | TODO |
 | SUB-P00-009 | Especificar fluxo de quatro telas | 00 | P0 | TODO |
 | SUB-P00-010 | Validar API Open Food Facts | 00 | P1 | TODO |
@@ -67,12 +67,12 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P05-008 | Refatorar ranking | 05 | P1 | TODO |
 | SUB-P05-009 | Documentar pesos e limitações | 05 | P1 | TODO |
 | SUB-P05-010 | Revisar TDD | 05 | P1 | TODO |
-| SUB-P06-001 | Estudar API Open Food Facts | 06 | P0 | TODO |
+| SUB-P06-001 | Estudar API Open Food Facts | 06 | P0 | DONE |
 | SUB-P06-002 | Inspecionar JSON de código de barras | 06 | P1 | TODO |
-| SUB-P06-003 | Definir Endpoint | 06 | P0 | TODO |
-| SUB-P06-004 | Definir HTTPMethod | 06 | P0 | TODO |
+| SUB-P06-003 | Definir Endpoint | 06 | P0 | DONE |
+| SUB-P06-004 | Definir HTTPMethod | 06 | P0 | DONE |
 | SUB-P06-005 | Estudar associated types e generics | 06 | P1 | TODO |
-| SUB-P06-006 | Definir APIClient | 06 | P0 | TODO |
+| SUB-P06-006 | Definir APIClient | 06 | P0 | READY |
 | SUB-P06-007 | Implementar requisição com URLSession | 06 | P0 | TODO |
 | SUB-P06-008 | Definir NetworkError | 06 | P0 | TODO |
 | SUB-P06-009 | Definir DTO | 06 | P0 | TODO |

@@ -121,7 +121,7 @@ As dependências abaixo são pré-requisitos reais; o número da fase, por si s�
 | 03 — Modularização | Planejar módulos e avaliar limites de pacotes. Resultado: decisão documentada; dividir todo o projeto em pacotes não é requisito do prazo. | Arquitetura | P1/P2 | TODO |
 | 04 — Modelagem de domínio | Modelar somente pedido, produto e candidato essenciais. | Escopo do produto | P0/P1 | TODO |
 | 05 — Ranking e TDD | Definir e testar uma regra de ranking simples e determinística. Não inventar complexidade de pontuação. | Modelo de domínio | P0/P1 | TODO |
-| 06 — Networking | Acessar Open Food Facts com URLSession e limites claros. Resultado: uma consulta testável e DTO mapeado, respeitando rate limits. | Produto/código de barras | P0/P1 | TODO |
+| 06 — Networking | Acessar Open Food Facts com URLSession e limites claros. Resultado: uma consulta testável e DTO mapeado, respeitando rate limits. | Produto/código de barras | P0/P1 | IN_PROGRESS |
 | 07 — Repository | Compor fixture de inventário local e informações remotas de produto. | Domínio e APIClient | P0/P1 | TODO |
 | 08 — Concorrência em Swift | Usar async/await e isolamento da UI quando necessário. TaskGroup só se o fluxo justificar. | Rede e fluxo de UI | P0/P1 | TODO |
 | 09 — Laboratório GCD | Estudar GCD separadamente para aprendizado e entrevista. Nenhuma dependência de entrega. | Nenhuma | P2 | TODO |

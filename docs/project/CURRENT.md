@@ -6,31 +6,31 @@ Segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo` (horário
 
 ## Fase atual
 
-FASE 05 — Ranking e TDD (execução pela Delivery Track)
+FASE 06 — Networking (execução pela Delivery Track)
 
 ## Task atual
 
-SUB-P05-003 — Implementar pontuação por categoria (GREEN)
+SUB-P06-006 — Definir APIClient
 
 ## Estado
 
-DONE
+READY
 
 ## Objetivo
 
-O score de categoria está implementado e os cinco casos determinísticos passam no simulador.
+Definir o menor contrato que permita solicitar dados HTTP sem acoplar as features diretamente a `URLSession`.
 
 ## Por que agora
 
-O ranker mantém a regra isolada e pura. O score é apenas um sinal de categoria: não ordena a lista nem afirma que o candidato é substituto adequado em todos os aspectos.
+O endpoint e o método HTTP já estão explícitos e testados. Agora podemos definir a fronteira entre o restante do app e o transporte, antes de implementar a execução com `URLSession`.
 
 ## Bloqueios
 
-Nenhum bloqueio conhecido para este conjunto. O simulador precisou iniciar manualmente e os testes foram executados sem o alvo de UI.
+Nenhum conhecido. A API pública não fornece disponibilidade de uma loja; a lista de opções continuará local nesta etapa.
 
 ## Próxima tarefa
 
-SUB-P06-001 — Estudar a API Open Food Facts (`TODO`, P0; início da próxima fatia de integração de dados).
+SUB-P06-007 — Implementar requisição com URLSession (`TODO`, P0; depende do contrato de APIClient).
 
 ## Trilha de entrega
 
@@ -38,6 +38,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco concluído
 
-SUB-P05-003 — Implementar pontuação por categoria; 5 testes passaram no iPhone 16 Simulator.
+SUB-P06-001, SUB-P06-003 e SUB-P06-004 — API investigada; endpoint v3 e método `GET` representados e cobertos por testes locais.
 
 > Mantenha no máximo uma tarefa em `IN_PROGRESS` e somente a próxima em `READY`. Uma implementação pronta vai para `REVIEW`; Gabriel marca `DONE` após revisar e conseguir explicar o resultado.
