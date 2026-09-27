@@ -28,12 +28,16 @@ final class AppCoordinator {
     }
 
     private func showSuggestions(for productID: ProductID) {
-        guard let product = order.items.first(where: { $0.product.id == productID })?.product else {
+        guard let originalItem = order.items.first(where: { $0.product.id == productID }) else {
             return
         }
 
         let candidates = inventoryRepository.substitutionCandidates(for: productID)
-        let viewModel = SuggestionsViewModel(originalProduct: product, candidates: candidates)
+        let viewModel = SuggestionsViewModel(
+            originalProduct: originalItem.product,
+            originalPrice: originalItem.price,
+            candidates: candidates
+        )
         navigationController.pushViewController(
             SuggestionsViewController(viewModel: viewModel),
             animated: true

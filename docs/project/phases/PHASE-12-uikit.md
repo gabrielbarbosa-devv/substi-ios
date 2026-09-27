@@ -813,3 +813,86 @@ Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de impl
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
+
+## SUB-P12-013 — Implementar tela de sugestões conforme referência visual
+
+Estado: IN_PROGRESS
+
+Prioridade: P0
+
+Depende de:
+- SUB-P12-004
+- SUB-P12-005
+- SUB-P11-006
+
+### Contexto
+A tela de sugestões existente já lista candidatos, mas ainda não apresenta claramente o produto original, a seleção de uma única alternativa ou uma ação persistente. A referência de Gabriel define essa segunda etapa da jornada.
+
+### Objetivo
+Organizar a tela UIKit para mostrar o produto original, opções demonstrativas comparáveis e a seleção local de uma alternativa.
+
+### Requisitos
+- Seguir a referência versionada em `docs/assets/suggestions-screen-reference.png` e os tokens/componentes existentes.
+- Mostrar preço somente para o item original quando fornecido pelo `OrderItem`; não inventar preço dos candidatos.
+- Não exibir percentual, selo de “mais compatível” ou disponibilidade que o ranking e os dados atuais não sustentem.
+- Não selecionar candidato automaticamente. A pessoa escolhe uma opção explicitamente.
+- Manter CTA no rodapé e preparar callback para comparação; deixá-lo desabilitado até a tela seguinte ser implementada e conectada.
+- Preservar estado vazio, Dynamic Type, VoiceOver e dependências UIKit/MVVM-C existentes.
+- Atualizar o contrato da tela e este planejamento; não implementar Comparison SwiftUI nesta task.
+
+### Critérios de aceite
+- [ ] O produto original aparece separado das alternativas, com seus dados e preço local quando disponível.
+- [ ] Cada alternativa mostra nome, marca, quantidade e apenas evidências de categoria/quantidade que os dados permitem.
+- [ ] A seleção é única, começa vazia e é anunciada visualmente e pelo VoiceOver.
+- [ ] A tela é rolável e o CTA permanece no rodapé; a ação não sugere que a comparação já existe.
+- [ ] Estado vazio continua compreensível e não mostra CTA acionável.
+- [ ] Build do app passa; limites dos dados e da navegação estão documentados.
+- [ ] Estado permanece REVIEW até Gabriel revisar; não marcar DONE automaticamente.
+
+### Conceitos de engenharia
+Composição de `UIView`, seleção exclusiva, callback entre View e Coordinator, apresentação de moeda localizada e estado de acessibilidade.
+
+### Estudar antes da implementação
+Como a ViewController reflete seleção sem assumir regra de domínio; ciclo de ownership das closures; traits e valores acessíveis; papel de cada dado no modelo de produto ou de pedido.
+
+### Perguntas que preciso saber responder
+- Por que o produto original e as alternativas precisam estar visualmente separados?
+- Por que nenhuma alternativa começa selecionada?
+- Quais dados sustentam a indicação de categoria e quantidade, e por que não exibimos preço/percentual nos candidatos?
+- Como a View comunica a seleção sem calcular ranking nem controlar navegação?
+- Por que o CTA fica desabilitado nesta etapa e quem deverá conectá-lo?
+
+### Validação
+Compilar para o Simulator e revisar hierarquia, seleção, estado vazio, Dynamic Type e leitura VoiceOver. Testes automatizados só serão executados quando solicitados ou previstos no escopo de validação aprovado.
+
+### Observabilidade
+Not applicable for this task.
+
+### Considerações de memória
+Callbacks dos cards capturam a ViewController fracamente para evitar ciclo `ViewController → stack → card → closure → ViewController`.
+
+### Considerações de concorrência
+Not applicable for this task. Os dados de demonstração são síncronos.
+
+### Acessibilidade
+Cards selecionáveis expõem trait de botão, estado selecionado e dica; o estado não depende apenas da cor. Textos usam Dynamic Type.
+
+### Uso de IA
+A IA implementa a referência e descreve limites; Gabriel confere se os dados e a hierarquia visual não induzem uma decisão que o modelo não justifica.
+
+### Arquivos esperados
+- `Substi/Presentation/Suggestions/SuggestionsViewController.swift`
+- `Substi/DesignSystem/UIKit/DSProductCardView.swift`
+- `Substi/App/Coordinators/AppCoordinator.swift`
+- `Substi/Data/Fixtures/InventoryFixtures.swift`
+- `docs/project/screens/order-and-suggestions.md`
+- `docs/assets/suggestions-screen-reference.png`
+- `docs/project/CURRENT.md`, `docs/project/BACKLOG.md` e este arquivo
+
+### Critérios para conclusão
+- [ ] Build e inspeção aplicável concluídos; limitações registradas.
+- [ ] Critérios de aceite e diff explicados para Gabriel.
+- [ ] Mover para REVIEW antes da análise; somente Gabriel marca DONE após revisão e compreensão.
+
+### Notas para entrevista
+Explicar como a seleção explícita preserva a decisão da pessoa, por que a UI não mostra dados inexistentes e como a fronteira de callback prepara a navegação para a tela de comparação.

@@ -52,6 +52,7 @@ final class DSProductCardView: UIView {
     private let priceLabel = UILabel()
     private let statusBadge: DSStatusBadgeView?
     private let accessoryImageView = UIImageView()
+    private var selectionAction: (() -> Void)?
 
     init(content: DSProductCardContent) {
         if let statusText = content.statusText, let statusStyle = content.statusStyle {
@@ -172,5 +173,37 @@ final class DSProductCardView: UIView {
         accessibilityLabel = [content.name, accessibilityDetails]
             .filter { !$0.isEmpty }
             .joined(separator: ", ")
+    }
+
+    func configureSelection(isSelected: Bool, action: @escaping () -> Void) {
+        selectionAction = action
+        accessoryImageView.isHidden = false
+        accessoryImageView.image = UIImage(
+            systemName: isSelected ? "largecircle.fill.circle" : "circle"
+        )
+        accessoryImageView.tintColor = isSelected ? DSColor.brandPrimary : DSColor.textSecondary
+        layer.borderWidth = isSelected ? 2 : 1
+        layer.borderColor = (isSelected ? DSColor.brandPrimary : DSColor.borderDefault).cgColor
+        accessibilityTraits = [.button]
+        if isSelected {
+            accessibilityTraits.insert(.selected)
+        }
+        accessibilityValue = isSelected ? "Selecionado" : "Não selecionado"
+        accessibilityHint = "Toque para selecionar esta alternativa."
+
+        let hasSelectionGesture = gestureRecognizers?.contains { $0 is UITapGestureRecognizer } ?? false
+        if !hasSelectionGesture {
+            addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapSelection)))
+        }
+    }
+
+    @objc private func didTapSelection() {
+        selectionAction?()
+    }
+
+    override func accessibilityActivate() -> Bool {
+        guard let selectionAction else { return super.accessibilityActivate() }
+        selectionAction()
+        return true
     }
 }

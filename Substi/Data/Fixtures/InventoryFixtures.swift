@@ -53,7 +53,17 @@ enum InventoryFixtures {
         )
     )
 
+    private static let thirdCandidate = SubstitutionCandidate(
+        product: Product(
+            id: ProductID(rawValue: "substi-demo-milk-candidate-3"),
+            name: "Leite semidesnatado",
+            category: "en:dairies",
+            brand: "Serra Clara",
+            quantity: "1 L"
+        )
+    )
+
     static let substitutionCandidates: [ProductID: [SubstitutionCandidate]] = [
-        ProductID(rawValue: "substi-demo-milk-original"): [firstCandidate, secondCandidate]
+        ProductID(rawValue: "substi-demo-milk-original"): [firstCandidate, secondCandidate, thirdCandidate]
     ]
 }
