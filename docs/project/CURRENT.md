@@ -10,7 +10,7 @@ FASE 05 — Ranking e TDD (execução pela Delivery Track)
 
 ## Task atual
 
-SUB-P05-002 — Escrever teste de pontuação por categoria (RED)
+SUB-P05-003 — Implementar pontuação por categoria (GREEN)
 
 ## Estado
 
@@ -18,19 +18,19 @@ IN_PROGRESS
 
 ## Objetivo
 
-Expressar a regra de categoria em testes locais e determinísticos antes de implementar o ranker.
+Implementar a pontuação definida e fazer os cinco casos determinísticos passarem.
 
 ## Por que agora
 
-`SUB-P05-001` definiu a regra: categorias iguais ignorando caixa marcam 1; diferentes ou ausentes marcam 0. Agora registramos esse contrato no teste antes do código de produção.
+O teste RED falhou pelo motivo esperado: `ProductSubstitutionRanker` ainda não existe. Agora vamos adicionar a implementação mínima que satisfaz os casos.
 
 ## Bloqueios
 
-Nenhum bloqueio conhecido. Os testes devem falhar antes da implementação GREEN, usando apenas dados construídos em memória.
+Nenhum bloqueio conhecido. O novo tipo deve permanecer puro, local e sem regra de ordenação.
 
 ## Próxima tarefa
 
-SUB-P05-003 — Implementar pontuação por categoria (GREEN), após registrar e observar o RED.
+Após esta branch: SUB-P05-004 — Implementar pontuação por quantidade (`TODO`, P1; só se ainda contribuir para a entrega).
 
 ## Trilha de entrega
 

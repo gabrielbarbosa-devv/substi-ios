@@ -86,7 +86,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P05-002 — Escrever teste que falha (RED)
 
-Estado: IN_PROGRESS
+Estado: DONE
 
 Prioridade: P0
 
@@ -106,9 +106,9 @@ Criar testes determinísticos que expressem a regra de categoria antes da implem
 - Atualizar o estado desta task e manter a etapa RED visível no histórico Git.
 
 ### Critérios de aceite
-- [ ] Os casos da regra de categoria estão cobertos por testes determinísticos.
-- [ ] A execução falha pelo motivo esperado antes do código GREEN.
-- [ ] Os testes não dependem de rede nem de ordem externa.
+- [x] Os casos da regra de categoria estão cobertos por testes determinísticos.
+- [x] A execução falha pelo motivo esperado antes do código GREEN: o ranker ainda não existe.
+- [x] Os testes não dependem de rede nem de ordem externa.
 
 ### Conceitos de engenharia
 TDD, Swift Testing, fixtures determinísticas e teste unitário de função pura.
@@ -147,15 +147,15 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 - `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Testes RED falham pela falta do comportamento solicitado.
-- [ ] Estado e escopo RED documentados antes de seguir para GREEN.
+- [x] Testes RED falham pela falta do comportamento solicitado.
+- [x] Estado e escopo RED documentados antes de seguir para GREEN.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
 ## SUB-P05-003 — Implementar pontuação por categoria (GREEN)
 
-Estado: TODO
+Estado: IN_PROGRESS
 
 Prioridade: P0
 
