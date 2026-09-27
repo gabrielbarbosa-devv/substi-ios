@@ -123,7 +123,7 @@ As dependências abaixo são pré-requisitos reais; o número da fase, por si s�
 | 05 — Ranking e TDD | Definir e testar uma regra de ranking simples e determinística. Não inventar complexidade de pontuação. | Modelo de domínio | P0/P1 | TODO |
 | 06 — Networking | Acessar Open Food Facts com URLSession e limites claros. Resultado: uma consulta testável e DTO mapeado, respeitando rate limits. | Produto/código de barras | P0/P1 | IN_PROGRESS |
 | 07 — Repository | Compor fixture de inventário local e informações remotas de produto. | Domínio e APIClient | P0/P1 | TODO |
-| 08 — Concorrência em Swift | Usar async/await e isolamento da UI quando necessário. TaskGroup só se o fluxo justificar. | Rede e fluxo de UI | P0/P1 | TODO |
+| 08 — Concorrência em Swift | Usar async/await e isolamento da UI quando necessário. TaskGroup só se o fluxo justificar. | Rede e fluxo de UI | P0/P1 | IN_PROGRESS |
 | 09 — Laboratório GCD | Estudar GCD separadamente para aprendizado e entrevista. Nenhuma dependência de entrega. | Nenhuma | P2 | TODO |
 | 10 — Gerenciamento de memória | Revisar ownership e ciclo de vida dos objetos realmente implementados. Estudos avançados de profiling são futuros. | Fluxo UIKit | P1/P2 | TODO |
 | 11 — Design Discovery e Design System | Definir princípios, foundations e contratos de tela antes da implementação mínima. Resultado: linguagem própria do Substi, revisão de acessibilidade e tokens/componentes usados. | Fluxo de produto; pode ocorrer em paralelo ao domínio/API | P0/P1 | TODO |
