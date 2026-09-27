@@ -6,10 +6,11 @@ Segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo` (horário
 
 ## Fase atual
 
-FASE 07 — Repository (execução pela Delivery Track)
+FASE 08 — Concorrência em Swift (execução pela Delivery Track)
 
 ## Tasks em revisão
 
+- SUB-P08-001 — Carregar um produto com async
 - SUB-P07-001 — Definir ProductRepository
 - SUB-P07-002 — Definir InventoryRepository
 - SUB-P07-003 — Criar fixtures de inventário
@@ -22,19 +23,19 @@ REVIEW
 
 ## Objetivo
 
-Conectar os contratos Domain às fontes remota e local, mantendo as implementações isoladas em Data e cobrindo a integração remota com testes sem rede ao vivo.
+Conectar a aplicação ao contrato `ProductRepository` por meio de um Use Case pequeno, mantendo a busca assíncrona isolada de UI e networking.
 
 ## Por que agora
 
-Os contratos e o pipeline HTTP/DTO/Mapper já existem. Os dados agora chegam ao domínio por implementações concretas, sem misturar API com inventário local. A arquitetura de apresentação permanece MVVM-C conforme `AGENTS.md`; nenhuma tela começa até Gabriel enviar as referências visuais.
+APIClient, DTO, Mapper e Repository já realizam a busca assíncrona. Este Use Case cria o ponto de entrada da aplicação previsto no fluxo de dependências, sem antecipar telas ou uma ViewModel antes de Gabriel enviar as referências visuais.
 
 ## Bloqueios
 
-Os testes do target ainda precisam ser executados em um ambiente com Xcode selecionado. Aqui, `xcode-select` aponta para Command Line Tools sem `xcodebuild`, Simulator ou módulo `Testing`. Typecheck Swift 6, parse de testes e verificação executável isolada passaram. A API pública fornece catálogo de produtos, não estoque de loja.
+Os testes do target ainda precisam ser executados com Xcode selecionado. `xcodebuild -version` informa que o diretório ativo é Command Line Tools (`/Library/Developer/CommandLineTools`), então não foi possível executar o target `SubstiTests`. A API pública fornece catálogo de produtos, não estoque de loja.
 
 ## Próxima task
 
-Próximo bloco: revisar as tasks em REVIEW e executar SubstiTests com Xcode; depois, receber as telas de Gabriel para iniciar Design Discovery/contratos de tela antes da UI.
+Gabriel revisa `SUB-P08-001` e executa/acompanha `SubstiTests` em Xcode. A próxima implementação de UI depende das referências de tela de Gabriel e do Design Discovery/Screen Contract.
 
 ## Trilha de entrega
 
@@ -42,6 +43,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco
 
-SUB-P07-005 e SUB-P07-008 — adaptadores de repositório e cobertura do pipeline remoto preparados para revisão. P07-004 e P07-006–007 permanecem P1; cache não entra no fluxo sem necessidade demonstrada.
+SUB-P08-001 — `LoadProductUseCase` conecta a aplicação ao protocolo `ProductRepository`; testes determinísticos cobrem sucesso, código de barras e erro. Sem criar protocolo adicional, GCD ou UI.
 
 > SUB-P06-006–011 também permanecem em `REVIEW`; Gabriel é quem decide quando os aprova e os move para `DONE`.
