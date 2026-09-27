@@ -2,6 +2,10 @@ import UIKit
 
 final class DSStatusBadgeView: UIView {
     enum Style {
+        case available
+        case unavailable
+        case compatible
+        case substituted
         case success
         case warning
         case error
@@ -9,9 +13,9 @@ final class DSStatusBadgeView: UIView {
 
         var foregroundColor: UIColor {
             switch self {
-            case .success: DSColor.statusSuccess
+            case .available, .compatible, .substituted, .success: DSColor.statusSuccess
+            case .unavailable, .error: DSColor.statusError
             case .warning: DSColor.statusWarning
-            case .error: DSColor.statusError
             case .information: DSColor.brandPrimary
             }
         }
@@ -20,18 +24,19 @@ final class DSStatusBadgeView: UIView {
 
         var backgroundColor: UIColor {
             switch self {
-            case .success: DSColor.surfaceSuccess
+            case .available, .compatible, .substituted, .success: DSColor.surfaceSuccess
+            case .unavailable, .error: DSColor.surfaceError
             case .warning: DSColor.surfaceWarning
-            case .error: DSColor.surfaceError
             case .information: DSColor.surfaceInformation
             }
         }
 
         var symbolName: String {
             switch self {
-            case .success: "checkmark.circle.fill"
+            case .available, .success: "checkmark.circle.fill"
+            case .unavailable, .error: "exclamationmark.circle.fill"
+            case .compatible, .substituted: "checkmark.seal.fill"
             case .warning: "exclamationmark.circle.fill"
-            case .error: "xmark.circle.fill"
             case .information: "info.circle.fill"
             }
         }

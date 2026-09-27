@@ -1,13 +1,35 @@
+import Foundation
+
 enum InventoryFixtures {
+    static let availableBanana = Product(
+        id: ProductID(rawValue: "substi-demo-banana"),
+        name: "Banana Nanica",
+        category: "en:fruits",
+        brand: nil,
+        quantity: "1 kg"
+    )
+
     static let unavailableProduct = Product(
         id: ProductID(rawValue: "substi-demo-milk-original"),
-        name: "Leite integral",
+        name: "Leite Integral",
         category: "en:dairies",
-        brand: "Marca do pedido",
+        brand: "Marca A",
         quantity: "1 L"
     )
 
-    static let order = Order(items: [OrderItem(product: unavailableProduct)])
+    static let availableEggs = Product(
+        id: ProductID(rawValue: "substi-demo-eggs"),
+        name: "Ovos Brancos",
+        category: "en:eggs",
+        brand: nil,
+        quantity: "12 un"
+    )
+
+    static let order = Order(items: [
+        OrderItem(product: availableBanana, price: Decimal(499) / Decimal(100)),
+        OrderItem(product: unavailableProduct, price: Decimal(799) / Decimal(100)),
+        OrderItem(product: availableEggs, price: Decimal(1290) / Decimal(100))
+    ])
 
     static let unavailableProductIDs: Set<ProductID> = [unavailableProduct.id]
 
