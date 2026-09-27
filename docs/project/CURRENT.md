@@ -1,43 +1,43 @@
-# Current Work
+# Trabalho atual
 
-## Deadline
+## Prazo
 
-Monday, 2026-09-28 at 11:00 America/Sao_Paulo (BRT). About 22 hours and 35 minutes remain at this update.
+Segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo` (horário de Brasília). Consulte o roadmap para marcos e corte de escopo.
 
-## Current Phase
+## Fase atual
 
-PHASE 00 — Product Discovery
+FASE 00 — Descoberta do produto
 
-## Current Task
+## Task atual
 
-SUB-P00-001 — Define product problem
+SUB-P00-001 — Definir o problema do produto
 
-## Status
+## Estado
 
 REVIEW
 
-## Goal
+## Objetivo
 
-Document the grocery substitution problem, its context and expected value, while clearly separating source facts, assumptions and non-claims. This task does not define architecture or implementation.
+Documentar o problema de substituição de produtos no mercado, o momento da jornada em que ocorre e o valor esperado, separando claramente contexto, hipóteses e afirmações não feitas. Esta tarefa não define arquitetura ou implementação.
 
-## Why Now
+## Por que agora
 
-The project needs a precise product problem before later tasks shape hypotheses or solutions. This task is complete for review; no later task has started.
+Um problema claro ajuda as próximas decisões de produto e evita escolher solução técnica antes de saber qual experiência queremos demonstrar. O documento está pronto para revisão; nenhuma tarefa posterior foi iniciada.
 
-## Blockers
+## Bloqueios
 
-None for product discovery. Before build/Git work, verify Xcode Command Line Tools selection: the observed shell previously reported that developer tools were not configured.
+Não há bloqueio para revisar o problema. Antes de build, confirme a seleção do Xcode Command Line Tools: o terminal anteriormente informou que as ferramentas de desenvolvimento não estavam configuradas.
 
-## Next Task
+## Próxima tarefa
 
-SUB-P00-003 — Write product hypothesis (TODO; only make READY after SUB-P00-001 review).
+SUB-P00-003 — Escrever hipótese de produto (`TODO`; só mover para `READY` depois da revisão e aprovação de `SUB-P00-001`).
 
-## Delivery Track
+## Trilha de entrega
 
-Problem → bootstrap → minimum MVVM-C boundaries → domain/ranking → bounded API and local inventory → Design Discovery/foundations → UIKit flow → SwiftUI comparison → critical tests/accessibility → Logger → README/final validation. P1/P2 work does not block this track.
+Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada e inventário local → Design Discovery/foundations → fluxo UIKit → comparação SwiftUI → testes e acessibilidade essenciais → Logger → README e validação final. Itens P1/P2 não bloqueiam esta trilha.
 
-## Last Completed
+## Último marco concluído
 
-Project planning structure created.
+Estrutura de planejamento do projeto criada.
 
-> Keep at most one task IN_PROGRESS and only the immediate next task READY. Implementation completion moves to REVIEW; Gabriel marks DONE after reviewing and explaining the work.
+> Mantenha no máximo uma tarefa em `IN_PROGRESS` e somente a próxima em `READY`. Uma implementação pronta vai para `REVIEW`; Gabriel marca `DONE` após revisar e conseguir explicar o resultado.

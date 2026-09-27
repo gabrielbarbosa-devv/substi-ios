@@ -1,676 +1,676 @@
-# PHASE 18 — Engineering Automation
+# FASE 18 — Automação de engenharia
 
-## Objective
-Automate quality checks while bounding delivery scope.
+## Objetivo
+Automatizar verificações de qualidade sem colocar a entrega em risco.
 
-## Expected Outcome
-A reviewed and documented outcome for this phase within its scope.
+## Resultado esperado
+Fundação opcional de lint/CI; assinatura e CD não entram no caminho crítico.
 
-## Dependencies
-Relevant outcomes from PHASE 17.
+## Dependências
+Resultados pertinentes da FASE 17.
 
-## Priority
-See task priorities. P1/P2 work must not displace core P0 delivery.
+## Prioridade
+Consulte as prioridades das tasks. Trabalho P1/P2 não pode comprometer a entrega essencial P0.
 
-## Status
+## Estado
 TODO
 
-## SUB-P18-001 — Define SwiftLint rules
+## SUB-P18-001 — Definir regras do SwiftLint
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
-- None
+Depende de:
+- Nenhuma
 
-### Context
-This task turns the engineering automation plan into one bounded, reviewable outcome: define swiftlint rules.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir regras do SwiftLint.
 
-### Objective
-Define SwiftLint rules, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir regras do SwiftLint dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 SwiftLint, xcconfig, CI, Fastlane, secrets.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define SwiftLint rules” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir regras do SwiftLint” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Run configured lint/build/tests locally and confirm CI.
+### Validação
+Executar lint/build/testes configurados localmente e confirmar CI.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P18-002 — Add SwiftLint config
+## SUB-P18-002 — Adicionar configuração do SwiftLint
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P18-001
 
-### Context
-This task turns the engineering automation plan into one bounded, reviewable outcome: add swiftlint config.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Adicionar configuração do SwiftLint.
 
-### Objective
-Add SwiftLint config, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Adicionar configuração do SwiftLint dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 SwiftLint, xcconfig, CI, Fastlane, secrets.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Add SwiftLint config” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Adicionar configuração do SwiftLint” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Run configured lint/build/tests locally and confirm CI.
+### Validação
+Executar lint/build/testes configurados localmente e confirmar CI.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P18-003 — Define build configurations
+## SUB-P18-003 — Definir configurações de build
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P18-002
 
-### Context
-This task turns the engineering automation plan into one bounded, reviewable outcome: define build configurations.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir configurações de build.
 
-### Objective
-Define build configurations, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir configurações de build dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 SwiftLint, xcconfig, CI, Fastlane, secrets.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define build configurations” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir configurações de build” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Run configured lint/build/tests locally and confirm CI.
+### Validação
+Executar lint/build/testes configurados localmente e confirmar CI.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P18-004 — Use xcconfig
+## SUB-P18-004 — Usar xcconfig
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P18-003
 
-### Context
-This task turns the engineering automation plan into one bounded, reviewable outcome: use xcconfig.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Usar xcconfig.
 
-### Objective
-Use xcconfig, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Usar xcconfig dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 SwiftLint, xcconfig, CI, Fastlane, secrets.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Use xcconfig” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Usar xcconfig” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Run configured lint/build/tests locally and confirm CI.
+### Validação
+Executar lint/build/testes configurados localmente e confirmar CI.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P18-005 — Define secrets handling
+## SUB-P18-005 — Definir gestão de secrets
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P18-004
 
-### Context
-This task turns the engineering automation plan into one bounded, reviewable outcome: define secrets handling.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir gestão de secrets.
 
-### Objective
-Define secrets handling, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir gestão de secrets dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 SwiftLint, xcconfig, CI, Fastlane, secrets.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define secrets handling” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir gestão de secrets” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Run configured lint/build/tests locally and confirm CI.
+### Validação
+Executar lint/build/testes configurados localmente e confirmar CI.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P18-006 — Add CI build
+## SUB-P18-006 — Adicionar build de CI
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P18-005
 
-### Context
-This task turns the engineering automation plan into one bounded, reviewable outcome: add ci build.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Adicionar build de CI.
 
-### Objective
-Add CI build, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Adicionar build de CI dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 SwiftLint, xcconfig, CI, Fastlane, secrets.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Add CI build” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Adicionar build de CI” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Run configured lint/build/tests locally and confirm CI.
+### Validação
+Executar lint/build/testes configurados localmente e confirmar CI.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P18-007 — Add unit/snapshot CI
+## SUB-P18-007 — Adicionar CI para testes unitários e snapshots
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P18-006
 
-### Context
-This task turns the engineering automation plan into one bounded, reviewable outcome: add unit/snapshot ci.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Adicionar CI para testes unitários e snapshots.
 
-### Objective
-Add unit/snapshot CI, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Adicionar CI para testes unitários e snapshots dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 SwiftLint, xcconfig, CI, Fastlane, secrets.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Add unit/snapshot CI” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Adicionar CI para testes unitários e snapshots” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Run configured lint/build/tests locally and confirm CI.
+### Validação
+Executar lint/build/testes configurados localmente e confirmar CI.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P18-008 — Add practical UI CI
+## SUB-P18-008 — Adicionar CI viável para testes de UI
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P18-007
 
-### Context
-This task turns the engineering automation plan into one bounded, reviewable outcome: add practical ui ci.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Adicionar CI viável para testes de UI.
 
-### Objective
-Add practical UI CI, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Adicionar CI viável para testes de UI dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 SwiftLint, xcconfig, CI, Fastlane, secrets.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Add practical UI CI” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Adicionar CI viável para testes de UI” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Run configured lint/build/tests locally and confirm CI.
+### Validação
+Executar lint/build/testes configurados localmente e confirmar CI.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P18-009 — Add Fastlane lanes
+## SUB-P18-009 — Adicionar lanes do Fastlane
 
-Status: TODO
+Estado: TODO
 
-Priority: P2
+Prioridade: P2
 
-Depends on:
+Depende de:
 - SUB-P18-008
 
-### Context
-This task turns the engineering automation plan into one bounded, reviewable outcome: add fastlane lanes.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Adicionar lanes do Fastlane.
 
-### Objective
-Add Fastlane lanes, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Adicionar lanes do Fastlane dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 SwiftLint, xcconfig, CI, Fastlane, secrets.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Add Fastlane lanes” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Adicionar lanes do Fastlane” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Run configured lint/build/tests locally and confirm CI.
+### Validação
+Executar lint/build/testes configurados localmente e confirmar CI.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P18-010 — Document CD boundary
+## SUB-P18-010 — Documentar limites de CD
 
-Status: TODO
+Estado: TODO
 
-Priority: P2
+Prioridade: P2
 
-Depends on:
+Depende de:
 - SUB-P18-009
 
-### Context
-This task turns the engineering automation plan into one bounded, reviewable outcome: document cd boundary.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Documentar limites de CD.
 
-### Objective
-Document CD boundary, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Documentar limites de CD dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 SwiftLint, xcconfig, CI, Fastlane, secrets.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Document CD boundary” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Documentar limites de CD” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Run configured lint/build/tests locally and confirm CI.
+### Validação
+Executar lint/build/testes configurados localmente e confirmar CI.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.

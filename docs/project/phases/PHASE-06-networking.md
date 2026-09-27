@@ -1,808 +1,808 @@
-# PHASE 06 — Networking
+# FASE 06 — Networking
 
-## Objective
-Build a bounded URLSession client respecting API limits.
+## Objetivo
+Criar um cliente URLSession limitado e respeitar as restrições da API externa.
 
-## Expected Outcome
-A reviewed and documented outcome for this phase within its scope.
+## Resultado esperado
+Uma consulta testável a produtos, DTO e mapeamento, com rate limits considerados.
 
-## Dependencies
-Relevant outcomes from PHASE 05.
+## Dependências
+Resultados pertinentes da FASE 05.
 
-## Priority
-See task priorities. P1/P2 work must not displace core P0 delivery.
+## Prioridade
+Consulte as prioridades das tasks. Trabalho P1/P2 não pode comprometer a entrega essencial P0.
 
-## Status
+## Estado
 TODO
 
-## SUB-P06-001 — Study Open Food Facts API
+## SUB-P06-001 — Estudar API Open Food Facts
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
-- None
+Depende de:
+- Nenhuma
 
-### Context
-This task turns the networking plan into one bounded, reviewable outcome: study open food facts api.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Estudar API Open Food Facts.
 
-### Objective
-Study Open Food Facts API, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Estudar API Open Food Facts dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Study Open Food Facts API” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Estudar API Open Food Facts” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Use URLProtocol fixtures for HTTP success/errors, malformed data, transport and rate limit. No live API tests.
+### Validação
+Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P06-002 — Inspect barcode JSON
+## SUB-P06-002 — Inspecionar JSON de código de barras
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P06-001
 
-### Context
-This task turns the networking plan into one bounded, reviewable outcome: inspect barcode json.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Inspecionar JSON de código de barras.
 
-### Objective
-Inspect barcode JSON, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Inspecionar JSON de código de barras dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Inspect barcode JSON” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Inspecionar JSON de código de barras” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Use URLProtocol fixtures for HTTP success/errors, malformed data, transport and rate limit. No live API tests.
+### Validação
+Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P06-003 — Define Endpoint
+## SUB-P06-003 — Definir Endpoint
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
-None
+Depende de:
+Nenhuma
 
-### Context
-This task turns the networking plan into one bounded, reviewable outcome: define endpoint.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir Endpoint.
 
-### Objective
-Define Endpoint, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir Endpoint dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define Endpoint” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir Endpoint” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Use URLProtocol fixtures for HTTP success/errors, malformed data, transport and rate limit. No live API tests.
+### Validação
+Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P06-004 — Define HTTPMethod
+## SUB-P06-004 — Definir HTTPMethod
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P06-003
 
-### Context
-This task turns the networking plan into one bounded, reviewable outcome: define httpmethod.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir HTTPMethod.
 
-### Objective
-Define HTTPMethod, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir HTTPMethod dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define HTTPMethod” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir HTTPMethod” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Use URLProtocol fixtures for HTTP success/errors, malformed data, transport and rate limit. No live API tests.
+### Validação
+Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P06-005 — Study associated types and generics
+## SUB-P06-005 — Estudar associated types e generics
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P06-004
 
-### Context
-This task turns the networking plan into one bounded, reviewable outcome: study associated types and generics.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Estudar associated types e generics.
 
-### Objective
-Study associated types and generics, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Estudar associated types e generics dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Study associated types and generics” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Estudar associated types e generics” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Use URLProtocol fixtures for HTTP success/errors, malformed data, transport and rate limit. No live API tests.
+### Validação
+Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P06-006 — Define APIClient
+## SUB-P06-006 — Definir APIClient
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
-None
+Depende de:
+Nenhuma
 
-### Context
-This task turns the networking plan into one bounded, reviewable outcome: define apiclient.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir APIClient.
 
-### Objective
-Define APIClient, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir APIClient dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define APIClient” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir APIClient” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Use URLProtocol fixtures for HTTP success/errors, malformed data, transport and rate limit. No live API tests.
+### Validação
+Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P06-007 — Implement URLSession request
+## SUB-P06-007 — Implementar requisição com URLSession
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P06-006
 
-### Context
-This task turns the networking plan into one bounded, reviewable outcome: implement urlsession request.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Implementar requisição com URLSession.
 
-### Objective
-Implement URLSession request, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Implementar requisição com URLSession dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Implement URLSession request” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Implementar requisição com URLSession” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Use URLProtocol fixtures for HTTP success/errors, malformed data, transport and rate limit. No live API tests.
+### Validação
+Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P06-008 — Define NetworkError
+## SUB-P06-008 — Definir NetworkError
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P06-007
 
-### Context
-This task turns the networking plan into one bounded, reviewable outcome: define networkerror.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir NetworkError.
 
-### Objective
-Define NetworkError, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir NetworkError dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define NetworkError” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir NetworkError” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Use URLProtocol fixtures for HTTP success/errors, malformed data, transport and rate limit. No live API tests.
+### Validação
+Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P06-009 — Define DTO
+## SUB-P06-009 — Definir DTO
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P06-008
 
-### Context
-This task turns the networking plan into one bounded, reviewable outcome: define dto.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir DTO.
 
-### Objective
-Define DTO, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir DTO dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define DTO” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir DTO” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Use URLProtocol fixtures for HTTP success/errors, malformed data, transport and rate limit. No live API tests.
+### Validação
+Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P06-010 — Map DTO to Product
+## SUB-P06-010 — Mapear DTO para Product
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P06-009
 
-### Context
-This task turns the networking plan into one bounded, reviewable outcome: map dto to product.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Mapear DTO para Product.
 
-### Objective
-Map DTO to Product, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Mapear DTO para Product dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Map DTO to Product” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Mapear DTO para Product” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Use URLProtocol fixtures for HTTP success/errors, malformed data, transport and rate limit. No live API tests.
+### Validação
+Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P06-011 — Test with URLProtocol
+## SUB-P06-011 — Testar com URLProtocol
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P06-010
 
-### Context
-This task turns the networking plan into one bounded, reviewable outcome: test with urlprotocol.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Testar com URLProtocol.
 
-### Objective
-Test with URLProtocol, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Testar com URLProtocol dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Test with URLProtocol” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Testar com URLProtocol” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Use URLProtocol fixtures for HTTP success/errors, malformed data, transport and rate limit. No live API tests.
+### Validação
+Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P06-012 — Define candidate cap and rate limit strategy
+## SUB-P06-012 — Definir limite de candidatos e rate limits
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P06-011
 
-### Context
-This task turns the networking plan into one bounded, reviewable outcome: define candidate cap and rate limit strategy.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir limite de candidatos e rate limits.
 
-### Objective
-Define candidate cap and rate limit strategy, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir limite de candidatos e rate limits dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define candidate cap and rate limit strategy” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir limite de candidatos e rate limits” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Use URLProtocol fixtures for HTTP success/errors, malformed data, transport and rate limit. No live API tests.
+### Validação
+Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.

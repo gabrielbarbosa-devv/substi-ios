@@ -1,81 +1,81 @@
-# Git Workflow
+# Fluxo de trabalho com Git
 
-This repository uses small, reviewable branches and Conventional Commits so a reviewer can follow what changed, why it changed, and how it was validated.
+O histórico do Git deve ajudar quem avalia o projeto a entender o que mudou, por que mudou e como foi validado. Use branches pequenas e commits Conventional Commits, cada qual com um propósito compreensível.
 
-## Branch model
+## Branches
 
-`main` is the principal integration branch. It should contain a coherent, reviewable project state. Development work happens on a separate branch created from the latest `main`, and is proposed back to `main` through a pull request. Do not develop directly on `main` or force-push it.
+`main` é a branch principal de integração e deve conter um estado coerente e revisável. Faça desenvolvimento em uma branch separada criada a partir da `main` atualizada e proponha a mudança por pull request. Não desenvolva diretamente em `main` nem faça force-push.
 
-Use one branch for one task or one tightly related change. Include the task ID when there is one, followed by a short, lowercase, hyphen-separated description.
+Uma branch representa uma tarefa ou uma mudança estreitamente relacionada. Inclua o ID da tarefa quando existir, seguido de uma descrição curta, minúscula e separada por hífens.
 
-| Change | Branch pattern | Example |
+| Tipo de mudança | Padrão da branch | Exemplo |
 | --- | --- | --- |
-| Product capability | `feature/<task-id>-<summary>` | `feature/sub-p04-001-product-model` |
-| Bug correction | `bugfix/<task-id>-<summary>` | `bugfix/sub-p06-008-handle-empty-response` |
-| Documentation | `docs/<task-id>-<summary>` | `docs/sub-p00-001-product-problem` |
-| Refactoring | `refactor/<task-id>-<summary>` | `refactor/sub-p05-006-ranking-rules` |
-| Tests | `test/<task-id>-<summary>` | `test/sub-p05-002-ranking-red-test` |
-| Build or repository maintenance | `chore/<summary>` | `chore/git-workflow-readme` |
+| Nova capacidade do produto | `feature/<tarefa-id>-<resumo>` | `feature/sub-p04-001-product-model` |
+| Correção de comportamento existente | `bugfix/<tarefa-id>-<resumo>` | `bugfix/sub-p06-008-handle-empty-response` |
+| Documentação | `docs/<tarefa-id>-<resumo>` | `docs/sub-p00-001-product-problem` |
+| Refatoração | `refactor/<tarefa-id>-<resumo>` | `refactor/sub-p05-006-ranking-rules` |
+| Testes | `test/<tarefa-id>-<resumo>` | `test/sub-p05-002-ranking-red-test` |
+| Manutenção de build ou repositório | `chore/<resumo>` | `chore/git-workflow-readme` |
 
-Use `feature/` for a new user-visible capability. Use `bugfix/` when correcting behavior that does not meet an existing requirement. A new requirement should be a feature, even if the old behavior was inconvenient. If the work has no task ID yet, record or select its task before expanding the branch scope.
+Use `feature/` para uma capacidade nova visível à pessoa usuária. Use `bugfix/` ao corrigir comportamento que não atende a um requisito existente. Uma nova necessidade é feature, ainda que o comportamento anterior fosse inconveniente. Se ainda não há ID, registre ou selecione a tarefa antes de ampliar o escopo da branch.
 
-## Commit messages
+## Mensagens de commit
 
-Use this Conventional Commit shape:
+Formato Conventional Commits:
 
 ```text
-<type>(<optional-scope>): <short imperative summary>
+<tipo>(<escopo-opcional>): <resumo imperativo curto>
 ```
 
-Keep a commit focused on one understandable change. Use the type that describes the change:
+Mantenha cada commit focado em uma mudança compreensível. Escolha o tipo que descreve a alteração:
 
-| Type | Use |
+| Tipo | Uso |
 | --- | --- |
-| `feat` | Add a user-visible capability |
-| `fix` | Correct a defect in existing behavior |
-| `docs` | Add or change documentation |
-| `test` | Add or change tests without changing product behavior |
-| `refactor` | Restructure code without changing behavior |
-| `chore` | Repository or development maintenance |
-| `build` | Change build configuration or dependencies |
-| `ci` | Change continuous integration configuration |
-| `perf` | Make a measured performance improvement |
+| `feat` | Nova capacidade visível no produto |
+| `fix` | Correção de defeito existente |
+| `docs` | Documentação criada ou alterada |
+| `test` | Testes alterados sem mudar o comportamento do produto |
+| `refactor` | Reestruturação sem mudar o comportamento |
+| `chore` | Manutenção do repositório ou ambiente de desenvolvimento |
+| `build` | Configuração de build ou dependências |
+| `ci` | Integração contínua |
+| `perf` | Melhoria de desempenho baseada em medição |
 
-Examples:
-
-```text
-docs: define grocery substitution problem
-feat(domain): add product value type
-test(ranking): define category score behavior
-fix(networking): handle empty product response
-```
-
-Do not use a commit message that hides several unrelated tasks, such as `update project` or `finish app`. Suggest the commit message and explain the change before committing; the developer decides when to commit unless they explicitly authorized a commit.
-
-## Task-to-merge flow
+Exemplos:
 
 ```text
-CURRENT.md identifies one task
-             ↓
-update local main from origin/main
-             ↓
-create a task branch
-             ↓
-make only that task's change
-             ↓
-review diff and acceptance criteria
-             ↓
-commit with a Conventional Commit message
-             ↓
-push branch and open a pull request to main
-             ↓
-developer reviews, understands, and approves
-             ↓
-merge to main; sync local main
+docs: definir problema de substituição de produtos
+feat(domain): adicionar tipo de valor Product
+test(ranking): definir comportamento da categoria
+fix(networking): tratar resposta vazia de produtos
 ```
 
-Before opening the pull request, summarize the problem, decision, alternatives, trade-offs, changed files, and validation. Link the task ID in the pull request title or description. A task enters `REVIEW` when implementation is ready for developer review; it becomes `DONE` only after the developer approves it and can explain the change. Do not begin another task automatically.
+Não use mensagens vagas, como `update project` ou `finish app`. Sugira a mensagem e explique seu escopo antes de commitar; o desenvolvedor decide quando autorizar o commit, salvo quando já o tiver autorizado explicitamente.
 
-## Initial repository setup
+## Fluxo da tarefa até a integração
 
-The GitHub repository's existing `main` branch is the source of the initial history. Keep it as `origin/main`; publish project work from a branch and integrate it through review. Never replace the remote history with a force push.
+```text
+CURRENT.md aponta uma tarefa
+             ↓
+atualizar main local a partir de origin/main
+             ↓
+criar branch da tarefa
+             ↓
+alterar somente o escopo autorizado
+             ↓
+revisar diff e critérios de aceite
+             ↓
+commitar com Conventional Commits
+             ↓
+enviar branch e abrir pull request para main
+             ↓
+Gabriel revisa, compreende e aprova
+             ↓
+integrar na main e sincronizar a cópia local
+```
+
+Antes de abrir um PR, resuma problema, decisão, alternativas, trade-offs, arquivos alterados e validação. Inclua o ID da tarefa no título ou na descrição. A tarefa vai para `REVIEW` quando estiver pronta para revisão; só Gabriel a muda para `DONE` depois de aprovar e explicar o resultado. Não comece outra tarefa automaticamente.
+
+## Configuração inicial deste repositório
+
+A branch `main` já existente no GitHub é a origem do histórico. Preserve `origin/main` e publique o trabalho em uma branch de desenvolvimento. Nunca substitua o histórico remoto com force-push.

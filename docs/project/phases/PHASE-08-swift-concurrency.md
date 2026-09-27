@@ -1,808 +1,808 @@
-# PHASE 08 — Swift Concurrency
+# FASE 08 — Concorrência em Swift
 
-## Objective
-Introduce structured concurrency incrementally and handle cancellation and isolation.
+## Objetivo
+Introduzir concorrência estruturada aos poucos e tratar cancelamento e isolamento.
 
-## Expected Outcome
-A reviewed and documented outcome for this phase within its scope.
+## Resultado esperado
+Carregamento assíncrono simples; TaskGroup somente se o fluxo final justificar.
 
-## Dependencies
-Relevant outcomes from PHASE 07.
+## Dependências
+Resultados pertinentes da FASE 07.
 
-## Priority
-See task priorities. P1/P2 work must not displace core P0 delivery.
+## Prioridade
+Consulte as prioridades das tasks. Trabalho P1/P2 não pode comprometer a entrega essencial P0.
 
-## Status
+## Estado
 TODO
 
-## SUB-P08-001 — Load one product async
+## SUB-P08-001 — Carregar um produto com async
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
-- None
+Depende de:
+- Nenhuma
 
-### Context
-This task turns the swift concurrency plan into one bounded, reviewable outcome: load one product async.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Carregar um produto com async.
 
-### Objective
-Load one product async, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Carregar um produto com async dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 async/await, Task, async let, TaskGroup, cancellation, actors, MainActor, Sendable.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Load one product async” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Carregar um produto com async” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Test cancellation, partial failures and isolation; Thread Sanitizer where relevant.
+### Validação
+Testar cancelamento, falhas parciais e isolamento; usar Thread Sanitizer quando pertinente.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P08-002 — Implement sequential baseline
+## SUB-P08-002 — Implementar baseline sequencial
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P08-001
 
-### Context
-This task turns the swift concurrency plan into one bounded, reviewable outcome: implement sequential baseline.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Implementar baseline sequencial.
 
-### Objective
-Implement sequential baseline, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Implementar baseline sequencial dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 async/await, Task, async let, TaskGroup, cancellation, actors, MainActor, Sendable.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Implement sequential baseline” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Implementar baseline sequencial” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Test cancellation, partial failures and isolation; Thread Sanitizer where relevant.
+### Validação
+Testar cancelamento, falhas parciais e isolamento; usar Thread Sanitizer quando pertinente.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P08-003 — Understand sequential cost
+## SUB-P08-003 — Compreender custo da execução sequencial
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P08-002
 
-### Context
-This task turns the swift concurrency plan into one bounded, reviewable outcome: understand sequential cost.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Compreender custo da execução sequencial.
 
-### Objective
-Understand sequential cost, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Compreender custo da execução sequencial dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 async/await, Task, async let, TaskGroup, cancellation, actors, MainActor, Sendable.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Understand sequential cost” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Compreender custo da execução sequencial” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Test cancellation, partial failures and isolation; Thread Sanitizer where relevant.
+### Validação
+Testar cancelamento, falhas parciais e isolamento; usar Thread Sanitizer quando pertinente.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P08-004 — Compare async let
+## SUB-P08-004 — Comparar async let
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P08-003
 
-### Context
-This task turns the swift concurrency plan into one bounded, reviewable outcome: compare async let.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Comparar async let.
 
-### Objective
-Compare async let, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Comparar async let dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 async/await, Task, async let, TaskGroup, cancellation, actors, MainActor, Sendable.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Compare async let” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Comparar async let” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Test cancellation, partial failures and isolation; Thread Sanitizer where relevant.
+### Validação
+Testar cancelamento, falhas parciais e isolamento; usar Thread Sanitizer quando pertinente.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P08-005 — Load bounded candidates with TaskGroup
+## SUB-P08-005 — Carregar candidatos limitados com TaskGroup
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P08-004
 
-### Context
-This task turns the swift concurrency plan into one bounded, reviewable outcome: load bounded candidates with taskgroup.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Carregar candidatos limitados com TaskGroup.
 
-### Objective
-Load bounded candidates with TaskGroup, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Carregar candidatos limitados com TaskGroup dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 async/await, Task, async let, TaskGroup, cancellation, actors, MainActor, Sendable.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Load bounded candidates with TaskGroup” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Carregar candidatos limitados com TaskGroup” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Test cancellation, partial failures and isolation; Thread Sanitizer where relevant.
+### Validação
+Testar cancelamento, falhas parciais e isolamento; usar Thread Sanitizer quando pertinente.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P08-006 — Handle cancellation
+## SUB-P08-006 — Tratar cancelamento
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P08-005
 
-### Context
-This task turns the swift concurrency plan into one bounded, reviewable outcome: handle cancellation.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Tratar cancelamento.
 
-### Objective
-Handle cancellation, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Tratar cancelamento dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 async/await, Task, async let, TaskGroup, cancellation, actors, MainActor, Sendable.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Handle cancellation” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Tratar cancelamento” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Test cancellation, partial failures and isolation; Thread Sanitizer where relevant.
+### Validação
+Testar cancelamento, falhas parciais e isolamento; usar Thread Sanitizer quando pertinente.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P08-007 — Isolate presentation with MainActor
+## SUB-P08-007 — Isolar apresentação com MainActor
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
-None
+Depende de:
+Nenhuma
 
-### Context
-This task turns the swift concurrency plan into one bounded, reviewable outcome: isolate presentation with mainactor.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Isolar apresentação com MainActor.
 
-### Objective
-Isolate presentation with MainActor, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Isolar apresentação com MainActor dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 async/await, Task, async let, TaskGroup, cancellation, actors, MainActor, Sendable.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Isolate presentation with MainActor” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Isolar apresentação com MainActor” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Test cancellation, partial failures and isolation; Thread Sanitizer where relevant.
+### Validação
+Testar cancelamento, falhas parciais e isolamento; usar Thread Sanitizer quando pertinente.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P08-008 — Protect cache with actor
+## SUB-P08-008 — Proteger cache com actor
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P08-007
 
-### Context
-This task turns the swift concurrency plan into one bounded, reviewable outcome: protect cache with actor.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Proteger cache com actor.
 
-### Objective
-Protect cache with actor, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Proteger cache com actor dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 async/await, Task, async let, TaskGroup, cancellation, actors, MainActor, Sendable.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Protect cache with actor” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Proteger cache com actor” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Test cancellation, partial failures and isolation; Thread Sanitizer where relevant.
+### Validação
+Testar cancelamento, falhas parciais e isolamento; usar Thread Sanitizer quando pertinente.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P08-009 — Review Sendable
+## SUB-P08-009 — Revisar Sendable
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P08-008
 
-### Context
-This task turns the swift concurrency plan into one bounded, reviewable outcome: review sendable.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Revisar Sendable.
 
-### Objective
-Review Sendable, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Revisar Sendable dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 async/await, Task, async let, TaskGroup, cancellation, actors, MainActor, Sendable.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Review Sendable” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Revisar Sendable” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Test cancellation, partial failures and isolation; Thread Sanitizer where relevant.
+### Validação
+Testar cancelamento, falhas parciais e isolamento; usar Thread Sanitizer quando pertinente.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P08-010 — Define partial failure
+## SUB-P08-010 — Definir falha parcial
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P08-009
 
-### Context
-This task turns the swift concurrency plan into one bounded, reviewable outcome: define partial failure.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir falha parcial.
 
-### Objective
-Define partial failure, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir falha parcial dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 async/await, Task, async let, TaskGroup, cancellation, actors, MainActor, Sendable.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define partial failure” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir falha parcial” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Test cancellation, partial failures and isolation; Thread Sanitizer where relevant.
+### Validação
+Testar cancelamento, falhas parciais e isolamento; usar Thread Sanitizer quando pertinente.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P08-011 — Run Thread Sanitizer
+## SUB-P08-011 — Executar Thread Sanitizer
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P08-010
 
-### Context
-This task turns the swift concurrency plan into one bounded, reviewable outcome: run thread sanitizer.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Executar Thread Sanitizer.
 
-### Objective
-Run Thread Sanitizer, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Executar Thread Sanitizer dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 async/await, Task, async let, TaskGroup, cancellation, actors, MainActor, Sendable.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Run Thread Sanitizer” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Executar Thread Sanitizer” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Test cancellation, partial failures and isolation; Thread Sanitizer where relevant.
+### Validação
+Testar cancelamento, falhas parciais e isolamento; usar Thread Sanitizer quando pertinente.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P08-012 — Document concurrency
+## SUB-P08-012 — Documentar concorrência
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P08-011
 
-### Context
-This task turns the swift concurrency plan into one bounded, reviewable outcome: document concurrency.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Documentar concorrência.
 
-### Objective
-Document concurrency, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Documentar concorrência dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 async/await, Task, async let, TaskGroup, cancellation, actors, MainActor, Sendable.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Document concurrency” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Documentar concorrência” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Test cancellation, partial failures and isolation; Thread Sanitizer where relevant.
+### Validação
+Testar cancelamento, falhas parciais e isolamento; usar Thread Sanitizer quando pertinente.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.

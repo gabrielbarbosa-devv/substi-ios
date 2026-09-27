@@ -1,676 +1,676 @@
-# PHASE 15 — Observability
+# FASE 15 — Observabilidade
 
-## Objective
-Add proportionate native observability with privacy.
+## Objetivo
+Adicionar observabilidade nativa proporcional, com atenção à privacidade.
 
-## Expected Outcome
-A reviewed and documented outcome for this phase within its scope.
+## Resultado esperado
+Logger com categorias úteis; integrações avançadas ficam para evolução futura.
 
-## Dependencies
-Relevant outcomes from PHASE 14.
+## Dependências
+Resultados pertinentes da FASE 14.
 
-## Priority
-See task priorities. P1/P2 work must not displace core P0 delivery.
+## Prioridade
+Consulte as prioridades das tasks. Trabalho P1/P2 não pode comprometer a entrega essencial P0.
 
-## Status
+## Estado
 TODO
 
-## SUB-P15-001 — Define logs and privacy
+## SUB-P15-001 — Definir logs e privacidade
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
-- None
+Depende de:
+- Nenhuma
 
-### Context
-This task turns the observability plan into one bounded, reviewable outcome: define logs and privacy.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir logs e privacidade.
 
-### Objective
-Define logs and privacy, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir logs e privacidade dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 OSLog, privacy, signposts, analytics, flags, MetricKit.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define logs and privacy” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir logs e privacidade” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Verify no sensitive data in logs; inspect signposts when introduced.
+### Validação
+Verificar que logs não contenham dados sensíveis; inspecionar signposts quando forem introduzidos.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P15-002 — Add Logger categories
+## SUB-P15-002 — Adicionar categorias do Logger
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P15-001
 
-### Context
-This task turns the observability plan into one bounded, reviewable outcome: add logger categories.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Adicionar categorias do Logger.
 
-### Objective
-Add Logger categories, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Adicionar categorias do Logger dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 OSLog, privacy, signposts, analytics, flags, MetricKit.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Add Logger categories” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Adicionar categorias do Logger” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Verify no sensitive data in logs; inspect signposts when introduced.
+### Validação
+Verificar que logs não contenham dados sensíveis; inspecionar signposts quando forem introduzidos.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P15-003 — Add safe network diagnostics
+## SUB-P15-003 — Adicionar diagnósticos de rede seguros
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P15-002
 
-### Context
-This task turns the observability plan into one bounded, reviewable outcome: add safe network diagnostics.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Adicionar diagnósticos de rede seguros.
 
-### Objective
-Add safe network diagnostics, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Adicionar diagnósticos de rede seguros dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 OSLog, privacy, signposts, analytics, flags, MetricKit.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Add safe network diagnostics” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Adicionar diagnósticos de rede seguros” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Verify no sensitive data in logs; inspect signposts when introduced.
+### Validação
+Verificar que logs não contenham dados sensíveis; inspecionar signposts quando forem introduzidos.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P15-004 — Add cache diagnostics
+## SUB-P15-004 — Adicionar diagnósticos de cache
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P15-003
 
-### Context
-This task turns the observability plan into one bounded, reviewable outcome: add cache diagnostics.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Adicionar diagnósticos de cache.
 
-### Objective
-Add cache diagnostics, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Adicionar diagnósticos de cache dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 OSLog, privacy, signposts, analytics, flags, MetricKit.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Add cache diagnostics” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Adicionar diagnósticos de cache” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Verify no sensitive data in logs; inspect signposts when introduced.
+### Validação
+Verificar que logs não contenham dados sensíveis; inspecionar signposts quando forem introduzidos.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P15-005 — Measure with signposts
+## SUB-P15-005 — Medir com signposts
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P15-004
 
-### Context
-This task turns the observability plan into one bounded, reviewable outcome: measure with signposts.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Medir com signposts.
 
-### Objective
-Measure with signposts, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Medir com signposts dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 OSLog, privacy, signposts, analytics, flags, MetricKit.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Measure with signposts” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Medir com signposts” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Verify no sensitive data in logs; inspect signposts when introduced.
+### Validação
+Verificar que logs não contenham dados sensíveis; inspecionar signposts quando forem introduzidos.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P15-006 — Define analytics contract
+## SUB-P15-006 — Definir contrato de analytics
 
-Status: TODO
+Estado: TODO
 
-Priority: P2
+Prioridade: P2
 
-Depends on:
+Depende de:
 - SUB-P15-005
 
-### Context
-This task turns the observability plan into one bounded, reviewable outcome: define analytics contract.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir contrato de analytics.
 
-### Objective
-Define analytics contract, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir contrato de analytics dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 OSLog, privacy, signposts, analytics, flags, MetricKit.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define analytics contract” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir contrato de analytics” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Verify no sensitive data in logs; inspect signposts when introduced.
+### Validação
+Verificar que logs não contenham dados sensíveis; inspecionar signposts quando forem introduzidos.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P15-007 — Define local analytics scope
+## SUB-P15-007 — Definir escopo de analytics local
 
-Status: TODO
+Estado: TODO
 
-Priority: P2
+Prioridade: P2
 
-Depends on:
+Depende de:
 - SUB-P15-006
 
-### Context
-This task turns the observability plan into one bounded, reviewable outcome: define local analytics scope.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir escopo de analytics local.
 
-### Objective
-Define local analytics scope, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir escopo de analytics local dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 OSLog, privacy, signposts, analytics, flags, MetricKit.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define local analytics scope” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir escopo de analytics local” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Verify no sensitive data in logs; inspect signposts when introduced.
+### Validação
+Verificar que logs não contenham dados sensíveis; inspecionar signposts quando forem introduzidos.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P15-008 — Define crash boundary
+## SUB-P15-008 — Definir limite de crash reporting
 
-Status: TODO
+Estado: TODO
 
-Priority: P2
+Prioridade: P2
 
-Depends on:
+Depende de:
 - SUB-P15-007
 
-### Context
-This task turns the observability plan into one bounded, reviewable outcome: define crash boundary.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir limite de crash reporting.
 
-### Objective
-Define crash boundary, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir limite de crash reporting dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 OSLog, privacy, signposts, analytics, flags, MetricKit.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define crash boundary” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir limite de crash reporting” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Verify no sensitive data in logs; inspect signposts when introduced.
+### Validação
+Verificar que logs não contenham dados sensíveis; inspecionar signposts quando forem introduzidos.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P15-009 — Define local feature flags
+## SUB-P15-009 — Definir feature flags locais
 
-Status: TODO
+Estado: TODO
 
-Priority: P2
+Prioridade: P2
 
-Depends on:
+Depende de:
 - SUB-P15-008
 
-### Context
-This task turns the observability plan into one bounded, reviewable outcome: define local feature flags.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir feature flags locais.
 
-### Objective
-Define local feature flags, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir feature flags locais dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 OSLog, privacy, signposts, analytics, flags, MetricKit.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define local feature flags” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir feature flags locais” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Verify no sensitive data in logs; inspect signposts when introduced.
+### Validação
+Verificar que logs não contenham dados sensíveis; inspecionar signposts quando forem introduzidos.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P15-010 — Record MetricKit applicability
+## SUB-P15-010 — Registrar aplicabilidade do MetricKit
 
-Status: TODO
+Estado: TODO
 
-Priority: P2
+Prioridade: P2
 
-Depends on:
+Depende de:
 - SUB-P15-009
 
-### Context
-This task turns the observability plan into one bounded, reviewable outcome: record metrickit applicability.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Registrar aplicabilidade do MetricKit.
 
-### Objective
-Record MetricKit applicability, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Registrar aplicabilidade do MetricKit dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 OSLog, privacy, signposts, analytics, flags, MetricKit.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Record MetricKit applicability” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Registrar aplicabilidade do MetricKit” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Verify no sensitive data in logs; inspect signposts when introduced.
+### Validação
+Verificar que logs não contenham dados sensíveis; inspecionar signposts quando forem introduzidos.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.

@@ -1,1589 +1,1589 @@
-# PHASE 11 — Design Discovery & System
+# FASE 11 — Descoberta de design e Design System
 
-## Objective
-Discover uma identidade visual própria antes de implementar foundations e componentes. Entregar uma camada pequena compartilhada por UIKit e SwiftUI, proporcional às telas do Substi.
+## Objetivo
+Descobrir uma identidade visual própria antes de implementar foundations e componentes, em escala adequada às telas do Substi.
 
-## Expected Outcome
-Screen contracts low-fi, princípios e foundations aprovados, revisão de acessibilidade e somente os tokens/componentes efetivamente usados. A referência ao iFood é conceitual; não copiar seu Design System proprietário.
+## Resultado esperado
+Princípios, foundations, contratos low-fi, revisão de acessibilidade e apenas tokens/componentes efetivamente usados.
 
-## Dependencies
-Discovery usa as decisões pertinentes de produto e pode ocorrer em paralelo com domain/networking. Implementação depende dos artifacts aprovados, não da conclusão cronológica de todo o Master Plan.
+## Dependências
+A descoberta de design usa as decisões pertinentes de produto e pode ocorrer em paralelo com domínio e rede. A implementação depende dos materiais aprovados, não da conclusão cronológica de todo o plano de engenharia.
 
-## Priority
-P0: HIG focado, princípios, foundations, low-fi, inventário, acessibilidade e componentes usados. P1: pesquisa iFood/grocery, direção high-fi e snapshots. Hard deadline: 2026-09-28 11:00 America/Sao_Paulo (BRT).
+## Prioridade
+P0: HIG focado, princípios, foundations, estrutura low-fi, inventário, acessibilidade e componentes usados. P1: pesquisa de referências do iFood e grocery, direção high-fi e snapshots. Prazo final: 28/09/2026 às 11h, em `America/Sao_Paulo`.
 
-## Status
+## Estado
 TODO
 
-## Design Discovery — before Swift UI
+## Descoberta de design — antes do SwiftUI
 
-Order: product problem → UX requirements → design principles → design foundations → components → screens → Swift implementation. Figma é auxiliar e time-boxed.
+Ordem: problema do produto → requisitos de experiência → princípios de design → foundations visuais → componentes → telas → implementação Swift. Figma é ferramenta auxiliar, com tempo limitado.
 
-## SUB-P11-012 — Research iFood Design System Principles
+## SUB-P11-012 — Pesquisar princípios do Design System do iFood
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
-- None
+Depende de:
+- Nenhuma
 
-### Context
-Entender em notas breves a separação entre Design Language, Design Tokens, Components e Platforms em um sistema de grande escala. Pesquisa conceitual, não requisito de entrega.
+### Contexto
+Registrar em notas breves como um sistema de grande escala separa linguagem visual, tokens, componentes e plataformas. É pesquisa conceitual, não requisito de entrega.
 
-### Objective
-Research iFood Design System Principles, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Pesquisar princípios do Design System do iFood e registrar notas curtas, revisadas dentro do escopo da entrega.
 
-### Requirements
+### Requisitos
 - Notas curtas descrevem essas camadas e o que é proporcional ao Substi; não reproduzem nomes, assets, tokens ou componentes proprietários do iFood.
-- Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
-- Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
+- Respeitar a direção Feature → DesignSystem; DesignSystem não depende de features, domínio, Repository ou networking.
+- Discutir alternativas com Gabriel antes da implementação; não expandir o escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
-Design system architecture, tokens, platform components.
+### Conceitos de engenharia
+Arquitetura de Design System, tokens e componentes por plataforma.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Limitar a pesquisa a 20 minutos e usar referências públicas.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Como a separação ajuda várias plataformas? O que é proporcional? O que não devemos copiar?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 P1: não bloquear implementação; notas breves e fontes.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
-Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela task.
+### Arquivos esperados
+Somente documentação e materiais de design nesta etapa; a implementação futura usa arquivos aprovados pela tarefa.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-013 — Review Apple HIG for Substi
+## SUB-P11-013 — Revisar HIG da Apple para o Substi
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
-- None
+Depende de:
+- Nenhuma
 
-### Context
-Usar padrões nativos de iOS adequados ao fluxo sem clonar outra aplicação.
+### Contexto
+Usar padrões nativos do iOS adequados ao fluxo sem clonar outra aplicação.
 
-### Objective
-Review Apple HIG for Substi, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Revisar os Human Interface Guidelines da Apple nos tópicos relevantes ao Substi e registrar critérios práticos para a interface.
 
-### Requirements
-- Notas cobrem navigation, buttons, lists/cards, typography, color, accessibility, feedback, loading e error states; transformar orientação aplicável em critérios para telas.
+### Requisitos
+- As notas cobrem navegação, botões, listas/cards, tipografia, cor, acessibilidade, feedback e estados de carregamento/erro; transformar orientações aplicáveis em critérios para as telas.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Apple HIG, navegação, componentes nativos, acessibilidade.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Estudar apenas os tópicos indicados.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Quais padrões nativos resolvem o caso? Onde customizar? Como validar accessibility?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Revisar fontes oficiais e screen criteria; sem código.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
-Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela task.
+### Arquivos esperados
+Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela tarefa.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-014 — Research Grocery UX References
+## SUB-P11-014 — Pesquisar referências de UX de mercado
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
-- None
+Depende de:
+- Nenhuma
 
-### Context
+### Contexto
 Observar padrões grocery, substituição, delivery, cards e comparação.
 
-### Objective
-Research Grocery UX References, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Pesquisar referências de UX de grocery e registrar até três referências, dentro do limite de tempo.
 
-### Requirements
+### Requisitos
 - No máximo três referências; pesquisa limitada a 20 minutos; registrar padrões e separar observação de suposição.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Grocery/e-commerce UX, comparação, substituição.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Timebox de 20 minutos; não fazer auditoria ampla.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Quais padrões reduzem esforço e aumentam confiança?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 P1: parar após 20 minutos; pode ser pulada.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
-Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela task.
+### Arquivos esperados
+Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela tarefa.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-015 — Define Substi Design Principles
+## SUB-P11-015 — Definir princípios de design do Substi
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P00-001
 - SUB-P11-013
 
-### Context
+### Contexto
 Traduzir o problema em critérios para uma identidade visual própria.
 
-### Objective
-Define Substi Design Principles, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Definir e registrar os princípios de design do Substi.
 
-### Requirements
+### Requisitos
 - Registrar CLEAR, COMPARABLE, CONSISTENT e ACCESSIBLE com consequência observável nas telas; declarar que a identidade é própria e não copia iFood.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Design language, princípios e hierarquia.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Revisar contra problema e hipótese antes de implementação.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Como cada princípio reduz esforço ou melhora comparação? Como verificar consistência UIKit/SwiftUI?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Revisão de princípios contra problema/fluxo.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
-Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela task.
+### Arquivos esperados
+Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela tarefa.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-016 — Define Design Foundations
+## SUB-P11-016 — Definir foundations de design
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P11-015
 
-### Context
+### Contexto
 Especificar foundations antes da implementação.
 
-### Objective
-Define Design Foundations, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Definir as foundations visuais sem valores arbitrários.
 
-### Requirements
-- Registrar semantic colors: brandPrimary; backgroundPrimary/backgroundSecondary; surfacePrimary/surfaceSecondary; textPrimary/textSecondary/textInverse; borderDefault; statusSuccess/statusWarning/statusError; interactivePrimary/interactiveDisabled. Registrar System Font + Dynamic Type styles: largeTitle, title, headline, body, bodyEmphasized, caption, button e price. Registrar spacing 4/8/12/16/24/32 e radius small/medium/large sem valores concretos; SF Symbols como padrão; semantic naming e light/dark. Não definir hex codes.
+### Requisitos
+- Registrar cores semânticas: brandPrimary; backgroundPrimary/backgroundSecondary; surfacePrimary/surfaceSecondary; textPrimary/textSecondary/textInverse; borderDefault; statusSuccess/statusWarning/statusError; interactivePrimary/interactiveDisabled. Registrar estilos de System Font + Dynamic Type: largeTitle, title, headline, body, bodyEmphasized, caption, button e price. Registrar escala de espaçamento 4/8/12/16/24/32 e raios small/medium/large sem valores concretos; usar SF Symbols como padrão; adotar nomes semânticos e considerar modo claro/escuro. Não definir códigos hexadecimais.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Tokens semânticos, Dynamic Type, spacing/radius, SF Symbols.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Distinguir decisão semântica de valor concreto.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Por que nomes semânticos? Quando asset próprio em vez de SF Symbols?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Revisar consistência, contraste e cobertura clara/escura; sem código.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
-Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela task.
+### Arquivos esperados
+Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela tarefa.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-017 — Create Low-Fidelity Screen Structure
+## SUB-P11-017 — Criar estrutura low-fi das telas
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P00-009
 - SUB-P11-016
 
-### Context
+### Contexto
 Definir quatro telas sem polish antes de criar views.
 
-### Objective
-Create Low-Fidelity Screen Structure, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Definir a estrutura low-fi das telas de pedido, sugestões, comparação e confirmação.
 
-### Requirements
-- Order, Suggestions, Comparison e Confirmation; cada screen contract inclui Purpose, User Goal, Information Hierarchy, Components, States, Actions, Accessibility e Analytics; avaliar loading/content/empty/error/disabled; sem high fidelity.
+### Requisitos
+- Pedido, sugestões, comparação e confirmação. Cada contrato de tela inclui propósito, objetivo da pessoa usuária, hierarquia de informação, componentes, estados, ações, acessibilidade e analytics. Avaliar loading/content/empty/error/disabled quando aplicável; não exige desenho high-fi.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
-Fluxo, wireframes low-fi, screen contracts e estados.
+### Conceitos de engenharia
+Fluxo, wireframes low-fi, contratos de tela e estados.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Percorrer fluxo e explicar hierarquia de informação.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Qual objetivo, informação prioritária, estados, ações e comportamento accessibility?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Revisar walkthrough e consistência com MVP; sem Swift ou implementação.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
-Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela task.
+### Arquivos esperados
+Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela tarefa.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-018 — Define Component Inventory
+## SUB-P11-018 — Definir inventário de componentes
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P11-017
 
-### Context
+### Contexto
 Derivar inventário mínimo das telas sem antecipar uma biblioteca.
 
-### Objective
-Define Component Inventory, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Identificar componentes necessários observando as telas, antes de implementar componentes.
 
-### Requirements
-- Mapear componentes usados/repetidos em UIKit e SwiftUI; comparar com controles nativos; DSProductCard recebe image, product name, brand, quantity, optional metadata, compatibility/status e selection state como presentation data, sem calcular ranking, fazer networking ou conhecer Repository; documentar itens dispensáveis. Registrar estrutura proporcional: Foundations (Color, Typography, Spacing, Radius); UIKit (DSButton, DSProductCardView, DSStatusBadgeView, DSLoadingView, DSErrorView); SwiftUI (DSButtonStyle, DSProductCard, DSStatusBadge). Itens sem uso real ficam de fora e nenhuma implementação é feita nesta task.
+### Requisitos
+- Mapear componentes usados ou repetidos em UIKit e SwiftUI e compará-los com controles nativos. DSProductCard recebe imagem, nome do produto, marca, quantidade, metadados opcionais, compatibilidade/estado e seleção como dados de apresentação; não calcula ranking, não faz networking e não conhece Repository. Registrar componentes dispensáveis. Estrutura conceitual proporcional: Foundations (Color, Typography, Spacing, Radius); UIKit (DSButton, DSProductCardView, DSStatusBadgeView, DSLoadingView, DSErrorView); SwiftUI (DSButtonStyle, DSProductCard, DSStatusBadge). Não implementar componentes sem uso real nesta tarefa.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Component boundaries, composição, apresentação versus domínio.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Justificar cada componente pelo uso.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Pode controle nativo resolver? Existe regra de negócio indevida?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
-Revisar inventário contra screen contracts e dependency direction.
+### Validação
+Revisar inventário contra contratos de tela e dependency direction.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
-Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela task.
+### Arquivos esperados
+Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela tarefa.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-019 — Create High-Fidelity Direction
+## SUB-P11-019 — Criar direção high-fi
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P11-016
 - SUB-P11-018
 
-### Context
+### Contexto
 Definir direção visual mínima, sem biblioteca extensa de Figma.
 
-### Objective
-Create High-Fidelity Direction, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Definir uma direção visual high-fi mínima, sem exigir uma biblioteca completa no Figma.
 
-### Requirements
-- Direção leve comunica hierarquia, spacing, typography, semantic colors, components e states nas telas; identidade própria.
+### Requisitos
+- Uma direção visual simples comunica hierarquia, espaçamento, tipografia, cores semânticas, componentes e estados das telas; a identidade é própria.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Visual hierarchy, foundations, component states.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Timebox para quick direction; não bloquear por Figma polido.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - O que chama atenção primeiro? As plataformas parecem uma app?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Walkthrough; P1 pode ser notas se o tempo apertar.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
-Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela task.
+### Arquivos esperados
+Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela tarefa.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-020 — Validate Accessibility in Design
+## SUB-P11-020 — Validar acessibilidade no design
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P11-016
 - SUB-P11-017
 
-### Context
+### Contexto
 Detectar problemas antes de implementar views.
 
-### Objective
-Validate Accessibility in Design, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Revisar acessibilidade do design antes da implementação Swift.
 
-### Requirements
-- Revisar contraste, tamanho/hierarquia, touch targets, leitura lógica, labels/semantics e Dynamic Type; registrar ajustes nos screen contracts.
+### Requisitos
+- Revisar contraste, tamanho/hierarquia, touch targets, leitura lógica, labels/semantics e Dynamic Type; registrar ajustes nos contratos de tela.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Accessibility-first design, contraste, alvos e leitura.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Revisar exemplos ampliados e fluxo VoiceOver conceitual.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - O que será anunciado? Texto ampliado quebra hierarquia? Cor é o único sinal?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Checklist por tela; sem implementação.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Critério central; revisar Dynamic Type, contraste, touch targets e leitura lógica.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
-Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela task.
+### Arquivos esperados
+Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela tarefa.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## Design Implementation
+## Implementação do Design System
 
 Implementar foundations e componentes somente após o discovery. Preferir controles iOS nativos quando adequados. Não criar a biblioteca inteira só para completar uma lista.
 
-## SUB-P11-021 — Implement Design Tokens
+## SUB-P11-021 — Implementar tokens de design
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P11-016
 - SUB-P11-020
 
-### Context
+### Contexto
 Implementar foundations aprovadas para UIKit e SwiftUI.
 
-### Objective
-Implement Design Tokens, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Concluir Implementar tokens de design dentro do escopo da entrega e registrar o resultado para revisão.
 
-### Requirements
-- Semantic colors, typography, spacing, radius partilhados conceitualmente; semantic assets onde aplicável; System Font, Dynamic Type, SF Symbols; sem hex arbitrário nem valores espalhados.
+### Requisitos
+- Cores semânticas, tipografia, espaçamento e raios compartilhados conceitualmente; assets semânticos quando aplicável; System Font, Dynamic Type e SF Symbols; sem códigos hexadecimais arbitrários ou valores espalhados.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Token API, assets, UIKit/SwiftUI, Dynamic Type.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Implementar foundations mínimas e justificar ownership.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Como compartilhar linguagem sem acoplar implementações?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
-Build e inspeção light/dark e Dynamic Type.
+### Validação
+Compilar e inspecionar os modos claro/escuro e Dynamic Type.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
-Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela task.
+### Arquivos esperados
+Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela tarefa.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-022 — Implement Required UIKit Components
+## SUB-P11-022 — Implementar componentes UIKit necessários
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P11-018
 - SUB-P11-021
 
-### Context
+### Contexto
 Entregar somente os componentes UIKit necessários às telas; tarefas específicas existentes detalham o trabalho.
 
-### Objective
-Implement Required UIKit Components, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Concluir Implementar componentes UIKit necessários dentro do escopo da entrega e registrar o resultado para revisão.
 
-### Requirements
+### Requisitos
 - Apenas componentes aprovados no inventário; integrar DSButton, DSProductCardView e estados quando usados; apresentação sem regra de negócio; não criar variantes não usadas.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIKit composition, tokens, presentation data, boundary.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Usar tasks 005,006,008 como implementação granular.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Que repetição justifica componente? Quem possui regras e dados?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Build, estados usados, Dynamic Type e accessibility.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
-Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela task.
+### Arquivos esperados
+Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela tarefa.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-023 — Implement Required SwiftUI Components
+## SUB-P11-023 — Implementar componentes SwiftUI necessários
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P11-018
 - SUB-P11-021
 
-### Context
+### Contexto
 Aplicar os mesmos princípios e tokens na comparação SwiftUI sem equivalentes desnecessários.
 
-### Objective
-Implement Required SwiftUI Components, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Concluir Implementar componentes SwiftUI necessários dentro do escopo da entrega e registrar o resultado para revisão.
 
-### Requirements
+### Requisitos
 - Apenas styles/components usados; consumir foundations; não controlar UINavigationController; preferir controles nativos.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 SwiftUI composition, styles, tokens, UIKit interoperability.
 
-### Study Before Implementation
-DSButtonStyle/DSStatusBadge só se os screen contracts mostrarem necessidade.
+### Estudar antes da implementação
+DSButtonStyle/DSStatusBadge só se os contratos de tela mostrarem necessidade.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Por que compartilhar tokens? Quem controla navegação?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Build/preview e estado/semântica; omitir componentes sem uso e justificar.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
-Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela task.
+### Arquivos esperados
+Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela tarefa.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-024 — Snapshot Critical Components
+## SUB-P11-024 — Criar snapshots de componentes críticos
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P11-022
 - SUB-P11-023
 
-### Context
+### Contexto
 Proteger estados visuais críticos depois de estabilizados.
 
-### Objective
-Snapshot Critical Components, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Concluir Criar snapshots de componentes críticos dentro do escopo da entrega e registrar o resultado para revisão.
 
-### Requirements
+### Requisitos
 - Selecionar ProductCard, ErrorState e Comparison se implementados; fixtures determinísticas; não cobrir biblioteca inteira.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Snapshot tests, fixtures, manutenção de baselines.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Usar ferramenta aprovada/disponível e justificar manutenção.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Que regressão visual útil detecta? Quando atualizar baseline?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Snapshots determinísticos; reduzir escopo se custo ameaçar entrega.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
-Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela task.
+### Arquivos esperados
+Somente documentação/design artifacts nesta etapa; implementação futura usa arquivos aprovados pela tarefa.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
 ## Existing Stable IDs
 
 Os IDs anteriores permanecem imutáveis. Duplicatas de planning foram preservadas como BLOCKED e referenciam a nova tarefa; tasks de componente ainda úteis permanecem com o escopo mínimo.
 
-## SUB-P11-001 — Define principles (superseded)
+## SUB-P11-001 — Definir princípios (substituída)
 
-Status: BLOCKED
+Estado: BLOCKED
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
-- None
+Depende de:
+- Nenhuma
 
-### Context
+### Contexto
 Entrada histórica substituída por SUB-P11-015 para não duplicar Design Discovery.
 
-### Objective
-Define principles (superseded), concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Princípios de design: tarefa anterior substituída pela etapa de Design Discovery.
 
-### Requirements
+### Requisitos
 - Permanece BLOCKED; executar P11-015. Não reutilizar ID.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Não executar trabalho duplicado.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] A substituta está identificada e este registro permanece BLOCKED.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Design language.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Ler substituta.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Por que ID foi preservado?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
-Não aplicável for this task.
+### Validação
+Não aplicável for esta tarefa.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
+### Arquivos esperados
 Nenhum arquivo novo; manter o registro histórico e apontar para a substituta.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Manter status BLOCKED e usar a substituta indicada.
 - [ ] Não reutilizar o ID.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-002 — Define color tokens (superseded)
+## SUB-P11-002 — Definir tokens de cor (substituída)
 
-Status: BLOCKED
+Estado: BLOCKED
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
-- None
+Depende de:
+- Nenhuma
 
-### Context
+### Contexto
 Definição consolidada em SUB-P11-016.
 
-### Objective
-Define color tokens (superseded), concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Tokens de cor: tarefa anterior substituída pela definição de foundations semânticas.
 
-### Requirements
+### Requisitos
 - Permanece BLOCKED; implementação em P11-021.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Não executar trabalho duplicado.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] A substituta está identificada e este registro permanece BLOCKED.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
-Semantic colors.
+### Conceitos de engenharia
+Cores semânticas.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Ler substituta.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Qual a diferença entre especificar e implementar tokens?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
-Não aplicável for this task.
+### Validação
+Não aplicável for esta tarefa.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
+### Arquivos esperados
 Nenhum arquivo novo; manter o registro histórico e apontar para a substituta.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Manter status BLOCKED e usar a substituta indicada.
 - [ ] Não reutilizar o ID.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-003 — Define typography and Dynamic Type (superseded)
+## SUB-P11-003 — Definir tipografia e Dynamic Type (substituída)
 
-Status: BLOCKED
+Estado: BLOCKED
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
-- None
+Depende de:
+- Nenhuma
 
-### Context
+### Contexto
 Definição consolidada em SUB-P11-016.
 
-### Objective
-Define typography and Dynamic Type (superseded), concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Tipografia e Dynamic Type: tarefa anterior substituída pela definição de foundations.
 
-### Requirements
+### Requisitos
 - Permanece BLOCKED; preservar ID.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Não executar trabalho duplicado.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] A substituta está identificada e este registro permanece BLOCKED.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Typography, Dynamic Type.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Ler substituta.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Qual a diferença entre especificar e implementar foundations?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
-Não aplicável for this task.
+### Validação
+Não aplicável for esta tarefa.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
+### Arquivos esperados
 Nenhum arquivo novo; manter o registro histórico e apontar para a substituta.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Manter status BLOCKED e usar a substituta indicada.
 - [ ] Não reutilizar o ID.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-004 — Define spacing/radius (superseded)
+## SUB-P11-004 — Definir espaçamento e raios (substituída)
 
-Status: BLOCKED
+Estado: BLOCKED
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
-- None
+Depende de:
+- Nenhuma
 
-### Context
+### Contexto
 Definição consolidada em SUB-P11-016.
 
-### Objective
-Define spacing/radius (superseded), concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Spacing e radius: tarefa anterior substituída pela definição de foundations.
 
-### Requirements
+### Requisitos
 - Permanece BLOCKED; preservar ID.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Não executar trabalho duplicado.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] A substituta está identificada e este registro permanece BLOCKED.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Spacing, radius.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Ler substituta.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Quando escolher valores concretos?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
-Não aplicável for this task.
+### Validação
+Não aplicável for esta tarefa.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
+### Arquivos esperados
 Nenhum arquivo novo; manter o registro histórico e apontar para a substituta.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Manter status BLOCKED e usar a substituta indicada.
 - [ ] Não reutilizar o ID.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-005 — Implement DSButton
+## SUB-P11-005 — Implementar DSButton
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P11-021
 
-### Context
+### Contexto
 Implementar variante UIKit necessária se controle nativo não resolver.
 
-### Objective
-Implement DSButton, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Concluir Implementar DSButton dentro do escopo da entrega e registrar o resultado para revisão.
 
-### Requirements
+### Requisitos
 - Considerar primary/secondary/destructive e normal/highlighted/disabled/loading, mas implementar somente variants/states usados; foundations compartilhadas; sem lógica de negócio.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIKit, tokens, action state.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Revisar UIButton e necessidade real de wrapper.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Que estado é usado? Por que customizar?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
-Build e inspecionar states/accessibility.
+### Validação
+Compilar e inspecionar estados e acessibilidade.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
+### Arquivos esperados
 Somente arquivos de token/component aprovados; nenhum arquivo é criado nesta atualização do planejamento.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-006 — Implement DSProductCard
+## SUB-P11-006 — Implementar DSProductCard
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P11-021
 - SUB-P11-018
 
-### Context
+### Contexto
 Apresentar produtos consistentemente onde inventário justificar reuse.
 
-### Objective
-Implement DSProductCard, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Concluir Implementar DSProductCard dentro do escopo da entrega e registrar o resultado para revisão.
 
-### Requirements
+### Requisitos
 - Nome, marca, quantidade, metadata, compatibilidade/status e seleção conforme necessidade; recebe presentation data, não calcula ranking nem conhece rede/repository.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Presentation data, UI composition, boundary.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Revisar hierarquia e labels.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Como evitar regras de negócio no componente?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Validar dados, estados e Dynamic Type.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
+### Arquivos esperados
 Somente arquivos de token/component aprovados; nenhum arquivo é criado nesta atualização do planejamento.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-007 — Implement DSStatusBadge (only if used)
+## SUB-P11-007 — Implementar DSStatusBadge
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P11-018
 - SUB-P11-021
 
-### Context
+### Contexto
 Criar badge apenas se status não ficar claro com texto/controle nativo.
 
-### Objective
-Implement DSStatusBadge (only if used), concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Concluir Implementar DSStatusBadge dentro do escopo da entrega e registrar o resultado para revisão.
 
-### Requirements
+### Requisitos
 - Se inventário não justificar, documentar não implementação.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
-Status semântico, accessibility.
+### Conceitos de engenharia
+Status semântico e acessibilidade.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Considerar texto e SF Symbols; não depender só de cor.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - O que comunica? Como VoiceOver anuncia?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Inspecionar se implementado.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
+### Arquivos esperados
 Somente arquivos de token/component aprovados; nenhum arquivo é criado nesta atualização do planejamento.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-008 — Implement loading/error/empty states
+## SUB-P11-008 — Implementar estados de carregamento/erro/vazio
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P11-021
 - SUB-P11-017
 
-### Context
+### Contexto
 Comunicar progresso, falha e ausência de candidatos.
 
-### Objective
-Implement loading/error/empty states, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Concluir Implementar estados de carregamento/erro/vazio dentro do escopo da entrega e registrar o resultado para revisão.
 
-### Requirements
+### Requisitos
 - Estados relevantes; erro recuperável; controles e feedback nativos quando adequados.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UI states, feedback.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Definir mensagem e ação antes de view.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - O que pode usuário fazer em cada estado?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Validar estados determinísticos e accessibility.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
+### Arquivos esperados
 Somente arquivos de token/component aprovados; nenhum arquivo é criado nesta atualização do planejamento.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-009 — Validate Dark Mode
+## SUB-P11-009 — Validar Dark Mode
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P11-021
 
-### Context
+### Contexto
 Verificar direção visual em aparência clara e escura.
 
-### Objective
-Validate Dark Mode, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Validar o modo claro/escuro.
 
-### Requirements
-- Usar semantic colors; registrar problemas; reduzir escopo se deadline apertar.
+### Requisitos
+- Usar cores semânticas; registrar problemas; reduzir escopo se o prazo apertar.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
-Semantic colors, contrast.
+### Conceitos de engenharia
+Cores semânticas e contraste.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Revisar cores semânticas nativas.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - O contraste continua adequado?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Inspeção manual dos fluxos.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
+### Arquivos esperados
 Somente arquivos de token/component aprovados; nenhum arquivo é criado nesta atualização do planejamento.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-010 — Define UIKit/SwiftUI token interoperability
+## SUB-P11-010 — Definir tokens UIKit/SwiftUI
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P11-021
 
-### Context
+### Contexto
 Validar que ambas as APIs expressam uma linguagem coerente.
 
-### Objective
-Define UIKit/SwiftUI token interoperability, concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Definir tokens compartilhados entre UIKit e SwiftUI.
 
-### Requirements
+### Requisitos
 - Nenhuma plataforma depende da implementação visual da outra; tokens não conhecem feature.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] Resultado atende os critérios do discovery ou inventário aprovado.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Design boundary, API surface.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Evitar abstração excessiva.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Como compartilhar intenção sem compartilhar tipos de UI?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
+### Validação
 Build/preview e dependency review.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
+### Considerações de memória
 Avaliar ownership quando a implementação de componente ocorrer; esta decisão de design não cria ciclo de referências.
 
-### Concurrency Considerations
+### Considerações de concorrência
 Sem estado mutável compartilhado nesta decisão; revisar isolamento se implementação introduzir concorrência.
 
-### Accessibility
+### Acessibilidade
 Aplicar semântica, labels, Dynamic Type e ordem lógica quando houver UI.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
+### Arquivos esperados
 Somente arquivos de token/component aprovados; nenhum arquivo é criado nesta atualização do planejamento.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Critérios atendidos e revisados por Gabriel.
 - [ ] Verificações aplicáveis passam ou não aplicabilidade é justificada.
 - [ ] Atualizar documentação; Gabriel explica decisões/trade-offs.
 - [ ] Passar por REVIEW; DONE só depois de revisão explícita.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
 
-## SUB-P11-011 — Add selected snapshots (superseded)
+## SUB-P11-011 — Adicionar snapshots selecionados (substituída)
 
-Status: BLOCKED
+Estado: BLOCKED
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
-- None
+Depende de:
+- Nenhuma
 
-### Context
+### Contexto
 Cobertura selecionada consolidada em SUB-P11-024.
 
-### Objective
-Add selected snapshots (superseded), concluída e revisada dentro do escopo da entrega.
+### Objetivo
+Snapshots selecionados: tarefa anterior substituída; os snapshots necessários são definidos após o inventário de componentes.
 
-### Requirements
+### Requisitos
 - BLOCKED para evitar duplicação; usar P11-024.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Não executar trabalho duplicado.
 
-### Acceptance Criteria
+### Critérios de aceite
 - [ ] A substituta está identificada e este registro permanece BLOCKED.
 - [ ] Decisões, limites e trade-offs ficam registrados.
 - [ ] Gabriel revisa e consegue explicar o resultado.
 
-### Engineering Concepts
+### Conceitos de engenharia
 Snapshots.
 
-### Study Before Implementation
+### Estudar antes da implementação
 Ler substituta.
 
-### Questions I Must Be Able to Answer
+### Perguntas que preciso saber responder
 - Qual cobertura justifica manutenção?
 - Qual alternativa foi considerada e por que o escopo é proporcional ao prazo?
 
-### Testing
-Não aplicável for this task.
+### Validação
+Não aplicável for esta tarefa.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
+### Uso de IA
 IA pode resumir referências e propor alternativas; Gabriel verifica fontes, escolhe a direção e explica a decisão. IA não escolhe identidade visual nem adiciona componentes sem justificativa.
 
-### Expected Files
+### Arquivos esperados
 Nenhum arquivo novo; manter o registro histórico e apontar para a substituta.
 
-### Definition of Done
+### Critérios para conclusão
 - [ ] Manter status BLOCKED e usar a substituta indicada.
 - [ ] Não reutilizar o ID.
 
-### Interview Notes
+### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.

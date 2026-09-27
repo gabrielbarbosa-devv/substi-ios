@@ -1,808 +1,808 @@
-# PHASE 12 — UIKit
+# FASE 12 — UIKit
 
-## Objective
-Build primary order and suggestions screens using UIKit View Code.
+## Objetivo
+Construir as telas principais de pedido e sugestões com UIKit e View Code.
 
-## Expected Outcome
-A reviewed and documented outcome for this phase within its scope.
+## Resultado esperado
+Fluxo utilizável com estados loading/content/error e navegação coordenada.
 
-## Dependencies
-Relevant outcomes from PHASE 11.
+## Dependências
+Resultados pertinentes da FASE 11.
 
-## Priority
-See task priorities. P1/P2 work must not displace core P0 delivery.
+## Prioridade
+Consulte as prioridades das tasks. Trabalho P1/P2 não pode comprometer a entrega essencial P0.
 
-## Status
+## Estado
 TODO
 
-## SUB-P12-001 — Study UIViewController lifecycle
+## SUB-P12-001 — Estudar ciclo de vida de UIViewController
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
-- None
+Depende de:
+- Nenhuma
 
-### Context
-This task turns the uikit plan into one bounded, reviewable outcome: study uiviewcontroller lifecycle.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Estudar ciclo de vida de UIViewController.
 
-### Objective
-Study UIViewController lifecycle, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Estudar ciclo de vida de UIViewController dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIViewController, Auto Layout, collection views, reuse, diffable data.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Study UIViewController lifecycle” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Estudar ciclo de vida de UIViewController” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Validate states/navigation with deterministic UI flow checks where practical.
+### Validação
+Validar estados e navegação com verificações determinísticas do fluxo de UI quando viável.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P12-002 — Build Order screen with View Code
+## SUB-P12-002 — Criar tela de pedido com View Code
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
-None
+Depende de:
+Nenhuma
 
-### Context
-This task turns the uikit plan into one bounded, reviewable outcome: build order screen with view code.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Criar tela de pedido com View Code.
 
-### Objective
-Build Order screen with View Code, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Criar tela de pedido com View Code dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIViewController, Auto Layout, collection views, reuse, diffable data.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Build Order screen with View Code” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Criar tela de pedido com View Code” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Validate states/navigation with deterministic UI flow checks where practical.
+### Validação
+Validar estados e navegação com verificações determinísticas do fluxo de UI quando viável.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P12-003 — Add Order state
+## SUB-P12-003 — Adicionar estado do pedido
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P12-002
 
-### Context
-This task turns the uikit plan into one bounded, reviewable outcome: add order state.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Adicionar estado do pedido.
 
-### Objective
-Add Order state, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Adicionar estado do pedido dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIViewController, Auto Layout, collection views, reuse, diffable data.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Add Order state” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Adicionar estado do pedido” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Validate states/navigation with deterministic UI flow checks where practical.
+### Validação
+Validar estados e navegação com verificações determinísticas do fluxo de UI quando viável.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P12-004 — Build Suggestions screen
+## SUB-P12-004 — Criar tela de sugestões
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
-None
+Depende de:
+Nenhuma
 
-### Context
-This task turns the uikit plan into one bounded, reviewable outcome: build suggestions screen.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Criar tela de sugestões.
 
-### Objective
-Build Suggestions screen, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Criar tela de sugestões dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIViewController, Auto Layout, collection views, reuse, diffable data.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Build Suggestions screen” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Criar tela de sugestões” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Validate states/navigation with deterministic UI flow checks where practical.
+### Validação
+Validar estados e navegação com verificações determinísticas do fluxo de UI quando viável.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P12-005 — Add Suggestions states
+## SUB-P12-005 — Adicionar estados de sugestões
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P12-004
 
-### Context
-This task turns the uikit plan into one bounded, reviewable outcome: add suggestions states.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Adicionar estados de sugestões.
 
-### Objective
-Add Suggestions states, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Adicionar estados de sugestões dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIViewController, Auto Layout, collection views, reuse, diffable data.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Add Suggestions states” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Adicionar estados de sugestões” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Validate states/navigation with deterministic UI flow checks where practical.
+### Validação
+Validar estados e navegação com verificações determinísticas do fluxo de UI quando viável.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P12-006 — Configure UICollectionView reuse
+## SUB-P12-006 — Configurar reuso de UICollectionView
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P12-005
 
-### Context
-This task turns the uikit plan into one bounded, reviewable outcome: configure uicollectionview reuse.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Configurar reuso de UICollectionView.
 
-### Objective
-Configure UICollectionView reuse, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Configurar reuso de UICollectionView dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIViewController, Auto Layout, collection views, reuse, diffable data.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Configure UICollectionView reuse” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Configurar reuso de UICollectionView” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Validate states/navigation with deterministic UI flow checks where practical.
+### Validação
+Validar estados e navegação com verificações determinísticas do fluxo de UI quando viável.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P12-007 — Define CompositionalLayout
+## SUB-P12-007 — Definir CompositionalLayout
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P12-006
 
-### Context
-This task turns the uikit plan into one bounded, reviewable outcome: define compositionallayout.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir CompositionalLayout.
 
-### Objective
-Define CompositionalLayout, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir CompositionalLayout dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIViewController, Auto Layout, collection views, reuse, diffable data.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define CompositionalLayout” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir CompositionalLayout” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Validate states/navigation with deterministic UI flow checks where practical.
+### Validação
+Validar estados e navegação com verificações determinísticas do fluxo de UI quando viável.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P12-008 — Define DiffableDataSource
+## SUB-P12-008 — Definir DiffableDataSource
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P12-007
 
-### Context
-This task turns the uikit plan into one bounded, reviewable outcome: define diffabledatasource.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir DiffableDataSource.
 
-### Objective
-Define DiffableDataSource, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Definir DiffableDataSource dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIViewController, Auto Layout, collection views, reuse, diffable data.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Define DiffableDataSource” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Definir DiffableDataSource” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Validate states/navigation with deterministic UI flow checks where practical.
+### Validação
+Validar estados e navegação com verificações determinísticas do fluxo de UI quando viável.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P12-009 — Review Auto Layout sizing
+## SUB-P12-009 — Revisar dimensionamento com Auto Layout
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
-None
+Depende de:
+Nenhuma
 
-### Context
-This task turns the uikit plan into one bounded, reviewable outcome: review auto layout sizing.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Revisar dimensionamento com Auto Layout.
 
-### Objective
-Review Auto Layout sizing, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Revisar dimensionamento com Auto Layout dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIViewController, Auto Layout, collection views, reuse, diffable data.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Review Auto Layout sizing” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Revisar dimensionamento com Auto Layout” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Validate states/navigation with deterministic UI flow checks where practical.
+### Validação
+Validar estados e navegação com verificações determinísticas do fluxo de UI quando viável.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P12-010 — Connect Coordinator
+## SUB-P12-010 — Conectar Coordinator
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
-None
+Depende de:
+Nenhuma
 
-### Context
-This task turns the uikit plan into one bounded, reviewable outcome: connect coordinator.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Conectar Coordinator.
 
-### Objective
-Connect Coordinator, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Conectar Coordinator dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIViewController, Auto Layout, collection views, reuse, diffable data.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Connect Coordinator” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Conectar Coordinator” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Validate states/navigation with deterministic UI flow checks where practical.
+### Validação
+Validar estados e navegação com verificações determinísticas do fluxo de UI quando viável.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P12-011 — Handle UI states
+## SUB-P12-011 — Tratar estados de interface
 
-Status: TODO
+Estado: TODO
 
-Priority: P0
+Prioridade: P0
 
-Depends on:
+Depende de:
 SUB-P12-010
 
-### Context
-This task turns the uikit plan into one bounded, reviewable outcome: handle ui states.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Tratar estados de interface.
 
-### Objective
-Handle UI states, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Tratar estados de interface dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIViewController, Auto Layout, collection views, reuse, diffable data.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Handle UI states” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Tratar estados de interface” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Validate states/navigation with deterministic UI flow checks where practical.
+### Validação
+Validar estados e navegação com verificações determinísticas do fluxo de UI quando viável.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P12-012 — Review rendering performance
+## SUB-P12-012 — Revisar desempenho de renderização
 
-Status: TODO
+Estado: TODO
 
-Priority: P1
+Prioridade: P1
 
-Depends on:
+Depende de:
 - SUB-P12-011
 
-### Context
-This task turns the uikit plan into one bounded, reviewable outcome: review rendering performance.
+### Contexto
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Revisar desempenho de renderização.
 
-### Objective
-Review rendering performance, completed and reviewed within the stated scope.
+### Objetivo
+Concluir Revisar desempenho de renderização dentro do escopo definido e deixar o resultado pronto para revisão.
 
-### Requirements
-- Follow [AGENTS.md](../../AGENTS.md) and applicable project source documents.
-- Discuss the approach and trade-offs with Gabriel before implementation; do not expand scope.
-- Update planning and documentation when the task is complete.
+### Requisitos
+- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
+- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
+- Atualizar planejamento e documentação quando a tarefa for concluída.
 
-### Acceptance Criteria
-- [ ] The task outcome is produced within agreed scope.
-- [ ] Decisions and trade-offs are explained and recorded.
-- [ ] Gabriel reviews the result and can explain key concepts.
+### Critérios de aceite
+- [ ] O resultado foi produzido dentro do escopo combinado.
+- [ ] Decisões e trade-offs foram explicados e registrados.
+- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
-### Engineering Concepts
+### Conceitos de engenharia
 UIViewController, Auto Layout, collection views, reuse, diffable data.
 
-### Study Before Implementation
-Review applicable guidance in AGENTS.md and source documents. Gabriel explains the goal and likely alternatives before implementation.
+### Estudar antes da implementação
+Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
-### Questions I Must Be Able to Answer
-- What problem does “Review rendering performance” address, and why is the approach appropriate?
-- What alternative was considered and what trade-off does the choice make?
-- How is the result validated and maintained?
+### Perguntas que preciso saber responder
+- Que problema “Revisar desempenho de renderização” resolve e por que esta abordagem é adequada?
+- Que alternativa foi considerada e qual trade-off esta escolha envolve?
+- Como o resultado será validado e mantido?
 
-### Testing
-Validate states/navigation with deterministic UI flow checks where practical.
+### Validação
+Validar estados e navegação com verificações determinísticas do fluxo de UI quando viável.
 
-### Observability
-Not applicable for this task.
+### Observabilidade
+Não se aplica a esta tarefa.
 
-### Memory Considerations
-Not applicable for this task.
+### Considerações de memória
+Não se aplica a esta tarefa.
 
-### Concurrency Considerations
-Not applicable for this task.
+### Considerações de concorrência
+Não se aplica a esta tarefa.
 
-### Accessibility
-Not applicable for this task.
+### Acessibilidade
+Não se aplica a esta tarefa.
 
-### AI Assistance
-AI may research, outline alternatives, draft a small change and identify questions. Gabriel decides, validates and explains the result.
+### Uso de IA
+A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
-### Expected Files
-Only files relevant to this phase; confirm exact paths before implementation. No implementation files are created by this planning task.
+### Arquivos esperados
+Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
-### Definition of Done
-- [ ] Acceptance criteria met and evidence reviewed by Gabriel.
-- [ ] Applicable checks pass or their non-applicability is explained.
-- [ ] Documentation/status updated; Gabriel explains result and trade-offs.
-- [ ] Move to REVIEW before Gabriel's review; move to DONE only after explicit review and understanding.
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
-### Interview Notes
-Explain purpose, alternatives, trade-offs, validation, and how the decision changes at larger scale.
+### Notas para entrevista
+Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.

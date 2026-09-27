@@ -1,797 +1,206 @@
-# Substi iOS — AI Engineering Rules
+# Substi iOS — Regras de engenharia com IA
 
-You are working as a pair programmer on an iOS technical challenge for a Senior / Specialist / Staff-level iOS position.
+Estas regras orientam a colaboração no desafio técnico de iOS para uma posição sênior, especialista ou staff. O objetivo é construir uma aplicação pequena, profissional e defensável: cada decisão importante deve poder ser compreendida, explicada, testada e discutida em entrevista.
 
-The goal is NOT merely to produce a working application.
+## Projeto e ambiente
 
-The goal is to produce a small but professionally engineered application where every important technical decision can be understood, explained, tested and defended during a technical interview.
+- **Produto:** Substi — substituição inteligente de produtos de mercado.
+- **Plataforma:** iOS 16 ou posterior; UIKit e SwiftUI.
+- **Ambiente:** Mac Intel, Xcode 16.4, Swift 6.1 e Swift 6 Language Mode.
+- Não introduza APIs que exijam uma versão mais recente de Xcode ou iOS sem autorização explícita.
+- A proposta não afirma que o iFood não oferece substituições. Consulte `docs/product-requirements.md` para problema, hipóteses e limites das afirmações.
 
----
+## Regra central: microtarefas
 
-# Project
+Não gere a aplicação inteira de uma vez. Trabalhe em microtarefas pequenas e revisáveis, identificadas em `docs/project/`.
 
-Name: Substi
+Para cada tarefa:
 
-Repository:
+1. Leia a tarefa, `CURRENT.md`, este arquivo e a documentação relacionada.
+2. Explique o problema e apresente a menor solução razoável.
+3. Mostre impacto na arquitetura, alternativas e trade-offs.
+4. Liste os arquivos que pretende criar ou alterar.
+5. Trabalhe exclusivamente no escopo autorizado; não avance para a próxima tarefa.
+6. Teste quando aplicável e explique as mudanças, o fluxo e os conceitos envolvidos.
+7. Verifique os critérios de aceite e mova o estado para `REVIEW` quando a implementação estiver pronta.
+8. Aguarde a revisão do desenvolvedor. Só ele marca a tarefa como `DONE` após entender e aprovar o resultado.
 
-`substi-ios`
+Estados válidos: `TODO`, `READY`, `IN_PROGRESS`, `BLOCKED`, `REVIEW` e `DONE`. Mantenha no máximo uma tarefa em `IN_PROGRESS` e, quando necessário, apenas a próxima em `READY`. Um plano no backlog não autoriza sua implementação.
 
-Product:
+## Antes de uma implementação relevante
 
-Smart Grocery Substitution.
+Apresente, de forma visual e em unidades curtas:
 
-Platform:
+### Problema
+Que necessidade esta mudança atende?
 
-iOS.
+### Solução proposta
+Qual é a menor mudança que resolve a necessidade?
 
-Environment:
+### Por que
+Por que essa abordagem faz sentido para o Substi?
 
-* Xcode 16.4
-* Swift 6.1
-* Swift 6 Language Mode
-* iOS 16+
-* Intel-based Mac
+### Alternativas e trade-offs
+Que opções foram consideradas e o que cada escolha ganha ou perde?
 
-Do not introduce APIs or features that require a newer Xcode/toolchain unless explicitly approved.
+### Arquivos
+Quais arquivos serão criados ou alterados?
 
----
+Implemente somente depois dessa explicação, quando a tarefa e a autorização estiverem claras.
 
-# Core Rule
+## Depois da implementação
 
-Do NOT generate the entire application at once.
+Explique:
 
-Development must happen through small, reviewable microtasks.
+- o que mudou e em quais arquivos;
+- o fluxo de execução e a posição dos novos tipos na arquitetura;
+- os conceitos Swift usados, quando aparecerem (`struct`/`class`, `let`/`var`, `enum`, `protocol`, generics, `associatedtype`, type erasure, `actor`, `Sendable`, `MainActor`, `async/await`);
+- ownership e memória quando relevantes (`strong`, `weak`, `unowned`, ARC, retain cycles e captura de closures);
+- executor/actor, concorrência, estado mutável compartilhado, risco de data race e cancelamento quando relevantes;
+- como a mudança foi validada, incluindo testes e limitações;
+- três a cinco perguntas de entrevista com respostas concisas, quando uma funcionalidade técnica for concluída.
 
-For every task:
+Não use “funcionou” como explicação. O desenvolvedor precisa entender o comportamento, as decisões e como observar ou depurar o resultado.
 
-1. Understand the requirement.
-2. Explain the problem being solved.
-3. Propose the smallest reasonable implementation.
-4. Explain the architecture impact.
-5. Mention alternatives.
-6. Explain trade-offs.
-7. Implement only the requested scope.
-8. Add or update tests when applicable.
-9. Explain what changed.
-10. Wait before moving to the next task.
+## Estilo de aprendizagem visual
 
-Never continue automatically into the next phase.
+Gabriel aprende melhor por raciocínio visual e associação. Ao explicar arquitetura ou conceitos complexos, comece por:
 
----
+- diagramas ASCII do fluxo de execução;
+- árvores de dependências;
+- comparações antes/depois ou lado a lado;
+- linhas do tempo;
+- analogias concretas;
+- pequenos trechos de código conectados ao diagrama.
 
-# Before Writing Code
+Use esta sequência quando fizer sentido:
 
-Before implementing any non-trivial task, provide:
+```text
+MODELO VISUAL → ANALOGIA → CONCEITO → CÓDIGO
+              → FLUXO DE EXECUÇÃO → DEBUG/OBSERVAÇÃO → PERGUNTA DE ENTREVISTA
+```
 
-## Problem
+Para concorrência, desenhe uma linha do tempo. Para memória, mostre o grafo de ownership/referências. Para navegação, mostre telas e Coordinator. Para modularização, mostre o grafo de dependências. Para rede, mostre a transformação da requisição aos dados de domínio. Divida a explicação em unidades curtas; evite teoria longa antes de estabelecer o modelo visual.
 
-What problem are we solving?
+## Direção de produto e entrega
 
-## Proposed Solution
+O prazo documentado é 28 de setembro de 2026, às 11h, em `America/Sao_Paulo`. Consulte `docs/project/ROADMAP.md` e `CURRENT.md` para a trilha de entrega atualizada.
 
-What will be implemented?
+Priorize uma pequena jornada realista de substituição, clara e funcional, e decisões proporcionais ao prazo. Não tente implementar todas as 20 fases antes da entrega. Estudos sem benefício direto ficam como evolução futura. Não copie o iFood: pesquise princípios de design, padrões iOS e grocery/e-commerce, e defina uma identidade simples para o Substi.
 
-## Why
+## Arquitetura
 
-Why does this approach make sense?
+Direção planejada: MVVM-C. O fluxo esperado de dependências é:
 
-## Alternatives
+```text
+View → ViewModel → Use Case → contrato de Repository
+    → implementação do Repository → Data Source → APIClient
 
-What alternatives were considered?
+Coordinator → fluxo de navegação
+```
 
-## Trade-offs
+- Views não fazem networking; ViewModels não conhecem `URLSession`.
+- Domain não importa UIKit ou SwiftUI; Data não conhece detalhes de apresentação.
+- O produto deve usar abstrações somente em limites que resolvam uma necessidade real.
+- Não crie um protocolo para cada classe, `BaseViewController`, `BaseRepository`, `BaseViewModel`, Service Locator, dependências globais, Singleton desnecessário, objetos genéricos “Manager”, arquivos Utils gigantes ou cerimônia prematura de Clean Architecture.
+- Prefira composição à herança. Use protocolos principalmente em fronteiras arquiteturais.
+- Aplique SOLID de modo pragmático: responsabilidade clara (SRP), dependência de abstrações em limites adequados (DIP); não distorça o desenho para demonstrar princípios.
+- Compare MVC, MVVM, MVVM-C, VIP e VIPER quando a tarefa pedir; registre trade-offs sem implementar padrões só para completar uma lista.
 
-What do we gain and lose?
+## Swift
 
-## Files
+- Prefira estado imutável e use `let` por padrão; use `var` quando mutação for necessária.
+- Prefira `struct` para tipos de valor. Use `class` quando identidade, semântica de referência ou ciclo de vida de framework justificarem.
+- Classes sem suporte intencional a herança normalmente devem ser `final`.
+- Evite force unwrap e `try!`, salvo quando uma invariante específica e demonstrável tornar a operação segura.
+- Não esconda complexidade em código gerado. Explique recursos avançados antes ou logo depois de introduzi-los.
 
-Which files will be created or modified?
+## Memória e ownership
 
-Only after this analysis should implementation begin.
+Considere quem cria, mantém e libera cada objeto importante. Analise o ciclo de vida de Coordinators, ViewControllers e ViewModels. Considere ARC, referências `strong`/`weak`/`unowned`, closures, captura de `self` e retain cycles.
 
----
+Não adicione `[weak self]` automaticamente: explique por que uma referência fraca é necessária ou por que não é. Use `deinit` temporariamente durante investigação de memória quando ajudar; valide navegação com Memory Graph quando a implementação permitir.
 
-# After Writing Code
+## Concorrência
 
-After every implementation, provide:
+Swift Concurrency é o modelo principal. Use `async/await`, `Task`, `TaskGroup`, `MainActor`, `actor`, `Sendable` e cancelamento cooperativo somente quando a necessidade justificar.
 
-## What changed
+- Não use `Task.detached` sem motivo forte.
+- Não use `@unchecked Sendable` apenas para silenciar o compilador.
+- Estado mutável da interface normalmente deve ser isolado apropriadamente, muitas vezes com `@MainActor`.
+- Só introduza `TaskGroup` quando o conjunto de operações filhas for dinâmico e concorrência trouxer benefício demonstrável. Compare com execução sequencial, limite requisições e respeite rate limits.
+- GCD é um laboratório de estudo separado, não o modelo principal do produto. Não misture GCD e Swift Concurrency sem necessidade concreta. Ao usar GCD, explique fila, QoS, sync/async, segurança entre threads e deadlock.
 
-List the files changed.
+## Rede e dados
 
-## How it works
+Use `URLSession`; não adicione Alamofire. O plano prevê integração com Open Food Facts. Estoque e disponibilidade do pedido são dados locais de demonstração: APIs públicas de produto não representam o inventário do iFood ou de uma loja. Respeite limites/rate limits e nunca faça testes automatizados dependerem da API ao vivo.
 
-Explain the execution flow.
+Introduza conceitos de rede gradualmente, conforme a tarefa pedir: `Endpoint`, `HTTPMethod`, `APIClient`, `URLSessionAPIClient`, `NetworkError`, DTO e Mapper. Nunca exponha DTO externo diretamente à apresentação:
 
-## Important code
+```text
+JSON da API → DTO → Mapper → modelo de domínio → modelo de apresentação (se necessário)
+```
 
-Explain important types, methods and properties.
+## Interface e design
 
-## Swift concepts
+- UIKit com View Code e Auto Layout é a direção do fluxo principal; não use Storyboards para telas de feature.
+- SwiftUI demonstra adoção incremental e deve integrar ao fluxo UIKit por `UIHostingController`. SwiftUI não controla diretamente `UINavigationController`; Coordinator mantém a navegação.
+- Consulte princípios, foundations e contratos de tela antes de implementar cada tela. Defina estados, ações e acessibilidade primeiro.
+- Prefira soluções iOS nativas adequadas, System Font, Dynamic Type, SF Symbols, safe areas, semântica e gestos nativos.
+- Compartilhe a linguagem visual entre UIKit e SwiftUI. Não espalhe valores arbitrários; adicione tokens e componentes somente quando uso e consistência justificarem.
+- Acessibilidade e Dynamic Type pertencem à definição do componente, não a um acabamento posterior.
 
-Explain relevant concepts such as:
+## Testes e TDD
 
-* struct vs class
-* let vs var
-* enum
-* protocol
-* generic
-* associatedtype
-* actor
-* Sendable
-* MainActor
-* async/await
+Testar faz parte da implementação. Prefira Swift Testing para lógica unitária/integração quando suportado e XCTest/XCUIAutomation para interface e desempenho.
 
-when they appear.
+Áreas esperadas conforme o escopo: domínio, ranking, mapper, repository, ViewModel, rede, happy path da interface e snapshots selecionados. Testes automatizados não devem exigir Internet ao vivo.
 
-## Memory
+Use TDD seletivamente; o mecanismo simples e determinístico de ranking é o candidato principal. Registre a evolução `RED → GREEN → REFACTOR` em commits focados. Não resolva testes assíncronos com pausas arbitrárias (`sleep()`); prefira fixtures determinísticas, dependências injetadas, expectations e argumentos de lançamento.
 
-Explain ownership implications when relevant:
+## Observabilidade e desempenho
 
-* strong
-* weak
-* unowned
-* ARC
-* retain cycles
-* closure captures
+- Prefira ferramentas Apple; introduza `Logger`/OSLog, signposts e abstrações de analytics/crash reporting somente conforme necessidade.
+- Não use `print()` como logging de produção e nunca registre dados sensíveis.
+- Não alegue otimização sem medição. Quando otimizar, registre baseline/problema, medição, alteração e resultado.
+- Ferramentas de estudo possíveis: Time Profiler, Allocations, Leaks, Network, Memory Graph, Thread Sanitizer e Main Thread Checker.
 
-## Concurrency
+## Dependências, automação e evolução
 
-Explain:
+- Use Swift Package Manager quando um pacote for necessário; não adicione dependências externas sem explicar por que APIs nativas não bastam e sem autorização explícita.
+- Não adicione CocoaPods a este projeto novo. Documente quando ainda aparece em bases maduras/legadas.
+- Não introduza Bazel ou Buck. Estude seu valor para grafos de build grandes, monorepos, cache e builds reproduzíveis.
+- SwiftLint deve ter regras intencionais e compreensíveis, não uma configuração enorme copiada.
+- CI poderá validar build, lint e testes; Fastlane pode encapsular comandos mais tarde. Não configure distribuição de produção ou assinatura da App Store sem pedido explícito.
+- Objective-C, MetricKit, Firebase, Crashlytics, Remote Config, CD, Core ML, cache sofisticado e laboratórios extensos são evolução futura, salvo se o escopo da entrega justificar.
 
-* which actor/executor owns the code;
-* what can run concurrently;
-* whether shared mutable state exists;
-* possible data races;
-* cancellation behavior.
+## Git e commits
 
-## Testing
+`main` é a branch principal de integração. Crie uma branch para cada tarefa ou mudança estreitamente relacionada, a partir da `main` atualizada; não desenvolva diretamente em `main` nem faça force-push. Proponha mudanças à `main` por pull request para revisão.
 
-Explain how the implementation is tested.
+Use os prefixos de `docs/project/GIT-WORKFLOW.md`: `feature/` para capacidade nova, `bugfix/` para corrigir comportamento existente e `docs/`, `refactor/`, `test/` ou `chore/` conforme o tipo de alteração. Inclua o ID da tarefa quando existir e mantenha a branch focada.
 
-## Interview Questions
+Commits seguem Conventional Commits: `<tipo>(<escopo-opcional>): <resumo imperativo curto>`. Cada commit representa uma decisão compreensível. Apresente a sugestão de commit e seu escopo antes de commitar; não faça commit sem autorização explícita do desenvolvedor. Não acumule mudanças de tasks sem relação.
 
-Provide 3–5 technical questions an interviewer could ask about the implementation and concise expected answers.
+## Documentação e decisões
 
----
+Mantenha README, requisitos do produto, arquitetura, desenvolvimento com IA, concorrência, memória e `docs/project/` coerentes com o estado real. Decisões arquiteturais importantes devem gerar ADR com Contexto, Decisão, Alternativas, Consequências e Trade-offs.
 
-# Learning Requirement
+Para funcionalidades relevantes, registre como a IA ajudou, as alternativas consideradas e como o desenvolvedor validou a escolha. A IA pode pesquisar, organizar opções, rascunhar uma mudança pequena e apontar perguntas; Gabriel verifica fontes, decide, valida e explica.
 
-The developer must understand the project.
+## Pronto para revisão
 
-Do not hide complexity behind generated code.
+Uma microtask só está pronta para revisão quando, conforme aplicável:
 
-When introducing an advanced Swift feature, explain it before or immediately after its introduction.
+- o comportamento exigido foi implementado e é compreensível;
+- testes relevantes passam e avisos do compilador foram compreendidos;
+- ownership, concorrência, acessibilidade e observabilidade foram considerados;
+- documentação e critérios de aceite foram atualizados;
+- alternativas e trade-offs foram explicados;
+- o desenvolvedor recebeu uma explicação e consegue defender a solução.
 
-Examples:
+Considere um item não aplicável quando o impacto não existir; não invente complexidade. Use `REVIEW` para aguardar Gabriel. Só ele conclui a tarefa como `DONE`.
 
-* actors;
-* TaskGroup;
-* MainActor;
-* Sendable;
-* associated types;
-* generics;
-* type erasure;
-* DiffableDataSource;
-* CompositionalLayout;
-* Coordinators.
+## Princípio final
 
-Avoid advanced syntax when a simpler solution is adequate.
-
-Advanced concepts should exist because the problem requires them, not because they look sophisticated.
-
----
-
-# Architecture
-
-Primary architecture:
-
-MVVM-C.
-
-Expected dependency flow:
-
-View
-→ ViewModel
-→ UseCase
-→ Repository Protocol
-→ Repository Implementation
-→ DataSource
-→ APIClient
-
-Navigation belongs to Coordinator.
-
-Views must not perform networking.
-
-ViewModels must not know URLSession.
-
-Domain must not import UIKit or SwiftUI.
-
-Data layer must not know presentation details.
-
----
-
-# Architecture Discipline
-
-Do not create abstractions without a clear reason.
-
-Avoid:
-
-* protocol for every class;
-* generic BaseViewController;
-* BaseRepository;
-* BaseViewModel;
-* ServiceLocator;
-* global dependencies;
-* unnecessary Singleton;
-* generic "Manager" objects;
-* massive Utils files;
-* premature Clean Architecture ceremony.
-
-Prefer composition over inheritance.
-
-Create protocols primarily at architectural boundaries.
-
----
-
-# SOLID
-
-Apply SOLID pragmatically.
-
-Especially:
-
-SRP — each component should have a clear responsibility.
-
-DIP — high-level components should depend on abstractions at appropriate boundaries.
-
-Do not distort the design merely to demonstrate SOLID.
-
----
-
-# Swift
-
-Prefer immutable state.
-
-Default to:
-
-`let`
-
-Use:
-
-`var`
-
-only when mutation is required.
-
-Prefer structs for value types.
-
-Use classes when identity/reference semantics or framework lifecycle justify them.
-
-Classes that are not designed for inheritance should normally be `final`.
-
-Avoid force unwraps unless a specific invariant makes them demonstrably safe.
-
-Avoid:
-
-`try!`
-
-unless explicitly justified.
-
----
-
-# Memory Management
-
-Every closure capturing an object must be considered from an ownership perspective.
-
-Do NOT automatically add:
-
-`[weak self]`
-
-Explain why a weak reference is or is not necessary.
-
-For Coordinators, ViewControllers and ViewModels, explicitly consider object ownership.
-
-Use `deinit` temporarily during memory investigation when helpful.
-
-Later validate navigation using Xcode Memory Graph.
-
----
-
-# Swift Concurrency
-
-Swift Concurrency is the primary concurrency model.
-
-Use when justified:
-
-* async/await
-* Task
-* TaskGroup
-* MainActor
-* actor
-* Sendable
-* cooperative cancellation
-
-Do not use `Task.detached` unless there is a strong reason.
-
-Do not use `@unchecked Sendable` merely to silence compiler errors.
-
-UI-related mutable state should normally be isolated appropriately, often using `@MainActor`.
-
----
-
-# TaskGroup
-
-TaskGroup should only be introduced when the number of concurrent child operations is dynamic.
-
-Before introducing it, demonstrate why sequential loading is insufficient.
-
-Respect external API rate limits.
-
-Do not create unlimited parallel requests.
-
----
-
-# GCD
-
-The product should prefer Swift Concurrency.
-
-GCD will be explored separately for learning and comparison.
-
-Do not mix GCD and Swift Concurrency unless there is a concrete interoperability reason.
-
-When GCD is used, explain:
-
-* queue type;
-* QoS;
-* sync vs async;
-* thread-safety implications;
-* deadlock risks.
-
----
-
-# Networking
-
-Use URLSession.
-
-Do not add Alamofire.
-
-Networking architecture should eventually contain concepts similar to:
-
-* Endpoint
-* HTTPMethod
-* APIClient
-* URLSessionAPIClient
-* NetworkError
-* DTO
-* Mapper
-
-Do not implement all of them upfront.
-
-Introduce them incrementally as requirements appear.
-
----
-
-# External API
-
-Primary API:
-
-Open Food Facts.
-
-Inventory/order availability will be represented locally because external public APIs do not represent iFood inventory.
-
-Respect API limitations and rate limits.
-
-Tests must never depend on the live API.
-
----
-
-# DTO and Domain
-
-Never expose external API DTOs directly to Presentation.
-
-Expected flow:
-
-API JSON
-→ DTO
-→ Mapper
-→ Domain Model
-→ Presentation Model when necessary.
-
----
-
-# UIKit
-
-Primary existing-app UI technology:
-
-UIKit using View Code.
-
-No Storyboards for feature screens.
-
-Use Auto Layout programmatically.
-
-Expected topics where appropriate:
-
-* UIViewController lifecycle;
-* UICollectionView;
-* cell reuse;
-* DiffableDataSource;
-* CompositionalLayout;
-* Auto Layout;
-* Content Hugging;
-* Compression Resistance;
-* accessibility.
-
----
-
-# SwiftUI
-
-SwiftUI represents incremental adoption of newer UI technology.
-
-At least one new feature should be built using SwiftUI and integrated into the UIKit navigation flow with UIHostingController.
-
-SwiftUI must not directly control UINavigationController.
-
-Navigation remains owned by Coordinator.
-
----
-
-# Design System
-
-Do not hardcode arbitrary design values throughout the UI.
-
-Create design tokens gradually for:
-
-* color;
-* typography;
-* spacing;
-* radius.
-
-Create reusable components only when repetition or consistency justifies them.
-
-Accessibility and Dynamic Type are requirements of the Design System.
-
----
-
-# Testing
-
-Testing is part of implementation, not a final cleanup step.
-
-Prefer:
-
-Swift Testing for unit/integration logic where supported.
-
-XCTest / XCUIAutomation for UI and performance testing.
-
-Expected areas:
-
-* Domain tests;
-* ranking tests;
-* Mapper tests;
-* Repository tests;
-* ViewModel tests;
-* networking tests;
-* UI happy path;
-* selected snapshot tests.
-
-Live internet must not be required for automated tests.
-
----
-
-# TDD
-
-Use TDD selectively.
-
-The substitution ranking engine is the primary candidate.
-
-Process:
-
-RED
-→ GREEN
-→ REFACTOR
-
-Record this evolution clearly in commits.
-
----
-
-# Flaky Tests
-
-Never solve asynchronous UI tests using arbitrary sleeps.
-
-Avoid:
-
-`sleep()`
-
-Prefer deterministic fixtures, injected dependencies, expectations and launch arguments.
-
----
-
-# Observability
-
-Prefer Apple's native tools for the challenge.
-
-Eventually introduce:
-
-* Logger / OSLog;
-* signposts;
-* analytics abstraction;
-* crash reporting abstraction.
-
-Do not use `print()` as production logging.
-
-Never log sensitive information.
-
----
-
-# Performance
-
-Do not claim performance optimizations without measurements.
-
-Eventually profile using:
-
-* Time Profiler;
-* Allocations;
-* Leaks;
-* Network;
-* Memory Graph;
-* Thread Sanitizer;
-* Main Thread Checker.
-
-When an optimization is introduced, record:
-
-1. baseline/problem;
-2. measurement;
-3. change;
-4. result.
-
----
-
-# Objective-C
-
-Do not add Objective-C simply to satisfy a checklist.
-
-Objective-C interoperability should be documented and studied.
-
-A tiny legacy interoperability example may be introduced later only if the core project is already finished.
-
----
-
-# Dependencies
-
-Use Swift Package Manager.
-
-Do not introduce third-party dependencies without explaining:
-
-* why native solutions are insufficient;
-* maintenance implications;
-* binary/build impact;
-* testing implications.
-
-Any dependency must be explicitly approved before adding it.
-
----
-
-# CocoaPods
-
-Do not add CocoaPods to this greenfield project.
-
-Be prepared to explain when CocoaPods might still exist in mature/legacy codebases.
-
----
-
-# Bazel / Buck
-
-Do not introduce Bazel or Buck into this small project.
-
-Study and document their usefulness for large build graphs, monorepos, caching and reproducible builds.
-
----
-
-# Static Analysis
-
-Use SwiftLint.
-
-Keep rules intentional and understandable.
-
-Do not adopt an enormous configuration copied from another repository.
-
----
-
-# CI/CD
-
-CI will eventually validate:
-
-* build;
-* SwiftLint;
-* unit tests;
-* snapshot tests;
-* UI tests where practical.
-
-Fastlane may encapsulate build/test commands later.
-
-Do not configure production deployment or App Store signing unless explicitly requested.
-
----
-
-# Git Discipline
-
-`main` is the principal integration branch. Create a separate branch for every task or tightly related development change, based on the latest `main`. Do not develop directly on `main` or force-push it. Propose changes back to `main` through a pull request for developer review.
-
-Use the branch prefixes documented in `docs/project/GIT-WORKFLOW.md`: `feature/` for new product capabilities, `bugfix/` for corrections to existing behavior, and `docs/`, `refactor/`, `test/`, or `chore/` for those types of work. Include the task ID when available and keep the branch focused on that task.
-
-Use Conventional Commit messages in the form `<type>(<optional-scope>): <short imperative summary>`. Each commit should represent one understandable engineering decision. Suggest a commit message and explain its scope before committing. Do not commit unless the developer has authorized it.
-
-Changes should be small and logically grouped. A task branch should not accumulate unrelated task changes.
-
-Avoid commits like:
-
-`create whole application`
-
-Prefer:
-
-`chore: bootstrap iOS project`
-
-`feat: add product domain model`
-
-`test: define substitution ranking behavior`
-
-`feat: implement substitution ranking`
-
-`feat: add product API client`
-
-Each commit should represent one understandable engineering decision.
-
-Do not commit without suggesting a commit message first.
-
----
-
-# Documentation
-
-Maintain:
-
-`README.md`
-
-`docs/product-requirements.md`
-
-`docs/architecture.md`
-
-`docs/ai-development.md`
-
-`docs/concurrency.md`
-
-`docs/memory-management.md`
-
-`docs/adr/`
-
-Important architectural decisions should generate an ADR containing:
-
-* Context
-* Decision
-* Alternatives
-* Consequences
-* Trade-offs
-
----
-
-# AI Development Log
-
-For important features, record how AI participated.
-
-Example:
-
-Problem:
-Load an unknown number of substitution candidates.
-
-Alternatives:
-Sequential await.
-async let.
-TaskGroup.
-DispatchGroup.
-
-Decision:
-TaskGroup.
-
-Why:
-The amount of work is dynamic and structured concurrency provides lifecycle and cancellation semantics.
-
-Human validation:
-Tests, cancellation behavior, Sendable checking and rate-limit strategy.
-
----
-
-# Interview Readiness
-
-Whenever a meaningful feature is completed, update the developer's interview knowledge.
-
-We need to be able to answer questions such as:
-
-* Why MVVM-C?
-* Why not VIPER?
-* Why Repository?
-* Why UseCase?
-* Why this protocol?
-* Why this type is a struct?
-* Why this type is a class?
-* Who owns this object?
-* Can this create a retain cycle?
-* Why MainActor?
-* Why TaskGroup?
-* Why actor?
-* What happens if one request fails?
-* How is cancellation handled?
-* How would this architecture change at iFood scale?
-* How is this feature observed in production?
-* What metric determines product success?
-
----
-
-# Definition of Done for a Microtask
-
-A microtask is complete only when:
-
-* required behavior works;
-* code is understandable;
-* relevant tests pass;
-* compiler warnings are understood;
-* concurrency implications were considered;
-* ownership implications were considered;
-* accessibility was considered where relevant;
-* observability was considered where relevant;
-* developer received an explanation;
-* alternatives/trade-offs were discussed.
-
----
-
-# Most Important Rule
-
-Never optimize for the appearance of sophistication.
-
-Optimize for:
-
-* clarity;
-* correctness;
-* maintainability;
-* testability;
-* observability;
-* proportional architecture;
-* ability to explain every decision.
-
-The developer must own the code intellectually even when AI writes it.
-
-# Developer Learning Style
-
-The developer learns best through visual reasoning and association.
-
-When explaining architecture or complex technical concepts, prefer:
-
-- ASCII diagrams;
-- execution-flow diagrams;
-- dependency trees;
-- before/after comparisons;
-- timelines;
-- side-by-side comparisons;
-- concrete analogies;
-- small code excerpts connected to diagrams.
-
-Avoid large theoretical explanations before establishing a visual mental model.
-
-Preferred teaching sequence:
-
-VISUAL MODEL
-→ ANALOGY
-→ CONCEPT
-→ CODE
-→ EXECUTION FLOW
-→ DEBUG/OBSERVE
-→ INTERVIEW QUESTION
-
-When explaining where a new type belongs, show its position in the architecture.
-
-When explaining concurrency, show a timeline.
-
-When explaining memory management, show the ownership/reference graph.
-
-When explaining navigation, show the screen/Coordinator graph.
-
-When explaining modularization, show the dependency graph.
-
-When explaining networking, show the request/data transformation pipeline.
-
-Keep explanations divided into small learning units.
+Não otimize para parecer sofisticado. Otimize para clareza, correção, manutenção, teste, observabilidade, arquitetura proporcional e capacidade de explicar cada decisão. O desenvolvedor deve ser dono intelectual do código, mesmo quando a IA o escreve.
