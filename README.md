@@ -73,4 +73,4 @@ O Codex ajuda a pesquisar, estruturar alternativas, implementar a microtask auto
 
 ## Estado atual
 
-O projeto Xcode inicial agora está versionado na raiz do repositório e o target do app compila com Xcode 16.4. Ele ainda contém somente o template inicial do Xcode, sem fluxo ou funcionalidade de produto. A task [`SUB-P01-001 — Criar projeto Xcode`](docs/project/phases/PHASE-01-bootstrap.md) está em `REVIEW`; deployment target e Swift 6 Language Mode serão tratados nas próximas microtasks.
+O projeto Xcode inicial está versionado na raiz do repositório. A task [`SUB-P01-001 — Criar projeto Xcode`](docs/project/phases/PHASE-01-bootstrap.md) foi integrada à `main` pelo PR #5. `SUB-P01-002` configura `com.gabrielbarbosa.substi` e iOS 16 como deployment target nos targets do projeto; Swift 6 Language Mode será tratado na task seguinte. O app ainda contém o template inicial do Xcode, sem fluxo ou funcionalidade de produto.

@@ -17,7 +17,7 @@ IN_PROGRESS
 
 ## SUB-P01-001 — Criar projeto Xcode
 
-Estado: REVIEW
+Estado: DONE
 
 Prioridade: P0
 
@@ -42,7 +42,7 @@ Colocar o projeto iOS inicial na raiz versionada do repositório e confirmar que
 - [x] O Xcode 16.4 reconhece o scheme `Substi`.
 - [x] O target do app compila para um simulador iOS.
 - [x] Nenhuma funcionalidade do produto foi adicionada nesta task.
-- [ ] Gabriel revisa a estrutura e consegue localizar project, target, scheme e source files.
+- [x] Gabriel revisou e integrou o projeto inicial pelo PR #5.
 
 ### Conceitos de engenharia
 Projeto Xcode, project/workspace, scheme, target, arquivos sincronizados, build e versionamento Git.
@@ -80,14 +80,14 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 - [x] Projeto está dentro do clone Git e o target do app compila com Xcode 16.4.
 - [x] Arquivos pessoais/gerados de estado do Xcode não foram incluídos.
 - [x] README, backlog, task e painel atual refletem o bootstrap em revisão.
-- [ ] Gabriel revisa e explica project, scheme e target; somente então mover para `DONE`.
+- [x] PR #5 foi integrado por Gabriel; task aceita como concluída.
 
 ### Notas para entrevista
 Explicar que o projeto Xcode é a definição de build do app, que schemes agrupam ações/targets e que as configurações específicas de deployment e linguagem serão revisadas nas tasks seguintes.
 
 ## SUB-P01-002 — Configurar Bundle ID e deployment target
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -95,34 +95,36 @@ Depende de:
 SUB-P01-001
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Configurar Bundle ID e deployment target.
+O projeto recém-integrado ainda usa o Bundle ID genérico do template e deployment target iOS 18.5. O plano define suporte a iOS 16; estes identificadores e a versão mínima precisam corresponder à identidade e ao alcance planejados do Substi.
 
 ### Objetivo
-Concluir Configurar Bundle ID e deployment target dentro do escopo definido e deixar o resultado pronto para revisão.
+Configurar identificadores Bundle ID consistentes e deployment target iOS 16 no app e nos targets de teste.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Usar `com.gabrielbarbosa.substi` para o app, com sufixos `.tests` e `.uitests` para os bundles de teste.
+- Aplicar iOS 16.0 como deployment target do app e dos targets de teste, em Debug e Release.
+- Manter Swift 6 Language Mode para `SUB-P01-003`.
+- Não alterar funcionalidades Swift nem adicionar dependências.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] Bundle IDs do app, testes unitários e testes de UI usam o namespace definido.
+- [x] Build settings de Debug e Release permitem deployment a partir do iOS 16.
+- [x] Build do app continua passando com Xcode 16.4.
+- [ ] Gabriel revisa a convenção de Bundle ID e explica deployment target.
 
 ### Conceitos de engenharia
-Xcode, configurações de build, Swift 6 Language Mode, Git e targets.
+Bundle identifier, identificadores distintos por produto, build configurations e iOS deployment target.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Entender que o Bundle ID identifica cada app/bundle no ecossistema Apple e que deployment target é a versão mínima do sistema operacional suportada, diferente do SDK usado para compilar.
 
 ### Perguntas que preciso saber responder
-- Que problema “Configurar Bundle ID e deployment target” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Por que o Bundle ID do app precisa diferir dos identificadores dos bundles de teste?
+- O que iOS 16.0 como deployment target garante — e o que não garante — sobre APIs usadas no código?
+- Qual namespace foi escolhido e onde confirmar disponibilidade antes de distribuir o app?
 
 ### Validação
-Usar as verificações pertinentes de build/targets no Xcode, validar o estado do Git e commitar somente com autorização.
+Inspecionar os build settings efetivos dos targets, confirmar os Bundle IDs em Debug e Release e compilar o app no simulador com Xcode 16.4. Não executar testes nesta task.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -140,16 +142,16 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+`Substi.xcodeproj/project.pbxproj` e atualização de estado em `README.md`, `docs/project/CURRENT.md`, `docs/project/BACKLOG.md` e este arquivo.
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Identificadores e deployment target configurados nos targets pertinentes.
+- [x] Build do app validado; testes não executados conforme o escopo desta task.
+- [x] README, backlog, task e painel atual sincronizados.
+- [ ] Gabriel revisa e explica a convenção e o deployment target; somente então mover para `DONE`.
 
 ### Notas para entrevista
-Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
+Explicar a função do Bundle ID, a separação entre app/test bundles e como o deployment target delimita a compatibilidade mínima do app.
 
 ## SUB-P01-003 — Ativar Swift 6 Language Mode
 
