@@ -13,7 +13,7 @@ Resultados pertinentes da FASE 03.
 Consulte as prioridades das tasks. Trabalho P1/P2 não pode comprometer a entrega essencial P0.
 
 ## Estado
-TODO
+IN_PROGRESS
 
 ## SUB-P04-001 — Definir ProductID
 
@@ -83,7 +83,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P04-002 — Definir Product
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -91,34 +91,43 @@ Depende de:
 Nenhuma
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir Product.
+O fluxo de substituição precisa representar o produto escolhido e permitir comparar informações disponíveis sobre ele. Esta é a primeira tarefa de código do produto na Delivery Track.
 
 ### Objetivo
-Concluir Definir Product dentro do escopo definido e deixar o resultado pronto para revisão.
+Criar um modelo de domínio Swift pequeno para representar nome e atributos descritivos de um produto.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Criar `Substi/Domain/Models/Product.swift`.
+- Usar `struct` e propriedades imutáveis para representar o valor do produto.
+- Incluir nome obrigatório e categoria, marca e quantidade como metadados opcionais, coerentes com os requisitos do produto.
+- Manter o tipo independente de UIKit, SwiftUI e fontes de dados.
+- Não adicionar identificador nesta task; a abstração `ProductID` permanece na `SUB-P04-001`.
+- Não incluir preço no modelo de catálogo: preço pode variar por oferta/loja e será tratado quando o modelo de pedido/inventário exigir essa informação.
+- Não adicionar regras de ranking, conversão numérica de quantidade ou comportamento de interface.
+- Atualizar o estado desta task em `CURRENT.md` e `BACKLOG.md`.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] `Product` existe em `Substi/Domain/Models/Product.swift` como `struct`.
+- [x] Nome é obrigatório; categoria, marca e quantidade podem estar ausentes.
+- [x] O tipo não depende de frameworks de UI ou networking.
+- [x] O build do app passa.
+- [ ] Gabriel revisa as decisões e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia
-Value/reference semantics, structs, enums, immutability, Sendable.
+Value semantics, `struct`, `let`, optionals e modelagem de domínio.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar value types, propriedades imutáveis e optionals. Entender por que os dados de produto pertencem ao domínio e por que metadados podem estar ausentes.
 
 ### Perguntas que preciso saber responder
-- Que problema “Definir Product” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Por que `Product` é um `struct` neste primeiro modelo?
+- Por que as propriedades são `let`?
+- Por que categoria, marca e quantidade são opcionais?
+- Por que preço e identificador ficaram fora desta task?
+- O que falta para comparar quantidades numericamente?
 
 ### Validação
-Usar testes determinísticos de domínio, incluindo casos de borda de valores e erros.
+Build do app para verificar que o novo arquivo participa do target. Testes unitários ficam para `SUB-P04-010`, pois este tipo ainda não contém comportamento próprio.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -136,13 +145,15 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Domain/Models/Product.swift`
+- `docs/project/phases/PHASE-04-domain-modeling.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Critérios de aceite de implementação atendidos e build validado.
+- [x] Decisões e itens fora do escopo registrados.
+- [ ] Gabriel revisa e explica o resultado; manter em `REVIEW` até essa aprovação explícita.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.

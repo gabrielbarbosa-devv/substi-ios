@@ -47,7 +47,7 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P03-008 | Documentar escolha do SPM | 03 | P1 | TODO |
 | SUB-P03-009 | Explicar por que não CocoaPods, Bazel e Buck | 03 | P2 | TODO |
 | SUB-P04-001 | Definir ProductID | 04 | P1 | TODO |
-| SUB-P04-002 | Definir Product | 04 | P0 | TODO |
+| SUB-P04-002 | Definir Product | 04 | P0 | REVIEW |
 | SUB-P04-003 | Definir Order e OrderItem | 04 | P0 | TODO |
 | SUB-P04-004 | Definir SubstitutionCandidate | 04 | P0 | TODO |
 | SUB-P04-005 | Definir SubstitutionDecision | 04 | P1 | TODO |

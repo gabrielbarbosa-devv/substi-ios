@@ -6,11 +6,11 @@ Segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo` (horário
 
 ## Fase atual
 
-FASE 01 — Preparação inicial (Bootstrap)
+FASE 04 — Modelagem de domínio (execução pela Delivery Track)
 
 ## Task atual
 
-SUB-P01-002 — Configurar Bundle ID e deployment target
+SUB-P04-002 — Definir Product
 
 ## Estado
 
@@ -18,19 +18,19 @@ REVIEW
 
 ## Objetivo
 
-Revisar `com.gabrielbarbosa.substi` e o deployment target iOS 16 nos targets do projeto.
+Revisar o primeiro modelo de domínio do produto: seus dados essenciais e a escolha por representá-lo como um valor imutável.
 
 ## Por que agora
 
-O PR #5 foi integrado; o projeto agora está versionado e compilável. Esta configuração ajusta o alcance do app ao iOS 16 definido e estabelece Bundle IDs próprios antes de habilitar Swift 6 Language Mode.
+O projeto Xcode já existe e a Delivery Track prioriza iniciar o domínio do produto. `Product` fornece a base para as tarefas posteriores de substituição, ranking e dados. A task não depende das configurações de P1 que ficaram pendentes no bootstrap.
 
 ## Bloqueios
 
-Nenhum bloqueio para compilar no simulador. Antes de assinar ou distribuir, confirmar a disponibilidade do Bundle ID na equipe Apple Developer. Swift 6 Language Mode permanece para `SUB-P01-003`.
+Nenhum bloqueio conhecido para esta task. `SUB-P01-003` (Swift 6 Language Mode) e outras tasks de bootstrap continuam pendentes e devem ser retomadas conforme a validação da Delivery Track.
 
 ## Próxima tarefa
 
-SUB-P01-003 — Ativar Swift 6 Language Mode (`TODO`; iniciar após a revisão e aprovação de `SUB-P01-002`).
+SUB-P04-001 — Definir ProductID (`TODO`; avaliar identificação estável antes de modelar itens e candidatos).
 
 ## Trilha de entrega
 
