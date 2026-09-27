@@ -12,6 +12,19 @@ O problema acontece quando o produto escolhido se torna indisponível durante a 
 
 A oportunidade surgiu ao pesquisar e analisar o cenário de compras de mercado por aplicativos: uma indisponibilidade durante a separação interrompe a jornada e pede uma nova decisão. Essa investigação inicial orienta o problema e o protótipo; não deve ser apresentada como entrevista, experimento ou validação com consumidores. As fontes e evidências ainda serão registradas na tarefa `SUB-P00-002`.
 
+## Pessoa usuária de referência
+
+O protótipo considera como pessoa usuária principal alguém que está fazendo uma compra de mercado por aplicativo e descobre que um item já escolhido ficou indisponível durante o atendimento do pedido. Essa pessoa precisa reavaliar sua escolha e decidir se uma alternativa atende ao que pretendia comprar.
+
+### Necessidades neste momento
+
+- Reconhecer qual item ficou indisponível e entender que uma nova decisão é necessária.
+- Comparar alternativas usando informações pertinentes, como categoria, quantidade, marca e preço quando disponível.
+- Entender por que uma alternativa está sendo apresentada e o que acontecerá após escolhê-la.
+- Tomar a decisão com menos esforço e com clareza sobre as diferenças entre o produto original e as opções.
+
+Este é um perfil de trabalho derivado do problema e da hipótese do produto, não uma persona validada. Ainda não temos dados para definir faixa etária, renda, região, frequência de compras, composição familiar, necessidades de acessibilidade ou hábitos digitais; não presumimos essas características. A principal usuária considerada é a pessoa que decide a substituição; papéis de loja ou de separação de pedidos não fazem parte deste perfil do protótipo.
+
 ## Esforço para quem compra
 
 O consumidor pode precisar procurar e comparar alternativas em um momento inesperado. Diferenças entre produtos podem não ser evidentes, o que pode aumentar esforço e incerteza sobre qual opção atende melhor à escolha original. A existência e a intensidade desse esforço ainda são hipóteses a validar, não resultados de pesquisa com usuários.

@@ -221,7 +221,7 @@ Explicar como a hipótese se distingue de evidência, como a proposta poderia se
 
 ## SUB-P00-004 — Definir pessoa usuária
 
-Estado: READY
+Estado: DONE
 
 Prioridade: P1
 
@@ -229,34 +229,37 @@ Depende de:
 - SUB-P00-003
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir pessoa usuária.
+O problema já descreve uma pessoa comprando mercado por aplicativo que enfrenta a indisponibilidade de um item escolhido. Precisamos explicitar para quem o protótipo é pensado e quais necessidades imediatas essa pessoa tem, sem apresentar suposições demográficas como pesquisa validada.
 
 ### Objetivo
-Concluir Definir pessoa usuária dentro do escopo definido e deixar o resultado pronto para revisão.
+Descrever a pessoa usuária principal em termos de contexto e necessidades relacionadas à decisão de substituição. Identificar características desconhecidas e manter o perfil como hipótese de trabalho até haver validação.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Basear o perfil somente no problema e na hipótese documentados em `docs/product-requirements.md`.
+- Descrever contexto e necessidades observáveis durante a decisão de substituição.
+- Não inventar idade, renda, região, frequência de compra, composição familiar ou comportamento validado.
+- Distinguir a pessoa usuária principal do protótipo de papéis operacionais de loja não incluídos no escopo atual.
+- Registrar as incógnitas que pesquisa futura precisará validar; não definir arquitetura ou implementação.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] A pessoa usuária principal está descrita por contexto de uso e necessidade, sem dados demográficos inventados.
+- [x] Necessidades relacionadas a identificar, comparar e decidir sobre alternativas estão explícitas.
+- [x] O perfil está identificado como hipótese de trabalho, não como persona ou pesquisa validada.
+- [x] Características desconhecidas e papéis fora do perfil do protótipo estão delimitados.
 
 ### Conceitos de engenharia
-Descoberta do produto, evidências, hipótese, jornada, métricas, MVP e escopo.
+Segmento de usuário, contexto de uso, necessidades, hipótese de persona, incógnitas e escopo de produto.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Não se aplica a esta tarefa somente documental. Distinguir um perfil de trabalho de uma persona validada por pesquisa.
 
 ### Perguntas que preciso saber responder
-- Que problema “Definir pessoa usuária” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Quem é a pessoa usuária considerada no protótipo e em que situação ela precisa decidir?
+- Quais necessidades vêm diretamente do problema descrito e quais dados continuam desconhecidos?
+- Por que não atribuímos características demográficas sem pesquisa?
 
 ### Validação
-Revisar cada material em relação às fontes de produto fornecidas; identificar hipóteses e incógnitas.
+Revisão editorial contra o problema e a hipótese do produto; verificar que necessidades estão ligadas à tarefa de substituição e que dados não pesquisados estão explicitamente marcados como desconhecidos.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -274,16 +277,17 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+`docs/product-requirements.md`, `docs/project/CURRENT.md`, `docs/project/BACKLOG.md` e este arquivo para registrar resultado e estado. Nenhum arquivo de implementação.
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Critérios documentais atendidos sem apresentar suposições como dados observados.
+- [x] Verificações de consistência e links locais passam.
+- [x] Documentação e estado atualizados; incógnitas e limites do perfil estão explícitos.
+- [x] Gabriel aprovou o perfil de referência e seus limites como hipótese não validada.
+- [x] Tarefa movida de `REVIEW` para `DONE` após aprovação.
 
 ### Notas para entrevista
-Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
+Explicar por que o perfil descreve contexto e necessidades, quais detalhes ainda exigem pesquisa e como isso evita construir para uma persona inventada.
 
 ## SUB-P00-005 — Mapear jornada da pessoa usuária
 
@@ -419,7 +423,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P00-007 — Definir MVP
 
-Estado: TODO
+Estado: READY
 
 Prioridade: P0
 
