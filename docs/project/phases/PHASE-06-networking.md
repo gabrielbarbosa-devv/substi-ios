@@ -13,11 +13,11 @@ Resultados pertinentes da FASE 05.
 Consulte as prioridades das tasks. Trabalho P1/P2 não pode comprometer a entrega essencial P0.
 
 ## Estado
-TODO
+IN_PROGRESS
 
 ## SUB-P06-001 — Estudar API Open Food Facts
 
-Estado: TODO
+Estado: DONE
 
 Prioridade: P0
 
@@ -25,20 +25,25 @@ Depende de:
 - Nenhuma
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Estudar API Open Food Facts.
+Antes de definir a requisição, precisamos escolher a superfície da API compatível com o protótipo e registrar limites que afetam o fluxo de alternativas.
 
 ### Objetivo
-Concluir Estudar API Open Food Facts dentro do escopo definido e deixar o resultado pronto para revisão.
+Registrar a documentação oficial consultada, a operação adequada ao primeiro protótipo e as limitações relevantes para produto e entrega.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- API v3 é a versão atual recomendada pela documentação oficial para integrações novas; v2 permanece disponível, mas está depreciada.
+- A leitura de um produto por código de barras usa `GET /api/v3/product/{code}`.
+- Busca textual não está disponível na API v3; busca estruturada continua na v2. Não escolher um mecanismo de busca nesta task.
+- A documentação limita leituras de produto a 15 requisições por minuto por IP; para chamadas diretas de aplicativo móvel, o limite aplica-se por usuário.
+- As requisições devem identificar o aplicativo com um `User-Agent` próprio.
+- Dados enviados pela comunidade podem estar incompletos ou incorretos e não representam estoque nem disponibilidade de uma loja.
+- As opções de substituição do protótipo precisam vir de um inventário local controlado; a API pública não fornece o estoque da loja.
+- Não chamar a API ao vivo em testes automatizados.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] A versão e o endpoint consultados estão registrados com links oficiais.
+- [x] Limites de busca, rate limit, identificação e qualidade dos dados estão explícitos.
+- [x] Está registrado que a API não é fonte de disponibilidade local.
 
 ### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
@@ -52,7 +57,12 @@ Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabri
 - Como o resultado será validado e mantido?
 
 ### Validação
-Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
+Revisão da documentação oficial vinculada abaixo; nenhuma chamada de rede é necessária nesta tarefa.
+
+### Referências consultadas
+- [Introdução à API Open Food Facts](https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/) — versões, rate limits, identificação e avisos sobre os dados.
+- [Leitura de produto pela API v3](https://openfoodfacts.github.io/documentation/docs/Product-Opener/v3/products/get-api-v3-product-code/) — `GET /api/v3/product/{code}` e parâmetros.
+- [Cheatsheet oficial](https://openfoodfacts.github.io/openfoodfacts-server/api/ref-cheatsheet/) — busca estruturada disponível em v2 e limites atuais de busca.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -73,10 +83,8 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Fontes primárias consultadas e limites documentados para orientar o próximo código de rede.
+- [x] Nenhuma suposição sobre estoque ou busca de alternativas foi apresentada como capacidade da API.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
@@ -149,28 +157,29 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P06-003 — Definir Endpoint
 
-Estado: TODO
+Estado: DONE
 
 Prioridade: P0
 
 Depende de:
-Nenhuma
+- SUB-P06-001
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir Endpoint.
+O cliente futuro precisa receber a URL correta de cada chamada sem espalhar composição de caminhos e parâmetros por outras camadas.
 
 ### Objetivo
-Concluir Definir Endpoint dentro do escopo definido e deixar o resultado pronto para revisão.
+Representar os componentes necessários para formar uma URL de requisição e fornecer o endpoint de leitura de produto por código de barras.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Criar `Endpoint` na camada de dados/rede, com caminho e parâmetros de consulta, recebendo a URL base na hora de compor a URL.
+- Definir o endpoint Open Food Facts v3 para leitura por código de barras conforme a documentação oficial.
+- Construir a URL com `URLComponents`, preservando codificação correta dos parâmetros.
+- Não criar `URLSession`, `APIClient`, DTO, Mapper ou comportamento de retry nesta task.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] Endpoint constrói URL de produto a partir de uma base URL e código de barras.
+- [x] Parâmetros de consulta são codificados pela API Foundation, sem concatenação manual de query string.
+- [x] Os três testes de rede local passam sem acessar a rede.
 
 ### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
@@ -184,7 +193,7 @@ Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabri
 - Como o resultado será validado e mantido?
 
 ### Validação
-Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
+Testes unitários determinísticos para caminho e codificação de parâmetros. Não executar requisições HTTP.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -202,20 +211,22 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Data/Networking/Endpoint.swift`
+- `SubstiTests/NetworkingPrimitivesTests.swift`
+- `docs/project/phases/PHASE-06-networking.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] URL formada e coberta por teste local.
+- [x] Nenhuma requisição, sessão ou regra de negócio foi introduzida.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
 ## SUB-P06-004 — Definir HTTPMethod
 
-Estado: TODO
+Estado: DONE
 
 Prioridade: P0
 
@@ -223,20 +234,21 @@ Depende de:
 SUB-P06-003
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir HTTPMethod.
+O endpoint declara a intenção HTTP para que a camada que executará a requisição não precise inferir o verbo a partir do caminho.
 
 ### Objetivo
-Concluir Definir HTTPMethod dentro do escopo definido e deixar o resultado pronto para revisão.
+Representar explicitamente o método HTTP de leitura usado pelo fluxo atual.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Criar `HTTPMethod` como enum RawRepresentable por `String`.
+- Incluir somente `GET`, pois o protótipo consulta dados e não altera registros na API.
+- Associar o endpoint de produto ao método `GET`.
+- Não adicionar verbos sem uso atual ou implementação de APIClient.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] `HTTPMethod.get` fornece o valor wire `GET`.
+- [x] O endpoint de leitura declara `GET` explicitamente.
+- [x] O tipo não inclui operações de escrita sem necessidade do produto.
 
 ### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
@@ -250,7 +262,7 @@ Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabri
 - Como o resultado será validado e mantido?
 
 ### Validação
-Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
+Teste unitário determinístico para o valor raw e o método presente no endpoint.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -268,13 +280,16 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Data/Networking/HTTPMethod.swift`
+- `Substi/Data/Networking/Endpoint.swift`
+- `SubstiTests/NetworkingPrimitivesTests.swift`
+- `docs/project/phases/PHASE-06-networking.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Método explícito e usado pelo endpoint de leitura.
+- [x] O método `GET` raw value e a associação ao endpoint passam nos testes locais.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
@@ -347,12 +362,12 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P06-006 — Definir APIClient
 
-Estado: TODO
+Estado: READY
 
 Prioridade: P0
 
 Depende de:
-Nenhuma
+SUB-P06-004
 
 ### Contexto
 Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir APIClient.
