@@ -7,10 +7,10 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P00-001 | Definir problema do produto | 00 | P0 | DONE |
 | SUB-P00-002 | Registrar evidências e hipóteses | 00 | P1 | TODO |
 | SUB-P00-003 | Escrever hipótese do produto | 00 | P0 | DONE |
-| SUB-P00-004 | Definir pessoa usuária | 00 | P1 | READY |
+| SUB-P00-004 | Definir pessoa usuária | 00 | P1 | DONE |
 | SUB-P00-005 | Mapear jornada da pessoa usuária | 00 | P1 | TODO |
 | SUB-P00-006 | Definir métricas de sucesso | 00 | P1 | TODO |
-| SUB-P00-007 | Definir MVP | 00 | P0 | TODO |
+| SUB-P00-007 | Definir MVP | 00 | P0 | READY |
 | SUB-P00-008 | Definir itens fora do escopo | 00 | P0 | TODO |
 | SUB-P00-009 | Especificar fluxo de quatro telas | 00 | P0 | TODO |
 | SUB-P00-010 | Validar API Open Food Facts | 00 | P1 | TODO |

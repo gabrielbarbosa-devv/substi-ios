@@ -10,7 +10,7 @@ FASE 00 — Descoberta do produto
 
 ## Task atual
 
-SUB-P00-004 — Definir pessoa usuária
+SUB-P00-007 — Definir MVP
 
 ## Estado
 
@@ -18,19 +18,19 @@ READY
 
 ## Objetivo
 
-Descrever quem enfrenta o problema no contexto definido, sem inventar personas validadas ou características demográficas. Registrar necessidades relevantes para orientar a jornada e o protótipo.
+Definir o menor escopo que demonstra a jornada de substituição de ponta a ponta e que cabe no prazo. Distinguir o fluxo essencial das capacidades adiáveis.
 
 ## Por que agora
 
-Com a hipótese do produto aprovada, a próxima microtask delimita para quem o protótipo está sendo pensado. O perfil será uma hipótese de trabalho até ser validado com pesquisa de usuários.
+O MVP define qual parte da proposta precisa funcionar para demonstrar valor. É a próxima decisão P0 da trilha de entrega e orientará setup, domínio e integração.
 
 ## Bloqueios
 
-Nenhum bloqueio para iniciar a tarefa documental após integrar a atualização atual à `main`. Antes de qualquer build, confirme a seleção do Xcode Command Line Tools: o terminal anteriormente informou que as ferramentas de desenvolvimento não estavam configuradas.
+Nenhum bloqueio para iniciar a definição documental do MVP. As tasks P1 `SUB-P00-005` e `SUB-P00-006` permanecem em `TODO` para proteger o prazo; antes de qualquer build, confirme a seleção do Xcode Command Line Tools.
 
 ## Próxima tarefa
 
-SUB-P00-005 — Mapear jornada da pessoa usuária (`TODO`; iniciar após concluir e revisar `SUB-P00-004`).
+SUB-P00-008 — Definir itens fora do escopo (`TODO`; depende da revisão e aprovação de `SUB-P00-007`).
 
 ## Trilha de entrega
 
@@ -38,6 +38,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco concluído
 
-SUB-P00-003 — Escrever hipótese do produto; hipótese e limites aprovados por Gabriel.
+SUB-P00-004 — Definir pessoa usuária; perfil de referência e limites aprovados por Gabriel.
 
 > Mantenha no máximo uma tarefa em `IN_PROGRESS` e somente a próxima em `READY`. Uma implementação pronta vai para `REVIEW`; Gabriel marca `DONE` após revisar e conseguir explicar o resultado.
