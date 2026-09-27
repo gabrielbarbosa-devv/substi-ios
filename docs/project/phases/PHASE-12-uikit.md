@@ -91,20 +91,27 @@ Depende de:
 Nenhuma
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Criar tela de pedido com View Code.
+Exibir apenas o leite indisponível não explica o estado geral do pedido nem permite comparar a urgência do item com os produtos disponíveis. A referência visual de Gabriel define status do pedido, três itens, preços, banner de ação e CTA.
 
 ### Objetivo
-Concluir Criar tela de pedido com View Code dentro do escopo definido e deixar o resultado pronto para revisão.
+Atualizar a tela UIKit de pedido para comunicar “Em preparação”, mostrar todos os itens e seus preços demonstrativos, destacar suavemente o indisponível e orientar a ação de substituição.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Usar a hierarquia e os dados definidos em `docs/project/screens/order-and-suggestions.md` e a imagem de referência versionada em `docs/assets/order-screen-reference.png`.
+- Mostrar status “Em preparação”, produtos disponíveis e indisponíveis, preços formatados para pt-BR, banner informativo e CTA.
+- Reutilizar `DSProductCardView`; destacar item indisponível com `surfaceError`, rótulo textual e affordance visual sem comunicar erro catastrófico.
+- Manter preços nos itens do pedido, sem atribuí-los ao cadastro público do produto.
+- Componentes visuais recebem dados e renderizam; navegação permanece no `AppCoordinator`.
+- Considerar Dynamic Type, VoiceOver e uma ordem de leitura coerente.
+- Não inventar resultado de substituição: o estado “substituído” será aplicado somente após confirmação em uma task futura.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [ ] A tela apresenta status do pedido, os três itens e os preços demonstrativos conforme o contrato.
+- [ ] O leite indisponível tem destaque suave, badge textual e CTA leva ao fluxo de sugestões.
+- [ ] Os itens disponíveis e seus preços continuam visíveis; VoiceOver recebe conteúdo compreensível.
+- [ ] A documentação registra que preços e disponibilidade são fixtures, sem relação com estoque real.
+- [ ] Build do app passa; alterações e limites são explicados para Gabriel.
+- [ ] Estado permanece REVIEW até Gabriel revisar; não marcar DONE automaticamente.
 
 ### Conceitos de engenharia
 UIViewController, Auto Layout, collection views, reuse, diffable data.

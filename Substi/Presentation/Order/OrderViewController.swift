@@ -8,6 +8,10 @@ final class OrderViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let contentStackView = UIStackView()
     private let chooseSubstituteButton = DSButton(title: "Escolher substituto")
+    private let statusBanner = DSStatusBannerView(
+        title: "Em preparação",
+        subtitle: "Estamos preparando seus itens."
+    )
 
     init(viewModel: OrderViewModel) {
         self.viewModel = viewModel
@@ -72,12 +76,7 @@ final class OrderViewController: UIViewController {
     }
 
     private func render() {
-        let countLabel = UILabel()
-        countLabel.text = viewModel.itemCountText
-        countLabel.font = DSTypography.body
-        countLabel.adjustsFontForContentSizeCategory = true
-        countLabel.textColor = DSColor.textSecondary
-        contentStackView.addArrangedSubview(countLabel)
+        contentStackView.addArrangedSubview(statusBanner)
 
         let unavailableItems = viewModel.items.filter { $0.availability == .unavailable }
         if unavailableItems.isEmpty {
@@ -90,27 +89,32 @@ final class OrderViewController: UIViewController {
             contentStackView.addArrangedSubview(emptyLabel)
             chooseSubstituteButton.isHidden = true
         } else {
-            let explanationLabel = UILabel()
-            explanationLabel.text = "Um item ficou indisponível durante a preparação. Veja as informações e escolha uma alternativa."
-            explanationLabel.font = DSTypography.body
-            explanationLabel.adjustsFontForContentSizeCategory = true
-            explanationLabel.textColor = DSColor.textPrimary
-            explanationLabel.numberOfLines = 0
-            contentStackView.addArrangedSubview(explanationLabel)
-
-            for item in unavailableItems {
+            for item in viewModel.items {
+                let isUnavailable = item.availability == .unavailable
                 contentStackView.addArrangedSubview(
                     DSProductCardView(
                         content: DSProductCardContent(
                             name: item.product.name,
                             brand: item.product.brand,
                             quantity: item.product.quantity,
-                            statusText: "Indisponível",
-                            statusStyle: .error
+                            priceText: item.priceText,
+                            statusText: isUnavailable ? "Indisponível" : nil,
+                            statusStyle: isUnavailable ? .unavailable : nil,
+                            state: isUnavailable ? .unavailable : .available
                         )
                     )
                 )
             }
+
+            let substitutionCount = viewModel.unavailableItemCount
+            contentStackView.addArrangedSubview(
+                DSInfoBannerView(
+                    title: substitutionCount == 1
+                        ? "1 item precisa de substituição"
+                        : "\(substitutionCount) itens precisam de substituição",
+                    subtitle: "Escolha uma alternativa para continuar com seu pedido."
+                )
+            )
 
             chooseSubstituteButton.addTarget(
                 self,

@@ -2,6 +2,8 @@
 
 As telas nesta etapa usam os dados locais de demonstração. O inventário local é fixture; não representa disponibilidade de loja.
 
+Referência visual detalhada da tela Pedido: [order-screen-reference.png](../../assets/order-screen-reference.png). A imagem orienta hierarquia e estado visual; os produtos não têm imagens individuais no projeto ainda.
+
 ## Pedido
 
 ### Purpose
@@ -14,19 +16,21 @@ Reconhecer o produto indisponível e abrir as alternativas.
 
 ### Information Hierarchy
 
-1. Estado de indisponibilidade e o que aconteceu.
-2. Nome, marca e quantidade do produto.
-3. Ação “Escolher substituto”.
+1. Estado geral do pedido: “Em preparação”.
+2. Produto indisponível com superfície de erro suave, estado textual e affordance de navegação.
+3. Aviso de que uma decisão é necessária e CTA “Escolher substituto”.
+4. Outros produtos disponíveis, com quantidade, preço da linha e confirmação visual.
 
 ### Components
 
-Navigation Bar nativa, `DSProductCardView`, `DSStatusBadgeView` e `DSButton`.
+Navigation Bar nativa, `DSStatusBannerView`, `DSProductCardView`, `DSStatusBadgeView`, `DSInfoBannerView` e `DSButton`.
 
 ### States
 
 - Content: pedido com um ou mais itens indisponíveis.
 - Empty: pedido sem item indisponível; CTA oculto.
 - Loading/error: não se aplicam enquanto a origem é uma fixture local síncrona.
+- Product: `available` e `unavailable` nesta fatia; `substituted` permanece reservado para depois da confirmação.
 
 ### Actions
 
@@ -34,7 +38,11 @@ Abrir a tela de sugestões para um item indisponível. A navegação pertence ao
 
 ### Accessibility
 
-Texto escalável, label de estado, ordem de leitura natural e ação com alvo nativo de botão. Placeholder de imagem decorativo é ignorado pelo VoiceOver.
+Texto escalável, estado anunciado também em texto, ordem de leitura natural, cartões agrupados para VoiceOver e ação com alvo nativo de botão. O placeholder de imagem é decorativo e ignorado pelo VoiceOver.
+
+### Dados demonstrativos
+
+A fixture contém banana nanica (R$ 4,99), leite integral Marca A (R$ 7,99) e ovos brancos (R$ 12,90). Os preços pertencem a `OrderItem` e são dados locais de demonstração; não são retornados pela Open Food Facts nem representam preço de uma loja real.
 
 ### Analytics
 

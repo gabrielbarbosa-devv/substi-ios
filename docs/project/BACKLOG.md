@@ -143,6 +143,7 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P11-022 | Implementar componentes UIKit necessários | 11 | P0 | TODO |
 | SUB-P11-023 | Implementar componentes SwiftUI necessários | 11 | P0 | TODO |
 | SUB-P11-024 | Criar snapshots de componentes críticos | 11 | P1 | TODO |
+| SUB-P11-025 | Implementar banners UIKit de pedido e informação | 11 | P0 | REVIEW |
 | SUB-P12-001 | Estudar ciclo de vida de UIViewController | 12 | P1 | TODO |
 | SUB-P12-002 | Criar tela de pedido com View Code | 12 | P0 | REVIEW |
 | SUB-P12-003 | Adicionar estado do pedido | 12 | P0 | REVIEW |

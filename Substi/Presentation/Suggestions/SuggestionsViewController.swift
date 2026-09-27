@@ -22,7 +22,7 @@ struct SuggestionsViewModel {
             brand: candidate.product.brand,
             quantity: candidate.product.quantity,
             statusText: evidence.isEmpty ? "Confira as diferenças" : evidence.joined(separator: " · "),
-            statusStyle: evidence.isEmpty ? .information : .success
+            statusStyle: evidence.isEmpty ? .information : .compatible
         )
     }
 }

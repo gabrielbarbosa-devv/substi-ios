@@ -100,7 +100,7 @@ Estrutura conceitual:
 DesignSystem
 ├── Foundations: Color, Typography, Spacing, Radius
 ├── UIKit: DSButton, DSProductCardView, DSStatusBadgeView,
-│         DSInfoBannerView, DSLoadingView
+│         DSStatusBannerView, DSInfoBannerView, DSLoadingView
 └── SwiftUI: DSButtonStyle, DSStatusBadge,
             DSProductSummaryCard, DSComparisonRow
 ```

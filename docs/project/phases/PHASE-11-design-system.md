@@ -1587,3 +1587,74 @@ Nenhum arquivo novo; manter o registro histórico e apontar para a substituta.
 
 ### Notas para entrevista
 Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e razão para não implementar componentes sem uso.
+
+## SUB-P11-025 — Implementar banners UIKit de pedido e informação
+
+Estado: REVIEW
+
+Prioridade: P0
+
+Depende de:
+- SUB-P11-021
+
+### Contexto
+O contrato da Tela Pedido requer comunicar o estado de preparação e explicar que um item exige decisão, com elementos reutilizáveis que mantenham a mesma linguagem visual.
+
+### Objetivo
+Criar dois componentes pequenos de apresentação UIKit: `DSStatusBannerView` e `DSInfoBannerView`.
+
+### Requisitos
+- Cada banner recebe título e subtítulo prontos e apenas renderiza.
+- Usar cor semântica, SF Symbol, Dynamic Type, espaçamento e raios já definidos.
+- Agrupar a mensagem de forma compreensível para VoiceOver.
+- Não acessar Repository, networking ou regra de domínio.
+- Criar somente os dois banners usados pela Tela Pedido.
+
+### Critérios de aceite
+- [ ] O banner de status apresenta “Em preparação” e uma explicação curta.
+- [ ] O banner informativo explica que há item precisando de substituição.
+- [ ] Ambos usam foundations e texto dinâmico, sem valores de cor locais.
+- [ ] Nenhum banner contém lógica de navegação ou negócio.
+- [ ] Build e acessibilidade do conteúdo foram revisados; estado fica REVIEW até Gabriel aprovar.
+
+### Conceitos de engenharia
+Composição com `UIView` e `UIStackView`, Auto Layout, tokens semânticos e acessibilidade.
+
+### Estudar antes da implementação
+Como stacks e constraints determinam o tamanho intrínseco; agrupamento de conteúdo no VoiceOver.
+
+### Perguntas que preciso saber responder
+- Por que estes banners são componentes do Design System e não views privadas da tela?
+- Como o título e subtítulo continuam legíveis com Dynamic Type?
+- Como o VoiceOver anuncia cada banner?
+- Por que os banners não conhecem o pedido nem decidem a navegação?
+
+### Validação
+Build e inspeção visual das telas em tamanhos de texto aplicáveis.
+
+### Observabilidade
+Not applicable for this task.
+
+### Considerações de memória
+Not applicable for this task.
+
+### Considerações de concorrência
+Not applicable for this task.
+
+### Acessibilidade
+Símbolo decorativo oculto; título e subtítulo agrupados em um rótulo acessível; texto ajustável.
+
+### Uso de IA
+A IA pode implementar a composição solicitada e verificar consistência com tokens. Gabriel revisa se a abstração é proporcional e explica o comportamento.
+
+### Arquivos esperados
+- `Substi/DesignSystem/UIKit/DSStatusBannerView.swift`
+- `Substi/DesignSystem/UIKit/DSInfoBannerView.swift`
+
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Build passa e limites estão documentados.
+- [ ] Mover para REVIEW antes da análise; somente Gabriel pode marcar DONE.
+
+### Notas para entrevista
+Explicar coesão, reutilização proporcional, composição UIKit e acessibilidade do componente.
