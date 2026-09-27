@@ -1,20 +1,22 @@
-# Interview Checklist
+# Checklist cumulativo para entrevista
 
-Check an item only after Gabriel has studied it and can explain it.
+Marque um item somente depois que Gabriel o estudar e conseguir explicá-lo. Os nomes de APIs e conceitos permanecem em inglês quando são os termos técnicos usados no ecossistema Apple.
 
 ## Swift
-- [ ] struct vs class
-- [ ] let vs var
-- [ ] enum
-- [ ] protocol
-- [ ] generics
-- [ ] associated types
-- [ ] existentials
-- [ ] type erasure
-- [ ] ARC
-- [ ] Sendable
 
-## Architecture
+- [ ] `struct` ou `class`
+- [ ] `let` ou `var`
+- [ ] `enum`
+- [ ] `protocol`
+- [ ] Generics
+- [ ] Associated types
+- [ ] Existentials
+- [ ] Type erasure
+- [ ] ARC
+- [ ] `Sendable`
+
+## Arquitetura
+
 - [ ] MVC
 - [ ] MVVM
 - [ ] MVVM-C
@@ -23,65 +25,71 @@ Check an item only after Gabriel has studied it and can explain it.
 - [ ] Repository
 - [ ] Coordinator
 - [ ] Use Case
-- [ ] Dependency Injection
+- [ ] Injeção de dependência
 - [ ] SOLID
 
 ## UIKit
-- [ ] UIViewController lifecycle
+
+- [ ] Ciclo de vida de `UIViewController`
 - [ ] Auto Layout
 - [ ] View Code
 - [ ] CollectionView
 - [ ] DiffableDataSource
 - [ ] CompositionalLayout
-- [ ] reuse
-- [ ] rendering/layout cycle
+- [ ] Reuso de células
+- [ ] Ciclo de layout/renderização
 
 ## SwiftUI
-- [ ] state
-- [ ] View lifecycle
-- [ ] UIHostingController
-- [ ] UIKit interoperability
 
-## Concurrency
-- [ ] thread vs task
+- [ ] Estado (`state`)
+- [ ] Ciclo de vida de View
+- [ ] `UIHostingController`
+- [ ] Interoperabilidade com UIKit
+
+## Concorrência
+
+- [ ] Thread ou Task
 - [ ] GCD
 - [ ] DispatchQueue
 - [ ] DispatchGroup
-- [ ] race condition
-- [ ] deadlock
-- [ ] async/await
-- [ ] Task
-- [ ] async let
+- [ ] Race condition
+- [ ] Deadlock
+- [ ] `async/await`
+- [ ] `Task`
+- [ ] `async let`
 - [ ] TaskGroup
-- [ ] actor
-- [ ] MainActor
-- [ ] Sendable
-- [ ] cancellation
+- [ ] `actor`
+- [ ] `MainActor`
+- [ ] `Sendable`
+- [ ] Cancelamento
 
-## Memory
+## Memória
+
 - [ ] ARC
-- [ ] strong
-- [ ] weak
-- [ ] unowned
-- [ ] retain cycle
-- [ ] closure capture
-- [ ] value/reference semantics
-- [ ] stack/heap
+- [ ] `strong`
+- [ ] `weak`
+- [ ] `unowned`
+- [ ] Retain cycle
+- [ ] Captura de closure
+- [ ] Semântica de valor e referência
+- [ ] Stack e heap
 - [ ] Copy-on-Write
 
-## Testing
-- [ ] unit
-- [ ] integration
-- [ ] snapshot
-- [ ] UI
+## Testes
+
+- [ ] Teste unitário
+- [ ] Teste de integração
+- [ ] Snapshot test
+- [ ] Teste de UI
 - [ ] TDD
 - [ ] BDD
-- [ ] mocks
-- [ ] stubs
-- [ ] fakes
-- [ ] flaky tests
+- [ ] Mocks
+- [ ] Stubs
+- [ ] Fakes
+- [ ] Testes instáveis (flaky)
 
-## Performance
+## Desempenho
+
 - [ ] Instruments
 - [ ] Time Profiler
 - [ ] Allocations
@@ -90,16 +98,18 @@ Check an item only after Gabriel has studied it and can explain it.
 - [ ] Thread Sanitizer
 - [ ] Main Thread Checker
 
-## Observability
+## Observabilidade
+
 - [ ] Logger
 - [ ] OSLog
 - [ ] Signposts
 - [ ] Analytics
-- [ ] Crash Reporting
+- [ ] Relato de crashes
 - [ ] MetricKit
 
-## Delivery
-- [ ] SPM
+## Entrega
+
+- [ ] Swift Package Manager (SPM)
 - [ ] CocoaPods
 - [ ] SwiftLint
 - [ ] CI
