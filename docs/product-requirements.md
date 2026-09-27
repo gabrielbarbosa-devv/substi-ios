@@ -46,6 +46,28 @@ Uma experiência de substituição mais clara poderia influenciar a aceitação 
 - Não afirmamos que a proposta necessariamente aumentará aceitação, reduzirá cancelamentos ou diminuirá o tempo de decisão.
 - Não presumimos que uma fonte pública de informações de produtos represente estoque ou disponibilidade de uma loja.
 
+## Hipótese do produto
+
+> Para uma pessoa que compra mercado por aplicativo e descobre que um item escolhido está indisponível, apresentar alternativas compatíveis com os motivos da comparação poderá ajudá-la a escolher um substituto com menos esforço do que reiniciar a busca. Essa hipótese parte da análise exploratória do problema e ainda precisa ser validada com pessoas usuárias.
+
+### Sinais que podem ajudar a validar a hipótese
+
+- A pessoa consegue escolher uma alternativa no fluxo proposto sem reiniciar a busca pelo produto.
+- A pessoa consegue explicar por que a alternativa foi apresentada e quais diferenças influenciaram sua escolha.
+- Em uma avaliação com pessoas usuárias, a pessoa relata quanto esforço e confiança sentiu ao comparar as opções.
+
+Esses sinais orientam uma avaliação futura; não são resultados já observados nem metas quantitativas definidas. Tempo de decisão pode ser medido em um teste quando houver um protocolo adequado, mas, sozinho, não demonstra que a experiência causou uma melhora.
+
+### Hipótese de valor para o negócio
+
+Se a experiência ajudar consumidores a escolher substitutos adequados, ela poderá influenciar a aceitação de substituições e a conclusão de compras com itens indisponíveis. O protótipo não representa uma operação de loja e não permite afirmar ou medir esse impacto. Seriam necessários dados de uma operação real e uma avaliação apropriada.
+
+### Limites atuais
+
+- Ainda não há entrevistas, testes de usabilidade ou dados quantitativos de pessoas usuárias.
+- Não foram definidos valores-alvo para esforço, confiança, tempo ou aceitação de substituições.
+- A hipótese não pressupõe que toda indisponibilidade tenha uma alternativa adequada nem que informações públicas representem o estoque da loja.
+
 ## Jornada do problema
 
 ```mermaid

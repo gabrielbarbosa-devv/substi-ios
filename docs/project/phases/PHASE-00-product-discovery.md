@@ -17,7 +17,7 @@ IN_PROGRESS
 
 ## SUB-P00-001 — Definir problema do produto
 
-Estado: REVIEW
+Estado: DONE
 
 Prioridade: P0
 
@@ -77,8 +77,9 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 `docs/product-requirements.md`, `docs/project/CURRENT.md`, `docs/project/BACKLOG.md` e este arquivo para registrar estado e aceite. Nenhum código ou arquivo de implementação do produto.
 
 ### Critérios para conclusão
-- [ ] Gabriel revisa o problema e consegue explicar a diferença entre contexto, evidência e hipótese.
-- [ ] Só depois dessa revisão, mudar a tarefa de `REVIEW` para `DONE`.
+- [x] Gabriel revisou e aprovou a formulação do problema, o momento da jornada e o valor esperado.
+- [x] A diferença entre contexto, evidência e hipótese foi discutida; pesquisa com usuários e medidas de impacto continuam pendentes.
+- [x] A tarefa foi aprovada por Gabriel e movida de `REVIEW` para `DONE`.
 
 ### Notas para entrevista
 Explicar o problema de substituição de produtos sem alegar que um produto concorrente não possui determinada funcionalidade; distinguir valor esperado de impacto medido.
@@ -151,7 +152,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P00-003 — Escrever hipótese do produto
 
-Estado: TODO
+Estado: DONE
 
 Prioridade: P0
 
@@ -159,34 +160,37 @@ Depende de:
 Nenhuma
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Escrever hipótese do produto.
+O problema e a direção do produto estão documentados, mas ainda precisamos explicitar qual mudança esperamos observar para saber se a proposta ajuda. Sem uma hipótese clara, o protótipo pode virar apenas uma demonstração visual sem uma pergunta de produto que possa ser avaliada.
 
 ### Objetivo
-Concluir Escrever hipótese do produto dentro do escopo definido e deixar o resultado pronto para revisão.
+Registrar uma hipótese central para o valor ao consumidor, sinais qualitativos ou observáveis que poderiam apoiá-la e os limites do que o protótipo permite concluir. Não definir arquitetura, implementação nem metas numéricas sem evidência.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Usar o problema e a direção já documentados em `docs/product-requirements.md`.
+- Distinguir hipótese de produto, sinais de validação futura e resultados observados; não apresentar sinais como evidência existente.
+- Registrar uma hipótese de negócio como possibilidade, sem prometer impacto nem inventar métricas.
+- Declarar as limitações do protótipo e a necessidade de validação com pessoas usuárias e dados operacionais para avaliar impacto.
+- Não introduzir decisões de arquitetura ou implementação.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] Uma hipótese central liga situação, proposta e valor esperado para a pessoa usuária.
+- [x] Há sinais possíveis de validação, claramente identificados como trabalho futuro e sem metas numéricas inventadas.
+- [x] O possível valor para o negócio está formulado condicionalmente, com os limites de medição do protótipo explícitos.
+- [x] Não foram adicionadas decisões de arquitetura, implementação ou código.
 
 ### Conceitos de engenharia
-Descoberta do produto, evidências, hipótese, jornada, métricas, MVP e escopo.
+Descoberta do produto, hipótese falsificável, sinais de validação, evidência observada, valor esperado e limites de inferência.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Não se aplica a esta tarefa somente documental. Revisar a diferença entre uma hipótese e um resultado validado; nenhum código será escrito.
 
 ### Perguntas que preciso saber responder
-- Que problema “Escrever hipótese do produto” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Qual mudança observável esperamos para a pessoa usuária?
+- Quais sinais poderiam apoiar ou enfraquecer a hipótese, e por que ainda não são evidência?
+- Que dados seriam necessários para avaliar uma possível consequência para o negócio?
 
 ### Validação
-Revisar cada material em relação às fontes de produto fornecidas; identificar hipóteses e incógnitas.
+Revisão editorial contra `docs/product-requirements.md`; verificar que a hipótese não é descrita como resultado, que os sinais não são apresentados como dados existentes e que não há números ou decisões técnicas inventados.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -204,20 +208,20 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+`docs/product-requirements.md`, `docs/project/CURRENT.md`, `docs/project/BACKLOG.md` e este arquivo para registrar o resultado e o estado. Nenhum arquivo de implementação.
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Critérios documentais atendidos e sinais futuros separados de evidências atuais.
+- [x] Verificação de consistência e links aplicáveis concluída; nenhuma validação com usuários foi alegada.
+- [x] Gabriel revisou a hipótese, discutiu seus limites e aprovou o resultado.
+- [x] Documentação e estado atualizados; a tarefa foi movida para `DONE` após aprovação.
 
 ### Notas para entrevista
-Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
+Explicar como a hipótese se distingue de evidência, como a proposta poderia ser avaliada e por que um protótipo não comprova impacto de negócio.
 
 ## SUB-P00-004 — Definir pessoa usuária
 
-Estado: TODO
+Estado: READY
 
 Prioridade: P1
 
