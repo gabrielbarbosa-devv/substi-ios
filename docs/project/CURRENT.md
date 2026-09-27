@@ -18,7 +18,7 @@ SUB-P12-013 — Implementar tela de sugestões conforme referência visual
 
 ## Status
 
-IN_PROGRESS — existe somente esta task em andamento.
+REVIEW — a implementação está pronta para Gabriel revisar; nenhuma task foi marcada DONE.
 
 ## Objetivo
 
@@ -52,6 +52,7 @@ A tela Pedido já encaminha para Sugestões. Esta tela torna a escolha seguinte 
 
 - Preços e imagens individuais dos candidatos não estão nos dados locais; a tela não os inventa.
 - A comparação SwiftUI e a confirmação ainda não foram implementadas. O botão fica desabilitado até a tela de comparação existir e ser conectada pelo Coordinator.
+- A tela de sugestões compilou, mas ainda não foi inspecionada visualmente rodando no Simulator.
 - A inspeção visual da Tela Pedido no Simulator ficou pendente porque `simctl install` não terminou na sessão anterior.
 - SUB-P08-001 e SUB-P09-001–009 continuam em REVIEW até Gabriel revisar e explicar o aprendizado.
 
@@ -61,4 +62,4 @@ Após Gabriel revisar SUB-P12-013, definir o modelo e implementar a comparação
 
 ## Último marco
 
-A Tela Pedido foi integrada à `main` pelo PR #22 e está em REVIEW. A tela de sugestões existente agora será atualizada com a nova referência visual nesta branch.
+SUB-P12-013 foi integrada à `main` pelo PR #23. O build do Simulator passou; a inspeção visual do app em execução e a revisão de Gabriel ainda estão pendentes.

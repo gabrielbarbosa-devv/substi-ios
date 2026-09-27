@@ -816,7 +816,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P12-013 — Implementar tela de sugestões conforme referência visual
 
-Estado: IN_PROGRESS
+Estado: REVIEW
 
 Prioridade: P0
 
