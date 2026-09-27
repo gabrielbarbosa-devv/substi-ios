@@ -17,7 +17,7 @@ IN_PROGRESS
 
 ## SUB-P04-001 — Definir ProductID
 
-Estado: REVIEW
+Estado: DONE
 
 Prioridade: P1
 
@@ -41,7 +41,7 @@ Criar um tipo de valor `ProductID` e usá-lo como identidade obrigatória em `Pr
 - [x] `ProductID` encapsula uma `String` e é `Hashable`.
 - [x] `Product` exige um `ProductID` em sua inicialização.
 - [x] O build do app passa.
-- [ ] Gabriel revisa e consegue explicar a diferença entre identidade e nome de apresentação.
+- [x] Gabriel revisa e explica a diferença entre identidade e nome de apresentação.
 
 ### Conceitos de engenharia
 Value semantics, `struct`, identidade de domínio, `Hashable` e igualdade.
@@ -83,7 +83,7 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 ### Critérios para conclusão
 - [x] Implementação e build validados.
 - [x] Limites e decisões documentados.
-- [ ] Gabriel revisa e explica a solução; manter em `REVIEW` até a aprovação explícita.
+- [x] Gabriel revisa e explica a solução; task aprovada por Gabriel.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
@@ -167,42 +167,49 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P04-003 — Definir Order e OrderItem
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
 Depende de:
-SUB-P04-002
+- SUB-P04-001
+- SUB-P04-002
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir Order e OrderItem.
+`Product` descreve um produto de catálogo, enquanto a compra precisa registrar quais produtos foram escolhidos. Uma linha de pedido separa esses papéis e permite ampliar os dados da linha somente quando o fluxo exigir.
 
 ### Objetivo
-Concluir Definir Order e OrderItem dentro do escopo definido e deixar o resultado pronto para revisão.
+Representar um pedido como uma coleção de linhas, cada uma referenciando um produto do domínio.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Criar `OrderItem` como `struct` imutável que referencia um `Product`.
+- Criar `Order` como `struct` imutável que contém uma coleção de `OrderItem`.
+- Manter os tipos independentes de UIKit, SwiftUI, networking e regras de apresentação.
+- Não adicionar quantidade pedida, preço, disponibilidade, estado, nem identificadores próprios de pedido/linha: esses campos não foram definidos pelas fontes do projeto.
+- Atualizar o estado desta task em `CURRENT.md` e `BACKLOG.md`.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] `OrderItem` referencia um `Product` sem copiar dados de catálogo para campos novos.
+- [x] `Order` contém zero ou mais `OrderItem` e ambos são structs com propriedades imutáveis.
+- [x] Os modelos não importam frameworks de UI ou networking.
+- [x] O build do app passa.
+- [ ] Gabriel revisa o resultado e explica a diferença entre `Product`, `OrderItem` e `Order`.
 
 ### Conceitos de engenharia
-Value/reference semantics, structs, enums, immutability, Sendable.
+Semântica de valor, `struct`, composição, coleções e imutabilidade.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar composição de tipos de valor e a diferença entre um produto de catálogo e uma linha de pedido. Entender por que não inferimos quantidade ou disponibilidade nesta etapa.
 
 ### Perguntas que preciso saber responder
-- Que problema “Definir Order e OrderItem” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Por que `OrderItem` referencia `Product` em vez de guardar novamente nome e marca?
+- Qual é a diferença entre o produto de catálogo, uma linha de pedido e o pedido completo?
+- Por que ainda não modelamos quantidade pedida, preço ou disponibilidade?
+- Que casos poderiam justificar um identificador próprio para `Order` ou `OrderItem`?
+- Por que estes modelos são structs com propriedades `let`?
 
 ### Validação
-Usar testes determinísticos de domínio, incluindo casos de borda de valores e erros.
+Build do app para validar tipos e inclusão no target. Estes modelos são apenas composição de dados; testes determinísticos de domínio ficam em `SUB-P04-010`, onde poderão validar comportamento real dos modelos e das regras associadas.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -220,13 +227,17 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Domain/Models/Order.swift`
+- `Substi/Domain/Models/OrderItem.swift`
+- `docs/project/phases/PHASE-04-domain-modeling.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Critérios de aceite de implementação atendidos e build validado.
+- [x] Campos adiados e ausência de testes comportamentais nesta task estão justificados.
+- [ ] Documentação e estado atualizados; Gabriel revisa e explica o resultado e os trade-offs.
+- [x] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
