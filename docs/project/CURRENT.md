@@ -6,11 +6,11 @@ Segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo` (horário
 
 ## Fase atual
 
-FASE 04 — Modelagem de domínio (execução pela Delivery Track)
+FASE 01 — Preparação inicial (Bootstrap)
 
 ## Task atual
 
-SUB-P04-003 — Definir Order e OrderItem
+SUB-P01-011 — Substituir template SwiftUI por entrada UIKit
 
 ## Estado
 
@@ -18,19 +18,19 @@ REVIEW
 
 ## Objetivo
 
-Representar um pedido como uma coleção de itens, mantendo os dados do produto separados da sua presença no pedido.
+Remover a tela de exemplo do template Xcode e iniciar o app pelo ciclo de vida UIKit planejado para o fluxo principal.
 
 ## Por que agora
 
-`ProductID` e `Product` foram revisados. O domínio agora precisa representar os produtos escolhidos em um pedido para apoiar o fluxo futuro de substituição.
+O projeto deve usar UIKit como base do fluxo principal. A tela SwiftUI `ContentView` ainda é instanciada pelo ponto de entrada gerado pelo Xcode; substituímos ambos por um ciclo de vida UIKit mínimo antes de criar as telas do produto.
 
 ## Bloqueios
 
-Nenhum bloqueio conhecido. Quantidade pedida, preço e estado de disponibilidade não estão definidos nesta task; não serão inferidos.
+Nenhum bloqueio conhecido. O controlador raiz ficará vazio até a task de tela correspondente; não adicionaremos Coordinator nem telas nesta task.
 
 ## Próxima tarefa
 
-SUB-P04-004 — Definir SubstitutionCandidate (`TODO`; iniciar após revisar `Order` e `OrderItem`).
+SUB-P04-004 — Definir SubstitutionCandidate (`TODO`; próxima task de domínio após a preparação do ponto de entrada UIKit).
 
 ## Trilha de entrega
 
@@ -38,6 +38,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco concluído
 
-SUB-P04-001 — Definir ProductID; implementação revisada e aprovada por Gabriel.
+SUB-P04-003 — Definir Order e OrderItem; PR #9 integrado por Gabriel.
 
 > Mantenha no máximo uma tarefa em `IN_PROGRESS` e somente a próxima em `READY`. Uma implementação pronta vai para `REVIEW`; Gabriel marca `DONE` após revisar e conseguir explicar o resultado.

@@ -27,6 +27,7 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P01-008 | Validar build do app vazio | 01 | P0 | TODO |
 | SUB-P01-009 | Inicializar Git e arquivos ignorados | 01 | P0 | TODO |
 | SUB-P01-010 | Preparar README e primeiro commit | 01 | P1 | TODO |
+| SUB-P01-011 | Substituir template SwiftUI por entrada UIKit | 01 | P0 | REVIEW |
 | SUB-P02-001 | Escrever ADR de MVVM-C | 02 | P0 | TODO |
 | SUB-P02-002 | Definir camadas e direção das dependências | 02 | P0 | TODO |
 | SUB-P02-003 | Comparar MVC e MVVM | 02 | P1 | TODO |
@@ -48,7 +49,7 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P03-009 | Explicar por que não CocoaPods, Bazel e Buck | 03 | P2 | TODO |
 | SUB-P04-001 | Definir ProductID | 04 | P1 | DONE |
 | SUB-P04-002 | Definir Product | 04 | P0 | DONE |
-| SUB-P04-003 | Definir Order e OrderItem | 04 | P0 | REVIEW |
+| SUB-P04-003 | Definir Order e OrderItem | 04 | P0 | DONE |
 | SUB-P04-004 | Definir SubstitutionCandidate | 04 | P0 | TODO |
 | SUB-P04-005 | Definir SubstitutionDecision | 04 | P1 | TODO |
 | SUB-P04-006 | Definir erros de domínio | 04 | P1 | TODO |

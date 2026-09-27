@@ -27,7 +27,7 @@ Fases independentes de networking, concorrência mínima e Design Discovery pode
 | Etapa | Tasks essenciais |
 | --- | --- |
 | 1. Produto | `SUB-P00-001`, `SUB-P00-003`, `SUB-P00-007`, `SUB-P00-008`, `SUB-P00-009`, `SUB-P00-012` |
-| 2. Bootstrap | `SUB-P01-001`, `SUB-P01-002`, `SUB-P01-003`, `SUB-P01-005`, `SUB-P01-008`, `SUB-P01-009` |
+| 2. Bootstrap | `SUB-P01-001`, `SUB-P01-002`, `SUB-P01-003`, `SUB-P01-005`, `SUB-P01-008`, `SUB-P01-009`, `SUB-P01-011` |
 | 3. Arquitetura mínima | `SUB-P02-001`, `SUB-P02-002`, `SUB-P02-005`, `SUB-P02-006`, `SUB-P02-007` |
 | 4. Domínio e ranking | `SUB-P04-002`–`SUB-P04-004`; `SUB-P05-001`–`SUB-P05-003` |
 | 5. Rede e Repository | `SUB-P06-001`, `SUB-P06-003`, `SUB-P06-004`, `SUB-P06-006`–`SUB-P06-011`; `SUB-P07-001`–`SUB-P07-003`, `SUB-P07-005` |
@@ -116,7 +116,7 @@ As dependências abaixo são pré-requisitos reais; o número da fase, por si s�
 | Fase | Objetivo e resultado esperado | Dependências | Prioridade | Estado |
 | --- | --- | --- | --- | --- |
 | 00 — Descoberta do produto | Definir problema, evidências, MVP, jornada e escopo do prazo antes de Swift. Resultado: decisões de produto registradas. | Nenhuma | P0/P1 | IN_PROGRESS |
-| 01 — Bootstrap | Criar e validar a base mínima de um app iOS nativo com configuração de linguagem e deployment. | Decisões da fase 00 | P0/P1 | TODO |
+| 01 — Bootstrap | Criar e validar a base mínima de um app iOS nativo com configuração de linguagem, deployment e ponto de entrada UIKit. | Decisões da fase 00 | P0/P1 | IN_PROGRESS |
 | 02 — Arquitetura | Definir limites mínimos MVVM-C necessários para o fluxo. Resultado: Coordinator, composição e direção das dependências explicáveis. | Bootstrap | P0/P1 | TODO |
 | 03 — Modularização | Planejar módulos e avaliar limites de pacotes. Resultado: decisão documentada; dividir todo o projeto em pacotes não é requisito do prazo. | Arquitetura | P1/P2 | TODO |
 | 04 — Modelagem de domínio | Modelar somente pedido, produto e candidato essenciais. | Escopo do produto | P0/P1 | TODO |

@@ -680,3 +680,85 @@ Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de impl
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
+
+## SUB-P01-011 — Substituir template SwiftUI por entrada UIKit
+
+Estado: REVIEW
+
+Prioridade: P0
+
+Depende de:
+- SUB-P01-001
+
+### Contexto
+O projeto foi criado pelo template SwiftUI do Xcode. `ContentView` ainda mostra “Hello, world!” e `SubstiApp` o instancia como tela inicial, embora UIKit seja a tecnologia principal planejada para o fluxo do Substi.
+
+### Objetivo
+Remover a tela de exemplo e iniciar o aplicativo com o ciclo de vida UIKit, deixando uma raiz vazia pronta para receber o fluxo real em uma task posterior.
+
+### Requisitos
+- Criar `AppDelegate` como ponto de entrada UIKit.
+- Criar `SceneDelegate` para configurar uma `UIWindow` com um `UIViewController` raiz vazio.
+- Remover `Substi/ContentView.swift` e a entrada SwiftUI gerada em `Substi/SubstiApp.swift`.
+- Não adicionar Coordinator, ViewController de feature ou tela de produto nesta task.
+- Manter SwiftUI disponível para integração incremental futura por `UIHostingController`.
+- Atualizar o estado desta task em `CURRENT.md`, `BACKLOG.md`, `ROADMAP.md` e neste arquivo.
+
+### Critérios de aceite
+- [x] O app inicia por `AppDelegate` e configura a janela por `SceneDelegate`.
+- [x] A raiz UIKit é um `UIViewController` vazio, sem conteúdo de demonstração.
+- [x] `ContentView.swift` e `SubstiApp.swift` foram removidos do projeto.
+- [x] O build do app passa no simulador iOS.
+- [x] Não foi adicionada tela, Coordinator ou funcionalidade de produto.
+- [ ] Gabriel consegue explicar o caminho `UIApplication → AppDelegate → SceneDelegate → UIWindow → UIViewController`.
+
+### Conceitos de engenharia
+Ciclo de vida do app UIKit, scenes, janela, controlador raiz e entrada `@main`.
+
+### Estudar antes da implementação
+Revisar o papel de `UIApplicationDelegate` e `UIWindowSceneDelegate`, e distinguir o ciclo de vida de UIKit do protocolo `App` do SwiftUI.
+
+### Perguntas que preciso saber responder
+- Quem inicia o app quando `AppDelegate` é marcado `@main`?
+- Por que `SceneDelegate` configura a janela para uma `UIWindowScene`?
+- O que mantém o `UIWindow` vivo durante a sessão?
+- Como SwiftUI ainda poderá aparecer dentro do fluxo UIKit?
+- Por que a raiz está vazia e onde entra a futura navegação/coordinator?
+
+### Validação
+Compilar o scheme `Substi` para o simulador com Xcode 16.4 e iniciar o app em iPhone 16 Simulator. Não executar testes: esta task altera somente a inicialização do app, sem comportamento de produto.
+
+### Observabilidade
+Não se aplica a esta tarefa.
+
+### Considerações de memória
+`SceneDelegate` mantém uma referência forte à `UIWindow` enquanto a cena estiver ativa; o sistema controla o ciclo de vida da cena e do delegate. Não adicionar referências ou closures próprias.
+
+### Considerações de concorrência
+Não se aplica a esta tarefa.
+
+### Acessibilidade
+Não se aplica a esta tarefa; ainda não há interface de produto.
+
+### Uso de IA
+A IA pode converter o bootstrap SwiftUI em UIKit e explicar callbacks e ownership; Gabriel decide se o ponto de entrada e a separação de responsabilidades fazem sentido.
+
+### Arquivos esperados
+- `Substi/App/AppDelegate.swift`
+- `Substi/App/SceneDelegate.swift`
+- Remoção de `Substi/ContentView.swift`
+- Remoção de `Substi/SubstiApp.swift`
+- `docs/project/phases/PHASE-01-bootstrap.md`
+- `docs/project/phases/PHASE-04-domain-modeling.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/CURRENT.md`
+
+### Critérios para conclusão
+- [x] Ciclo de vida UIKit, build e inicialização no simulador validados.
+- [x] Template SwiftUI removido sem remover a capacidade de integrar SwiftUI mais tarde.
+- [x] Documentação e estados atualizados.
+- [x] Mover para `REVIEW`; Gabriel marcará `DONE` após compreender o fluxo, salvo a autorização explícita para integração automatizada.
+
+### Notas para entrevista
+Explicar por que UIKit controla a janela e a navegação principal, e como `UIHostingController` permite introduzir SwiftUI em uma parte do app sem substituir todo o ciclo de vida.

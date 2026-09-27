@@ -167,7 +167,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P04-003 — Definir Order e OrderItem
 
-Estado: REVIEW
+Estado: DONE
 
 Prioridade: P0
 
@@ -193,7 +193,7 @@ Representar um pedido como uma coleção de linhas, cada uma referenciando um pr
 - [x] `Order` contém zero ou mais `OrderItem` e ambos são structs com propriedades imutáveis.
 - [x] Os modelos não importam frameworks de UI ou networking.
 - [x] O build do app passa.
-- [ ] Gabriel revisa o resultado e explica a diferença entre `Product`, `OrderItem` e `Order`.
+- [x] Gabriel aprova a integração do PR #9 após revisar a explicação da diferença entre `Product`, `OrderItem` e `Order`.
 
 ### Conceitos de engenharia
 Semântica de valor, `struct`, composição, coleções e imutabilidade.
@@ -236,7 +236,7 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 ### Critérios para conclusão
 - [x] Critérios de aceite de implementação atendidos e build validado.
 - [x] Campos adiados e ausência de testes comportamentais nesta task estão justificados.
-- [ ] Documentação e estado atualizados; Gabriel revisa e explica o resultado e os trade-offs.
+- [x] Documentação e estado atualizados; Gabriel aprova a integração do PR #9.
 - [x] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
 ### Notas para entrevista
