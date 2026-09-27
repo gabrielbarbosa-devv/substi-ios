@@ -100,15 +100,15 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P08-010 | Definir falha parcial | 08 | P1 | TODO |
 | SUB-P08-011 | Executar Thread Sanitizer | 08 | P1 | TODO |
 | SUB-P08-012 | Documentar concorrência | 08 | P1 | TODO |
-| SUB-P09-001 | Estudar DispatchQueue serial e concorrente | 09 | P2 | TODO |
-| SUB-P09-002 | Estudar QoS | 09 | P2 | TODO |
-| SUB-P09-003 | Estudar sync e async | 09 | P2 | TODO |
-| SUB-P09-004 | Criar exercício com DispatchGroup | 09 | P2 | TODO |
-| SUB-P09-005 | Estudar barreiras | 09 | P2 | TODO |
-| SUB-P09-006 | Diagnosticar race condition | 09 | P2 | TODO |
-| SUB-P09-007 | Estudar deadlock | 09 | P2 | TODO |
-| SUB-P09-008 | Comparar DispatchGroup e TaskGroup | 09 | P2 | TODO |
-| SUB-P09-009 | Documentar interoperabilidade | 09 | P2 | TODO |
+| SUB-P09-001 | Estudar DispatchQueue serial e concorrente | 09 | P2 | REVIEW |
+| SUB-P09-002 | Estudar QoS | 09 | P2 | REVIEW |
+| SUB-P09-003 | Estudar sync e async | 09 | P2 | REVIEW |
+| SUB-P09-004 | Criar exercício com DispatchGroup | 09 | P2 | REVIEW |
+| SUB-P09-005 | Estudar barreiras | 09 | P2 | REVIEW |
+| SUB-P09-006 | Diagnosticar race condition | 09 | P2 | REVIEW |
+| SUB-P09-007 | Estudar deadlock | 09 | P2 | REVIEW |
+| SUB-P09-008 | Comparar DispatchGroup e TaskGroup | 09 | P2 | REVIEW |
+| SUB-P09-009 | Documentar interoperabilidade | 09 | P2 | REVIEW |
 | SUB-P10-001 | Revisar ARC e grafo de ownership | 10 | P1 | TODO |
 | SUB-P10-002 | Mapear ownership do Coordinator | 10 | P1 | TODO |
 | SUB-P10-003 | Revisar referências strong | 10 | P1 | TODO |

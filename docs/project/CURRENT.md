@@ -6,16 +6,15 @@ Segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo` (horário
 
 ## Fase atual
 
-FASE 08 — Concorrência em Swift (execução pela Delivery Track)
+FASE 09 — Laboratório de GCD
+
+## Tarefa atual
+
+SUB-P09-001 — Estudar DispatchQueue serial e concorrente
 
 ## Tasks em revisão
 
-- SUB-P08-001 — Carregar um produto com async
-- SUB-P07-001 — Definir ProductRepository
-- SUB-P07-002 — Definir InventoryRepository
-- SUB-P07-003 — Criar fixtures de inventário
-- SUB-P07-005 — Implementar composição do Repository
-- SUB-P07-008 — Testar resultados remotos
+- SUB-P09-001–009 — Laboratório GCD e comparação com Swift Concurrency
 
 ## Estado
 
@@ -23,19 +22,19 @@ REVIEW
 
 ## Objetivo
 
-Conectar a aplicação ao contrato `ProductRepository` por meio de um Use Case pequeno, mantendo a busca assíncrona isolada de UI e networking.
+Revisar um laboratório de estudo executável que demonstra filas, QoS, `sync`/`async`, `DispatchGroup`, barreiras, proteção de estado e comparação com `TaskGroup`, sem adicionar GCD ao app.
 
 ## Por que agora
 
-APIClient, DTO, Mapper e Repository já realizam a busca assíncrona. Este Use Case cria o ponto de entrada da aplicação previsto no fluxo de dependências, sem antecipar telas ou uma ViewModel antes de Gabriel enviar as referências visuais.
+Gabriel pediu para seguir para a Fase 09 e voltar à Fase 08 depois. O laboratório é uma trilha isolada P2; não altera a arquitetura principal nem depende da conclusão das tasks de UI.
 
 ## Bloqueios
 
-Os testes do target ainda precisam ser executados com Xcode selecionado. `xcodebuild -version` informa que o diretório ativo é Command Line Tools (`/Library/Developer/CommandLineTools`), então não foi possível executar o target `SubstiTests`. A API pública fornece catálogo de produtos, não estoque de loja.
+A Fase 08 continua pendente para retomada. O laboratório GCD foi compilado com Swift 6.1.2 e `-warnings-as-errors`, e executado localmente; os resultados observados estão registrados em `StudyLabs/GCD/README.md` e na task da fase.
 
 ## Próxima task
 
-Gabriel revisa `SUB-P08-001` e executa/acompanha `SubstiTests` em Xcode. A próxima implementação de UI depende das referências de tela de Gabriel e do Design Discovery/Screen Contract.
+Gabriel revisa e explica as tasks `SUB-P09-001`–`SUB-P09-009`. Depois, retomamos a Fase 08; não considerar a Fase 08 concluída por termos estudado GCD.
 
 ## Trilha de entrega
 
@@ -43,6 +42,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco
 
-SUB-P08-001 — `LoadProductUseCase` conecta a aplicação ao protocolo `ProductRepository`; testes determinísticos cobrem sucesso, código de barras e erro. Sem criar protocolo adicional, GCD ou UI.
+O executável independente `StudyLabs/GCD/GCDStudyLab.swift` compila em Swift 6.1 e termina com todas as demonstrações. A saída observada confirma contador protegido igual a 1000, barreira entre leituras e resultado estável de `TaskGroup`.
 
-> SUB-P06-006–011 também permanecem em `REVIEW`; Gabriel é quem decide quando os aprova e os move para `DONE`.
+> A Fase 08 e as tasks de Repository continuam aguardando a revisão de Gabriel; as tasks desta fase estão em `REVIEW`, nunca `DONE` automaticamente.
