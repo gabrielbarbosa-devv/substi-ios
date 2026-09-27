@@ -17,7 +17,7 @@ IN_PROGRESS
 
 ## SUB-P04-001 — Definir ProductID
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P1
 
@@ -25,34 +25,38 @@ Depende de:
 - Nenhuma
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir ProductID.
+Dois produtos podem ter o mesmo nome e atributos descritivos. O domínio precisa de uma identidade estável para distingui-los sem usar o nome que aparece na interface.
 
 ### Objetivo
-Concluir Definir ProductID dentro do escopo definido e deixar o resultado pronto para revisão.
+Criar um tipo de valor `ProductID` e usá-lo como identidade obrigatória em `Product`.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Criar `Substi/Domain/Models/ProductID.swift` como wrapper tipado de `String`.
+- Tornar `ProductID` `Hashable`, permitindo igualdade e uso como chave de coleções.
+- Adicionar `id: ProductID` obrigatório ao modelo `Product`.
+- Não assumir que o identificador é um código de barras nem validar formato antes de definir a integração com a fonte de dados.
+- Atualizar os estados desta task em `CURRENT.md`, `BACKLOG.md` e neste arquivo.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] `ProductID` encapsula uma `String` e é `Hashable`.
+- [x] `Product` exige um `ProductID` em sua inicialização.
+- [x] O build do app passa.
+- [ ] Gabriel revisa e consegue explicar a diferença entre identidade e nome de apresentação.
 
 ### Conceitos de engenharia
-Value/reference semantics, structs, enums, immutability, Sendable.
+Value semantics, `struct`, identidade de domínio, `Hashable` e igualdade.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar wrappers de tipo em Swift, síntese de conformidade `Hashable` e a diferença entre identidade e atributos de apresentação.
 
 ### Perguntas que preciso saber responder
-- Que problema “Definir ProductID” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Por que não usar `String` diretamente em todos os lugares?
+- O que `Hashable` permite fazer e como se relaciona com `Equatable`?
+- Por que o nome do produto não serve como identidade?
+- Por que ainda não validamos se o ID é um código de barras?
 
 ### Validação
-Usar testes determinísticos de domínio, incluindo casos de borda de valores e erros.
+Build do app para validar os tipos e sua inclusão no target. Testes de domínio serão organizados em `SUB-P04-010`; este wrapper não contém validação ou comportamento próprio.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -70,20 +74,23 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Domain/Models/ProductID.swift`
+- `Substi/Domain/Models/Product.swift`
+- `docs/project/phases/PHASE-04-domain-modeling.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Implementação e build validados.
+- [x] Limites e decisões documentados.
+- [ ] Gabriel revisa e explica a solução; manter em `REVIEW` até a aprovação explícita.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
 ## SUB-P04-002 — Definir Product
 
-Estado: REVIEW
+Estado: DONE
 
 Prioridade: P0
 
@@ -111,7 +118,7 @@ Criar um modelo de domínio Swift pequeno para representar nome e atributos desc
 - [x] Nome é obrigatório; categoria, marca e quantidade podem estar ausentes.
 - [x] O tipo não depende de frameworks de UI ou networking.
 - [x] O build do app passa.
-- [ ] Gabriel revisa as decisões e consegue explicar os conceitos principais.
+- [x] Gabriel aprova a implementação e autoriza seguir para a próxima task.
 
 ### Conceitos de engenharia
 Value semantics, `struct`, `let`, optionals e modelagem de domínio.
@@ -153,7 +160,7 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 ### Critérios para conclusão
 - [x] Critérios de aceite de implementação atendidos e build validado.
 - [x] Decisões e itens fora do escopo registrados.
-- [ ] Gabriel revisa e explica o resultado; manter em `REVIEW` até essa aprovação explícita.
+- [x] Gabriel revisa a mudança e autoriza a continuidade do desenvolvimento.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
