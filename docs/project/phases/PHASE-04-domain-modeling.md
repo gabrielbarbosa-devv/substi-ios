@@ -244,7 +244,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P04-004 — Definir SubstitutionCandidate
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -252,34 +252,41 @@ Depende de:
 SUB-P04-003
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir SubstitutionCandidate.
+`Product` representa um produto do catálogo, sem indicar o papel que ele exerce no fluxo. Quando o sistema apresentar um produto como possível substituto, precisamos nomear esse papel sem duplicar os dados do produto.
 
 ### Objetivo
-Concluir Definir SubstitutionCandidate dentro do escopo definido e deixar o resultado pronto para revisão.
+Criar um tipo de domínio `SubstitutionCandidate` que encapsule o `Product` apresentado como alternativa.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Criar `Substi/Domain/Models/SubstitutionCandidate.swift`.
+- Usar `struct` com uma propriedade imutável `product: Product`.
+- Não duplicar nome, marca, categoria ou quantidade; esses dados continuam em `Product`.
+- Não adicionar pontuação, justificativa textual, estado de disponibilidade ou o produto original nesta tarefa. A regra de ranking e os dados necessários ainda serão definidos nas tasks próprias.
+- Manter o modelo independente de UIKit, SwiftUI e networking.
+- Atualizar o estado desta task em `CURRENT.md`, `BACKLOG.md` e neste arquivo.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] `SubstitutionCandidate` representa uma alternativa por meio de `product: Product`.
+- [x] O tipo usa semântica de valor e não duplica atributos de `Product`.
+- [x] Pontuação, justificativa e disponibilidade ficaram fora do escopo.
+- [x] O modelo não depende de frameworks de interface ou networking.
+- [x] O build do app passa.
+- [ ] Gabriel consegue explicar por que a lista de candidatos não é representada diretamente como `[Product]` nesta fronteira.
 
 ### Conceitos de engenharia
-Value/reference semantics, structs, enums, immutability, Sendable.
+Semântica de valor, `struct`, `let`, composição e nomeação de papéis no domínio.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar composição de tipos de valor e distinguir um `Product` do catálogo de um `SubstitutionCandidate` no fluxo de substituição.
 
 ### Perguntas que preciso saber responder
-- Que problema “Definir SubstitutionCandidate” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Por que o tipo contém um `Product` em vez de copiar nome, marca e quantidade?
+- Que significado explícito `SubstitutionCandidate` acrescenta em relação a `[Product]`?
+- Por que pontuação e motivo da recomendação ainda não estão neste tipo?
+- Por que esse tipo é `struct` e sua propriedade é `let`?
 
 ### Validação
-Usar testes determinísticos de domínio, incluindo casos de borda de valores e erros.
+Compilar o scheme `Substi` para o simulador e confirmar que o novo arquivo é incluído no target. O tipo é apenas um contêiner imutável, sem regra própria; testes comportamentais de domínio ficam para `SUB-P04-010`.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -297,13 +304,16 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Domain/Models/SubstitutionCandidate.swift`
+- `docs/project/phases/PHASE-04-domain-modeling.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Implementação e build validados; ausência de comportamento a testar está justificada.
+- [x] Limites do tipo e conceitos adiados estão documentados.
+- [x] Estado do planejamento atualizado.
+- [x] Mover para `REVIEW`; Gabriel marca `DONE` após revisar e explicar o resultado.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.

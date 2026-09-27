@@ -6,11 +6,11 @@ Segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo` (horário
 
 ## Fase atual
 
-FASE 01 — Preparação inicial (Bootstrap)
+FASE 04 — Modelagem de domínio (execução pela Delivery Track)
 
 ## Task atual
 
-SUB-P01-011 — Substituir template SwiftUI por entrada UIKit
+SUB-P04-004 — Definir SubstitutionCandidate
 
 ## Estado
 
@@ -18,19 +18,19 @@ REVIEW
 
 ## Objetivo
 
-Remover a tela de exemplo do template Xcode e iniciar o app pelo ciclo de vida UIKit planejado para o fluxo principal.
+Representar um produto do catálogo que foi apresentado como possível substituto, sem duplicar os dados de `Product` nem antecipar a regra de ranking.
 
 ## Por que agora
 
-O projeto deve usar UIKit como base do fluxo principal. A tela SwiftUI `ContentView` ainda é instanciada pelo ponto de entrada gerado pelo Xcode; substituímos ambos por um ciclo de vida UIKit mínimo antes de criar as telas do produto.
+`Product`, `OrderItem` e `Order` já estão definidos. Um tipo de candidato dá nome ao papel do produto alternativo antes que a fase de ranking defina como comparar e ordenar alternativas.
 
 ## Bloqueios
 
-Nenhum bloqueio conhecido. O controlador raiz ficará vazio até a task de tela correspondente; não adicionaremos Coordinator nem telas nesta task.
+Nenhum bloqueio conhecido. Pontuação e justificativa da compatibilidade permanecem para as tasks de ranking; não serão inferidas nesta task.
 
 ## Próxima tarefa
 
-SUB-P04-004 — Definir SubstitutionCandidate (`TODO`; próxima task de domínio após a preparação do ponto de entrada UIKit).
+SUB-P04-005 — Definir SubstitutionDecision (`TODO`; somente após a revisão de SUB-P04-004).
 
 ## Trilha de entrega
 
@@ -38,6 +38,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco concluído
 
-SUB-P04-003 — Definir Order e OrderItem; PR #9 integrado por Gabriel.
+SUB-P04-003 — Definir Order e OrderItem; PR #9 integrado por Gabriel. A limpeza do template UIKit está integrada no PR #10 e aguarda revisão conceitual (`REVIEW`).
 
 > Mantenha no máximo uma tarefa em `IN_PROGRESS` e somente a próxima em `READY`. Uma implementação pronta vai para `REVIEW`; Gabriel marca `DONE` após revisar e conseguir explicar o resultado.
