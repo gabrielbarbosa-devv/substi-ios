@@ -4,10 +4,10 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 
 | ID | Tarefa | Fase | Prioridade | Estado |
 | --- | --- | --- | --- | --- |
-| SUB-P00-001 | Definir problema do produto | 00 | P0 | REVIEW |
+| SUB-P00-001 | Definir problema do produto | 00 | P0 | DONE |
 | SUB-P00-002 | Registrar evidências e hipóteses | 00 | P1 | TODO |
-| SUB-P00-003 | Escrever hipótese do produto | 00 | P0 | TODO |
-| SUB-P00-004 | Definir pessoa usuária | 00 | P1 | TODO |
+| SUB-P00-003 | Escrever hipótese do produto | 00 | P0 | DONE |
+| SUB-P00-004 | Definir pessoa usuária | 00 | P1 | READY |
 | SUB-P00-005 | Mapear jornada da pessoa usuária | 00 | P1 | TODO |
 | SUB-P00-006 | Definir métricas de sucesso | 00 | P1 | TODO |
 | SUB-P00-007 | Definir MVP | 00 | P0 | TODO |

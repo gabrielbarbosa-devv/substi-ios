@@ -10,27 +10,27 @@ FASE 00 — Descoberta do produto
 
 ## Task atual
 
-SUB-P00-001 — Definir o problema do produto
+SUB-P00-004 — Definir pessoa usuária
 
 ## Estado
 
-REVIEW
+READY
 
 ## Objetivo
 
-Documentar o problema de substituição de produtos no mercado, o momento da jornada em que ocorre e o valor esperado, separando claramente contexto, hipóteses e afirmações não feitas. Esta tarefa não define arquitetura ou implementação.
+Descrever quem enfrenta o problema no contexto definido, sem inventar personas validadas ou características demográficas. Registrar necessidades relevantes para orientar a jornada e o protótipo.
 
 ## Por que agora
 
-Um problema claro ajuda as próximas decisões de produto e evita escolher solução técnica antes de saber qual experiência queremos demonstrar. O documento está pronto para revisão; nenhuma tarefa posterior foi iniciada.
+Com a hipótese do produto aprovada, a próxima microtask delimita para quem o protótipo está sendo pensado. O perfil será uma hipótese de trabalho até ser validado com pesquisa de usuários.
 
 ## Bloqueios
 
-Não há bloqueio para revisar o problema. Antes de build, confirme a seleção do Xcode Command Line Tools: o terminal anteriormente informou que as ferramentas de desenvolvimento não estavam configuradas.
+Nenhum bloqueio para iniciar a tarefa documental após integrar a atualização atual à `main`. Antes de qualquer build, confirme a seleção do Xcode Command Line Tools: o terminal anteriormente informou que as ferramentas de desenvolvimento não estavam configuradas.
 
 ## Próxima tarefa
 
-SUB-P00-003 — Escrever hipótese de produto (`TODO`; só mover para `READY` depois da revisão e aprovação de `SUB-P00-001`).
+SUB-P00-005 — Mapear jornada da pessoa usuária (`TODO`; iniciar após concluir e revisar `SUB-P00-004`).
 
 ## Trilha de entrega
 
@@ -38,6 +38,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco concluído
 
-Estrutura de planejamento do projeto criada.
+SUB-P00-003 — Escrever hipótese do produto; hipótese e limites aprovados por Gabriel.
 
 > Mantenha no máximo uma tarefa em `IN_PROGRESS` e somente a próxima em `READY`. Uma implementação pronta vai para `REVIEW`; Gabriel marca `DONE` após revisar e conseguir explicar o resultado.
