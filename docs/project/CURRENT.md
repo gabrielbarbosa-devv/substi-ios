@@ -10,34 +10,36 @@ Estamos construindo o fluxo vertical de substituição. O laboratório GCD é P2
 
 ## Fase atual
 
-FASE 12 — UIKit
+FASE 13 — Integração com SwiftUI
 
 ## Tarefa atual
 
-SUB-P12-013 — Implementar tela de sugestões conforme referência visual
+SUB-P13-002 — Criar ProductComparisonView
 
 ## Status
 
-REVIEW — a implementação está pronta para Gabriel revisar; nenhuma task foi marcada DONE.
+REVIEW — comparação e integração prontas para Gabriel revisar; nenhuma task foi marcada DONE.
 
 ## Objetivo
 
-Na segunda tela, mostrar o produto original, alternativas demonstrativas e permitir que a pessoa selecione uma opção explicitamente. O CTA de comparação fica preparado, mas desabilitado até existir a tela SwiftUI seguinte.
+Comparar produto original e substituto escolhido com os dados conhecidos, usando SwiftUI dentro do fluxo UIKit. A confirmação ainda não faz parte desta etapa.
 
 ## Modelo visual
 
 ```text
-Pedido
+Pedido → Sugestões → seleção explícita
   ↓ Coordinator
-Escolher substituto
-  ├── Item original (preço do pedido, quando disponível)
-  ├── Opções locais (categoria/quantidade; sem preço inventado)
-  └── Seleção explícita → Ver comparação (próxima etapa, ainda não conectada)
+UIHostingController
+  ↓
+Comparação SwiftUI
+  ├── nome, marca, categoria e quantidade
+  ├── preço do original; substituto sem preço informado
+  └── voltar às opções (navegação controlada pelo Coordinator)
 ```
 
 ## Por que agora
 
-A tela Pedido já encaminha para Sugestões. Esta tela torna a escolha seguinte compreensível sem alegar compatibilidade percentual, estoque real ou preço de candidatos que os dados atuais não fornecem.
+A tela de Sugestões já permite selecionar um candidato. A comparação mostra lado a lado os atributos disponíveis sem inventar preço, imagem, nutrição ou percentual de compatibilidade. `UIHostingController` integra SwiftUI ao `UINavigationController`; o Coordinator continua dono da navegação.
 
 ## Revisões pendentes
 
@@ -51,15 +53,23 @@ A tela Pedido já encaminha para Sugestões. Esta tela torna a escolha seguinte 
 ## Bloqueios e limites
 
 - Preços e imagens individuais dos candidatos não estão nos dados locais; a tela não os inventa.
-- A comparação SwiftUI e a confirmação ainda não foram implementadas. O botão fica desabilitado até a tela de comparação existir e ser conectada pelo Coordinator.
-- A tela de sugestões compilou, mas ainda não foi inspecionada visualmente rodando no Simulator.
-- A inspeção visual da Tela Pedido no Simulator ficou pendente porque `simctl install` não terminou na sessão anterior.
+- A confirmação ainda não foi implementada. “Escolher este substituto” permanece desabilitado até existir a etapa correspondente.
+- A referência visual usa preço, imagem, dados nutricionais e percentual ilustrativos que não existem na fixture; esses dados não foram simulados.
+- O app compilou, instalou e abriu no iPhone 16 Pro Simulator; o screenshot confirmou a tela Pedido inicial.
+- A tela Comparação e o retorno entre Sugestões/Comparação ainda aguardam inspeção visual em execução.
 - SUB-P08-001 e SUB-P09-001–009 continuam em REVIEW até Gabriel revisar e explicar o aprendizado.
+
+## Tasks em revisão
+
+- SUB-P13-001 — Definir modelo de apresentação da comparação
+- SUB-P13-002 — Criar ProductComparisonView
+- SUB-P13-004 — Apresentar com UIHostingController
+- SUB-P13-005 — Manter navegação no Coordinator
 
 ## Próxima task
 
-Após Gabriel revisar SUB-P12-013, definir o modelo e implementar a comparação SwiftUI pelas tasks SUB-P13 correspondentes. Não avançar automaticamente.
+SUB-P13-006 — Validar UIKit para SwiftUI. Não avançar até Gabriel revisar o resultado atual.
 
 ## Último marco
 
-SUB-P12-013 foi integrada à `main` pelo PR #23. O build do Simulator passou; a inspeção visual do app em execução e a revisão de Gabriel ainda estão pendentes.
+SUB-P13-001, SUB-P13-002, SUB-P13-004 e SUB-P13-005 foram implementadas na branch `feature/sub-p13-001-product-comparison`. O build passou e o app abriu no Simulator; a tela Comparação e a revisão de Gabriel ainda estão pendentes.
