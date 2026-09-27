@@ -10,7 +10,7 @@ FASE 04 — Modelagem de domínio (execução pela Delivery Track)
 
 ## Task atual
 
-SUB-P04-002 — Definir Product
+SUB-P04-001 — Definir ProductID
 
 ## Estado
 
@@ -18,11 +18,11 @@ REVIEW
 
 ## Objetivo
 
-Revisar o primeiro modelo de domínio do produto: seus dados essenciais e a escolha por representá-lo como um valor imutável.
+Dar ao produto uma identidade tipada que não dependa do nome exibido nem de um formato externo ainda não validado.
 
 ## Por que agora
 
-O projeto Xcode já existe e a Delivery Track prioriza iniciar o domínio do produto. `Product` fornece a base para as tarefas posteriores de substituição, ranking e dados. A task não depende das configurações de P1 que ficaram pendentes no bootstrap.
+`Product` já está modelado; pedidos, candidatos e dados precisarão distinguir produtos com atributos ou nomes iguais. Esta task cria essa identidade antes de ampliar os modelos do domínio.
 
 ## Bloqueios
 
@@ -30,7 +30,7 @@ Nenhum bloqueio conhecido para esta task. `SUB-P01-003` (Swift 6 Language Mode) 
 
 ## Próxima tarefa
 
-SUB-P04-001 — Definir ProductID (`TODO`; avaliar identificação estável antes de modelar itens e candidatos).
+SUB-P04-003 — Definir Order e OrderItem (`TODO`; iniciar após revisar `ProductID` e `Product`).
 
 ## Trilha de entrega
 
@@ -38,6 +38,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco concluído
 
-SUB-P01-001 — Criar projeto Xcode; PR #5 integrado em `main`.
+SUB-P04-002 — Definir Product; implementação revisada e aprovada por Gabriel.
 
 > Mantenha no máximo uma tarefa em `IN_PROGRESS` e somente a próxima em `READY`. Uma implementação pronta vai para `REVIEW`; Gabriel marca `DONE` após revisar e conseguir explicar o resultado.
