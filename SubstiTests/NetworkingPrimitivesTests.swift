@@ -2,6 +2,7 @@ import Foundation
 import Testing
 @testable import Substi
 
+@Suite(.serialized)
 struct NetworkingPrimitivesTests {
     @Test
     func openFoodFactsProductEndpointBuildsBarcodeURL() throws {
@@ -33,7 +34,11 @@ struct NetworkingPrimitivesTests {
 
     @Test
     func urlSessionAPIClientSendsConfiguredRequestAndReturnsData() async throws {
-        let expectedData = Data("{\"product_name\":\"Leite\"}".utf8)
+        let expectedData = Data(
+            """
+            {"product":{"code":"123","product_name":"Leite integral","categories_tags":["en:dairies"],"brands":"Marca","quantity":"1 L"}}
+            """.utf8
+        )
         URLProtocolStub.handler.set { request in
             #expect(request.httpMethod == "GET")
             #expect(request.value(forHTTPHeaderField: "User-Agent") == "SubstiTest/1.0")
@@ -52,8 +57,15 @@ struct NetworkingPrimitivesTests {
 
         let client = try makeAPIClient()
         let data = try await client.data(for: .openFoodFactsProduct(barcode: "123"))
+        let response = try JSONDecoder().decode(OpenFoodFactsProductResponseDTO.self, from: data)
+        let product = try OpenFoodFactsProductMapper().map(response)
 
         #expect(data == expectedData)
+        #expect(product.id.rawValue == "123")
+        #expect(product.name == "Leite integral")
+        #expect(product.category == "en:dairies")
+        #expect(product.brand == "Marca")
+        #expect(product.quantity == "1 L")
     }
 
     @Test
@@ -78,6 +90,74 @@ struct NetworkingPrimitivesTests {
             #expect(statusCode == 429)
         } catch {
             Issue.record("Expected NetworkError.httpStatusCode(429), got \(error)")
+        }
+    }
+
+    @Test
+    func productMapperRejectsMissingProductName() throws {
+        let data = Data(#"{"product":{"code":"123"}}"#.utf8)
+        let response = try JSONDecoder().decode(OpenFoodFactsProductResponseDTO.self, from: data)
+
+        do {
+            _ = try OpenFoodFactsProductMapper().map(response)
+            Issue.record("Expected a product without a name to be rejected")
+        } catch ProductMappingError.missingName {
+            return
+        } catch {
+            Issue.record("Expected ProductMappingError.missingName, got \(error)")
+        }
+    }
+
+    @Test
+    func productMapperKeepsAbsentOptionalFieldsNil() throws {
+        let data = Data(#"{"product":{"code":"123","product_name":"Leite"}}"#.utf8)
+        let response = try JSONDecoder().decode(OpenFoodFactsProductResponseDTO.self, from: data)
+        let product = try OpenFoodFactsProductMapper().map(response)
+
+        #expect(product.category == nil)
+        #expect(product.brand == nil)
+        #expect(product.quantity == nil)
+    }
+
+    @Test
+    func productMapperRejectsMissingProductCode() throws {
+        let data = Data(#"{"product":{"product_name":"Leite"}}"#.utf8)
+        let response = try JSONDecoder().decode(OpenFoodFactsProductResponseDTO.self, from: data)
+
+        do {
+            _ = try OpenFoodFactsProductMapper().map(response)
+            Issue.record("Expected a product without a code to be rejected")
+        } catch ProductMappingError.missingCode {
+            return
+        } catch {
+            Issue.record("Expected ProductMappingError.missingCode, got \(error)")
+        }
+    }
+
+    @Test
+    func malformedJSONIsRejectedByDecoder() {
+        let data = Data("{not-json}".utf8)
+
+        #expect(throws: DecodingError.self) {
+            try JSONDecoder().decode(OpenFoodFactsProductResponseDTO.self, from: data)
+        }
+    }
+
+    @Test
+    func urlSessionAPIClientMapsTransportFailure() async throws {
+        URLProtocolStub.handler.set { _ in
+            throw URLError(.notConnectedToInternet)
+        }
+        defer { URLProtocolStub.handler.reset() }
+
+        let client = try makeAPIClient()
+        do {
+            _ = try await client.data(for: .openFoodFactsProduct(barcode: "123"))
+            Issue.record("Expected the simulated transport failure to be propagated")
+        } catch let NetworkError.transport(error) {
+            #expect(error.code == .notConnectedToInternet)
+        } catch {
+            Issue.record("Expected NetworkError.transport, got \(error)")
         }
     }
 

@@ -575,7 +575,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P06-009 — Definir DTO
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -583,34 +583,37 @@ Depende de:
 SUB-P06-008
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir DTO.
+A API devolve um objeto externo com campos, nomes e cobertura próprios. O app precisa de um tipo de transporte que descreva somente os dados necessários, sem expor o formato externo diretamente ao domínio ou à interface.
 
 ### Objetivo
-Concluir Definir DTO dentro do escopo definido e deixar o resultado pronto para revisão.
+Decodificar o envelope de produto da Open Food Facts e os campos usados pelo modelo de domínio.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Criar DTO `Decodable` para o objeto de resposta e seu objeto `product`.
+- Representar `code`, `product_name`, `categories_tags`, `brands` e `quantity`; campos de produto podem faltar nos dados comunitários.
+- Não tornar os campos obrigatórios no decoder quando a ausência deve ser tratada pelo Mapper.
+- Não adicionar campos não usados neste fluxo.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] O DTO representa o envelope `product` e os cinco campos selecionados.
+- [x] Chaves JSON com snake_case são decodificadas explicitamente.
+- [x] Campos de produto incompletos podem ser decodificados para validação posterior.
+- [x] A estrutura segue o schema publicado para a operação v3.
 
 ### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar `Decodable`, `CodingKeys`, envelope de resposta e diferença entre DTO externo e modelo de domínio. Inspecionar a documentação oficial vinculada.
 
 ### Perguntas que preciso saber responder
-- Que problema “Definir DTO” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Por que o DTO não é o próprio `Product`?
+- Por que o envelope da API é separado do objeto product?
+- Por que os dados podem ser opcionais no DTO se Product exige código e nome?
+- Como a aplicação reage quando a API muda um nome de campo?
 
 ### Validação
-Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
+Decodificar fixtures JSON offline, incluindo dados válidos e campos de produto ausentes. Nenhuma chamada ao vivo.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -628,20 +631,28 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Data/Networking/OpenFoodFactsProductResponseDTO.swift`
+- `SubstiTests/NetworkingPrimitivesTests.swift`
+- `docs/project/phases/PHASE-06-networking.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] O formato documentado da resposta é representado pelo DTO mínimo.
+- [x] A fixture válida e a fixture incompleta têm comportamento verificado.
+- [x] Referência e estado atualizados; item em `REVIEW` para Gabriel.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
+
+### Referência da resposta v3
+- [Leitura de produto por código de barras](https://openfoodfacts.github.io/documentation/docs/Product-Opener/v3/products/get-api-v3-product-code/) — envelope da resposta e campos disponíveis no objeto `product`.
+- [Schema oficial de Product](https://openfoodfacts.github.io/documentation/docs/Product-Opener/schemas/schemas/product/) — propriedades e estrutura do produto.
+
 ## SUB-P06-010 — Mapear DTO para Product
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -649,34 +660,39 @@ Depende de:
 SUB-P06-009
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Mapear DTO para Product.
+O domínio usa `Product`, que não deve depender de chaves ou formatos da Open Food Facts. Uma transformação explícita mantém a dependência apontando do formato externo para o domínio.
 
 ### Objetivo
-Concluir Mapear DTO para Product dentro do escopo definido e deixar o resultado pronto para revisão.
+Converter o DTO externo em `Product`, rejeitando os campos mínimos que não permitem identificar e exibir o item.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Criar `OpenFoodFactsProductMapper` em Data.
+- Usar `code` como `ProductID` e `product_name` como nome.
+- Usar a primeira entrada de `categories_tags` como categoria técnica; preservar marca e quantidade quando não vazias.
+- Remover espaços periféricos de código, nome, marca e quantidade.
+- Lançar erro de mapping tipado se código ou nome estiver ausente/vazio.
+- Não colocar decodificação, ranking ou regra de negócio dentro do mapper.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] Código e nome válidos produzem `Product`.
+- [x] Dados opcionais ausentes/vazios viram `nil`.
+- [x] Código ou nome ausente/vazio produzem erro tipado.
+- [x] Domain não recebe dependência do DTO externo.
 
 ### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar direção de dependência Data → Domain, transformação de DTO, validação de invariantes e erros de mapping. A categoria usada é o primeiro taxonomy tag, não um rótulo localizado para UI.
 
 ### Perguntas que preciso saber responder
-- Que problema “Mapear DTO para Product” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Por que a transformação vive em Data e não em `Product`?
+- Qual invariância impede construir Product sem código/nome?
+- Por que armazenar o primeiro tag de categoria e que limitação isso cria para apresentação?
+- Como o Product permanece independente da Open Food Facts?
 
 ### Validação
-Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
+Testes determinísticos para campos presentes, campos opcionais ausentes e nome/código ausentes. Sem rede.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -694,20 +710,24 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Data/Mappers/OpenFoodFactsProductMapper.swift`
+- `Substi/Data/Networking/OpenFoodFactsProductResponseDTO.swift`
+- `SubstiTests/NetworkingPrimitivesTests.swift`
+- `docs/project/phases/PHASE-06-networking.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Mapper cria Product a partir do DTO com validações explícitas.
+- [x] Erros de dados obrigatórios e opções ausentes têm cobertura de teste.
+- [x] Trade-off da categoria e estado `REVIEW` estão documentados.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
 ## SUB-P06-011 — Testar com URLProtocol
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -715,34 +735,37 @@ Depende de:
 SUB-P06-010
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Testar com URLProtocol.
+A integração deve ser validada sem depender da Internet, para que mudanças na API externa não tornem a suíte intermitente nem escondam regressões locais.
 
 ### Objetivo
-Concluir Testar com URLProtocol dentro do escopo definido e deixar o resultado pronto para revisão.
+Validar transporte, decodificação e mapping com fixtures determinísticas usando URLProtocol.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Exercitar o fluxo URLSession → Data → DTO → Product com resposta simulada.
+- Cobrir resposta HTTP 429 e falha de transporte simulada.
+- Cobrir JSON malformado e campos obrigatórios ausentes.
+- Não chamar a API pública nos testes.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] Fixture URLProtocol valida request e fluxo completo até Product.
+- [x] HTTP 429 vira erro HTTP e falha de transporte vira erro de transporte.
+- [x] JSON malformado e campos essenciais ausentes falham de modo explícito.
+- [x] Testes são determinísticos e não usam a API ao vivo.
 
 ### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar `URLProtocol`, URLSessionConfiguration, fixtures, erros HTTP/transporte e limites entre decoding e mapping.
 
 ### Perguntas que preciso saber responder
-- Que problema “Testar com URLProtocol” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Como URLProtocol intercepta a sessão sem acesso à Internet?
+- Que caminhos distintos os testes simulam?
+- Por que 429 não é representado como URLError de transporte?
+- Como esta estratégia evita testes flaky e dependência de terceiros?
 
 ### Validação
-Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
+Executar toda a suíte `SubstiTests` no simulador iOS; verificar contagem e resultado no xcresult. Nenhuma chamada ao vivo.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -760,13 +783,18 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `SubstiTests/NetworkingPrimitivesTests.swift`
+- `Substi/Data/Networking/URLSessionAPIClient.swift`
+- `Substi/Data/Networking/OpenFoodFactsProductResponseDTO.swift`
+- `Substi/Data/Mappers/OpenFoodFactsProductMapper.swift`
+- `docs/project/phases/PHASE-06-networking.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Pipeline válido e erros relevantes têm fixtures locais.
+- [x] Toda a suíte de testes passa sem rede externa.
+- [x] Tasks em `REVIEW`; Gabriel ainda revisará e decidirá quando marcá-las `DONE`.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
