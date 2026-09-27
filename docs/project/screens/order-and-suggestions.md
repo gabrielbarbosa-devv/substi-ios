@@ -6,6 +6,8 @@ Referência visual detalhada da tela Pedido: [order-screen-reference.png](../../
 
 Referência visual da tela Escolher substituto: [suggestions-screen-reference.png](../../assets/suggestions-screen-reference.png). Ela orienta a composição; informações que as fixtures e o domínio não fornecem, como preço dos candidatos ou percentual de compatibilidade, não serão inventadas.
 
+Referência visual da tela Comparação: [comparison-screen-reference.png](../../assets/comparison-screen-reference.png). A imagem orienta a comparação lado a lado; preço do substituto, nutrição, fotos individuais e percentual de compatibilidade não estão nos dados atuais e não serão simulados.
+
 ## Pedido
 
 ### Purpose
@@ -76,11 +78,11 @@ Navigation Bar nativa, `DSProductCardView`, `DSStatusBadgeView`, `DSInfoBannerVi
 - Content: produto original e candidatos da fixture; nenhuma opção começa selecionada. A seleção única fica visível no card.
 - Empty: nenhum candidato na fixture para o produto.
 - Loading/error: não se aplicam enquanto a origem é local e síncrona.
-- CTA: “Ver comparação” permanece desabilitado até a tela de comparação SwiftUI ser conectada pelo Coordinator.
+- CTA: “Ver comparação” é habilitado depois que a pessoa seleciona um candidato e o Coordinator fornece o destino.
 
 ### Actions
 
-Selecionar uma opção para comparar. A navegação para comparação será conectada quando a próxima tela existir. Não inventar preço, percentual de compatibilidade ou disponibilidade real.
+Selecionar uma opção para comparar. O Coordinator abre Comparação por `UIHostingController`. Não inventar preço, percentual de compatibilidade ou disponibilidade real.
 
 ### Accessibility
 
@@ -92,4 +94,48 @@ Nenhum evento é enviado nesta etapa; analytics não está implementado.
 
 ### Limites dos dados demonstrativos
 
-As opções locais servem para demonstrar a tela. O modelo atual não contém preço nem imagem para candidatos; cartões usam o placeholder do Design System. A correspondência de categoria e quantidade é evidência apresentada, não um percentual ou garantia de adequação. O botão de comparação será conectado na implementação da tela SwiftUI.
+As opções locais servem para demonstrar a tela. O modelo atual não contém preço nem imagem para candidatos; cartões usam o placeholder do Design System. A correspondência de categoria e quantidade é evidência apresentada, não um percentual ou garantia de adequação. O botão abre a comparação do candidato selecionado.
+
+## Comparação
+
+### Purpose
+
+Permitir que a pessoa compare o item original com o candidato selecionado.
+
+### User Goal
+
+Entender o que permanece igual e o que muda antes de confirmar uma substituição.
+
+### Information Hierarchy
+
+1. Identificação do original e do substituto.
+2. Categoria, quantidade, marca e preço em linhas comparáveis.
+3. Indicação explícita quando um dado não está disponível.
+4. Ação para voltar às opções.
+
+### Components
+
+Navigation Bar UIKit nativa, cartões e linhas SwiftUI locais à feature. A tela reutiliza `DSColor`, `DSSpacing` e `DSRadius`, com fontes semânticas SwiftUI para Dynamic Type. Não foi criado componente genérico SwiftUI adicional.
+
+### States
+
+- Content: recebe original e candidato selecionado.
+- Loading/empty/error: não se aplicam enquanto os dados são passados sincronamente pelo Coordinator.
+- Preço ausente do candidato: “Não informado”.
+- Confirmação: botão visível e desabilitado; a etapa de confirmação ainda não foi implementada.
+
+### Actions
+
+Voltar para Sugestões pela ação entregue pelo Coordinator. A View não controla `UINavigationController`. A confirmação fica para uma task futura.
+
+### Accessibility
+
+Cards e linhas agrupam conteúdo em ordem lógica e anunciam papel e valores dos produtos. Fontes semânticas respondem a Dynamic Type. “Ver outras opções” tem alvo mínimo de 44 pontos; o sistema anuncia o CTA desabilitado.
+
+### Analytics
+
+Nenhum evento é enviado; analytics não está implementado.
+
+### Limites dos dados demonstrativos
+
+O preço do item original vem de `OrderItem`; `SubstitutionCandidate` não contém preço. A API e as fixtures também não fornecem foto individual, nutrição nem percentual de compatibilidade. A comparação apresenta nome, marca, categoria, quantidade e preço quando disponível. Categorias conhecidas da fixture recebem rótulos em português.

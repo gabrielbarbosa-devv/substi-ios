@@ -157,11 +157,11 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P12-011 | Tratar estados de interface | 12 | P0 | REVIEW |
 | SUB-P12-012 | Revisar desempenho de renderização | 12 | P1 | TODO |
 | SUB-P12-013 | Implementar tela de sugestões conforme referência visual | 12 | P0 | REVIEW |
-| SUB-P13-001 | Definir modelo de apresentação da comparação | 13 | P0 | TODO |
-| SUB-P13-002 | Criar ProductComparisonView | 13 | P0 | TODO |
+| SUB-P13-001 | Definir modelo de apresentação da comparação | 13 | P0 | REVIEW |
+| SUB-P13-002 | Criar ProductComparisonView | 13 | P0 | REVIEW |
 | SUB-P13-003 | Adicionar previews | 13 | P1 | TODO |
-| SUB-P13-004 | Apresentar com UIHostingController | 13 | P0 | TODO |
-| SUB-P13-005 | Manter navegação no Coordinator | 13 | P0 | TODO |
+| SUB-P13-004 | Apresentar com UIHostingController | 13 | P0 | REVIEW |
+| SUB-P13-005 | Manter navegação no Coordinator | 13 | P0 | REVIEW |
 | SUB-P13-006 | Validar UIKit para SwiftUI | 13 | P0 | TODO |
 | SUB-P13-007 | Validar fluxo de retorno | 13 | P0 | TODO |
 | SUB-P13-008 | Documentar migração incremental | 13 | P1 | TODO |

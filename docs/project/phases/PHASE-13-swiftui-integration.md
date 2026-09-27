@@ -13,11 +13,11 @@ Resultados pertinentes da FASE 12.
 Consulte as prioridades das tasks. Trabalho P1/P2 não pode comprometer a entrega essencial P0.
 
 ## Estado
-TODO
+REVIEW — modelo e comparação implementados, aguardando revisão do desenvolvedor.
 
 ## SUB-P13-001 — Definir modelo de apresentação da comparação
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -25,10 +25,10 @@ Depende de:
 - Nenhuma
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir modelo de apresentação da comparação.
+Domínio e fixtures não oferecem todos os campos usados no mock visual. A tela precisa transformar os dados existentes em textos comparáveis sem alterar o domínio nem fabricar informação.
 
 ### Objetivo
-Concluir Definir modelo de apresentação da comparação dentro do escopo definido e deixar o resultado pronto para revisão.
+Criar um modelo de apresentação imutável para o produto original e o substituto, com valores formatados para exibição.
 
 ### Requisitos
 - Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
@@ -36,15 +36,15 @@ Concluir Definir modelo de apresentação da comparação dentro do escopo defin
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] Modelo imutável representa os dados conhecidos do original e do substituto.
+- [x] O modelo não calcula ranking, compatibilidade nem preenche valores ausentes.
+- [ ] Gabriel revisa o resultado e explica as alternativas e os trade-offs.
 
 ### Conceitos de engenharia
-SwiftUI state, UIHostingController, Coordinator.
+Value semantics, separação domínio/apresentação, formatação de moeda e valores ausentes.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar por que uma View deve receber dados prontos para apresentação e quando um modelo local reduz dependência do domínio.
 
 ### Perguntas que preciso saber responder
 - Que problema “Definir modelo de apresentação da comparação” resolve e por que esta abordagem é adequada?
@@ -70,7 +70,8 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Presentation/Comparison/ProductComparisonViewModel.swift`
+- `docs/project/screens/order-and-suggestions.md`
 
 ### Critérios para conclusão
 - [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
@@ -83,7 +84,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P13-002 — Criar ProductComparisonView
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -91,10 +92,10 @@ Depende de:
 SUB-P13-001
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Criar ProductComparisonView.
+Uma comparação lado a lado torna claras as diferenças que podem afetar a escolha do substituto.
 
 ### Objetivo
-Concluir Criar ProductComparisonView dentro do escopo definido e deixar o resultado pronto para revisão.
+Renderizar o original e o candidato selecionado com hierarquia próxima à referência, respeitando os dados e foundations disponíveis.
 
 ### Requisitos
 - Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
@@ -102,15 +103,16 @@ Concluir Criar ProductComparisonView dentro do escopo definido e deixar o result
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] `ProductComparisonView` compara nome, marca, categoria, quantidade e preço quando fornecido.
+- [x] Valores ausentes são explícitos; não há percentual nem atributo inventado.
+- [x] A tela usa foundations semânticas e fontes escaláveis.
+- [ ] Gabriel revisa a tela e explica as decisões.
 
 ### Conceitos de engenharia
-SwiftUI state, UIHostingController, Coordinator.
+SwiftUI View, composição declarativa, Dynamic Type, acessibilidade e reutilização proporcional.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar estado imutável em SwiftUI, fontes semânticas e diferenças entre descrição acessível de um grupo e seus elementos.
 
 ### Perguntas que preciso saber responder
 - Que problema “Criar ProductComparisonView” resolve e por que esta abordagem é adequada?
@@ -136,7 +138,9 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Presentation/Comparison/ProductComparisonView.swift`
+- `docs/assets/comparison-screen-reference.png`
+- `docs/project/screens/order-and-suggestions.md`
 
 ### Critérios para conclusão
 - [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
@@ -202,7 +206,8 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/App/Coordinators/AppCoordinator.swift`
+- `docs/project/screens/order-and-suggestions.md`
 
 ### Critérios para conclusão
 - [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
@@ -215,7 +220,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P13-004 — Apresentar com UIHostingController
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -223,10 +228,10 @@ Depende de:
 Nenhuma
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Apresentar com UIHostingController.
+O fluxo principal é UIKit. A tela SwiftUI precisa aparecer dentro do mesmo `UINavigationController` sem criar uma navegação paralela.
 
 ### Objetivo
-Concluir Apresentar com UIHostingController dentro do escopo definido e deixar o resultado pronto para revisão.
+Hospedar `ProductComparisonView` com `UIHostingController` e manter a barra e o retorno nativos.
 
 ### Requisitos
 - Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
@@ -234,9 +239,9 @@ Concluir Apresentar com UIHostingController dentro do escopo definido e deixar o
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] A View SwiftUI é apresentada por `UIHostingController` no `UINavigationController` existente.
+- [x] O título e o retorno usam a navigation bar UIKit nativa.
+- [ ] Gabriel revisa a integração e explica o ownership do hosting controller.
 
 ### Conceitos de engenharia
 SwiftUI state, UIHostingController, Coordinator.
@@ -268,7 +273,8 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/App/Coordinators/AppCoordinator.swift`
+- `docs/project/screens/order-and-suggestions.md`
 
 ### Critérios para conclusão
 - [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
@@ -281,7 +287,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P13-005 — Manter navegação no Coordinator
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -289,10 +295,10 @@ Depende de:
 SUB-P13-004
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Manter navigation em Coordinator.
+As Views não devem decidir rotas nem depender do `UINavigationController`.
 
 ### Objetivo
-Concluir Manter navigation em Coordinator dentro do escopo definido e deixar o resultado pronto para revisão.
+Manter a abertura da comparação e a volta para Sugestões sob responsabilidade do `AppCoordinator`.
 
 ### Requisitos
 - Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
@@ -300,9 +306,9 @@ Concluir Manter navigation em Coordinator dentro do escopo definido e deixar o r
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] O Coordinator cria a comparação e conecta “Ver outras opções” ao retorno para Sugestões.
+- [x] A View não conhece `UINavigationController` nem decide navegação.
+- [ ] Gabriel revisa o fluxo e explica por que a navegação pertence ao Coordinator.
 
 ### Conceitos de engenharia
 SwiftUI state, UIHostingController, Coordinator.
@@ -334,7 +340,8 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/App/Coordinators/AppCoordinator.swift`
+- `docs/project/screens/order-and-suggestions.md`
 
 ### Critérios para conclusão
 - [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
