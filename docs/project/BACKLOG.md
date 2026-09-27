@@ -17,7 +17,7 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P00-011 | Documentar limitações da API | 00 | P1 | TODO |
 | SUB-P00-012 | Validar escopo de entrega e prazo | 00 | P0 | TODO |
 | SUB-P00-013 | Revisar descoberta com Gabriel | 00 | P1 | TODO |
-| SUB-P01-001 | Criar projeto Xcode | 01 | P0 | TODO |
+| SUB-P01-001 | Criar projeto Xcode | 01 | P0 | REVIEW |
 | SUB-P01-002 | Configurar Bundle ID e deployment target | 01 | P0 | TODO |
 | SUB-P01-003 | Ativar Swift 6 Language Mode | 01 | P0 | TODO |
 | SUB-P01-004 | Inspecionar estrutura do Xcode | 01 | P1 | TODO |

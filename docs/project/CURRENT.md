@@ -6,31 +6,31 @@ Segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo` (horário
 
 ## Fase atual
 
-FASE 00 — Descoberta do produto
+FASE 01 — Preparação inicial (Bootstrap)
 
 ## Task atual
 
-SUB-P00-007 — Definir MVP
+SUB-P01-001 — Criar projeto Xcode
 
 ## Estado
 
-READY
+REVIEW
 
 ## Objetivo
 
-Definir o menor escopo que demonstra a jornada de substituição de ponta a ponta e que cabe no prazo. Distinguir o fluxo essencial das capacidades adiáveis.
+Revisar o projeto Xcode inicial que agora está versionado no repositório e compila com Xcode 16.4.
 
 ## Por que agora
 
-O MVP define qual parte da proposta precisa funcionar para demonstrar valor. É a próxima decisão P0 da trilha de entrega e orientará setup, domínio e integração.
+O projeto existia fora do clone Git; colocá-lo no repositório inicia o trabalho de app que pode ser compilado, revisado e compartilhado. Por orientação de Gabriel, o bootstrap começa agora enquanto a definição `SUB-P00-007` aguarda revisão em sua branch documental.
 
 ## Bloqueios
 
-Nenhum bloqueio para iniciar a definição documental do MVP. As tasks P1 `SUB-P00-005` e `SUB-P00-006` permanecem em `TODO` para proteger o prazo; antes de qualquer build, confirme a seleção do Xcode Command Line Tools.
+O target ainda usa os padrões gerados pelo Xcode. `SUB-P01-002` define Bundle ID e iOS deployment target; `SUB-P01-003` ativa Swift 6 Language Mode. O app-base compila com a instalação Xcode 16.4 encontrada em `/Users/user/Downloads/Xcode.app`.
 
 ## Próxima tarefa
 
-SUB-P00-008 — Definir itens fora do escopo (`TODO`; depende da revisão e aprovação de `SUB-P00-007`).
+SUB-P01-002 — Configurar Bundle ID e deployment target (`TODO`; iniciar após revisão e aprovação de `SUB-P01-001`).
 
 ## Trilha de entrega
 

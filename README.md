@@ -66,9 +66,11 @@ O Codex ajuda a pesquisar, estruturar alternativas, implementar a microtask auto
 | [`docs/project/GIT-WORKFLOW.md`](docs/project/GIT-WORKFLOW.md) | Branches, commits e revisão por pull request |
 | [`docs/project/DEFINITION-OF-DONE.md`](docs/project/DEFINITION-OF-DONE.md) | Critérios de conclusão e revisão |
 | [`docs/project/INTERVIEW-CHECKLIST.md`](docs/project/INTERVIEW-CHECKLIST.md) | Tópicos que o desenvolvedor estuda e explica |
+| [`Substi.xcodeproj`](Substi.xcodeproj) | Projeto Xcode do app iOS |
+| [`Substi/`](Substi) | Aplicação iOS e assets iniciais |
+| [`SubstiTests/`](SubstiTests) | Target inicial de testes unitários criado pelo Xcode |
+| [`SubstiUITests/`](SubstiUITests) | Target inicial de testes de UI criado pelo Xcode |
 
 ## Estado atual
 
-O repositório está na fase de descoberta do produto. A tarefa [`SUB-P00-001 — Definir o problema do produto`](docs/project/phases/PHASE-00-product-discovery.md) está em `REVIEW`; a próxima tarefa não começa até que o desenvolvedor revise e compreenda o resultado.
-
-Ainda não há aplicação Swift. A proposta desta primeira etapa é estabelecer o problema, as decisões, o processo de trabalho e os critérios de qualidade antes de iniciar a implementação.
+O projeto Xcode inicial agora está versionado na raiz do repositório e o target do app compila com Xcode 16.4. Ele ainda contém somente o template inicial do Xcode, sem fluxo ou funcionalidade de produto. A task [`SUB-P01-001 — Criar projeto Xcode`](docs/project/phases/PHASE-01-bootstrap.md) está em `REVIEW`; deployment target e Swift 6 Language Mode serão tratados nas próximas microtasks.
