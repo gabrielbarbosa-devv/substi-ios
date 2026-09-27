@@ -6,16 +6,13 @@ Segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo` (horário
 
 ## Fase atual
 
-FASE 06 — Networking (execução pela Delivery Track)
+FASE 07 — Repository (execução pela Delivery Track)
 
 ## Tasks em revisão
 
-- SUB-P06-006 — Definir APIClient
-- SUB-P06-007 — Implementar requisição com URLSession
-- SUB-P06-008 — Definir NetworkError
-- SUB-P06-009 — Definir DTO
-- SUB-P06-010 — Mapear DTO para Product
-- SUB-P06-011 — Testar com URLProtocol
+- SUB-P07-001 — Definir ProductRepository
+- SUB-P07-002 — Definir InventoryRepository
+- SUB-P07-003 — Criar fixtures de inventário
 
 ## Estado
 
@@ -23,19 +20,19 @@ REVIEW
 
 ## Objetivo
 
-Concluir o pipeline mínimo de consulta: executar endpoint HTTP, decodificar a resposta externa e convertê-la em Product por uma fronteira testada sem rede ao vivo.
+Declarar fronteiras pequenas entre Domain e dados remotos/locais e fornecer um cenário reproduzível de pedido com alternativas de demonstração.
 
 ## Por que agora
 
-As tasks anteriores estabeleceram o transporte. Este bloco valida o formato externo da Open Food Facts, isola-o em DTO e traduz os campos úteis para o domínio antes da criação de Repository.
+O pipeline de networking já transforma uma resposta Open Food Facts em `Product`. Os contratos de Repository mantêm o domínio isolado das fontes concretas; as fixtures locais permitem desenvolver e testar o fluxo sem afirmar disponibilidade de uma loja.
 
 ## Bloqueios
 
-Nenhum conhecido. A API pública não fornece disponibilidade de uma loja; o inventário do protótipo permanece local. Categoria vinda da API é o primeiro taxonomy tag, não um rótulo localizado para interface.
+Os testes do target ainda precisam ser executados em um ambiente com Xcode selecionado. Aqui, `xcode-select` aponta para Command Line Tools sem `xcodebuild`, Simulator ou módulo `Testing`; o typecheck dos modelos/contratos/fixtures e uma verificação executável isolada da fixture passaram com Swift 6.1.2. A API pública continua sem representar estoque de loja.
 
 ## Próxima task
 
-SUB-P07-001 — Definir ProductRepository (P0). Será retomada após revisão dos itens de Networking em `REVIEW`.
+SUB-P07-005 — Implementar composição do Repository (P0), após revisão deste bloco.
 
 ## Trilha de entrega
 
@@ -43,6 +40,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco
 
-SUB-P06-001, SUB-P06-003 e SUB-P06-004 — API investigada; endpoint v3 e método `GET` representados e cobertos por testes locais.
+SUB-P07-001–003 — Contratos de Product/Inventory Repository e fixtures locais de demonstração criados em branch focada; aguardam revisão de Gabriel.
 
-> Os blocos SUB-P06-006–008 e SUB-P06-009–011 foram implementados em branches focadas e integrados à `main`; permanecem em `REVIEW`. Somente Gabriel os muda para DONE após revisar e conseguir explicar o resultado.
+> SUB-P06-006–011 também permanecem em `REVIEW`; Gabriel é quem decide quando os aprova e os move para `DONE`.

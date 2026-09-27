@@ -79,9 +79,9 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P06-010 | Mapear DTO para Product | 06 | P0 | REVIEW |
 | SUB-P06-011 | Testar com URLProtocol | 06 | P0 | REVIEW |
 | SUB-P06-012 | Definir limite de candidatos e rate limits | 06 | P1 | TODO |
-| SUB-P07-001 | Definir ProductRepository | 07 | P0 | TODO |
-| SUB-P07-002 | Definir InventoryRepository | 07 | P0 | TODO |
-| SUB-P07-003 | Criar fixtures de inventário | 07 | P0 | TODO |
+| SUB-P07-001 | Definir ProductRepository | 07 | P0 | REVIEW |
+| SUB-P07-002 | Definir InventoryRepository | 07 | P0 | REVIEW |
+| SUB-P07-003 | Criar fixtures de inventário | 07 | P0 | REVIEW |
 | SUB-P07-004 | Definir fontes locais/remotas | 07 | P1 | TODO |
 | SUB-P07-005 | Implementar composição do Repository | 07 | P0 | TODO |
 | SUB-P07-006 | Escolher cache em memória | 07 | P1 | TODO |
