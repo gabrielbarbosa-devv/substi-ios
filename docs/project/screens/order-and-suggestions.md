@@ -4,6 +4,8 @@ As telas nesta etapa usam os dados locais de demonstração. O inventário local
 
 Referência visual detalhada da tela Pedido: [order-screen-reference.png](../../assets/order-screen-reference.png). A imagem orienta hierarquia e estado visual; os produtos não têm imagens individuais no projeto ainda.
 
+Referência visual da tela Escolher substituto: [suggestions-screen-reference.png](../../assets/suggestions-screen-reference.png). Ela orienta a composição; informações que as fixtures e o domínio não fornecem, como preço dos candidatos ou percentual de compatibilidade, não serão inventadas.
+
 ## Pedido
 
 ### Purpose
@@ -61,27 +63,33 @@ Inspecionar diferenças relevantes antes de escolher uma alternativa.
 ### Information Hierarchy
 
 1. Produto que precisa ser substituído.
-2. Nome, marca e quantidade de cada candidato.
-3. Sinais limitados que os dados atuais sustentam: categoria e quantidade correspondentes.
+2. Convite para comparar opções.
+3. Nome, marca e quantidade de cada candidato.
+4. Sinais limitados que os dados atuais sustentam: categoria e quantidade correspondentes.
 
 ### Components
 
-Navigation Bar nativa, `DSProductCardView` e `DSStatusBadgeView`.
+Navigation Bar nativa, `DSProductCardView`, `DSStatusBadgeView`, `DSInfoBannerView` para estado vazio e `DSButton` fixado no rodapé.
 
 ### States
 
-- Content: candidatos da fixture.
+- Content: produto original e candidatos da fixture; nenhuma opção começa selecionada. A seleção única fica visível no card.
 - Empty: nenhum candidato na fixture para o produto.
 - Loading/error: não se aplicam enquanto a origem é local e síncrona.
+- CTA: “Ver comparação” permanece desabilitado até a tela de comparação SwiftUI ser conectada pelo Coordinator.
 
 ### Actions
 
-Voltar ao pedido. Seleção e comparação serão definidas nas próximas tasks; esta etapa não inventa preço, percentual de compatibilidade ou disponibilidade real.
+Selecionar uma opção para comparar. A navegação para comparação será conectada quando a próxima tela existir. Não inventar preço, percentual de compatibilidade ou disponibilidade real.
 
 ### Accessibility
 
-Texto escalável, rótulos de estado sem depender apenas de cor e sequência original → alternativas.
+Texto escalável, estado de seleção anunciado pelo VoiceOver, rótulos sem depender apenas de cor e sequência original → alternativas.
 
 ### Analytics
 
 Nenhum evento é enviado nesta etapa; analytics não está implementado.
+
+### Limites dos dados demonstrativos
+
+As opções locais servem para demonstrar a tela. O modelo atual não contém preço nem imagem para candidatos; cartões usam o placeholder do Design System. A correspondência de categoria e quantidade é evidência apresentada, não um percentual ou garantia de adequação. O botão de comparação será conectado na implementação da tela SwiftUI.
