@@ -13,7 +13,14 @@ Resultados pertinentes da FASE 07.
 Consulte as prioridades das tasks. Trabalho P1/P2 não pode comprometer a entrega essencial P0.
 
 ## Estado
-TODO
+BLOCKED
+
+## Estado da trilha de entrega
+
+`SUB-P08-001` está em `REVIEW`: o app e os bundles de teste compilam, mas o
+runner do XCTest não iniciou. `SUB-P08-007` permanece pendente até existir uma
+ViewModel real para isolar em `MainActor`. Os estudos P1 abaixo não bloqueiam a
+trilha de entrega e podem permanecer para evolução futura.
 
 ## SUB-P08-001 — Carregar um produto com async
 
@@ -57,7 +64,13 @@ Revisar propagação de valores e erros com `async throws`, e como o protocolo `
 - Onde um erro do Repository é tratado neste fluxo?
 
 ### Validação
-Testes unitários determinísticos do Use Case; validar no target `SubstiTests` quando Xcode estiver disponível. Não há rede ao vivo, concorrência paralela ou estado compartilhado nesta operação.
+Testes unitários determinísticos do Use Case estão implementados. `xcodebuild
+build-for-testing` compilou app, `SubstiTests` e `SubstiUITests` com Xcode 16.4
+(build 16F6). Duas tentativas de `xcodebuild test` iniciaram o Simulator, mas o
+XCTest não materializou o worker (`waiting for workers to materialize`); foram
+interrompidas com exit code 75, sem relatório de testes concluídos. Portanto,
+nenhum teste de runtime está sendo declarado como aprovado. Não há rede ao vivo,
+concorrência paralela ou estado compartilhado nesta operação.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -420,15 +433,17 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P08-007 — Isolar apresentação com MainActor
 
-Estado: TODO
+Estado: BLOCKED
 
 Prioridade: P0
 
 Depende de:
-Nenhuma
+- A primeira ViewModel da feature, prevista junto ao fluxo UIKit; não criar uma ViewModel sem uma tela/fluxo que a use.
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Isolar apresentação com MainActor.
+Esta tarefa deve isolar estado e ações reais de apresentação em `MainActor`.
+Ainda não existe ViewModel no projeto; criar uma abstração de apresentação sem
+uma tela que a use seria trabalho sem comportamento observável.
 
 ### Objetivo
 Concluir Isolar apresentação com MainActor dentro do escopo definido e deixar o resultado pronto para revisão.

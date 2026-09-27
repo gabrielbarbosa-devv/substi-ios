@@ -94,7 +94,7 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P08-004 | Comparar async let | 08 | P1 | TODO |
 | SUB-P08-005 | Carregar candidatos limitados com TaskGroup | 08 | P1 | TODO |
 | SUB-P08-006 | Tratar cancelamento | 08 | P1 | TODO |
-| SUB-P08-007 | Isolar apresentação com MainActor | 08 | P0 | TODO |
+| SUB-P08-007 | Isolar apresentação com MainActor | 08 | P0 | BLOCKED |
 | SUB-P08-008 | Proteger cache com actor | 08 | P1 | TODO |
 | SUB-P08-009 | Revisar Sendable | 08 | P1 | TODO |
 | SUB-P08-010 | Definir falha parcial | 08 | P1 | TODO |

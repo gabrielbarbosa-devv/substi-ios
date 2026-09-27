@@ -6,16 +6,11 @@ Segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo` (horário
 
 ## Fase atual
 
-FASE 08 — Concorrência em Swift (execução pela Delivery Track)
+FASE 08 — Concorrência em Swift (trilha de entrega)
 
-## Tasks em revisão
+## Tarefa atual
 
-- SUB-P08-001 — Carregar um produto com async
-- SUB-P07-001 — Definir ProductRepository
-- SUB-P07-002 — Definir InventoryRepository
-- SUB-P07-003 — Criar fixtures de inventário
-- SUB-P07-005 — Implementar composição do Repository
-- SUB-P07-008 — Testar resultados remotos
+SUB-P08-001 — Carregar um produto com async
 
 ## Estado
 
@@ -27,15 +22,17 @@ Conectar a aplicação ao contrato `ProductRepository` por meio de um Use Case p
 
 ## Por que agora
 
-APIClient, DTO, Mapper e Repository já realizam a busca assíncrona. Este Use Case cria o ponto de entrada da aplicação previsto no fluxo de dependências, sem antecipar telas ou uma ViewModel antes de Gabriel enviar as referências visuais.
+APIClient, DTO, Mapper e Repository já realizam a busca assíncrona. O Use Case cria o ponto de entrada da aplicação sem criar outro protocolo ou antecipar uma ViewModel sem tela associada.
 
 ## Bloqueios
 
-Os testes do target ainda precisam ser executados com Xcode selecionado. `xcodebuild -version` informa que o diretório ativo é Command Line Tools (`/Library/Developer/CommandLineTools`), então não foi possível executar o target `SubstiTests`. A API pública fornece catálogo de produtos, não estoque de loja.
+- `xcodebuild build-for-testing` compilou o app, `SubstiTests` e `SubstiUITests` com Xcode 16.4 (16F6). Duas tentativas de teste iniciaram o Simulator, mas o runner XCTest ficou aguardando `workers to materialize`; ambas foram interrompidas com exit code 75. Nenhum teste de runtime foi declarado aprovado.
+- `SUB-P08-007` aguarda uma ViewModel real da feature para que `MainActor` seja aplicado a estado de apresentação usado pelo produto.
+- A API pública fornece catálogo de produtos, não estoque de loja; candidatos de demonstração continuam locais.
 
 ## Próxima task
 
-Gabriel revisa `SUB-P08-001` e executa/acompanha `SubstiTests` em Xcode. A próxima implementação de UI depende das referências de tela de Gabriel e do Design Discovery/Screen Contract.
+A pedido de Gabriel, seguir para `SUB-P09-001 — Estudar DispatchQueue serial e concorrente` como laboratório isolado, sem incorporar GCD ao app. Isso não marca a Fase 08 como concluída.
 
 ## Trilha de entrega
 
@@ -43,6 +40,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco
 
-SUB-P08-001 — `LoadProductUseCase` conecta a aplicação ao protocolo `ProductRepository`; testes determinísticos cobrem sucesso, código de barras e erro. Sem criar protocolo adicional, GCD ou UI.
+`LoadProductUseCase` conecta a aplicação ao protocolo `ProductRepository`; testes determinísticos cobrem sucesso, código de barras e erro. Build dos targets passou; execução XCTest permanece sem resultado devido ao runner do Simulator.
 
-> SUB-P06-006–011 também permanecem em `REVIEW`; Gabriel é quem decide quando os aprova e os move para `DONE`.
+> SUB-P06-006–011 e SUB-P07-001–008 também têm tasks em `REVIEW`; Gabriel é quem decide quando as aprova e as move para `DONE`.
