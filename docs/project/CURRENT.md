@@ -10,7 +10,7 @@ FASE 04 — Modelagem de domínio (execução pela Delivery Track)
 
 ## Task atual
 
-SUB-P04-001 — Definir ProductID
+SUB-P04-003 — Definir Order e OrderItem
 
 ## Estado
 
@@ -18,19 +18,19 @@ REVIEW
 
 ## Objetivo
 
-Dar ao produto uma identidade tipada que não dependa do nome exibido nem de um formato externo ainda não validado.
+Representar um pedido como uma coleção de itens, mantendo os dados do produto separados da sua presença no pedido.
 
 ## Por que agora
 
-`Product` já está modelado; pedidos, candidatos e dados precisarão distinguir produtos com atributos ou nomes iguais. Esta task cria essa identidade antes de ampliar os modelos do domínio.
+`ProductID` e `Product` foram revisados. O domínio agora precisa representar os produtos escolhidos em um pedido para apoiar o fluxo futuro de substituição.
 
 ## Bloqueios
 
-Nenhum bloqueio conhecido para esta task. `SUB-P01-003` (Swift 6 Language Mode) e outras tasks de bootstrap continuam pendentes e devem ser retomadas conforme a validação da Delivery Track.
+Nenhum bloqueio conhecido. Quantidade pedida, preço e estado de disponibilidade não estão definidos nesta task; não serão inferidos.
 
 ## Próxima tarefa
 
-SUB-P04-003 — Definir Order e OrderItem (`TODO`; iniciar após revisar `ProductID` e `Product`).
+SUB-P04-004 — Definir SubstitutionCandidate (`TODO`; iniciar após revisar `Order` e `OrderItem`).
 
 ## Trilha de entrega
 
@@ -38,6 +38,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco concluído
 
-SUB-P04-002 — Definir Product; implementação revisada e aprovada por Gabriel.
+SUB-P04-001 — Definir ProductID; implementação revisada e aprovada por Gabriel.
 
 > Mantenha no máximo uma tarefa em `IN_PROGRESS` e somente a próxima em `READY`. Uma implementação pronta vai para `REVIEW`; Gabriel marca `DONE` após revisar e conseguir explicar o resultado.
