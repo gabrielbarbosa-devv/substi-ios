@@ -9,6 +9,8 @@ enum InventoryFixtures {
 
     static let order = Order(items: [OrderItem(product: unavailableProduct)])
 
+    static let unavailableProductIDs: Set<ProductID> = [unavailableProduct.id]
+
     private static let firstCandidate = SubstitutionCandidate(
         product: Product(
             id: ProductID(rawValue: "substi-demo-milk-candidate-1"),

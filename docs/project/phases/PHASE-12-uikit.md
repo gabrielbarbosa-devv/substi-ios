@@ -13,7 +13,7 @@ Resultados pertinentes da FASE 11.
 Consulte as prioridades das tasks. Trabalho P1/P2 não pode comprometer a entrega essencial P0.
 
 ## Estado
-TODO
+IN_PROGRESS
 
 ## SUB-P12-001 — Estudar ciclo de vida de UIViewController
 
@@ -83,7 +83,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P12-002 — Criar tela de pedido com View Code
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -149,7 +149,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P12-003 — Adicionar estado do pedido
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -215,7 +215,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P12-004 — Criar tela de sugestões
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -281,7 +281,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P12-005 — Adicionar estados de sugestões
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -611,7 +611,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P12-010 — Conectar Coordinator
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -677,7 +677,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P12-011 — Tratar estados de interface
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
