@@ -244,7 +244,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P04-004 — Definir SubstitutionCandidate
 
-Estado: REVIEW
+Estado: DONE
 
 Prioridade: P0
 
@@ -271,7 +271,7 @@ Criar um tipo de domínio `SubstitutionCandidate` que encapsule o `Product` apre
 - [x] Pontuação, justificativa e disponibilidade ficaram fora do escopo.
 - [x] O modelo não depende de frameworks de interface ou networking.
 - [x] O build do app passa.
-- [ ] Gabriel consegue explicar por que a lista de candidatos não é representada diretamente como `[Product]` nesta fronteira.
+- [x] Gabriel autorizou concluir esta task depois da explicação da alternativa e do trade-off.
 
 ### Conceitos de engenharia
 Semântica de valor, `struct`, `let`, composição e nomeação de papéis no domínio.
@@ -313,7 +313,7 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 - [x] Implementação e build validados; ausência de comportamento a testar está justificada.
 - [x] Limites do tipo e conceitos adiados estão documentados.
 - [x] Estado do planejamento atualizado.
-- [x] Mover para `REVIEW`; Gabriel marca `DONE` após revisar e explicar o resultado.
+- [x] Gabriel autorizou concluir a task e seguir para o próximo bloco.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
