@@ -123,9 +123,9 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P11-002 | Definir tokens de cor (substituída) | 11 | P1 | BLOCKED |
 | SUB-P11-003 | Definir tipografia e Dynamic Type (substituída) | 11 | P1 | BLOCKED |
 | SUB-P11-004 | Definir espaçamento e raios (substituída) | 11 | P1 | BLOCKED |
-| SUB-P11-005 | Implementar DSButton | 11 | P0 | TODO |
-| SUB-P11-006 | Implementar DSProductCard | 11 | P0 | TODO |
-| SUB-P11-007 | Implementar DSStatusBadge | 11 | P1 | TODO |
+| SUB-P11-005 | Implementar DSButton | 11 | P0 | REVIEW |
+| SUB-P11-006 | Implementar DSProductCard | 11 | P0 | REVIEW |
+| SUB-P11-007 | Implementar DSStatusBadge | 11 | P1 | REVIEW |
 | SUB-P11-008 | Implementar estados de carregamento/erro/vazio | 11 | P0 | TODO |
 | SUB-P11-009 | Validar Dark Mode | 11 | P1 | TODO |
 | SUB-P11-010 | Definir tokens UIKit/SwiftUI | 11 | P0 | TODO |
@@ -133,27 +133,27 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P11-012 | Pesquisar princípios do Design System do iFood | 11 | P1 | TODO |
 | SUB-P11-013 | Revisar HIG da Apple para o Substi | 11 | P0 | TODO |
 | SUB-P11-014 | Pesquisar referências de UX de mercado | 11 | P1 | TODO |
-| SUB-P11-015 | Definir princípios de design do Substi | 11 | P0 | TODO |
-| SUB-P11-016 | Definir foundations de design | 11 | P0 | TODO |
+| SUB-P11-015 | Definir princípios de design do Substi | 11 | P0 | REVIEW |
+| SUB-P11-016 | Definir foundations de design | 11 | P0 | REVIEW |
 | SUB-P11-017 | Criar estrutura low-fi das telas | 11 | P0 | TODO |
 | SUB-P11-018 | Definir inventário de componentes | 11 | P0 | TODO |
 | SUB-P11-019 | Criar direção high-fi | 11 | P1 | TODO |
 | SUB-P11-020 | Validar acessibilidade no design | 11 | P0 | TODO |
-| SUB-P11-021 | Implementar tokens de design | 11 | P0 | TODO |
+| SUB-P11-021 | Implementar tokens de design | 11 | P0 | REVIEW |
 | SUB-P11-022 | Implementar componentes UIKit necessários | 11 | P0 | TODO |
 | SUB-P11-023 | Implementar componentes SwiftUI necessários | 11 | P0 | TODO |
 | SUB-P11-024 | Criar snapshots de componentes críticos | 11 | P1 | TODO |
 | SUB-P12-001 | Estudar ciclo de vida de UIViewController | 12 | P1 | TODO |
-| SUB-P12-002 | Criar tela de pedido com View Code | 12 | P0 | TODO |
-| SUB-P12-003 | Adicionar estado do pedido | 12 | P0 | TODO |
-| SUB-P12-004 | Criar tela de sugestões | 12 | P0 | TODO |
-| SUB-P12-005 | Adicionar estados de sugestões | 12 | P0 | TODO |
+| SUB-P12-002 | Criar tela de pedido com View Code | 12 | P0 | REVIEW |
+| SUB-P12-003 | Adicionar estado do pedido | 12 | P0 | REVIEW |
+| SUB-P12-004 | Criar tela de sugestões | 12 | P0 | REVIEW |
+| SUB-P12-005 | Adicionar estados de sugestões | 12 | P0 | REVIEW |
 | SUB-P12-006 | Configurar reuso de UICollectionView | 12 | P0 | TODO |
 | SUB-P12-007 | Definir CompositionalLayout | 12 | P1 | TODO |
 | SUB-P12-008 | Definir DiffableDataSource | 12 | P1 | TODO |
 | SUB-P12-009 | Revisar dimensionamento com Auto Layout | 12 | P0 | TODO |
-| SUB-P12-010 | Conectar Coordinator | 12 | P0 | TODO |
-| SUB-P12-011 | Tratar estados de interface | 12 | P0 | TODO |
+| SUB-P12-010 | Conectar Coordinator | 12 | P0 | REVIEW |
+| SUB-P12-011 | Tratar estados de interface | 12 | P0 | REVIEW |
 | SUB-P12-012 | Revisar desempenho de renderização | 12 | P1 | TODO |
 | SUB-P13-001 | Definir modelo de apresentação da comparação | 13 | P0 | TODO |
 | SUB-P13-002 | Criar ProductComparisonView | 13 | P0 | TODO |

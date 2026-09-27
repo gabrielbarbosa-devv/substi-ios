@@ -13,7 +13,7 @@ A descoberta de design usa as decisões pertinentes de produto e pode ocorrer em
 P0: HIG focado, princípios, foundations, estrutura low-fi, inventário, acessibilidade e componentes usados. P1: pesquisa de referências do iFood e grocery, direção high-fi e snapshots. Prazo final: 28/09/2026 às 11h, em `America/Sao_Paulo`.
 
 ## Estado
-TODO
+IN_PROGRESS
 
 ## Descoberta de design — antes do SwiftUI
 
@@ -216,7 +216,7 @@ Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e
 
 ## SUB-P11-015 — Definir princípios de design do Substi
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -282,7 +282,7 @@ Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e
 
 ## SUB-P11-016 — Definir foundations de design
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -296,7 +296,7 @@ Especificar foundations antes da implementação.
 Definir as foundations visuais sem valores arbitrários.
 
 ### Requisitos
-- Registrar cores semânticas: brandPrimary; backgroundPrimary/backgroundSecondary; surfacePrimary/surfaceSecondary; textPrimary/textSecondary/textInverse; borderDefault; statusSuccess/statusWarning/statusError; interactivePrimary/interactiveDisabled. Registrar estilos de System Font + Dynamic Type: largeTitle, title, headline, body, bodyEmphasized, caption, button e price. Registrar escala de espaçamento 4/8/12/16/24/32 e raios small/medium/large sem valores concretos; usar SF Symbols como padrão; adotar nomes semânticos e considerar modo claro/escuro. Não definir códigos hexadecimais.
+- Registrar os tokens e valores fornecidos por Gabriel no documento `docs/design-system.md`. Os valores de cor ficam centralizados nas foundations; features só consomem nomes semânticos. Registrar System Font + Dynamic Type, escala de espaçamento 4/8/12/16/24/32, raios small/medium/large, SF Symbols e comportamento claro/escuro.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
@@ -614,7 +614,7 @@ Implementar foundations e componentes somente após o discovery. Preferir contro
 
 ## SUB-P11-021 — Implementar tokens de design
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -629,7 +629,7 @@ Implementar foundations aprovadas para UIKit e SwiftUI.
 Concluir Implementar tokens de design dentro do escopo da entrega e registrar o resultado para revisão.
 
 ### Requisitos
-- Cores semânticas, tipografia, espaçamento e raios compartilhados conceitualmente; assets semânticos quando aplicável; System Font, Dynamic Type e SF Symbols; sem códigos hexadecimais arbitrários ou valores espalhados.
+- Cores semânticas, tipografia, espaçamento e raios compartilhados conceitualmente; assets semânticos quando aplicável; System Font, Dynamic Type e SF Symbols; valores centralizados nas foundations, sem códigos espalhados pelas features.
 - Respeitar a direção Feature → DesignSystem; DesignSystem não depende de feature, domain, repository ou networking.
 - Discutir alternativas com Gabriel antes de implementação; não expandir escopo.
 
@@ -1134,7 +1134,7 @@ Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e
 
 ## SUB-P11-005 — Implementar DSButton
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -1199,7 +1199,7 @@ Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e
 
 ## SUB-P11-006 — Implementar DSProductCard
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -1265,7 +1265,7 @@ Explicar propósito, limites do Design System, uso de APIs nativas, trade-offs e
 
 ## SUB-P11-007 — Implementar DSStatusBadge
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P1
 
