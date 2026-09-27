@@ -13,11 +13,11 @@ Resultados pertinentes da FASE 04.
 Consulte as prioridades das tasks. Trabalho P1/P2 não pode comprometer a entrega essencial P0.
 
 ## Estado
-TODO
+IN_PROGRESS
 
 ## SUB-P05-001 — Especificar regras de ranking
 
-Estado: TODO
+Estado: DONE
 
 Prioridade: P0
 
@@ -25,34 +25,37 @@ Depende de:
 - Nenhuma
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Especificar regras de ranking.
+O fluxo precisa distinguir alternativas com alguma semelhança ao produto indisponível. Categoria é um sinal descrito nos requisitos do produto; esta primeira regra deve ser simples e não prometer compatibilidade completa.
 
 ### Objetivo
-Concluir Especificar regras de ranking dentro do escopo definido e deixar o resultado pronto para revisão.
+Especificar a primeira regra observável: pontuação de compatibilidade pela categoria disponível no modelo `Product`.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Categorias iguais sem diferenciar maiúsculas e minúsculas recebem 1 ponto.
+- Categorias diferentes ou ausentes recebem 0 ponto.
+- Não inferir sinônimos, hierarquia de categorias ou compatibilidade total.
+- Esta regra calcula pontuação; não ordena candidatos nem resolve empates.
+- Registrar o limite da regra e atualizar `CURRENT.md`, `BACKLOG.md` e esta fase.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] A regra de pontuação 1/0 está documentada para categoria igual, diferente ou ausente.
+- [x] Está explícito que o score de categoria não representa sozinho uma substituição adequada.
+- [x] Não há ordenação, sinônimos ou pesos adicionais nesta regra.
 
 ### Conceitos de engenharia
-TDD, deterministic ranking, scoring, tie-breaking.
+Regra de domínio determinística, pontuação simples, limite entre correspondência literal e compatibilidade semântica.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar os atributos do `Product` e entender por que uma regra explícita facilita teste e explicação.
 
 ### Perguntas que preciso saber responder
-- Que problema “Especificar regras de ranking” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- O que significa um score de categoria igual a 1 ou 0?
+- Por que a categoria sozinha não prova que dois produtos são substitutos adequados?
+- Por que comparação sem diferenciar maiúsculas é aceitável, mas sinônimos ficam fora?
+- Por que esta task não ordena os candidatos?
 
 ### Validação
-Executar testes de ranking pelo ciclo RED/GREEN/REFACTOR, com ordenação estável e casos de borda.
+Revisão da regra documentada; o comportamento será exercitado pelo teste da `SUB-P05-002`.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -70,20 +73,20 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `docs/project/phases/PHASE-05-ranking-tdd.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Regra e limite documentados; estado atualizado.
+- [x] Gabriel autorizou agrupar e concluir o bloco antes de seguir para o próximo.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
 ## SUB-P05-002 — Escrever teste que falha (RED)
 
-Estado: TODO
+Estado: IN_PROGRESS
 
 Prioridade: P0
 
@@ -91,34 +94,35 @@ Depende de:
 SUB-P05-001
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Escrever teste que falha (RED).
+Sem teste, a regra de pontuação poderia ficar ambígua ou regredir sem aviso.
 
 ### Objetivo
-Concluir Escrever teste que falha (RED) dentro do escopo definido e deixar o resultado pronto para revisão.
+Criar testes determinísticos que expressem a regra de categoria antes da implementação de produção.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Cobrir categorias iguais, iguais com diferenças de caixa, categorias diferentes e categoria ausente em cada lado.
+- Usar Swift Testing e dados construídos localmente; não acessar rede.
+- Os testes devem falhar antes da implementação da `SUB-P05-003` por ausência do comportamento esperado.
+- Atualizar o estado desta task e manter a etapa RED visível no histórico Git.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [ ] Os casos da regra de categoria estão cobertos por testes determinísticos.
+- [ ] A execução falha pelo motivo esperado antes do código GREEN.
+- [ ] Os testes não dependem de rede nem de ordem externa.
 
 ### Conceitos de engenharia
-TDD, deterministic ranking, scoring, tie-breaking.
+TDD, Swift Testing, fixtures determinísticas e teste unitário de função pura.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar `@Test`, `#expect` e por que primeiro expressamos o comportamento desejado no teste.
 
 ### Perguntas que preciso saber responder
-- Que problema “Escrever teste que falha (RED)” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- O que o estado RED demonstra neste ciclo?
+- Como os casos ausentes evitam tratar falta de dados como correspondência?
+- Por que os testes criam produtos em memória em vez de chamar uma API?
 
 ### Validação
-Executar testes de ranking pelo ciclo RED/GREEN/REFACTOR, com ordenação estável e casos de borda.
+Executar somente a suite `SubstiTests` e registrar a falha esperada antes da implementação.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -136,13 +140,15 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `SubstiTests/ProductSubstitutionRankerTests.swift`
+- Remoção do teste de exemplo `SubstiTests/SubstiTests.swift`
+- `docs/project/phases/PHASE-05-ranking-tdd.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [ ] Testes RED falham pela falta do comportamento solicitado.
+- [ ] Estado e escopo RED documentados antes de seguir para GREEN.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
@@ -157,34 +163,38 @@ Depende de:
 SUB-P05-002
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Implementar pontuação por categoria (GREEN).
+Os testes da `SUB-P05-002` descrevem o comportamento esperado e precisam passar com a implementação mínima.
 
 ### Objetivo
-Concluir Implementar pontuação por categoria (GREEN) dentro do escopo definido e deixar o resultado pronto para revisão.
+Implementar uma função pura que calcula a pontuação de categoria para uma alternativa.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Criar `ProductSubstitutionRanker` como tipo pequeno de domínio, sem dependências externas ou estado mutável.
+- Comparar `original.category` e `candidate.product.category` ignorando caixa.
+- Retornar 1 quando ambas existirem e forem iguais; caso contrário, retornar 0.
+- Não ordenar, desempatar, atribuir pesos, buscar dados ou alterar os modelos existentes.
+- Atualizar o estado das três tasks agrupadas e deixar a implementação em `REVIEW` após a validação.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [ ] Todos os testes da `SUB-P05-002` passam.
+- [ ] A regra é pura e determinística, sem dependência de UIKit, SwiftUI ou rede.
+- [ ] Categoria ausente ou diferente retorna 0.
+- [ ] A pontuação não é apresentada como veredito de compatibilidade nem como ordenação.
 
 ### Conceitos de engenharia
-TDD, deterministic ranking, scoring, tie-breaking.
+Função pura, semântica de valor, determinismo, score discreto e GREEN em TDD.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar comparação de strings, optionals com `guard` e por que uma função sem efeitos colaterais é simples de testar.
 
 ### Perguntas que preciso saber responder
-- Que problema “Implementar pontuação por categoria (GREEN)” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Por que o ranker recebe um candidato e o produto original?
+- O que torna o resultado determinístico?
+- Por que score 1/0 é uma regra proporcional para esta primeira etapa?
+- Por que a categoria ausente resulta em 0?
 
 ### Validação
-Executar testes de ranking pelo ciclo RED/GREEN/REFACTOR, com ordenação estável e casos de borda.
+Executar a suite `SubstiTests`, compilar o app para o simulador e confirmar que o arquivo pertence ao target.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -202,13 +212,16 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Domain/Services/ProductSubstitutionRanker.swift`
+- `SubstiTests/ProductSubstitutionRankerTests.swift`
+- `docs/project/phases/PHASE-05-ranking-tdd.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [ ] Suite de testes e build do app passam.
+- [ ] Regra e limites estão documentados; estado final fica em `REVIEW`.
+- [ ] Gabriel explica o papel do score antes de marcar o conjunto como `DONE`.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.

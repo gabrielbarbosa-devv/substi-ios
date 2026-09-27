@@ -10,7 +10,7 @@ FASE 05 — Ranking e TDD (execução pela Delivery Track)
 
 ## Task atual
 
-SUB-P05-001 — Especificar regra de pontuação por categoria
+SUB-P05-002 — Escrever teste de pontuação por categoria (RED)
 
 ## Estado
 
@@ -18,19 +18,19 @@ IN_PROGRESS
 
 ## Objetivo
 
-Definir e implementar a primeira regra determinística de compatibilidade por categoria, com teste antes do código de produção.
+Expressar a regra de categoria em testes locais e determinísticos antes de implementar o ranker.
 
 ## Por que agora
 
-Os modelos de produto e candidato já existem. A pontuação por categoria fornece o primeiro sinal simples para comparar alternativas sem alegar que a categoria, sozinha, prova compatibilidade total.
+`SUB-P05-001` definiu a regra: categorias iguais ignorando caixa marcam 1; diferentes ou ausentes marcam 0. Agora registramos esse contrato no teste antes do código de produção.
 
 ## Bloqueios
 
-Nenhum bloqueio conhecido. Esta branch agrupa as três tasks P0 de especificação, teste RED e pontuação GREEN. Marca, quantidade, ordenação e justificativa ficam para tasks próprias.
+Nenhum bloqueio conhecido. Os testes devem falhar antes da implementação GREEN, usando apenas dados construídos em memória.
 
 ## Próxima tarefa
 
-SUB-P05-002 — Escrever teste que falha (RED), após concluir a regra da SUB-P05-001.
+SUB-P05-003 — Implementar pontuação por categoria (GREEN), após registrar e observar o RED.
 
 ## Trilha de entrega
 
