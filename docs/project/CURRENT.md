@@ -10,7 +10,7 @@ FASE 01 — Preparação inicial (Bootstrap)
 
 ## Task atual
 
-SUB-P01-001 — Criar projeto Xcode
+SUB-P01-002 — Configurar Bundle ID e deployment target
 
 ## Estado
 
@@ -18,19 +18,19 @@ REVIEW
 
 ## Objetivo
 
-Revisar o projeto Xcode inicial que agora está versionado no repositório e compila com Xcode 16.4.
+Revisar `com.gabrielbarbosa.substi` e o deployment target iOS 16 nos targets do projeto.
 
 ## Por que agora
 
-O projeto existia fora do clone Git; colocá-lo no repositório inicia o trabalho de app que pode ser compilado, revisado e compartilhado. Por orientação de Gabriel, o bootstrap começa agora enquanto a definição `SUB-P00-007` aguarda revisão em sua branch documental.
+O PR #5 foi integrado; o projeto agora está versionado e compilável. Esta configuração ajusta o alcance do app ao iOS 16 definido e estabelece Bundle IDs próprios antes de habilitar Swift 6 Language Mode.
 
 ## Bloqueios
 
-O target ainda usa os padrões gerados pelo Xcode. `SUB-P01-002` define Bundle ID e iOS deployment target; `SUB-P01-003` ativa Swift 6 Language Mode. O app-base compila com a instalação Xcode 16.4 encontrada em `/Users/user/Downloads/Xcode.app`.
+Nenhum bloqueio para compilar no simulador. Antes de assinar ou distribuir, confirmar a disponibilidade do Bundle ID na equipe Apple Developer. Swift 6 Language Mode permanece para `SUB-P01-003`.
 
 ## Próxima tarefa
 
-SUB-P01-002 — Configurar Bundle ID e deployment target (`TODO`; iniciar após revisão e aprovação de `SUB-P01-001`).
+SUB-P01-003 — Ativar Swift 6 Language Mode (`TODO`; iniciar após a revisão e aprovação de `SUB-P01-002`).
 
 ## Trilha de entrega
 
@@ -38,6 +38,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco concluído
 
-SUB-P00-004 — Definir pessoa usuária; perfil de referência e limites aprovados por Gabriel.
+SUB-P01-001 — Criar projeto Xcode; PR #5 integrado em `main`.
 
 > Mantenha no máximo uma tarefa em `IN_PROGRESS` e somente a próxima em `READY`. Uma implementação pronta vai para `REVIEW`; Gabriel marca `DONE` após revisar e conseguir explicar o resultado.
