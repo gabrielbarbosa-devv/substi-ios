@@ -362,7 +362,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P06-006 — Definir APIClient
 
-Estado: READY
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -370,34 +370,34 @@ Depende de:
 SUB-P06-004
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir APIClient.
+A camada de aplicação precisa pedir dados HTTP sem conhecer URLSession. Um contrato pequeno deixa o transporte substituível em testes e define um limite real entre chamada e execução de rede.
 
 ### Objetivo
-Concluir Definir APIClient dentro do escopo definido e deixar o resultado pronto para revisão.
+Definir APIClient como contrato assíncrono que recebe Endpoint e devolve os bytes da resposta.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Declarar `APIClient` como protocolo `Sendable` com `data(for:) async throws -> Data`.
+- Não incluir serialização JSON, DTO, retry ou regra de produto.
+- Manter a implementação concreta separada do contrato.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] O contrato recebe um `Endpoint` e expõe dados ou erro por `async throws`.
+- [x] O protocolo não importa conceitos de tela, domínio ou implementação concreta.
+- [x] A implementação concreta pode ser substituída por uma fixture de teste.
 
 ### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar protocolo como fronteira de dependência, `async throws` e por que APIClient retorna bytes nesta etapa, sem prometer um desenho genérico de decodificação.
 
 ### Perguntas que preciso saber responder
-- Que problema “Definir APIClient” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Por que a camada de aplicação depende de APIClient em vez de URLSession diretamente?
+- O que `async throws -> Data` promete e o que deixa para outra camada?
+- Por que um protocolo é útil nesta fronteira e onde seria abstração prematura?
 
 ### Validação
-Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
+Compilação do app e teste do cliente concreto por sessão URLProtocol local. Nenhuma chamada à API pública.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -415,20 +415,24 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Data/Networking/APIClient.swift`
+- `Substi/Data/Networking/URLSessionAPIClient.swift`
+- `SubstiTests/NetworkingPrimitivesTests.swift`
+- `docs/project/phases/PHASE-06-networking.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] O contrato contém somente a operação de dados necessária ao fluxo atual.
+- [x] O cliente concreto conforma ao contrato e é coberto por testes locais.
+- [x] Documentação e estado atualizados; a implementação está em `REVIEW` para Gabriel.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
 ## SUB-P06-007 — Implementar requisição com URLSession
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -436,34 +440,38 @@ Depende de:
 SUB-P06-006
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Implementar requisição com URLSession.
+O endpoint e o contrato estão definidos. Falta transformar esses dados numa URLRequest e executar a chamada com o cliente de rede nativo do iOS.
 
 ### Objetivo
-Concluir Implementar requisição com URLSession dentro do escopo definido e deixar o resultado pronto para revisão.
+Executar uma requisição HTTP com URLSession e retornar bytes apenas para respostas HTTP 2xx.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Implementar `URLSessionAPIClient` conforme `APIClient`.
+- Receber base URL, `User-Agent` e URLSession por inicialização; usar `.shared` como padrão de sessão.
+- Compor URL pelo `Endpoint`, definir método HTTP e cabeçalho `User-Agent`.
+- Rejeitar respostas não HTTP e status fora de 200..<300.
+- Não adicionar retry, cache, decodificação ou chamada à API ao vivo.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] A URLRequest usa caminho e método declarados pelo Endpoint.
+- [x] A requisição envia o User-Agent configurado.
+- [x] Resposta 2xx retorna os bytes; status fora de 2xx vira erro tipado.
+- [x] Testes usam URLProtocol local e não dependem de Internet.
 
 ### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar URLRequest, URLSession.data(for:), status HTTP e injeção de dependência. Distinguir erro de transporte, resposta HTTP e conteúdo da resposta.
 
 ### Perguntas que preciso saber responder
-- Que problema “Implementar requisição com URLSession” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Quem constrói URLRequest e quem executa o transporte?
+- Por que conferir HTTPURLResponse e o intervalo de status?
+- O que é injetado, quem mantém a referência à sessão e qual é o ciclo de vida?
+- Por que configurar User-Agent e como o teste evita rede real?
 
 ### Validação
-Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
+Testes determinísticos com URLProtocol para sucesso HTTP e HTTP 429; executar toda a suíte de testes unitários.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -481,20 +489,23 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Data/Networking/URLSessionAPIClient.swift`
+- `SubstiTests/NetworkingPrimitivesTests.swift`
+- `docs/project/phases/PHASE-06-networking.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Sucesso e status 429 são verificados com transporte local.
+- [x] Não há retry, parsing JSON ou dependência da disponibilidade externa.
+- [x] Documentação atualizada e mudança pronta para revisão.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
 ## SUB-P06-008 — Definir NetworkError
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -502,34 +513,34 @@ Depende de:
 SUB-P06-007
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir NetworkError.
+O chamador precisa diferenciar URL inválida, resposta incompatível, rejeição HTTP e falha de transporte para apresentar ou tratar cada caso conscientemente.
 
 ### Objetivo
-Concluir Definir NetworkError dentro do escopo definido e deixar o resultado pronto para revisão.
+Representar as falhas mínimas do transporte em `NetworkError` e lançá-las pelo APIClient.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Definir casos para URL inválida, resposta não HTTP, status HTTP não 2xx e URLError de transporte.
+- Preservar o código HTTP ou o URLError original.
+- Não incluir erros de decodificação ou domínio antes de existir esse fluxo.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] Falhas de transporte são representadas por erro tipado.
+- [x] Status HTTP é preservado no erro.
+- [x] O cliente distingue resposta não HTTP, falha HTTP e falha URLSession.
 
 ### Conceitos de engenharia
 HTTP, URLSession, DTO, mapping, generics, associated types, rate limits.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar enum de erros, erros lançados por URLSession e a diferença entre status HTTP e falha de transporte.
 
 ### Perguntas que preciso saber responder
-- Que problema “Definir NetworkError” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Por que 429 é uma resposta HTTP e não um erro de conexão?
+- Que informação preservamos em cada caso?
+- Onde erros de parsing e de domínio serão adicionados quando houver DTO e Mapper?
 
 ### Validação
-Usar fixtures de URLProtocol para sucesso/erro HTTP, dados malformados, falhas de transporte e rate limits. Não testar contra a API ao vivo.
+Validar status 429 com URLProtocol; inspecionar os caminhos de erro e compilar a aplicação.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -547,13 +558,17 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Data/Networking/NetworkError.swift`
+- `Substi/Data/Networking/URLSessionAPIClient.swift`
+- `SubstiTests/NetworkingPrimitivesTests.swift`
+- `docs/project/phases/PHASE-06-networking.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Os quatro casos de erro do transporte estão tipados e usados onde aplicável.
+- [x] O status HTTP fica acessível ao chamador.
+- [x] Escopo não inclui erros de JSON/domínio; estado atualizado para `REVIEW`.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.

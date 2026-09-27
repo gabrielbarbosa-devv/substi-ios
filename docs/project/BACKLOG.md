@@ -72,9 +72,9 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P06-003 | Definir Endpoint | 06 | P0 | DONE |
 | SUB-P06-004 | Definir HTTPMethod | 06 | P0 | DONE |
 | SUB-P06-005 | Estudar associated types e generics | 06 | P1 | TODO |
-| SUB-P06-006 | Definir APIClient | 06 | P0 | READY |
-| SUB-P06-007 | Implementar requisição com URLSession | 06 | P0 | TODO |
-| SUB-P06-008 | Definir NetworkError | 06 | P0 | TODO |
+| SUB-P06-006 | Definir APIClient | 06 | P0 | REVIEW |
+| SUB-P06-007 | Implementar requisição com URLSession | 06 | P0 | REVIEW |
+| SUB-P06-008 | Definir NetworkError | 06 | P0 | REVIEW |
 | SUB-P06-009 | Definir DTO | 06 | P0 | TODO |
 | SUB-P06-010 | Mapear DTO para Product | 06 | P0 | TODO |
 | SUB-P06-011 | Testar com URLProtocol | 06 | P0 | TODO |
