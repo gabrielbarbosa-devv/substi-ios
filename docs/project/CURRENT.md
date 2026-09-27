@@ -13,6 +13,8 @@ FASE 07 — Repository (execução pela Delivery Track)
 - SUB-P07-001 — Definir ProductRepository
 - SUB-P07-002 — Definir InventoryRepository
 - SUB-P07-003 — Criar fixtures de inventário
+- SUB-P07-005 — Implementar composição do Repository
+- SUB-P07-008 — Testar resultados remotos
 
 ## Estado
 
@@ -20,19 +22,19 @@ REVIEW
 
 ## Objetivo
 
-Declarar fronteiras pequenas entre Domain e dados remotos/locais e fornecer um cenário reproduzível de pedido com alternativas de demonstração.
+Conectar os contratos Domain às fontes remota e local, mantendo as implementações isoladas em Data e cobrindo a integração remota com testes sem rede ao vivo.
 
 ## Por que agora
 
-O pipeline de networking já transforma uma resposta Open Food Facts em `Product`. Os contratos de Repository mantêm o domínio isolado das fontes concretas; as fixtures locais permitem desenvolver e testar o fluxo sem afirmar disponibilidade de uma loja.
+Os contratos e o pipeline HTTP/DTO/Mapper já existem. Os dados agora chegam ao domínio por implementações concretas, sem misturar API com inventário local. A arquitetura de apresentação permanece MVVM-C conforme `AGENTS.md`; nenhuma tela começa até Gabriel enviar as referências visuais.
 
 ## Bloqueios
 
-Os testes do target ainda precisam ser executados em um ambiente com Xcode selecionado. Aqui, `xcode-select` aponta para Command Line Tools sem `xcodebuild`, Simulator ou módulo `Testing`; o typecheck dos modelos/contratos/fixtures e uma verificação executável isolada da fixture passaram com Swift 6.1.2. A API pública continua sem representar estoque de loja.
+Os testes do target ainda precisam ser executados em um ambiente com Xcode selecionado. Aqui, `xcode-select` aponta para Command Line Tools sem `xcodebuild`, Simulator ou módulo `Testing`. Typecheck Swift 6, parse de testes e verificação executável isolada passaram. A API pública fornece catálogo de produtos, não estoque de loja.
 
 ## Próxima task
 
-SUB-P07-005 — Implementar composição do Repository (P0), após revisão deste bloco.
+Próximo bloco: revisar as tasks em REVIEW e executar SubstiTests com Xcode; depois, receber as telas de Gabriel para iniciar Design Discovery/contratos de tela antes da UI.
 
 ## Trilha de entrega
 
@@ -40,6 +42,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco
 
-SUB-P07-001–003 — Contratos de Product/Inventory Repository e fixtures locais de demonstração criados em branch focada; aguardam revisão de Gabriel.
+SUB-P07-005 e SUB-P07-008 — adaptadores de repositório e cobertura do pipeline remoto preparados para revisão. P07-004 e P07-006–007 permanecem P1; cache não entra no fluxo sem necessidade demonstrada.
 
 > SUB-P06-006–011 também permanecem em `REVIEW`; Gabriel é quem decide quando os aprova e os move para `DONE`.

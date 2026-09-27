@@ -33,7 +33,7 @@ struct NetworkingPrimitivesTests {
     }
 
     @Test
-    func urlSessionAPIClientSendsConfiguredRequestAndReturnsData() async throws {
+    func openFoodFactsRepositoryLoadsProductThroughConfiguredURLSession() async throws {
         let expectedData = Data(
             """
             {"product":{"code":"123","product_name":"Leite integral","categories_tags":["en:dairies"],"brands":"Marca","quantity":"1 L"}}
@@ -56,11 +56,9 @@ struct NetworkingPrimitivesTests {
         defer { URLProtocolStub.handler.reset() }
 
         let client = try makeAPIClient()
-        let data = try await client.data(for: .openFoodFactsProduct(barcode: "123"))
-        let response = try JSONDecoder().decode(OpenFoodFactsProductResponseDTO.self, from: data)
-        let product = try OpenFoodFactsProductMapper().map(response)
+        let repository = OpenFoodFactsProductRepository(apiClient: client)
+        let product = try await repository.product(barcode: "123")
 
-        #expect(data == expectedData)
         #expect(product.id.rawValue == "123")
         #expect(product.name == "Leite integral")
         #expect(product.category == "en:dairies")

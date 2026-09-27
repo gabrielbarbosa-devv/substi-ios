@@ -4,8 +4,9 @@ import Testing
 struct InventoryFixturesTests {
     @Test
     func demoOrderHasMilkWithTwoComparableSubstitutes() throws {
-        let original = try #require(InventoryFixtures.order.items.first?.product)
-        let candidates = try #require(InventoryFixtures.substitutionCandidates[original.id])
+        let repository = DemoInventoryRepository()
+        let original = try #require(repository.currentOrder().items.first?.product)
+        let candidates = repository.substitutionCandidates(for: original.id)
 
         #expect(original.category == "en:dairies")
         #expect(original.quantity == "1 L")
@@ -17,6 +18,8 @@ struct InventoryFixturesTests {
 
     @Test
     func fixtureReturnsNoCandidatesForUnknownProduct() {
-        #expect(!InventoryFixtures.substitutionCandidates.keys.contains(ProductID(rawValue: "unknown")))
+        let repository = DemoInventoryRepository()
+
+        #expect(repository.substitutionCandidates(for: ProductID(rawValue: "unknown")).isEmpty)
     }
 }

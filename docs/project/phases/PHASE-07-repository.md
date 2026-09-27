@@ -291,7 +291,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P07-005 — Implementar composição do Repository
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -299,20 +299,22 @@ Depende de:
 Nenhuma
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Implementar composição do Repository.
+Os contratos de domínio já existem, assim como o cliente HTTP, o DTO, o Mapper e as fixtures locais. Falta conectar essas peças sem permitir que Domain dependa da API ou da implementação local.
 
 ### Objetivo
-Concluir Implementar composição do Repository dentro do escopo definido e deixar o resultado pronto para revisão.
+Implementar um repositório remoto de produtos Open Food Facts e um repositório local de inventário de demonstração, cada um na camada Data.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- `OpenFoodFactsProductRepository` recebe `APIClient`, solicita o endpoint existente pelo código de barras, decodifica o DTO e usa o Mapper para retornar `Product`.
+- `DemoInventoryRepository` lê o pedido e candidatos de `InventoryFixtures`; produto desconhecido retorna uma lista vazia.
+- Domain continua dependendo somente dos contratos e modelos próprios; implementações concretas ficam em `Data/Repositories`.
+- Não adicionar cache, persistência, ranking, estoque real, acesso a `URLSession` dentro de Domain nem um container genérico de dependências.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] O repositório remoto transforma a resposta da API no `Product` de domínio usando DTO e Mapper existentes.
+- [x] O repositório local retorna o pedido e os candidatos das fixtures, sem sugerir disponibilidade de loja.
+- [x] Os dois repositórios podem ser usados por meio dos protocolos de Domain, sem acoplamento entre as fontes.
+- [x] Testes usam dados locais/`URLProtocol`, sem chamar a API ao vivo.
 
 ### Conceitos de engenharia
 Repository, data sources, fixtures, cache, dependency inversion.
@@ -326,7 +328,7 @@ Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabri
 - Como o resultado será validado e mantido?
 
 ### Validação
-Usar fixtures para testar cache e respostas remotas sem depender da API ao vivo.
+Typecheck dos tipos de produção em Swift 6 Language Mode passou; parse dos arquivos Swift de teste passou; verificação executável isolada confirmou mapeamento e fixtures. Os testes do target ainda não foram executados: `xcode-select` aponta para Command Line Tools sem `xcodebuild`, Simulator ou módulo `Testing`. Nenhuma chamada à API ao vivo.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -344,7 +346,14 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `Substi/Data/Repositories/OpenFoodFactsProductRepository.swift`
+- `Substi/Data/Repositories/DemoInventoryRepository.swift`
+- `SubstiTests/ProductRepositoryTests.swift`
+- `SubstiTests/InventoryFixturesTests.swift`
+- `SubstiTests/NetworkingPrimitivesTests.swift`
+- `docs/project/phases/PHASE-07-repository.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
 - [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
@@ -489,28 +498,28 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P07-008 — Testar resultados remotos
 
-Estado: TODO
+Estado: REVIEW
 
-Prioridade: P1
+Prioridade: P0
 
 Depende de:
-- SUB-P07-007
+- SUB-P07-005
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Testar resultados remotos.
+O caminho remoto precisa ser verificado de ponta a ponta sem depender da disponibilidade, do rate limit ou do conteúdo mutável da API pública.
 
 ### Objetivo
-Concluir Testar resultados remotos dentro do escopo definido e deixar o resultado pronto para revisão.
+Testar que uma resposta HTTP simulada percorre APIClient, DTO, Mapper e ProductRepository até produzir um produto de domínio.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Usar `URLProtocol` local para verificar caminho e método da requisição e fornecer resposta JSON controlada.
+- Verificar o produto de domínio produzido e os erros relevantes para status HTTP e dados obrigatórios ausentes/malformados.
+- Não fazer chamadas à API ao vivo, adicionar retry ou testar estoque de loja.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] O teste de integração confirma o caminho HTTP → DTO → Mapper → ProductRepository.
+- [x] Falhas HTTP e de parsing/mapeamento são cobertas com respostas controladas.
+- [x] A suíte não depende de rede externa nem de dados variáveis da API pública.
 
 ### Conceitos de engenharia
 Repository, data sources, fixtures, cache, dependency inversion.
@@ -524,7 +533,7 @@ Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabri
 - Como o resultado será validado e mantido?
 
 ### Validação
-Usar fixtures para testar cache e respostas remotas sem depender da API ao vivo.
+Os casos foram adicionados/ajustados, e a sintaxe dos testes foi validada. A execução do target SubstiTests aguarda ambiente com Xcode, pois este ambiente não possui `xcodebuild`, Simulator ou módulo `Testing` selecionado.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
