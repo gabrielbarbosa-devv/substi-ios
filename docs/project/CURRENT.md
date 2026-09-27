@@ -6,31 +6,31 @@ Segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo` (horário
 
 ## Fase atual
 
-FASE 04 — Modelagem de domínio (execução pela Delivery Track)
+FASE 05 — Ranking e TDD (execução pela Delivery Track)
 
 ## Task atual
 
-SUB-P04-004 — Definir SubstitutionCandidate
+SUB-P05-003 — Implementar pontuação por categoria (GREEN)
 
 ## Estado
 
-REVIEW
+DONE
 
 ## Objetivo
 
-Representar um produto do catálogo que foi apresentado como possível substituto, sem duplicar os dados de `Product` nem antecipar a regra de ranking.
+O score de categoria está implementado e os cinco casos determinísticos passam no simulador.
 
 ## Por que agora
 
-`Product`, `OrderItem` e `Order` já estão definidos. Um tipo de candidato dá nome ao papel do produto alternativo antes que a fase de ranking defina como comparar e ordenar alternativas.
+O ranker mantém a regra isolada e pura. O score é apenas um sinal de categoria: não ordena a lista nem afirma que o candidato é substituto adequado em todos os aspectos.
 
 ## Bloqueios
 
-Nenhum bloqueio conhecido. Pontuação e justificativa da compatibilidade permanecem para as tasks de ranking; não serão inferidas nesta task.
+Nenhum bloqueio conhecido para este conjunto. O simulador precisou iniciar manualmente e os testes foram executados sem o alvo de UI.
 
 ## Próxima tarefa
 
-SUB-P04-005 — Definir SubstitutionDecision (`TODO`; somente após a revisão de SUB-P04-004).
+SUB-P06-001 — Estudar a API Open Food Facts (`TODO`, P0; início da próxima fatia de integração de dados).
 
 ## Trilha de entrega
 
@@ -38,6 +38,6 @@ Problema → bootstrap → MVVM-C mínimo → domínio/ranking → API limitada 
 
 ## Último marco concluído
 
-SUB-P04-003 — Definir Order e OrderItem; PR #9 integrado por Gabriel. A limpeza do template UIKit está integrada no PR #10 e aguarda revisão conceitual (`REVIEW`).
+SUB-P05-003 — Implementar pontuação por categoria; 5 testes passaram no iPhone 16 Simulator.
 
 > Mantenha no máximo uma tarefa em `IN_PROGRESS` e somente a próxima em `READY`. Uma implementação pronta vai para `REVIEW`; Gabriel marca `DONE` após revisar e conseguir explicar o resultado.

@@ -50,16 +50,16 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P04-001 | Definir ProductID | 04 | P1 | DONE |
 | SUB-P04-002 | Definir Product | 04 | P0 | DONE |
 | SUB-P04-003 | Definir Order e OrderItem | 04 | P0 | DONE |
-| SUB-P04-004 | Definir SubstitutionCandidate | 04 | P0 | REVIEW |
+| SUB-P04-004 | Definir SubstitutionCandidate | 04 | P0 | DONE |
 | SUB-P04-005 | Definir SubstitutionDecision | 04 | P1 | TODO |
 | SUB-P04-006 | Definir erros de domínio | 04 | P1 | TODO |
 | SUB-P04-007 | Revisar semântica de valor | 04 | P1 | TODO |
 | SUB-P04-008 | Revisar enum e let/var | 04 | P1 | TODO |
 | SUB-P04-009 | Avaliar Sendable | 04 | P1 | TODO |
 | SUB-P04-010 | Adicionar testes de domínio | 04 | P1 | TODO |
-| SUB-P05-001 | Especificar regras de ranking | 05 | P0 | TODO |
-| SUB-P05-002 | Escrever teste que falha (RED) | 05 | P0 | TODO |
-| SUB-P05-003 | Implementar pontuação por categoria (GREEN) | 05 | P0 | TODO |
+| SUB-P05-001 | Especificar regras de ranking | 05 | P0 | DONE |
+| SUB-P05-002 | Escrever teste que falha (RED) | 05 | P0 | DONE |
+| SUB-P05-003 | Implementar pontuação por categoria (GREEN) | 05 | P0 | DONE |
 | SUB-P05-004 | Implementar pontuação por quantidade | 05 | P1 | TODO |
 | SUB-P05-005 | Implementar pontuação por atributos | 05 | P1 | TODO |
 | SUB-P05-006 | Definir desempate | 05 | P1 | TODO |
