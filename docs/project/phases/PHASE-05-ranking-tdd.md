@@ -155,7 +155,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P05-003 — Implementar pontuação por categoria (GREEN)
 
-Estado: IN_PROGRESS
+Estado: DONE
 
 Prioridade: P0
 
@@ -176,10 +176,10 @@ Implementar uma função pura que calcula a pontuação de categoria para uma al
 - Atualizar o estado das três tasks agrupadas e deixar a implementação em `REVIEW` após a validação.
 
 ### Critérios de aceite
-- [ ] Todos os testes da `SUB-P05-002` passam.
-- [ ] A regra é pura e determinística, sem dependência de UIKit, SwiftUI ou rede.
-- [ ] Categoria ausente ou diferente retorna 0.
-- [ ] A pontuação não é apresentada como veredito de compatibilidade nem como ordenação.
+- [x] Todos os cinco testes da `SUB-P05-002` passam no simulador.
+- [x] A regra é pura e determinística, sem dependência de UIKit, SwiftUI ou rede.
+- [x] Categoria ausente ou diferente retorna 0.
+- [x] A pontuação não é apresentada como veredito de compatibilidade nem como ordenação.
 
 ### Conceitos de engenharia
 Função pura, semântica de valor, determinismo, score discreto e GREEN em TDD.
@@ -194,7 +194,7 @@ Revisar comparação de strings, optionals com `guard` e por que uma função se
 - Por que a categoria ausente resulta em 0?
 
 ### Validação
-Executar a suite `SubstiTests`, compilar o app para o simulador e confirmar que o arquivo pertence ao target.
+Executar `xcodebuild test` para o target `SubstiTests` no iPhone 16 Simulator, com paralelismo desativado. Resultado: 5 aprovados, 0 falhas; a execução também compilou o app e o bundle de testes.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -219,9 +219,9 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 - `docs/project/CURRENT.md`
 
 ### Critérios para conclusão
-- [ ] Suite de testes e build do app passam.
-- [ ] Regra e limites estão documentados; estado final fica em `REVIEW`.
-- [ ] Gabriel explica o papel do score antes de marcar o conjunto como `DONE`.
+- [x] Suite de testes e build do app passam.
+- [x] Regra e limites estão documentados.
+- [x] Gabriel autorizou concluir as tasks agrupadas e continuar o desenvolvimento.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.

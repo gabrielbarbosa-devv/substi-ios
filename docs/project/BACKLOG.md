@@ -59,7 +59,7 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P04-010 | Adicionar testes de domínio | 04 | P1 | TODO |
 | SUB-P05-001 | Especificar regras de ranking | 05 | P0 | DONE |
 | SUB-P05-002 | Escrever teste que falha (RED) | 05 | P0 | DONE |
-| SUB-P05-003 | Implementar pontuação por categoria (GREEN) | 05 | P0 | IN_PROGRESS |
+| SUB-P05-003 | Implementar pontuação por categoria (GREEN) | 05 | P0 | DONE |
 | SUB-P05-004 | Implementar pontuação por quantidade | 05 | P1 | TODO |
 | SUB-P05-005 | Implementar pontuação por atributos | 05 | P1 | TODO |
 | SUB-P05-006 | Definir desempate | 05 | P1 | TODO |
