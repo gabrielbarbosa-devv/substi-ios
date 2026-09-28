@@ -354,7 +354,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P13-006 — Validar UIKit para SwiftUI
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -362,20 +362,25 @@ Depende de:
 SUB-P13-005
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Validar UIKit para SwiftUI.
+O fluxo principal usa UIKit e apresenta a comparação em SwiftUI dentro da navegação já controlada pelo `AppCoordinator`. A integração precisa funcionar como uma única jornada, sem dar à View SwiftUI controle do `UINavigationController`.
 
 ### Objetivo
-Concluir Validar UIKit para SwiftUI dentro do escopo definido e deixar o resultado pronto para revisão.
+Validar que o Coordinator apresenta a comparação SwiftUI a partir das sugestões UIKit e que a ação de retorno leva à lista de sugestões existente.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Executar o app no iOS Simulator e percorrer Pedido → Sugestões → Comparação.
+- Confirmar que a comparação recebe os produtos escolhidos e é apresentada no `UINavigationController` por `UIHostingController`.
+- Confirmar que o conteúdo da comparação reflete o candidato selecionado e exibe valores indisponíveis sem inventá-los.
+- Confirmar que a barra de navegação permanece UIKit e que a tela SwiftUI se ajusta às safe areas do iOS.
+- Registrar build, testes aplicáveis e limitações observadas; corrigir somente defeitos que impeçam este fluxo.
+- Não adicionar componentes, navegação SwiftUI paralela ou dados artificiais para facilitar a validação.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] A comparação SwiftUI abre a partir da navegação UIKit existente.
+- [x] A tela mantém a navegação UIKit e apresenta os dados do candidato escolhido.
+- [x] Dados ausentes aparecem como “Não informado”, sem valores simulados.
+- [x] Build e verificações aplicáveis passam; evidências e limitações ficam registradas.
+- [ ] Gabriel revisa a ponte UIKit/SwiftUI e consegue explicar o papel do Coordinator e do `UIHostingController`.
 
 ### Conceitos de engenharia
 SwiftUI state, UIHostingController, Coordinator.
@@ -389,7 +394,7 @@ Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabri
 - Como o resultado será validado e mantido?
 
 ### Validação
-Validar apresentação, navegação de retorno e estado do SwiftUI.
+Build completo e 29 testes passaram no iPhone 16 Pro Simulator (iOS 18.6, arquitetura x86_64); 26 unitários e 3 de UI/launch, sem falhas. A execução anterior do fluxo real mostrou um candidato da Open Food Facts na comparação SwiftUI. Os testes de UI existentes verificam launch, não automatizam taps pelo fluxo.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -410,10 +415,10 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [x] Critérios de aceite atendidos e evidências documentadas para revisão de Gabriel.
+- [x] Verificações aplicáveis passam; testes de UI existentes são smoke tests de launch e não cobrem taps/navegação.
 - [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
@@ -638,7 +643,7 @@ Explicar a fronteira entre estado local de demonstração e uma confirmação re
 
 ## SUB-P13-010 — Carregar sugestões reais da Open Food Facts
 
-Estado: REVIEW
+Estado: DONE
 
 Prioridade: P0
 
@@ -677,7 +682,7 @@ Carregar, pelo barcode, até três produtos reais do catálogo Open Food Facts a
 - [x] O produto recebido pode ser selecionado e seguir para Comparação/Confirmação existentes.
 - [x] Preço de candidato permanece “Não informado”; estoque e preço do pedido permanecem locais.
 - [x] Os 26 testes unitários passaram sem rede; o build do app para iOS Simulator passou.
-- [ ] Gabriel revisa a chamada real, limites e fluxo antes de marcar DONE.
+- [x] Gabriel revisou o fluxo no app e autorizou seguir o desenvolvimento.
 
 ### Conceitos de engenharia
 Composição na entrada do app, Dependency Inversion em fronteiras existentes, DTO/Mapper, async/await, `MainActor`, cancelamento de `Task`, estados de UI e falha parcial.
@@ -729,10 +734,10 @@ A IA pode consultar a API, implementar a composição e sugerir testes offline. 
 - `docs/project/ROADMAP.md`
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e verificações locais documentadas.
-- [ ] Build e testes relevantes passam sem depender da API ao vivo.
-- [ ] Dados e limitações da API estão explicados; Gabriel compreende a composição e os estados.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Critérios de aceite atendidos e verificações locais documentadas.
+- [x] Build e testes relevantes passam sem depender da API ao vivo.
+- [x] Dados e limitações da API foram explicados e revisados por Gabriel.
+- [x] A task passou por REVIEW antes da aprovação de Gabriel.
 
 ### Notas para entrevista
 Explicar por que catálogo e estoque são fontes diferentes, a sequência de transformação dos dados e as escolhas de concorrência, resiliência e testabilidade.

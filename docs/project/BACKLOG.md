@@ -163,11 +163,11 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P13-003 | Adicionar previews | 13 | P1 | TODO |
 | SUB-P13-004 | Apresentar com UIHostingController | 13 | P0 | REVIEW |
 | SUB-P13-005 | Manter navegação no Coordinator | 13 | P0 | REVIEW |
-| SUB-P13-006 | Validar UIKit para SwiftUI | 13 | P0 | TODO |
+| SUB-P13-006 | Validar UIKit para SwiftUI | 13 | P0 | REVIEW |
 | SUB-P13-007 | Validar fluxo de retorno | 13 | P0 | TODO |
 | SUB-P13-008 | Documentar migração incremental | 13 | P1 | TODO |
 | SUB-P13-009 | Criar confirmação da substituição | 13 | P0 | REVIEW |
-| SUB-P13-010 | Carregar sugestões reais da Open Food Facts | 13 | P0 | REVIEW |
+| SUB-P13-010 | Carregar sugestões reais da Open Food Facts | 13 | P0 | DONE |
 | SUB-P14-001 | Definir critérios de aceite | 14 | P0 | TODO |
 | SUB-P14-002 | Revisar labels do VoiceOver | 14 | P0 | TODO |
 | SUB-P14-003 | Revisar traits e ordem de leitura | 14 | P0 | TODO |
