@@ -5,6 +5,7 @@ struct OrderViewModel {
         enum Availability {
             case available
             case unavailable
+            case substituted(originalProduct: Product)
         }
 
         let product: Product
@@ -25,9 +26,14 @@ struct OrderViewModel {
         items = order.items.map { orderItem in
             Item(
                 product: orderItem.product,
-                availability: unavailableProductIDs.contains(orderItem.product.id)
-                    ? .unavailable
-                    : .available,
+                availability: {
+                    if let originalProduct = orderItem.substitutedFrom {
+                        return .substituted(originalProduct: originalProduct)
+                    }
+                    return unavailableProductIDs.contains(orderItem.product.id)
+                        ? .unavailable
+                        : .available
+                }(),
                 priceText: orderItem.price.flatMap {
                     priceFormatter.string(from: $0 as NSDecimalNumber)
                 }
@@ -40,10 +46,16 @@ struct OrderViewModel {
     }
 
     var unavailableItemCount: Int {
-        items.filter { $0.availability == .unavailable }.count
+        items.filter {
+            if case .unavailable = $0.availability { return true }
+            return false
+        }.count
     }
 
     var firstUnavailableProductID: ProductID? {
-        items.first(where: { $0.availability == .unavailable })?.id
+        items.first(where: {
+            if case .unavailable = $0.availability { return true }
+            return false
+        })?.id
     }
 }

@@ -549,3 +549,89 @@ Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de impl
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
+
+## SUB-P13-009 — Criar confirmação da substituição
+
+Estado: REVIEW
+
+Prioridade: P0
+
+Depende de:
+- SUB-P07-010
+- SUB-P13-001
+- SUB-P13-002
+- SUB-P13-004
+
+### Contexto
+A comparação mostra as diferenças; a pessoa precisa revisar o item original e o candidato uma última vez antes de confirmar a troca.
+
+### Objetivo
+Apresentar a confirmação em uma folha SwiftUI hospedada no fluxo UIKit e atualizar o pedido demonstrativo somente após ação explícita.
+
+### Requisitos
+- Seguir a referência `docs/assets/confirmation-screen-reference.png` e o contrato em `docs/project/screens/order-and-suggestions.md`.
+- Exibir produto original, candidato, quantidade, marca e preço apenas quando fornecido.
+- Oferecer ações explícitas para confirmar e cancelar; manter navegação e atualização do pedido no `AppCoordinator`/repositório.
+- Após confirmar, retornar ao pedido com o candidato marcado como substituído; cancelar preserva o pedido original.
+- Usar a apresentação de folha nativa e considerar Dynamic Type e VoiceOver.
+- Não simular foto individual, preço do candidato nem percentual de compatibilidade ausentes nas fixtures.
+
+### Critérios de aceite
+- [x] A comparação abre uma confirmação resumindo original e candidato.
+- [x] Cancelar fecha a folha sem alterar o pedido.
+- [x] Confirmar atualiza o pedido somente na fixture em memória e retorna à tela Pedido com estado “Substituído”.
+- [x] Informações ausentes permanecem explícitas; nenhum valor demonstrativo da imagem é inventado.
+- [x] Build do app passa no Xcode 16.4 para iOS Simulator; estado e limites estão documentados.
+- [ ] Gabriel revisa a tela, o caminho de confirmação e explica os limites da atualização em memória.
+
+### Conceitos de engenharia
+SwiftUI hospedado em UIKit, Coordinator, callbacks, estado de sessão e apresentação de formulário de confirmação.
+
+### Estudar antes da implementação
+Revisar a diferença entre confirmar uma decisão local e alterar um pedido real; seguir callback da View até Coordinator e Repository.
+
+### Perguntas que preciso saber responder
+- Por que a confirmação é uma folha modal e quem controla sua apresentação?
+- O que muda no pedido ao confirmar e o que acontece ao cancelar?
+- Onde o estado vive e por quanto tempo?
+- Por que não exibimos os 92%, o preço e as imagens da referência?
+- O que seria necessário para confirmar a substituição em um serviço real?
+
+### Validação
+Compilar o app e revisar os fluxos confirmar/cancelar em execução. Testes automatizados não fazem parte desta alteração.
+
+### Observabilidade
+Not applicable for this task.
+
+### Considerações de memória
+Callbacks capturam o Coordinator fracamente; o Coordinator mantém o repository e os controllers enquanto necessários. A folha hospedada é liberada após dismiss.
+
+### Considerações de concorrência
+A fixture é síncrona e chamada pelo Coordinator no fluxo principal; não se introduzem Tasks ou filas.
+
+### Acessibilidade
+Textos semânticos, hierarquia de leitura, Dynamic Type, ícones decorativos ocultos e alvos nativos de botão.
+
+### Uso de IA
+A IA pode implementar a tela com dados existentes e explicitar lacunas; Gabriel valida a referência, os dados e o fluxo de decisão.
+
+### Arquivos esperados
+- `Substi/Presentation/Confirmation/ConfirmationView.swift`
+- `Substi/Presentation/Comparison/ProductComparisonView.swift`
+- `Substi/Presentation/Order/OrderViewController.swift`
+- `Substi/Presentation/Order/OrderViewModel.swift`
+- `Substi/App/Coordinators/AppCoordinator.swift`
+- `docs/assets/confirmation-screen-reference.png`
+- `docs/project/screens/order-and-suggestions.md`
+- `docs/project/phases/PHASE-13-swiftui-integration.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
+
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+
+### Notas para entrevista
+Explicar a fronteira entre estado local de demonstração e uma confirmação real de negócio, além do ownership da navegação.
