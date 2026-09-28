@@ -1,6 +1,6 @@
 protocol InventoryRepository {
     func currentOrder() -> Order
-    func substitutionCandidates(for productID: ProductID) -> [SubstitutionCandidate]
+    func substitutionCandidateBarcodes(for productID: ProductID) -> [String]
     func confirmSubstitution(
         for originalProductID: ProductID,
         with candidate: SubstitutionCandidate

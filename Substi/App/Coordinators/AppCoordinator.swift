@@ -5,13 +5,16 @@ import SwiftUI
 final class AppCoordinator {
     private let navigationController: UINavigationController
     private let inventoryRepository: any InventoryRepository
+    private let loadProductUseCase: LoadProductUseCase
 
     init(
         navigationController: UINavigationController,
-        inventoryRepository: any InventoryRepository
+        inventoryRepository: any InventoryRepository,
+        productRepository: any ProductRepository
     ) {
         self.navigationController = navigationController
         self.inventoryRepository = inventoryRepository
+        loadProductUseCase = LoadProductUseCase(productRepository: productRepository)
     }
 
     func start() {
@@ -24,11 +27,12 @@ final class AppCoordinator {
             return
         }
 
-        let candidates = inventoryRepository.substitutionCandidates(for: productID)
+        let candidateBarcodes = inventoryRepository.substitutionCandidateBarcodes(for: productID)
         let viewModel = SuggestionsViewModel(
             originalProduct: originalItem.product,
             originalPrice: originalItem.price,
-            candidates: candidates
+            candidateBarcodes: candidateBarcodes,
+            loadProduct: loadProductUseCase
         )
         let viewController = SuggestionsViewController(viewModel: viewModel)
         viewController.onShowComparison = { [weak self] candidate in

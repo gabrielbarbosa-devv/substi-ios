@@ -56,6 +56,12 @@ Nenhum evento é enviado nesta etapa; analytics não está implementado.
 
 ## Sugestões
 
+### Origem e estados de dados
+
+O pedido indisponível e os barcodes candidatos pertencem à fixture local de inventário demonstrativo. Nome, categoria, marca e quantidade de cada candidato são buscados ao vivo na Open Food Facts pelo barcode. A API pública não informa estoque nem preço da loja; a tela não infere disponibilidade ou preço desses dados.
+
+Estados da consulta: carregando; conteúdo com zero ou mais falhas parciais; vazio quando não há barcodes configurados; erro recuperável quando todas as consultas falham ou o barcode não contém um produto utilizável. Erros mostram “Tentar novamente”. Consultas usam a sequência configurada na fixture, sem busca livre.
+
 ### Purpose
 
 Mostrar o produto original e alternativas locais com informação comparável.

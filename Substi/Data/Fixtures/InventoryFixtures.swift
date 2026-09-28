@@ -33,37 +33,12 @@ enum InventoryFixtures {
 
     static let unavailableProductIDs: Set<ProductID> = [unavailableProduct.id]
 
-    private static let firstCandidate = SubstitutionCandidate(
-        product: Product(
-            id: ProductID(rawValue: "substi-demo-milk-candidate-1"),
-            name: "Leite integral",
-            category: "en:dairies",
-            brand: "Vale Verde",
-            quantity: "1 L"
-        )
-    )
-
-    private static let secondCandidate = SubstitutionCandidate(
-        product: Product(
-            id: ProductID(rawValue: "substi-demo-milk-candidate-2"),
-            name: "Leite integral",
-            category: "en:dairies",
-            brand: "Campo Claro",
-            quantity: "1 L"
-        )
-    )
-
-    private static let thirdCandidate = SubstitutionCandidate(
-        product: Product(
-            id: ProductID(rawValue: "substi-demo-milk-candidate-3"),
-            name: "Leite semidesnatado",
-            category: "en:dairies",
-            brand: "Serra Clara",
-            quantity: "1 L"
-        )
-    )
-
-    static let substitutionCandidates: [ProductID: [SubstitutionCandidate]] = [
-        ProductID(rawValue: "substi-demo-milk-original"): [firstCandidate, secondCandidate, thirdCandidate]
+    // GTINs were queried against the Open Food Facts v3 product endpoint on 2026-09-27.
+    static let substitutionCandidateBarcodes: [ProductID: [String]] = [
+        ProductID(rawValue: "substi-demo-milk-original"): [
+            "7898215151708", // Piracanjuba, whole milk, 1 L
+            "7898080640611", // Italac, whole milk, 1 L
+            "7896051111016" // Itambé, whole milk, 1 L
+        ]
     ]
 }

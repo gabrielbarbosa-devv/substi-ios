@@ -1,46 +1,5 @@
 import UIKit
 
-struct SuggestionsViewModel {
-    let originalProduct: Product
-    let originalPriceText: String?
-    let candidates: [SubstitutionCandidate]
-
-    init(originalProduct: Product, originalPrice: Decimal?, candidates: [SubstitutionCandidate]) {
-        self.originalProduct = originalProduct
-        self.candidates = candidates
-
-        let priceFormatter = NumberFormatter()
-        priceFormatter.numberStyle = .currency
-        priceFormatter.locale = Locale(identifier: "pt_BR")
-        priceFormatter.currencyCode = "BRL"
-        originalPriceText = originalPrice.flatMap {
-            priceFormatter.string(from: $0 as NSDecimalNumber)
-        }
-    }
-
-    func cardContent(for candidate: SubstitutionCandidate) -> DSProductCardContent {
-        let categoryMatches = ProductSubstitutionRanker().categoryScore(
-            for: candidate,
-            replacing: originalProduct
-        ) == 1
-        let quantityMatches = originalProduct.quantity != nil
-            && originalProduct.quantity == candidate.product.quantity
-
-        let evidence = [
-            categoryMatches ? "Categoria correspondente" : nil,
-            quantityMatches ? "Quantidade correspondente" : nil
-        ].compactMap { $0 }
-
-        return DSProductCardContent(
-            name: candidate.product.name,
-            brand: candidate.product.brand,
-            quantity: candidate.product.quantity,
-            statusText: evidence.isEmpty ? "Confira as diferenças" : evidence.joined(separator: " · "),
-            statusStyle: evidence.isEmpty ? .information : .compatible
-        )
-    }
-}
-
 @MainActor
 final class SuggestionsViewController: UIViewController {
     var onShowComparison: ((SubstitutionCandidate) -> Void)? {
@@ -48,7 +7,9 @@ final class SuggestionsViewController: UIViewController {
     }
 
     private let viewModel: SuggestionsViewModel
+    private var loadTask: Task<Void, Never>?
     private let contentStackView = UIStackView()
+    private let resultsStackView = UIStackView()
     private let compareButton = DSButton(title: "Ver comparação")
     private var candidateCards: [ProductID: DSProductCardView] = [:]
     private var selectedCandidateID: ProductID?
@@ -56,6 +17,13 @@ final class SuggestionsViewController: UIViewController {
     init(viewModel: SuggestionsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        viewModel.onStateChange = { [weak self] state in
+            self?.render(state: state)
+        }
+    }
+
+    deinit {
+        loadTask?.cancel()
     }
 
     @available(*, unavailable)
@@ -70,6 +38,7 @@ final class SuggestionsViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         buildHierarchy()
         render()
+        loadCandidates()
     }
 
     private func buildHierarchy() {
@@ -81,10 +50,31 @@ final class SuggestionsViewController: UIViewController {
         contentStackView.axis = .vertical
         contentStackView.alignment = .fill
         contentStackView.spacing = DSSpacing.medium
+        resultsStackView.axis = .vertical
+        resultsStackView.alignment = .fill
+        resultsStackView.spacing = DSSpacing.medium
 
         view.addSubview(scrollView)
         view.addSubview(actionContainer)
         scrollView.addSubview(contentStackView)
+        contentStackView.addArrangedSubview(makeLabel("Item original", style: .body))
+        contentStackView.addArrangedSubview(
+            DSProductCardView(
+                content: DSProductCardContent(
+                    name: viewModel.originalProduct.name,
+                    brand: viewModel.originalProduct.brand,
+                    quantity: viewModel.originalProduct.quantity,
+                    priceText: viewModel.originalPriceText,
+                    statusText: "Produto original",
+                    statusStyle: .information
+                )
+            )
+        )
+        contentStackView.addArrangedSubview(makeLabel("Melhores alternativas", style: .headline))
+        contentStackView.addArrangedSubview(
+            makeLabel("Confira categoria e quantidade antes de escolher.", style: .body, color: DSColor.textSecondary)
+        )
+        contentStackView.addArrangedSubview(resultsStackView)
         actionContainer.addSubview(compareButton)
 
         compareButton.translatesAutoresizingMaskIntoConstraints = false
@@ -131,44 +121,81 @@ final class SuggestionsViewController: UIViewController {
     }
 
     private func render() {
-        let originalHeading = makeLabel("Item original", style: .body)
-        contentStackView.addArrangedSubview(originalHeading)
-        contentStackView.addArrangedSubview(
-            DSProductCardView(
-                content: DSProductCardContent(
-                    name: viewModel.originalProduct.name,
-                    brand: viewModel.originalProduct.brand,
-                    quantity: viewModel.originalProduct.quantity,
-                    priceText: viewModel.originalPriceText,
-                    statusText: "Produto original",
-                    statusStyle: .information
+        render(state: viewModel.state)
+    }
+
+    private func render(state: SuggestionsViewModel.State) {
+        resultsStackView.arrangedSubviews.forEach { subview in
+            resultsStackView.removeArrangedSubview(subview)
+            subview.removeFromSuperview()
+        }
+        candidateCards.removeAll()
+        selectedCandidateID = nil
+
+        switch state {
+        case .idle:
+            compareButton.isHidden = true
+        case .loading:
+            let loadingIndicator = UIActivityIndicatorView(style: .medium)
+            loadingIndicator.startAnimating()
+            loadingIndicator.accessibilityLabel = "Carregando alternativas"
+            resultsStackView.addArrangedSubview(loadingIndicator)
+            resultsStackView.addArrangedSubview(
+                makeLabel("Buscando produtos na Open Food Facts…", style: .body, color: DSColor.textSecondary)
+            )
+            compareButton.isHidden = true
+        case let .content(candidates, failedCount):
+            for candidate in candidates {
+                let card = DSProductCardView(content: viewModel.cardContent(for: candidate))
+                candidateCards[candidate.product.id] = card
+                resultsStackView.addArrangedSubview(card)
+                configureSelection(for: candidate)
+            }
+            if failedCount > 0 {
+                resultsStackView.addArrangedSubview(
+                    DSInfoBannerView(
+                        title: "Algumas opções não carregaram",
+                        subtitle: "Você pode comparar as opções disponíveis ou tentar carregar novamente."
+                    )
+                )
+                resultsStackView.addArrangedSubview(makeRetryButton())
+            }
+            compareButton.isHidden = false
+        case .empty:
+            resultsStackView.addArrangedSubview(
+                DSInfoBannerView(
+                    title: "Nenhuma alternativa encontrada",
+                    subtitle: "Nenhum código de produto foi configurado para este item."
                 )
             )
-        )
-
-        contentStackView.addArrangedSubview(makeLabel("Opções para comparar", style: .headline))
-        contentStackView.addArrangedSubview(
-            makeLabel("Confira categoria e quantidade antes de escolher.", style: .body, color: DSColor.textSecondary)
-        )
-
-        if viewModel.candidates.isEmpty {
-            let emptyState = DSInfoBannerView(
-                title: "Nenhuma alternativa encontrada",
-                subtitle: "Não há opções nos dados de demonstração para este produto."
-            )
-            contentStackView.addArrangedSubview(emptyState)
             compareButton.isHidden = true
-            return
+        case .error:
+            resultsStackView.addArrangedSubview(
+                DSInfoBannerView(
+                    title: "Não foi possível carregar as alternativas",
+                    subtitle: "Verifique sua conexão e tente novamente."
+                )
+            )
+            resultsStackView.addArrangedSubview(makeRetryButton())
+            compareButton.isHidden = true
         }
-
-        for candidate in viewModel.candidates {
-            let card = DSProductCardView(content: viewModel.cardContent(for: candidate))
-            candidateCards[candidate.product.id] = card
-            contentStackView.addArrangedSubview(card)
-            configureSelection(for: candidate)
-        }
-
         updateContinueButton()
+    }
+
+    private func loadCandidates() {
+        loadTask?.cancel()
+        let viewModel = self.viewModel
+        loadTask = Task { await viewModel.loadCandidates() }
+    }
+
+    private func makeRetryButton() -> UIButton {
+        var configuration = UIButton.Configuration.tinted()
+        configuration.title = "Tentar novamente"
+        configuration.image = UIImage(systemName: "arrow.clockwise")
+        configuration.imagePadding = DSSpacing.xSmall
+        let button = UIButton(configuration: configuration)
+        button.addTarget(self, action: #selector(didTapRetry), for: .primaryActionTriggered)
+        return button
     }
 
     private func configureSelection(for candidate: SubstitutionCandidate) {
@@ -185,6 +212,9 @@ final class SuggestionsViewController: UIViewController {
     }
 
     private func updateContinueButton() {
+        if case .content = viewModel.state {
+            compareButton.isHidden = false
+        }
         compareButton.isEnabled = selectedCandidateID != nil && onShowComparison != nil
         compareButton.accessibilityHint = onShowComparison == nil
             ? "A tela de comparação será conectada na próxima etapa."
@@ -213,5 +243,9 @@ final class SuggestionsViewController: UIViewController {
             return
         }
         onShowComparison?(candidate)
+    }
+
+    @objc private func didTapRetry() {
+        loadCandidates()
     }
 }

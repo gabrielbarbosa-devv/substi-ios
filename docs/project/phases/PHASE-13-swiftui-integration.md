@@ -635,3 +635,104 @@ A IA pode implementar a tela com dados existentes e explicitar lacunas; Gabriel 
 
 ### Notas para entrevista
 Explicar a fronteira entre estado local de demonstração e uma confirmação real de negócio, além do ownership da navegação.
+
+## SUB-P13-010 — Carregar sugestões reais da Open Food Facts
+
+Estado: REVIEW
+
+Prioridade: P0
+
+Depende de:
+- SUB-P06-006
+- SUB-P06-007
+- SUB-P06-009
+- SUB-P06-010
+- SUB-P07-001
+- SUB-P07-005
+- SUB-P08-001
+- SUB-P12-004
+
+### Contexto
+A tela Sugestões ainda recebe candidatos artificiais de uma fixture. A infraestrutura de rede, o `ProductRepository` e o `LoadProductUseCase` já existem, mas a composição do app não os conecta à jornada. A indisponibilidade e os preços do pedido continuam sendo demonstração local; Open Food Facts fornece catálogo de produtos, não estoque nem preço da loja.
+
+### Objetivo
+Carregar, pelo barcode, até três produtos reais do catálogo Open Food Facts ao abrir Sugestões e apresentar dados reais com estados claros de carregamento, conteúdo, vazio e erro.
+
+### Requisitos
+- Compor `URLSessionAPIClient` e `OpenFoodFactsProductRepository` na entrada do app e injetar a dependência via Coordinator/Use Case.
+- Manter barcodes candidatos em fixture local e validar seus registros na API antes de conectá-los.
+- Fazer as requisições sequencialmente; esta lista fixa e pequena não justifica `TaskGroup`.
+- Restringir os campos da resposta a código, nome, categorias, marca e quantidade.
+- Manter DTO e formato Open Food Facts dentro de Data; a apresentação recebe `Product`/`SubstitutionCandidate`.
+- Mostrar produtos parciais quando algumas consultas falharem e oferecer nova tentativa; mostrar erro recuperável quando todas falharem.
+- Distinguir lista configurada vazia de erro de transporte ou de barcode sem produto.
+- Permitir seleção e seguir para Comparação/Confirmação existentes, sem inventar preço ou compatibilidade percentual.
+- Não converter o pedido, a disponibilidade ou a confirmação em dados remotos nesta task.
+- Manter testes determinísticos offline; validar a chamada real manualmente no app/Simulator.
+
+### Critérios de aceite
+- [x] O fluxo consulta produtos por `URLSession`; três barcodes foram validados na API e a tela de comparação do Simulator exibiu dados de catálogo (Italac), distintos da fixture.
+- [x] Carga, conteúdo, vazio, falha total, falha parcial e nova tentativa têm comportamento explícito; estados de carga e falhas parciais/totais são cobertos offline.
+- [x] Uma resposta de barcode sem produto é tratada pelo Mapper e tem teste determinístico.
+- [x] O produto recebido pode ser selecionado e seguir para Comparação/Confirmação existentes.
+- [x] Preço de candidato permanece “Não informado”; estoque e preço do pedido permanecem locais.
+- [x] Os 26 testes unitários passaram sem rede; o build do app para iOS Simulator passou.
+- [ ] Gabriel revisa a chamada real, limites e fluxo antes de marcar DONE.
+
+### Conceitos de engenharia
+Composição na entrada do app, Dependency Inversion em fronteiras existentes, DTO/Mapper, async/await, `MainActor`, cancelamento de `Task`, estados de UI e falha parcial.
+
+### Estudar antes da implementação
+Seguir visualmente a cadeia `SceneDelegate → Coordinator → ViewModel → Use Case → ProductRepository → APIClient → DTO → Mapper → Product` e distinguir catálogo público de inventário de loja.
+
+### Perguntas que preciso saber responder
+- Onde a chamada HTTP começa e por que a View não conhece `URLSession`?
+- Que papel têm `ProductRepository`, `LoadProductUseCase`, DTO e Mapper?
+- Por que as consultas são sequenciais? O que o cancelamento interrompe?
+- Como a tela distingue vazio de falha e o que acontece se só parte dos barcodes carregar?
+- Quais dados vêm da API e quais continuam sendo fixture local?
+
+### Validação
+Build e testes offline com respostas de sucesso, ausência de produto, erro e falha parcial. Executar a aplicação no Simulator com rede para confirmar produtos reais, retry e abertura da comparação; repetir com rede indisponível ou resposta inválida quando viável.
+
+### Observabilidade
+Mensagens de estado visíveis são suficientes nesta fatia. Logger estruturado e métricas permanecem no escopo da fase de Observabilidade.
+
+### Considerações de memória
+O ViewController mantém a Task de carregamento e cancela ao ser liberado. O callback do ViewModel captura o controller fracamente; o ViewModel não mantém Task própria.
+
+### Considerações de concorrência
+A tela e o estado do ViewModel ficam isolados em `MainActor`. As consultas são sequenciais e a Task é cancelada quando o controller sai do fluxo. Não usar GCD, `TaskGroup` ou `Task.detached`.
+
+### Acessibilidade
+Anunciar carregamento e erro com texto, permitir retry como botão acessível e preservar rótulos/seleção dos cards.
+
+### Uso de IA
+A IA pode consultar a API, implementar a composição e sugerir testes offline. Gabriel confirma os dados reais, o que permanece demonstrativo e o motivo das dependências.
+
+### Arquivos esperados
+- `Substi/App/SceneDelegate.swift`
+- `Substi/App/Coordinators/AppCoordinator.swift`
+- `Substi/Data/Fixtures/InventoryFixtures.swift`
+- `Substi/Data/Networking/Endpoint.swift`
+- `Substi/Data/Networking/OpenFoodFactsProductResponseDTO.swift`
+- `Substi/Data/Mappers/OpenFoodFactsProductMapper.swift`
+- `Substi/Data/Repositories/DemoInventoryRepository.swift`
+- `Substi/Domain/Repositories/InventoryRepository.swift`
+- `Substi/Presentation/Suggestions/SuggestionsViewController.swift`
+- `Substi/Presentation/Suggestions/SuggestionsViewModel.swift`
+- `SubstiTests/`
+- `docs/project/screens/order-and-suggestions.md`
+- `docs/project/phases/PHASE-13-swiftui-integration.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
+- `docs/project/ROADMAP.md`
+
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e verificações locais documentadas.
+- [ ] Build e testes relevantes passam sem depender da API ao vivo.
+- [ ] Dados e limitações da API estão explicados; Gabriel compreende a composição e os estados.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+
+### Notas para entrevista
+Explicar por que catálogo e estoque são fontes diferentes, a sequência de transformação dos dados e as escolhas de concorrência, resiliência e testabilidade.

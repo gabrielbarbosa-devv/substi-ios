@@ -10,7 +10,7 @@ struct NetworkingPrimitivesTests {
         let baseURL = try #require(URL(string: "https://world.openfoodfacts.org"))
 
         #expect(endpoint.url(relativeTo: baseURL)?.absoluteString ==
-            "https://world.openfoodfacts.org/api/v3/product/3017620422003")
+            "https://world.openfoodfacts.org/api/v3/product/3017620422003?fields=code,product_name,categories_tags,brands,quantity")
         #expect(endpoint.method == .get)
     }
 
@@ -43,6 +43,7 @@ struct NetworkingPrimitivesTests {
             #expect(request.httpMethod == "GET")
             #expect(request.value(forHTTPHeaderField: "User-Agent") == "SubstiTest/1.0")
             #expect(request.url?.path == "/api/v3/product/123")
+            #expect(request.url?.query == "fields=code,product_name,categories_tags,brands,quantity")
 
             let url = try #require(request.url)
             let response = try #require(HTTPURLResponse(
@@ -129,6 +130,21 @@ struct NetworkingPrimitivesTests {
             return
         } catch {
             Issue.record("Expected ProductMappingError.missingCode, got \(error)")
+        }
+    }
+
+    @Test
+    func productMapperRejectsBarcodeWithNoProduct() throws {
+        let data = Data(#"{"code":"123","product":null,"status":0}"#.utf8)
+        let response = try JSONDecoder().decode(OpenFoodFactsProductResponseDTO.self, from: data)
+
+        do {
+            _ = try OpenFoodFactsProductMapper().map(response)
+            Issue.record("Expected a barcode without a product to be rejected")
+        } catch ProductMappingError.productNotFound {
+            return
+        } catch {
+            Issue.record("Expected ProductMappingError.productNotFound, got \(error)")
         }
     }
 
