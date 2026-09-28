@@ -425,7 +425,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P13-007 — Validar fluxo de retorno
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -433,34 +433,39 @@ Depende de:
 Nenhuma
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Validar fluxo de retorno.
+Na Comparação, a ação “Ver outras opções” deve voltar à lista UIKit já carregada. Confirmar a substituição é uma ação separada e não pode ocorrer ao voltar.
 
 ### Objetivo
-Concluir Validar fluxo de retorno dentro do escopo definido e deixar o resultado pronto para revisão.
+Validar que o Coordinator remove a Comparação SwiftUI do topo da navegação UIKit, preservando a mesma tela de Sugestões e sem alterar o pedido.
 
 ### Requisitos
-- Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
-- Discutir abordagem e trade-offs com Gabriel antes da implementação; não ampliar o escopo.
-- Atualizar planejamento e documentação quando a tarefa for concluída.
+- Exercitar o caminho de retorno do Coordinator em teste determinístico, sem rede ao vivo.
+- Confirmar que a instância de Sugestões permanece no stack após fechar a Comparação.
+- Confirmar que retornar não confirma nem altera a substituição no pedido.
+- Atualizar planejamento e documentação com a validação e seus limites.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] “Ver outras opções” remove Comparação do topo e revela a mesma instância de Sugestões.
+- [x] Retornar não confirma a substituição nem altera o pedido.
+- [x] O teste usa dados locais determinísticos e não depende da API Open Food Facts.
+- [x] Build e teste relevante passam; limitações e trade-offs são registrados.
+- [x] Estado atualizado para REVIEW após a validação.
+- [ ] Gabriel revisa e explica a decisão antes de DONE.
 
 ### Conceitos de engenharia
-SwiftUI state, UIHostingController, Coordinator.
+UINavigationController stack, Coordinator, UIHostingController, identidade e ciclo de vida de UIViewController.
 
 ### Estudar antes da implementação
-Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
+Revisar como `pushViewController` e `popViewController` alteram a pilha e como o Coordinator liga a ação SwiftUI ao fluxo UIKit.
 
 ### Perguntas que preciso saber responder
-- Que problema “Validar fluxo de retorno” resolve e por que esta abordagem é adequada?
-- Que alternativa foi considerada e qual trade-off esta escolha envolve?
-- Como o resultado será validado e mantido?
+- Por que o Coordinator faz `popViewController` em “Ver outras opções”?
+- Como sabemos que a lista de Sugestões continua sendo a mesma instância?
+- Por que retornar não deve chamar `confirmSubstitution`?
+- Como o teste evita depender da API ao vivo?
 
 ### Validação
-Validar apresentação, navegação de retorno e estado do SwiftUI.
+`xcodebuild -project Substi.xcodeproj -scheme Substi -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=18.6' -only-testing:SubstiTests/AppCoordinatorNavigationTests test` — passou no iPhone 16 Pro Simulator (iOS 18.6, x86_64). O teste usa `DemoInventoryRepository` e um `ProductRepository` de fixture; não acessa a API ao vivo. Ele invoca a closure conectada ao botão SwiftUI e verifica o stack, a identidade do controller de Sugestões e o pedido inalterado. A automação não simula um toque físico nem avalia o layout visual.
 
 ### Observabilidade
 Não se aplica a esta tarefa.
@@ -478,7 +483,15 @@ Não se aplica a esta tarefa.
 A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apontar perguntas. Gabriel decide, valida e explica o resultado.
 
 ### Arquivos esperados
-Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
+- `SubstiTests/AppCoordinatorNavigationTests.swift`
+- `docs/project/phases/PHASE-13-swiftui-integration.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
+
+### Resultado da validação
+O Coordinator mantém Sugestões no stack quando empurra Comparação; a ação SwiftUI “Ver outras opções” executa `popViewController`, então a mesma instância reaparece com seu estado associado. A confirmação permanece em outra closure e não é chamada pelo retorno. Essa separação preserva a decisão explícita da pessoa usuária.
+
+O teste não verifica o desenho visual ou o gesto/tap físico. Ele cobre a ação e o estado de navegação em UIKit com dados locais determinísticos, suficiente para a regra de retorno sem transformar a API pública em dependência de teste.
 
 ### Critérios para conclusão
 - [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
