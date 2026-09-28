@@ -28,7 +28,7 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P01-009 | Inicializar Git e arquivos ignorados | 01 | P0 | TODO |
 | SUB-P01-010 | Preparar README e primeiro commit | 01 | P1 | TODO |
 | SUB-P01-011 | Substituir template SwiftUI por entrada UIKit | 01 | P0 | REVIEW |
-| SUB-P02-001 | Escrever ADR de MVVM-C | 02 | P0 | TODO |
+| SUB-P02-001 | Escrever ADR de MVVM-C | 02 | P0 | READY |
 | SUB-P02-002 | Definir camadas e direção das dependências | 02 | P0 | TODO |
 | SUB-P02-003 | Comparar MVC e MVVM | 02 | P1 | TODO |
 | SUB-P02-004 | Comparar VIP e VIPER | 02 | P1 | TODO |
@@ -168,12 +168,12 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P13-008 | Documentar migração incremental | 13 | P1 | TODO |
 | SUB-P13-009 | Criar confirmação da substituição | 13 | P0 | REVIEW |
 | SUB-P13-010 | Carregar sugestões reais da Open Food Facts | 13 | P0 | DONE |
-| SUB-P14-001 | Definir critérios de aceite | 14 | P0 | TODO |
-| SUB-P14-002 | Revisar labels do VoiceOver | 14 | P0 | TODO |
-| SUB-P14-003 | Revisar traits e ordem de leitura | 14 | P0 | TODO |
-| SUB-P14-004 | Validar Dynamic Type | 14 | P0 | TODO |
-| SUB-P14-005 | Revisar contraste | 14 | P0 | TODO |
-| SUB-P14-006 | Revisar alvos de toque | 14 | P0 | TODO |
+| SUB-P14-001 | Definir critérios de aceite | 14 | P0 | REVIEW |
+| SUB-P14-002 | Revisar labels do VoiceOver | 14 | P0 | REVIEW |
+| SUB-P14-003 | Revisar traits e ordem de leitura | 14 | P0 | REVIEW |
+| SUB-P14-004 | Validar Dynamic Type | 14 | P0 | REVIEW |
+| SUB-P14-005 | Revisar contraste | 14 | P0 | REVIEW |
+| SUB-P14-006 | Revisar alvos de toque | 14 | P0 | REVIEW |
 | SUB-P14-007 | Usar Accessibility Inspector | 14 | P1 | TODO |
 | SUB-P14-008 | Corrigir problemas | 14 | P1 | TODO |
 | SUB-P14-009 | Registrar validação | 14 | P1 | TODO |

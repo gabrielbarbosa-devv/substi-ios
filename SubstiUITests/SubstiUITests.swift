@@ -32,6 +32,18 @@ final class SubstiUITests: XCTestCase {
     }
 
     @MainActor
+    func testOrderScreenPassesAccessibilityAudit() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        XCTAssertTrue(app.navigationBars["Meu pedido"].waitForExistence(timeout: 5))
+        guard #available(iOS 17.0, *) else {
+            throw XCTSkip("A auditoria de acessibilidade do XCTest requer iOS 17 ou posterior.")
+        }
+        try app.performAccessibilityAudit()
+    }
+
+    @MainActor
     func testLaunchPerformance() throws {
         // This measures how long it takes to launch your application.
         measure(metrics: [XCTApplicationLaunchMetric()]) {
