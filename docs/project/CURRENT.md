@@ -14,15 +14,15 @@ FASE 13 — Integração com SwiftUI
 
 ## Tarefa atual
 
-SUB-P13-006 — Validar UIKit para SwiftUI
+SUB-P13-007 — Validar fluxo de retorno
 
 ## Status
 
-REVIEW — bridge UIKit/SwiftUI verificada no código e no Simulator; build e 29 testes passaram. Aguarda Gabriel revisar e explicar antes da próxima task.
+REVIEW — teste de integração passou no iPhone 16 Pro Simulator; aguarda Gabriel revisar e explicar antes de DONE.
 
 ## Objetivo
 
-Confirmar que o Coordinator apresenta Comparação SwiftUI por `UIHostingController` no stack UIKit e passa os dados do candidato escolhido sem inventar preço ou atributos ausentes.
+Confirmar que “Ver outras opções” retorna à mesma instância de Sugestões e não confirma nem altera o pedido.
 
 ## Modelo visual
 
@@ -38,7 +38,7 @@ Pedido → Sugestões (UIKit)
 
 ## Por que agora
 
-O catálogo real já está conectado e aprovado por Gabriel. Esta verificação confirma que a comparação em SwiftUI permanece integrada ao fluxo UIKit; validar o retorno da navegação é a task seguinte, após revisão.
+A tela de comparação já está integrada à navegação UIKit. O retorno deve preservar a lista de alternativas e manter a confirmação como ação explícita separada.
 
 ## Revisões pendentes
 
@@ -51,7 +51,8 @@ O catálogo real já está conectado e aprovado por Gabriel. Esta verificação 
 
 ## Bloqueios e limites
 
-- A suíte completa passou: 29 testes (26 unitários e 3 de UI/launch), sem falhas, no iPhone 16 Pro Simulator (iOS 18.6, x86_64). Os testes de UI atuais não percorrem ações/telas além de launch; a comparação com um candidato real já foi observada no Simulator durante a integração da API.
+- A validação anterior de UIKit/SwiftUI registrou 29 testes passando (26 unitários e 3 de UI/launch), sem falhas, no iPhone 16 Pro Simulator (iOS 18.6, x86_64). Os testes de UI existentes cobrem launch, não ações/navegação.
+- O teste de retorno valida a closure da ação e a pilha UIKit, mas não automatiza o toque físico nem a inspeção visual da tela.
 - O target padrão usa arquitetura x86_64 porque o ambiente é Mac Intel; validar em dispositivo físico não faz parte desta task.
 - Os barcodes `7898215151708` (Piracanjuba), `7898080640611` (Italac) e `7896051111016` (Itambé) responderam ao endpoint v3 com nome, marca, categoria e quantidade em 27/09/2026. O conteúdo pode mudar ou ficar indisponível.
 - Preços e imagens individuais dos candidatos não estão nos dados locais; a confirmação não os inventa.
@@ -72,8 +73,8 @@ O catálogo real já está conectado e aprovado por Gabriel. Esta verificação 
 
 ## Próxima task
 
-SUB-P13-007 — Validar fluxo de retorno. Permanece TODO até a revisão de SUB-P13-006. Nenhuma outra task está IN_PROGRESS.
+SUB-P13-008 — Documentar migração incremental (P1), após a revisão de SUB-P13-007. SUB-P13-006 também permanece em REVIEW aguardando a revisão de aprendizado de Gabriel.
 
 ## Último marco
 
-SUB-P13-010 foi aprovada por Gabriel; PR #27 está na `main`. SUB-P13-006 validou a comparação SwiftUI hospedada pela navegação UIKit; build e 29 testes passaram e a task está em REVIEW na branch `feature/sub-p13-006-validate-uikit-swiftui`. O workspace mantém uma alteração local em `Substi.xcodeproj/project.pbxproj` (Development Team) fora desta mudança.
+SUB-P13-010 foi aprovada por Gabriel; PR #27 está na `main`. SUB-P13-006 validou a comparação SwiftUI hospedada pela navegação UIKit; build e 29 testes passaram e a task continua em REVIEW na branch `feature/sub-p13-006-validate-uikit-swiftui`. SUB-P13-007 validou retorno à mesma instância de Sugestões com teste determinístico aprovado; está em REVIEW na branch `feature/sub-p13-007-validate-return-flow`. O workspace mantém uma alteração local em `Substi.xcodeproj/project.pbxproj` (Development Team) fora desta mudança.
