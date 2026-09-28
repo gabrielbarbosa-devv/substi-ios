@@ -1,3 +1,4 @@
+import SubstiDomain
 final class DemoInventoryRepository: InventoryRepository {
     private var order = InventoryFixtures.order
 

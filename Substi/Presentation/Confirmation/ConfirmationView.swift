@@ -6,58 +6,58 @@ struct ConfirmationView: View {
     let onCancel: () -> Void
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: DSSpacing.medium) {
-                HStack {
-                    Spacer()
-                    Button(action: onCancel) {
-                        Image(systemName: "xmark")
-                            .font(.body.weight(.semibold))
-                            .foregroundStyle(Color(uiColor: DSColor.textPrimary))
-                            .frame(width: 44, height: 44)
-                            .background(Color(uiColor: DSColor.backgroundSecondary), in: Circle())
+        VStack(spacing: 0) {
+            ScrollView {
+                VStack(spacing: DSSpacing.medium) {
+                    HStack {
+                        Spacer()
+                        Button(action: onCancel) {
+                            Image(systemName: "xmark")
+                                .font(.body.weight(.semibold))
+                                .foregroundStyle(Color(uiColor: DSColor.textPrimary))
+                                .frame(width: 44, height: 44)
+                                .background(Color(uiColor: DSColor.backgroundSecondary), in: Circle())
+                        }
+                        .accessibilityLabel("Fechar confirmação")
                     }
-                    .accessibilityLabel("Fechar confirmação")
+
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 28, weight: .semibold))
+                        .foregroundStyle(Color(uiColor: DSColor.statusSuccess))
+                        .frame(width: 80, height: 80)
+                        .background(Color(uiColor: DSColor.surfaceSuccess), in: Circle())
+                        .accessibilityHidden(true)
+
+                    Text("Confirmar substituição?")
+                        .font(.title2.weight(.bold))
+                        .foregroundStyle(Color(uiColor: DSColor.textPrimary))
+                        .multilineTextAlignment(.center)
+                        .accessibilityAddTraits(.isHeader)
+                        .accessibilityIdentifier("substitution-confirmation-title")
+
+                    Text("Vamos substituir o item indisponível pelo produto abaixo.")
+                        .font(.body)
+                        .foregroundStyle(Color(uiColor: DSColor.textSecondary))
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    productCard(viewModel.original, heading: "Item original", isSubstitute: false)
+
+                    Image(systemName: "arrow.down")
+                        .font(.title3.weight(.semibold))
+                        .foregroundStyle(Color(uiColor: DSColor.textPrimary))
+                        .accessibilityLabel("Será substituído por")
+
+                    productCard(viewModel.substitute, heading: "Substituir por", isSubstitute: true)
                 }
-
-                Image(systemName: "checkmark")
-                    .font(.system(size: 28, weight: .semibold))
-                    .foregroundStyle(Color(uiColor: DSColor.statusSuccess))
-                    .frame(width: 80, height: 80)
-                    .background(Color(uiColor: DSColor.surfaceSuccess), in: Circle())
-                    .accessibilityHidden(true)
-
-                Text("Confirmar substituição?")
-                    .font(.title2.weight(.bold))
-                    .foregroundStyle(Color(uiColor: DSColor.textPrimary))
-                    .multilineTextAlignment(.center)
-                    .accessibilityAddTraits(.isHeader)
-
-                Text("Vamos substituir o item indisponível pelo produto abaixo.")
-                    .font(.body)
-                    .foregroundStyle(Color(uiColor: DSColor.textSecondary))
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-
-                productCard(viewModel.original, heading: "Item original", isSubstitute: false)
-
-                Image(systemName: "arrow.down")
-                    .font(.title3.weight(.semibold))
-                    .foregroundStyle(Color(uiColor: DSColor.textPrimary))
-                    .accessibilityLabel("Será substituído por")
-
-                productCard(viewModel.substitute, heading: "Substituir por", isSubstitute: true)
+                .padding(.horizontal, DSSpacing.medium)
+                .padding(.top, DSSpacing.large)
+                .padding(.bottom, DSSpacing.medium)
+                .frame(maxWidth: .infinity)
             }
-            .padding(.horizontal, DSSpacing.medium)
-            .padding(.top, DSSpacing.large)
-            .padding(.bottom, DSSpacing.medium)
-            .frame(maxWidth: .infinity)
-        }
-        .background(Color(uiColor: DSColor.backgroundPrimary))
-        .safeAreaInset(edge: .bottom, spacing: 0) {
             actionBar
         }
-        .accessibilityIdentifier("substitution-confirmation-screen")
+        .background(Color(uiColor: DSColor.backgroundPrimary))
     }
 
     private var actionBar: some View {
@@ -67,7 +67,9 @@ struct ConfirmationView: View {
                     .font(.headline)
                     .frame(maxWidth: .infinity, minHeight: 52)
             }
-            .buttonStyle(ConfirmationPrimaryButtonStyle())
+            .buttonStyle(.borderedProminent)
+            .tint(Color(uiColor: DSColor.interactivePrimary))
+            .accessibilityIdentifier("confirmation-confirm")
             .accessibilityHint("Atualiza o pedido demonstrativo com o produto escolhido.")
 
             Button("Cancelar", action: onCancel)
@@ -119,17 +121,5 @@ struct ConfirmationView: View {
         )
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(heading): \(item.name), \(item.quantity), \(item.brand), preço \(item.price)")
-    }
-}
-
-private struct ConfirmationPrimaryButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .foregroundStyle(Color(uiColor: DSColor.textInverse))
-            .background(
-                RoundedRectangle(cornerRadius: DSRadius.medium)
-                    .fill(Color(uiColor: DSColor.interactivePrimary))
-                    .opacity(configuration.isPressed ? 0.8 : 1)
-            )
     }
 }

@@ -1,3 +1,4 @@
+import SubstiDomain
 import UIKit
 
 @MainActor
@@ -14,6 +15,7 @@ final class SuggestionsViewModel {
     let originalPriceText: String?
     private let candidateBarcodes: [String]
     private let loadProduct: LoadProductUseCase
+    private let ranker: ProductSubstitutionRanker
     private(set) var state: State = .idle
     var onStateChange: ((State) -> Void)?
 
@@ -26,11 +28,13 @@ final class SuggestionsViewModel {
         originalProduct: Product,
         originalPrice: Decimal?,
         candidateBarcodes: [String],
-        loadProduct: LoadProductUseCase
+        loadProduct: LoadProductUseCase,
+        ranker: ProductSubstitutionRanker = ProductSubstitutionRanker()
     ) {
         self.originalProduct = originalProduct
         self.candidateBarcodes = candidateBarcodes
         self.loadProduct = loadProduct
+        self.ranker = ranker
 
         let priceFormatter = NumberFormatter()
         priceFormatter.numberStyle = .currency
@@ -60,20 +64,23 @@ final class SuggestionsViewModel {
         }
 
         if !candidates.isEmpty {
-            state = .content(candidates, failedCount: failedCount)
+            state = .content(ranker.rank(candidates, replacing: originalProduct), failedCount: failedCount)
+            AppLog.suggestions.info(
+                "Candidates loaded: \(candidates.count, privacy: .public), failed: \(failedCount, privacy: .public)"
+            )
         } else {
             state = failedCount == 0 ? .empty : .error
+            AppLog.suggestions.info("No candidates loaded; failed: \(failedCount, privacy: .public)")
         }
         onStateChange?(state)
     }
 
     func cardContent(for candidate: SubstitutionCandidate) -> DSProductCardContent {
-        let categoryMatches = ProductSubstitutionRanker().categoryScore(
+        let categoryMatches = ranker.categoryScore(
             for: candidate,
             replacing: originalProduct
         ) == 1
-        let quantityMatches = originalProduct.quantity != nil
-            && originalProduct.quantity == candidate.product.quantity
+        let quantityMatches = ranker.quantityScore(for: candidate, replacing: originalProduct) == 1
 
         let evidence = [
             categoryMatches ? "Categoria correspondente" : nil,

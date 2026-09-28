@@ -1,3 +1,4 @@
+import SubstiDomain
 import Foundation
 
 enum InventoryFixtures {

@@ -1,114 +1,92 @@
 # Substi iOS
 
-**Substituição inteligente de produtos de mercado.** O Substi explora como ajudar uma pessoa a escolher uma alternativa quando um produto do pedido fica indisponível durante a separação.
+**Uma escolha simples quando um produto do pedido fica indisponível.** O Substi é uma aplicação demonstrativa para iOS que apresenta alternativas de um catálogo público, ajuda a comparar características e registra a substituição em um pedido local.
 
-**Status:** Em andamento (*Work in Progress*)
-**Prazo da entrega:** 28 de setembro de 2026, às 11h, horário de Brasília (`America/Sao_Paulo`).
+**Prazo do desafio:** 28 de setembro de 2026, às 11h (`America/Sao_Paulo`).
 
-## O problema que identifiquei
+## Problema e recorte de produto
 
-Durante uma compra de mercado, a pessoa já escolheu os produtos e segue com o pedido. Se um item fica indisponível durante a separação, ela precisa tomar outra decisão em um momento inesperado. Comparar categoria, quantidade, marca e outras informações pode exigir esforço adicional.
+Durante a separação de uma compra de mercado, um produto escolhido pode ficar indisponível. A pessoa precisa decidir novamente depois de já ter concluído sua escolha. O Substi explora uma forma de reduzir esse esforço: mostrar alternativas com informações comparáveis e tornar explícitas as semelhanças conhecidas.
 
-Minha pesquisa inicial sobre compras por aplicativos e experiências de grocery/e-commerce apontou esse cenário como uma oportunidade de produto: apresentar alternativas de forma clara e explicar quais características são semelhantes. Esta é uma hipótese a explorar, não uma alegação de pesquisa quantitativa com usuários. O projeto também não afirma que o iFood não oferece substituições nem descreve a funcionalidade atual do iFood.
-
-```text
-Pedido em andamento
-        ↓
-Produto escolhido indisponível
-        ↓
-Nova decisão para a pessoa
-        ↓
-Alternativas comparáveis
-        ↓
-Escolha consciente
-```
-
-## O que a aplicação demonstra
-
-O fluxo permite abrir um pedido demonstrativo, escolher o produto indisponível, carregar opções do catálogo público Open Food Facts, comparar o original com uma alternativa, confirmar a troca e voltar ao pedido atualizado.
+Esta é uma hipótese de produto, sem pesquisa quantitativa com usuários neste repositório. O projeto **não afirma** que o iFood carece dessa funcionalidade nem reproduz seu fluxo atual. Pedido e estoque são demonstrativos; a Open Food Facts fornece informações públicas de produtos, não disponibilidade de uma loja.
 
 ```text
-Pedido [UIKit]
-   ↓
-Sugestões reais do catálogo [UIKit]
-   ↓
-Comparação [SwiftUI]
-   ↓
-Confirmação [SwiftUI]
-   ↓
-Pedido atualizado em memória [UIKit]
+Pedido em preparação → item indisponível → alternativas → comparação → confirmação → pedido atualizado
 ```
 
-## Arquitetura implementada
+## O que está implementado
 
-O app usa uma composição pequena de **MVVM-C**, dimensionada para esse fluxo. O `SceneDelegate` monta as dependências, o `AppCoordinator` controla navegação, as ViewModels preparam estado de apresentação e os contratos de repositório isolam as fontes de dados.
-
-```text
-SceneDelegate (composition root)
-  ├── URLSessionAPIClient
-  ├── OpenFoodFactsProductRepository
-  ├── DemoInventoryRepository
-  └── AppCoordinator
-        ├── telas UIKit + ViewModels
-        └── SwiftUI em UIHostingController
-
-Presentation → Application → contratos do Domain
-Data ──────────────────────> implementa contratos do Domain
-```
-
-```text
-Substi/
-├── App/                    # ciclo de vida, composição e Coordinator
-├── Application/UseCases    # operações da aplicação
-├── Domain/                 # modelos, contratos e regras de domínio
-├── Data/                   # API, DTOs, mappers, repositórios e fixtures
-├── Presentation/           # Order, Suggestions, Comparison, Confirmation
-└── DesignSystem/           # foundations e componentes UIKit compartilhados
-```
-
-As pastas separam responsabilidades dentro de um único target Xcode; elas ainda não são módulos Swift Package. A decisão e seus trade-offs estão em [`docs/architecture.md`](docs/architecture.md) e [`ADR-001`](docs/project/adr/ADR-001-mvvm-c.md).
-
-## Tecnologias e decisões atuais
-
-| Área | Estado no código |
+| Parte | Decisão e motivo |
 | --- | --- |
-| Plataforma | iOS 16 como deployment target; Mac Intel e Xcode 16.4 no ambiente do projeto. |
-| Swift | Compilador Swift 6.1 disponível; projeto ainda está em **Swift 5 Language Mode**. Ativar Swift 6 é a próxima task. |
-| Interface | UIKit com View Code, Auto Layout, `UIScrollView` e `UIStackView`; comparação e confirmação em SwiftUI, hospedadas por UIKit com `UIHostingController`. |
-| Arquitetura | MVVM-C com `AppCoordinator`, `SceneDelegate` como composition root e ViewModels por fluxo. |
-| Rede | `URLSession` com `async/await`, APIClient, Endpoint, DTO, Mapper e tratamento de erros para o catálogo Open Food Facts. |
-| Dados do pedido | Pedido, estoque demonstrativo e confirmação são locais e em memória; não vêm de um backend de loja. |
-| Design | Tokens semânticos de cor, tipografia, espaçamento e raio; componentes UIKit reutilizados; System Font, Dynamic Type e SF Symbols quando adequados. |
-| Concorrência | Requisições de sugestões são sequenciais e canceláveis. `MainActor` protege estado de UI. Não há `TaskGroup` no fluxo do app. |
-| Testes | Swift Testing para unidade/integração e XCTest/XCUIAutomation para UI, lançamento, desempenho de abertura e auditoria automática de acessibilidade da tela Pedido. |
-| Dependências | Não há dependências externas, CocoaPods, Swift Packages ou gerenciador de terceiros. |
+| Pedido e sugestões | UIKit, View Code e Auto Layout para demonstrar ciclo de vida, composição e navegação nativa. |
+| Comparação e confirmação | SwiftUI em `UIHostingController`, com navegação mantida pelo Coordinator. Demonstra convivência gradual com UIKit. |
+| Catálogo | `URLSession` + `async/await` consultam a Open Food Facts por códigos de barras. DTO e Mapper impedem que o formato externo vaze para o domínio. |
+| Pedido | Fixture local em memória para representar indisponibilidade e confirmar a troca. O catálogo público não informa estoque de loja. |
+| Ranking | Categoria correspondente primeiro; quantidade textual correspondente em seguida; empates preservam a ordem inicial. A interface mostra a evidência disponível, sem porcentagem de compatibilidade inventada. |
+| Concorrência | Estado de apresentação isolado em `MainActor`; carregamento sequencial e cancelável respeita a pequena lista de candidatos e evita paralelismo sem benefício medido. |
+| Design | Cores semânticas, System Font, Dynamic Type, SF Symbols e componentes usados pelo fluxo. UIKit e SwiftUI compartilham os mesmos tokens. |
+| Observabilidade | `Logger` com categorias de rede e sugestões. Registra status e contagens, sem nomes de produtos ou dados pessoais. |
 
-### API e limitações dos dados
+## Arquitetura e modularização
 
-O app consulta o catálogo público por códigos de barras definidos nas fixtures demonstrativas. A resposta fornece nome, código, categoria, marca e quantidade quando disponíveis. A API pública não informa o estoque do pedido; o projeto não se conecta ao inventário ou ao backend de uma loja.
+O projeto usa **MVVM-C em escala pequena**. O `SceneDelegate` compõe dependências, o `AppCoordinator` controla navegação, ViewModels preparam estados de tela e protocolos de repositório delimitam as fontes de dados. O pacote local `SubstiDomain` contém modelos, contratos e ranking; ele depende apenas de Foundation. App, Data, Application, Presentation e DesignSystem permanecem separados por pastas no target do app.
 
-O conjunto de candidatos é configurado localmente. O `ProductSubstitutionRanker` calcula atualmente apenas um ponto por categoria igual; ele ainda não ordena o conjunto por uma regra completa. Categoria e quantidade aparecem como informações de comparação, não como uma pontuação de compatibilidade validada. Preço e imagem do substituto não são fornecidos pelo fluxo atual.
+```text
+SceneDelegate ──cria──> AppCoordinator ──navega──> UIKit / SwiftUI
+       │                                         │
+       ├── URLSessionAPIClient                   └── ViewModels
+       ├── OpenFoodFactsProductRepository                │
+       └── DemoInventoryRepository                       ▼
+                                                    SubstiDomain
+Data ──implementa contratos─────────────────────────────▲
+```
 
-## Testes e validação
+```text
+Packages/SubstiDomain/     modelos, contratos e regra pura (módulo Swift)
+Substi/App/                ciclo de vida, injeção e Coordinator
+Substi/Application/        use cases
+Substi/Data/               rede, DTO, mapper, repositories e fixtures
+Substi/Presentation/       telas e ViewModels por fluxo
+Substi/DesignSystem/       tokens e componentes visuais necessários
+Substi/Observability/      categorias de Logger
+```
 
-A suíte completa passou no simulador: **27 testes unitários e 7 execuções de testes de UI/launch**, incluindo teste do mapper/rede com `URLProtocol`, ViewModels, navegação, ranking e auditoria automática da tela Pedido. Os testes de rede usam respostas controladas; não dependem de a API estar disponível durante a execução.
+A fronteira do domínio é um módulo real do Swift Package Manager, sem dependência externa. Separar as demais pastas em pacotes agora aumentaria configuração e APIs públicas antes de haver necessidade concreta. Consulte [arquitetura](docs/architecture.md) e [ADR MVVM-C](docs/project/adr/ADR-001-mvvm-c.md).
 
-A auditoria automatizada usa uma API de XCTest disponível em iOS 17 ou posterior, embora o deployment target permaneça iOS 16. A tela Pedido passou nessa auditoria. VoiceOver e Dynamic Type ainda precisam de revisão manual nas quatro telas.
+## Ambiente e execução
 
-## O que ainda falta
+- macOS em Mac Intel, Xcode 16.4, compilador Swift 6.1 e **Swift 6 Language Mode** nos targets.
+- Deployment target iOS 16; o teste de auditoria automática do XCTest requer simulador iOS 17 ou posterior.
+- Abra `Substi.xcodeproj`, selecione o esquema `Substi` e execute no simulador. A execução normal usa o catálogo real e precisa de Internet. O target não exige biblioteca externa nem chave de API.
+- A assinatura local pode ser selecionada em *Signing & Capabilities* para execução em dispositivo. Dados de equipe de uma máquina não fazem parte do commit.
 
-- Ativar Swift 6 Language Mode e corrigir os diagnósticos reais do compilador.
-- Definir uma regra de ranking explicável, cobrindo categoria, quantidade e atributos disponíveis; ordenar candidatos por essa regra e testar casos de borda.
-- Fazer uma jornada automatizada de UI que atravesse sugestões, comparação, confirmação e retorno ao pedido.
-- Revisar VoiceOver, Dynamic Type, contraste e alvos de toque manualmente em todas as telas.
-- Melhorar a apresentação de indisponibilidade de rede, ausência de campos e tentativas de recarga sem depender de conexão ao vivo nos testes.
-- Adicionar observabilidade mínima com `Logger` e registrar warnings de build relevantes.
-- Atualizar screenshots e validar visualmente a versão que será enviada.
+Para rodar a suíte pelo terminal, com o Xcode selecionado como developer directory:
 
-SwiftLint, CI/CD, Fastlane, snapshots, persistência, backend de pedidos/estoque, imagens/preços confiáveis, analytics, crash reporting, remote config, ML e Objective-C não estão implementados. São opções de evolução, não capacidades atuais do app.
+```bash
+xcodebuild -project Substi.xcodeproj -scheme Substi \
+  -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+  CODE_SIGNING_ALLOWED=NO test
+```
 
-## Como o trabalho é organizado
+## Verificação e limites
 
-O repositório mantém tarefas pequenas em [`docs/project/BACKLOG.md`](docs/project/BACKLOG.md), o próximo passo em [`docs/project/CURRENT.md`](docs/project/CURRENT.md) e a trilha de entrega em [`docs/project/ROADMAP.md`](docs/project/ROADMAP.md). O objetivo é permitir que uma pessoa avaliadora veja o problema, o que foi construído, as decisões, os testes e os limites sem confundir um estudo futuro com uma funcionalidade entregue.
+Há testes unitários de domínio, ranking, mapper, rede via `URLProtocol`, repositories e ViewModels. Um teste de UI usa um catálogo local **somente com argumento de lançamento de teste** para percorrer Pedido → Sugestões → Comparação → Confirmação → Pedido atualizado, sem depender da Internet. Auditorias de acessibilidade do XCTest cobrem as quatro telas. Na tela Pedido, o teste exclui o alerta de texto cortado causado por um cartão parcialmente visível na borda da rolagem; os demais alertas permanecem ativos. A API real foi consultada separadamente para conferir os códigos de barras da demonstração; isso não substitui uma validação manual da jornada com rede ao vivo.
 
-`main` é a branch principal. Mudanças são desenvolvidas em branches focadas, registradas em commits Conventional Commits e integradas por pull request. As regras estão em [`docs/project/GIT-WORKFLOW.md`](docs/project/GIT-WORKFLOW.md).
+A Open Food Facts pode ter campos ausentes, alteração de dados, indisponibilidade ou limites de requisições. As opções consultadas são barcodes definidos na fixture; o app não descobre o estoque real nem garante alternativas comercialmente disponíveis. A correspondência de categoria e quantidade é uma heurística textual simples, não recomendação validada, cálculo nutricional ou inteligência artificial. Preço e imagem do substituto não são confiáveis no fluxo atual. Dynamic Type ampliado mostrou uma limitação da auditoria automática: um cartão parcialmente visível na borda da rolagem foi sinalizado como texto cortado; requer inspeção manual nessa configuração.
+
+## Evolução futura de engenharia
+
+| Possibilidade | Quando faria sentido |
+| --- | --- |
+| Backend de pedido e inventário | Quando houver integração com uma loja; substituir a fixture mantendo o contrato `InventoryRepository`. |
+| Descoberta e ranking melhores | Com catálogo de candidatos confiável, taxonomia de categorias e critérios de produto validados com usuários. |
+| Requisições paralelas e cache | Se medição de latência justificar; limitar concorrência e respeitar a política da API. `TaskGroup` não melhora automaticamente uma lista pequena. |
+| Mais módulos Swift Package | Quando fronteiras e equipes exigirem builds independentes; preservar o grafo de dependências. |
+| CI, SwiftLint e snapshots | Para colaboração contínua e prevenção de regressão, com regras e imagens estáveis. |
+| Analytics, crash reporting e feature flags | Com objetivos de produto, consentimento/privacidade e operação contínua definidos. |
+| Modelo de ML | Apenas com dados rotulados, avaliação de qualidade e uma vantagem demonstrada sobre a regra explicável. |
+| GCD, Objective-C, CocoaPods, Bazel/Buck e Fastlane | Tópicos de estudo ou de bases maiores; adicioná-los a este app pequeno só para demonstrar ferramentas aumentaria custo sem melhorar a decisão do usuário. |
+
+## Como o trabalho foi organizado
+
+O [backlog](docs/project/BACKLOG.md), [trilha de entrega](docs/project/ROADMAP.md) e [painel atual](docs/project/CURRENT.md) mostram o plano e o estado das tarefas. As 20 fases representam uma visão de aprendizado, não 20 fases implementadas. As mudanças seguem branches, [convenção Git](docs/project/GIT-WORKFLOW.md), commits Conventional Commits e revisão por pull request. A IA auxiliou na implementação e na estruturação; as decisões, limitações e evidências estão registradas para revisão humana.

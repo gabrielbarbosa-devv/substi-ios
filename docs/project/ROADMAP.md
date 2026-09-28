@@ -1,8 +1,10 @@
-# Roadmap do Substi do Substi
+# Roadmap do Substi
 
 ## Plano completo de engenharia
 
 As 20 fases preservam a visão de aprendizado e evolução de engenharia do projeto. Elas não determinam a ordem de execução da entrega atual. A trilha de entrega é uma sequência vertical independente; prioridade e dependências indicam o que realmente precisa ser feito.
+
+**Estado da entrega:** a jornada de quatro telas, a consulta ao catálogo público, o domínio em pacote local e os testes essenciais foram implementados. As tasks novas desta rodada estão em `REVIEW`; as fases futuras continuam como opções de evolução. Veja o estado preciso em [CURRENT.md](CURRENT.md) e as limitações no [README](../../README.md).
 
 ## DELIVERY TRACK — prazo: 28/09/2026, 11h
 

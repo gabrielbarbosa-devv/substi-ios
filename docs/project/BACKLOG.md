@@ -19,7 +19,7 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P00-013 | Revisar descoberta com Gabriel | 00 | P1 | TODO |
 | SUB-P01-001 | Criar projeto Xcode | 01 | P0 | DONE |
 | SUB-P01-002 | Configurar Bundle ID e deployment target | 01 | P0 | REVIEW |
-| SUB-P01-003 | Ativar Swift 6 Language Mode | 01 | P0 | READY |
+| SUB-P01-003 | Ativar Swift 6 Language Mode | 01 | P0 | REVIEW |
 | SUB-P01-004 | Inspecionar estrutura do Xcode | 01 | P1 | TODO |
 | SUB-P01-005 | Adicionar target de testes unitários | 01 | P0 | TODO |
 | SUB-P01-006 | Adicionar target de testes de UI | 01 | P1 | TODO |
@@ -38,9 +38,9 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P02-008 | Definir fronteiras de protocolos | 02 | P1 | DONE |
 | SUB-P02-009 | Revisar trade-offs de SOLID | 02 | P1 | TODO |
 | SUB-P02-010 | Revisar arquitetura | 02 | P1 | TODO |
-| SUB-P03-001 | Planejar módulos e grafo de dependências | 03 | P1 | TODO |
-| SUB-P03-002 | Criar Swift Package local | 03 | P1 | TODO |
-| SUB-P03-003 | Adicionar target CoreKit | 03 | P1 | TODO |
+| SUB-P03-001 | Planejar módulos e grafo de dependências | 03 | P1 | REVIEW |
+| SUB-P03-002 | Criar Swift Package local | 03 | P1 | REVIEW |
+| SUB-P03-003 | Adicionar módulo SubstiDomain | 03 | P1 | REVIEW |
 | SUB-P03-004 | Adicionar target DesignSystem | 03 | P1 | TODO |
 | SUB-P03-005 | Adicionar target SubstitutionFeature | 03 | P1 | TODO |
 | SUB-P03-006 | Adicionar target TestSupport | 03 | P1 | TODO |
@@ -60,9 +60,9 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P05-001 | Especificar regras de ranking | 05 | P0 | DONE |
 | SUB-P05-002 | Escrever teste que falha (RED) | 05 | P0 | DONE |
 | SUB-P05-003 | Implementar pontuação por categoria (GREEN) | 05 | P0 | DONE |
-| SUB-P05-004 | Implementar pontuação por quantidade | 05 | P1 | TODO |
+| SUB-P05-004 | Implementar pontuação por quantidade | 05 | P1 | REVIEW |
 | SUB-P05-005 | Implementar pontuação por atributos | 05 | P1 | TODO |
-| SUB-P05-006 | Definir desempate | 05 | P1 | TODO |
+| SUB-P05-006 | Definir desempate | 05 | P1 | REVIEW |
 | SUB-P05-007 | Cobrir casos de borda | 05 | P1 | TODO |
 | SUB-P05-008 | Refatorar ranking | 05 | P1 | TODO |
 | SUB-P05-009 | Documentar pesos e limitações | 05 | P1 | TODO |
@@ -177,9 +177,9 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P14-007 | Usar Accessibility Inspector | 14 | P1 | TODO |
 | SUB-P14-008 | Corrigir problemas | 14 | P1 | TODO |
 | SUB-P14-009 | Registrar validação | 14 | P1 | TODO |
-| SUB-P15-001 | Definir logs e privacidade | 15 | P0 | TODO |
-| SUB-P15-002 | Adicionar categorias do Logger | 15 | P0 | TODO |
-| SUB-P15-003 | Adicionar diagnósticos de rede seguros | 15 | P1 | TODO |
+| SUB-P15-001 | Definir logs e privacidade | 15 | P0 | REVIEW |
+| SUB-P15-002 | Adicionar categorias do Logger | 15 | P0 | REVIEW |
+| SUB-P15-003 | Adicionar diagnósticos de rede seguros | 15 | P1 | REVIEW |
 | SUB-P15-004 | Adicionar diagnósticos de cache | 15 | P1 | TODO |
 | SUB-P15-005 | Medir com signposts | 15 | P1 | TODO |
 | SUB-P15-006 | Definir contrato de analytics | 15 | P2 | TODO |
@@ -194,7 +194,7 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P16-005 | Adicionar testes do Repository | 16 | P1 | TODO |
 | SUB-P16-006 | Adicionar testes de ViewModel | 16 | P1 | TODO |
 | SUB-P16-007 | Adicionar snapshots | 16 | P1 | TODO |
-| SUB-P16-008 | Adicionar teste determinístico do fluxo de UI | 16 | P1 | TODO |
+| SUB-P16-008 | Adicionar teste determinístico do fluxo de UI | 16 | P0 | REVIEW |
 | SUB-P16-009 | Definir BDD e teste doubles | 16 | P2 | TODO |
 | SUB-P16-010 | Revisar estratégia para testes instáveis e desempenho | 16 | P1 | TODO |
 | SUB-P17-001 | Estudar LLDB e breakpoints | 17 | P1 | TODO |

@@ -1,6 +1,16 @@
 import UIKit
 
 final class DSButton: UIButton {
+    override var isEnabled: Bool {
+        didSet {
+            if isEnabled {
+                accessibilityTraits.remove(.notEnabled)
+            } else {
+                accessibilityTraits.insert(.notEnabled)
+            }
+        }
+    }
+
     init(title: String) {
         super.init(frame: .zero)
 
@@ -15,10 +25,13 @@ final class DSButton: UIButton {
             bottom: DSSpacing.medium,
             trailing: DSSpacing.large
         )
+        buttonConfiguration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer {
+            var attributes = $0
+            attributes.font = UIFont.preferredFont(forTextStyle: .headline)
+            return attributes
+        }
         configuration = buttonConfiguration
-        titleLabel?.font = DSTypography.button
         titleLabel?.adjustsFontForContentSizeCategory = true
-        minimumContentSizeCategory = .accessibilityMedium
         accessibilityTraits.insert(.button)
     }
 

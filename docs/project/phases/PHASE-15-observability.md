@@ -17,7 +17,7 @@ TODO
 
 ## SUB-P15-001 — Definir logs e privacidade
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -36,8 +36,8 @@ Concluir Definir logs e privacidade dentro do escopo definido e deixar o resulta
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
 - [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia
@@ -83,7 +83,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P15-002 — Adicionar categorias do Logger
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -102,8 +102,8 @@ Concluir Adicionar categorias do Logger dentro do escopo definido e deixar o res
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
 - [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia
@@ -149,7 +149,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P15-003 — Adicionar diagnósticos de rede seguros
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P1
 
@@ -168,8 +168,8 @@ Concluir Adicionar diagnósticos de rede seguros dentro do escopo definido e dei
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
 - [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia

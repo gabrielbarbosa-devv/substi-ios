@@ -1,3 +1,4 @@
+import SubstiDomain
 import Foundation
 
 enum ProductMappingError: Error {
@@ -6,7 +7,7 @@ enum ProductMappingError: Error {
     case missingName
 }
 
-struct OpenFoodFactsProductMapper {
+struct OpenFoodFactsProductMapper: Sendable {
     func map(_ response: OpenFoodFactsProductResponseDTO) throws -> Product {
         guard let product = response.product else {
             throw ProductMappingError.productNotFound

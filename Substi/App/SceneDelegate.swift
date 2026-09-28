@@ -1,3 +1,4 @@
+import SubstiDomain
 import UIKit
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -19,7 +20,16 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             baseURL: apiBaseURL,
             userAgent: "Substi/1.0 (https://github.com/gabrielbarbosa-devv/substi-ios)"
         )
-        let productRepository = OpenFoodFactsProductRepository(apiClient: apiClient)
+        let productRepository: any ProductRepository
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--uitest-demo-catalog") {
+            productRepository = DemoCatalogProductRepository()
+        } else {
+            productRepository = OpenFoodFactsProductRepository(apiClient: apiClient)
+        }
+        #else
+        productRepository = OpenFoodFactsProductRepository(apiClient: apiClient)
+        #endif
         let coordinator = AppCoordinator(
             navigationController: navigationController,
             inventoryRepository: DemoInventoryRepository(),
