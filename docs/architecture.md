@@ -23,9 +23,9 @@ Data implementations ───────────────────�
 | --- | --- |
 | `Substi/App` | Ciclo de vida da aplicação, composição inicial e navegação. |
 | `Substi/Application/UseCases` | Operações de aplicação que coordenam um objetivo, como carregar um produto. |
-| `Substi/Domain/Models` | Tipos centrais do produto e do pedido, sem dependência de UIKit/SwiftUI. |
-| `Substi/Domain/Repositories` | Contratos que a aplicação/domínio precisam para obter ou atualizar dados. |
-| `Substi/Domain/Services` | Regras de domínio, como ranking de candidatos. |
+| `Packages/SubstiDomain/Sources/SubstiDomain/Models` | Tipos centrais do produto e do pedido, sem dependência de UIKit/SwiftUI. |
+| `Packages/SubstiDomain/Sources/SubstiDomain/Repositories` | Contratos que a aplicação/domínio precisam para obter ou atualizar dados. |
+| `Packages/SubstiDomain/Sources/SubstiDomain/Services` | Regras de domínio, como ranking de candidatos. |
 | `Substi/Data/Networking` | Transporte HTTP, endpoints, erros e DTOs da API externa. |
 | `Substi/Data/Mappers` | Conversão de DTO externo para o modelo de domínio. |
 | `Substi/Data/Repositories` | Implementações dos contratos de dados locais e remotos. |
@@ -33,7 +33,7 @@ Data implementations ───────────────────�
 | `Substi/Presentation/<Feature>` | View, ViewModel e estado de apresentação de cada fluxo. |
 | `Substi/DesignSystem` | Foundations e componentes compartilhados de interface. |
 
-As pastas já existentes correspondem a responsabilidades distintas; esta etapa não move arquivos nem cria módulos Swift Package. A separação é por diretórios no target atual do Xcode.
+O domínio agora é o pacote local `SubstiDomain` (Swift tools 6, iOS 16), importado pelo app e pelos testes. Ele depende apenas de Foundation. App, Application, Data, Presentation e DesignSystem continuam como pastas do target principal; extrair todas essas camadas aumentaria configuração e superfície pública sem necessidade no fluxo atual.
 
 ## Responsabilidades e fluxo
 
@@ -69,6 +69,6 @@ O `SceneDelegate` mantém o Coordinator em uma propriedade enquanto a cena exist
 
 ## Decisão e limites
 
-MVVM-C foi mantido porque o produto tem um fluxo de navegação entre telas UIKit e uma tela SwiftUI hospedada no mesmo fluxo. O Coordinator deixa a navegação fora das Views, e a ViewModel deixa a transformação de apresentação fora do ViewController. Para quatro telas, o projeto mantém um Coordinator e poucos limites concretos; não cria hierarquia de Coordinators, módulos separados ou protocolos para cada ViewModel.
+MVVM-C foi mantido porque o produto tem um fluxo de navegação entre telas UIKit e uma tela SwiftUI hospedada no mesmo fluxo. O Coordinator deixa a navegação fora das Views, e a ViewModel deixa a transformação de apresentação fora do ViewController. Para quatro telas, o projeto mantém um Coordinator e poucos limites concretos; não cria hierarquia de Coordinators ou protocolos para cada ViewModel. O único módulo extraído é o domínio, pois a fronteira impede dependências de UIKit/SwiftUI e mantém a regra de ranking testável.
 
 O inventário e a confirmação continuam demonstrativos em memória. Open Food Facts informa dados públicos de produtos, não disponibilidade real de loja. Consulte [Product Requirements](product-requirements.md) para limites do produto e [ADR-001](project/adr/ADR-001-mvvm-c.md) para alternativas e trade-offs.

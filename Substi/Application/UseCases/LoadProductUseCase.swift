@@ -1,4 +1,5 @@
-struct LoadProductUseCase {
+import SubstiDomain
+struct LoadProductUseCase: Sendable {
     private let productRepository: any ProductRepository
 
     init(productRepository: any ProductRepository) {

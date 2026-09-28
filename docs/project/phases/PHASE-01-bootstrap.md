@@ -155,7 +155,7 @@ Explicar a função do Bundle ID, a separação entre app/test bundles e como o 
 
 ## SUB-P01-003 — Ativar Swift 6 Language Mode
 
-Estado: READY
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -174,8 +174,8 @@ Concluir Ativar Swift 6 Language Mode dentro do escopo definido e deixar o resul
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
 - [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia

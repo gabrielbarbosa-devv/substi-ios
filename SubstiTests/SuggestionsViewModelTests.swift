@@ -1,3 +1,4 @@
+import SubstiDomain
 import Testing
 @testable import Substi
 
@@ -36,6 +37,25 @@ struct SuggestionsViewModelTests {
         } else {
             Issue.record("Expected partial content state")
         }
+    }
+
+    @Test
+    func ordersLoadedCandidatesByCategoryThenQuantity() async {
+        let repository = FixtureProductRepository(productsByBarcode: [
+            "different": Product(
+                id: ProductID(rawValue: "different"),
+                name: "Suco",
+                category: "en:juices",
+                brand: nil,
+                quantity: "1 L"
+            ),
+            "matching": product(id: "matching", name: "Leite")
+        ])
+        let viewModel = makeViewModel(repository: repository, barcodes: ["different", "matching"])
+
+        await viewModel.loadCandidates()
+
+        #expect(viewModel.candidates.map(\.product.id.rawValue) == ["matching", "different"])
     }
 
     @Test

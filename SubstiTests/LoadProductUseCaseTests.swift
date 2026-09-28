@@ -1,3 +1,4 @@
+import SubstiDomain
 import Testing
 @testable import Substi
 

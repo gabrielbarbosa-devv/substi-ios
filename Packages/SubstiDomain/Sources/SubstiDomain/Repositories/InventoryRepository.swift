@@ -1,4 +1,4 @@
-protocol InventoryRepository {
+public protocol InventoryRepository {
     var unavailableProductIDs: Set<ProductID> { get }
 
     func currentOrder() -> Order

@@ -6,42 +6,42 @@ struct ProductComparisonView: View {
     let onConfirmSubstitute: () -> Void
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: DSSpacing.large) {
-                HStack(alignment: .top, spacing: DSSpacing.small) {
-                    productCard(viewModel.original, title: "Original", isSubstitute: false)
-                    productCard(viewModel.substitute, title: "Substituto", isSubstitute: true)
-                }
+        VStack(spacing: 0) {
+            ScrollView {
+                VStack(alignment: .leading, spacing: DSSpacing.large) {
+                    HStack(alignment: .top, spacing: DSSpacing.small) {
+                        productCard(viewModel.original, title: "Original", isSubstitute: false)
+                        productCard(viewModel.substitute, title: "Substituto", isSubstitute: true)
+                    }
 
-                VStack(spacing: 0) {
-                    ForEach(Array(viewModel.rows.enumerated()), id: \.element.id) { index, row in
-                        comparisonRow(row)
-                        if index < viewModel.rows.count - 1 {
-                            Divider()
-                                .overlay(Color(uiColor: DSColor.borderDefault))
+                    VStack(spacing: 0) {
+                        ForEach(Array(viewModel.rows.enumerated()), id: \.element.id) { index, row in
+                            comparisonRow(row)
+                            if index < viewModel.rows.count - 1 {
+                                Divider()
+                                    .overlay(Color(uiColor: DSColor.borderDefault))
+                            }
                         }
                     }
+                    .padding(.horizontal, DSSpacing.medium)
+                    .background(Color(uiColor: DSColor.surfacePrimary))
+                    .clipShape(RoundedRectangle(cornerRadius: DSRadius.large))
+                    .accessibilityElement(children: .contain)
+                    .accessibilityLabel("Atributos para comparação")
+
+                    Text("Compare as informações disponíveis antes de escolher.")
+                        .font(.footnote)
+                        .foregroundStyle(Color(uiColor: DSColor.textSecondary))
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityAddTraits(.isStaticText)
                 }
                 .padding(.horizontal, DSSpacing.medium)
-                .background(Color(uiColor: DSColor.surfacePrimary))
-                .clipShape(RoundedRectangle(cornerRadius: DSRadius.large))
-                .accessibilityElement(children: .contain)
-                .accessibilityLabel("Atributos para comparação")
-
-                Text("Compare as informações disponíveis antes de escolher.")
-                    .font(.footnote)
-                    .foregroundStyle(Color(uiColor: DSColor.textSecondary))
-                    .fixedSize(horizontal: false, vertical: true)
-                    .accessibilityAddTraits(.isStaticText)
+                .padding(.top, DSSpacing.medium)
+                .padding(.bottom, DSSpacing.large)
             }
-            .padding(.horizontal, DSSpacing.medium)
-            .padding(.top, DSSpacing.medium)
-            .padding(.bottom, DSSpacing.large)
-        }
-        .background(Color(uiColor: DSColor.backgroundPrimary))
-        .safeAreaInset(edge: .bottom, spacing: 0) {
             actionBar
         }
+        .background(Color(uiColor: DSColor.backgroundPrimary))
         .navigationTitle("Comparar produtos")
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -51,10 +51,11 @@ struct ProductComparisonView: View {
             Button(action: onConfirmSubstitute) {
                 Text("Escolher este substituto")
                     .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, DSSpacing.medium)
+                    .frame(maxWidth: .infinity, minHeight: 52)
             }
-            .buttonStyle(ComparisonPrimaryButtonStyle())
+            .buttonStyle(.borderedProminent)
+            .tint(Color(uiColor: DSColor.interactivePrimary))
+            .accessibilityIdentifier("comparison-choose-substitute")
             .accessibilityHint("Revise o resumo antes de confirmar a substituição.")
 
             Button("Ver outras opções", action: onChooseAnother)
@@ -135,17 +136,5 @@ struct ProductComparisonView: View {
                 .fixedSize(horizontal: false, vertical: true)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-    }
-}
-
-private struct ComparisonPrimaryButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .foregroundStyle(Color(uiColor: DSColor.textInverse))
-            .background(
-                RoundedRectangle(cornerRadius: DSRadius.medium)
-                    .fill(Color(uiColor: DSColor.interactivePrimary))
-                    .opacity(configuration.isPressed ? 0.8 : 1)
-            )
     }
 }

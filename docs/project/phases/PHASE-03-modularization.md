@@ -17,7 +17,7 @@ TODO
 
 ## SUB-P03-001 — Planejar módulos e grafo de dependências
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P1
 
@@ -36,8 +36,8 @@ Concluir Planejar módulos e grafo de dependências dentro do escopo definido e 
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
 - [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia
@@ -83,7 +83,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P03-002 — Criar Swift Package local
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P1
 
@@ -102,8 +102,8 @@ Concluir Criar Swift Package local dentro do escopo definido e deixar o resultad
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
 - [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia
@@ -147,9 +147,9 @@ Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de impl
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-## SUB-P03-003 — Adicionar target CoreKit
+## SUB-P03-003 — Adicionar módulo SubstiDomain
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P1
 
@@ -157,10 +157,10 @@ Depende de:
 - SUB-P03-002
 
 ### Contexto
-Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Adicionar target CoreKit.
+Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Adicionar módulo SubstiDomain.
 
 ### Objetivo
-Concluir Adicionar target CoreKit dentro do escopo definido e deixar o resultado pronto para revisão.
+Concluir Adicionar módulo SubstiDomain dentro do escopo definido e deixar o resultado pronto para revisão.
 
 ### Requisitos
 - Seguir as orientações de AGENTS.md e os documentos de produto e engenharia pertinentes.
@@ -168,8 +168,8 @@ Concluir Adicionar target CoreKit dentro do escopo definido e deixar o resultado
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
 - [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia
@@ -179,7 +179,7 @@ Swift Package Manager, módulos e grafo de dependências.
 Revisar as orientações pertinentes em AGENTS.md e nas fontes do projeto. Gabriel explica o objetivo e as alternativas prováveis antes da implementação.
 
 ### Perguntas que preciso saber responder
-- Que problema “Adicionar target CoreKit” resolve e por que esta abordagem é adequada?
+- Que problema “Adicionar módulo SubstiDomain” resolve e por que esta abordagem é adequada?
 - Que alternativa foi considerada e qual trade-off esta escolha envolve?
 - Como o resultado será validado e mantido?
 

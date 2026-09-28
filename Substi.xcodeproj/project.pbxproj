@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FBDDCDBB63D44E6EA5906FB5 /* SubstiDomain in Frameworks */ = {isa = PBXBuildFile; productRef = F27C211AE520498BA1C55619 /* SubstiDomain */; };
+		58BCADAB4A174410A910EE97 /* SubstiDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 1C766D742E2B4E94A61C8111 /* SubstiDomain */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		CEAF2FC6306960B50087ACFC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBDDCDBB63D44E6EA5906FB5 /* SubstiDomain in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58BCADAB4A174410A910EE97 /* SubstiDomain in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,7 @@
 			);
 			name = Substi;
 			packageProductDependencies = (
+				F27C211AE520498BA1C55619 /* SubstiDomain */,
 			);
 			productName = Substi;
 			productReference = CEAF2FB8306960B10087ACFC /* Substi.app */;
@@ -135,6 +143,7 @@
 			);
 			name = SubstiTests;
 			packageProductDependencies = (
+				1C766D742E2B4E94A61C8111 /* SubstiDomain */,
 			);
 			productName = SubstiTests;
 			productReference = CEAF2FC5306960B50087ACFC /* SubstiTests.xctest */;
@@ -195,6 +204,9 @@
 			);
 			mainGroup = CEAF2FAF306960B10087ACFC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0178E61AC4A14A6C96F4F972 /* XCLocalSwiftPackageReference "Packages/SubstiDomain" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CEAF2FB9306960B10087ACFC /* Products */;
 			projectDirPath = "";
@@ -410,7 +422,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielbarbosa.substi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -437,7 +449,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielbarbosa.substi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -454,7 +466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielbarbosa.substi.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Substi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Substi";
 			};
@@ -472,7 +484,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielbarbosa.substi.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Substi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Substi";
 			};
@@ -488,7 +500,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielbarbosa.substi.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Substi;
 			};
@@ -504,7 +516,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gabrielbarbosa.substi.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Substi;
 			};
@@ -550,6 +562,26 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		0178E61AC4A14A6C96F4F972 /* XCLocalSwiftPackageReference "Packages/SubstiDomain" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/SubstiDomain;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F27C211AE520498BA1C55619 /* SubstiDomain */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0178E61AC4A14A6C96F4F972 /* XCLocalSwiftPackageReference "Packages/SubstiDomain" */;
+			productName = SubstiDomain;
+		};
+		1C766D742E2B4E94A61C8111 /* SubstiDomain */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0178E61AC4A14A6C96F4F972 /* XCLocalSwiftPackageReference "Packages/SubstiDomain" */;
+			productName = SubstiDomain;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEAF2FB0306960B10087ACFC /* Project object */;
 }

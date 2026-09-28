@@ -479,12 +479,13 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P16-008 — Adicionar teste determinístico do fluxo de UI
 
-Estado: TODO
+Estado: REVIEW
 
-Prioridade: P1
+Prioridade: P0
 
 Depende de:
-- SUB-P16-007
+- SUB-P01-005
+- SUB-P13-009
 
 ### Contexto
 Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Adicionar teste determinístico do fluxo de UI.
@@ -498,8 +499,8 @@ Concluir Adicionar teste determinístico do fluxo de UI dentro do escopo definid
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
 - [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia

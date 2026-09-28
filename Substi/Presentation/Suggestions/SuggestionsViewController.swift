@@ -1,3 +1,4 @@
+import SubstiDomain
 import UIKit
 
 @MainActor
@@ -35,6 +36,7 @@ final class SuggestionsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = DSColor.backgroundPrimary
         navigationItem.title = "Escolher substituto"
+        navigationItem.backButtonTitle = "Voltar"
         navigationController?.navigationBar.prefersLargeTitles = false
         buildHierarchy()
         render()
@@ -70,7 +72,7 @@ final class SuggestionsViewController: UIViewController {
                 )
             )
         )
-        contentStackView.addArrangedSubview(makeLabel("Melhores alternativas", style: .headline))
+        contentStackView.addArrangedSubview(makeLabel("Alternativas disponíveis", style: .headline))
         contentStackView.addArrangedSubview(
             makeLabel("Confira categoria e quantidade antes de escolher.", style: .body, color: DSColor.textSecondary)
         )
@@ -79,6 +81,7 @@ final class SuggestionsViewController: UIViewController {
 
         compareButton.translatesAutoresizingMaskIntoConstraints = false
         compareButton.addTarget(self, action: #selector(didTapCompare), for: .primaryActionTriggered)
+        compareButton.accessibilityIdentifier = "suggestions-view-comparison"
         compareButton.isEnabled = false
 
         NSLayoutConstraint.activate([
@@ -147,6 +150,7 @@ final class SuggestionsViewController: UIViewController {
         case let .content(candidates, failedCount):
             for candidate in candidates {
                 let card = DSProductCardView(content: viewModel.cardContent(for: candidate))
+                card.accessibilityIdentifier = "suggestion-candidate-\(candidate.product.id.rawValue)"
                 candidateCards[candidate.product.id] = card
                 resultsStackView.addArrangedSubview(card)
                 configureSelection(for: candidate)

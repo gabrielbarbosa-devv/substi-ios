@@ -28,11 +28,13 @@ struct URLSessionAPIClient: APIClient {
             }
 
             guard (200..<300).contains(response.statusCode) else {
+                AppLog.network.error("Catalog HTTP status: \(response.statusCode, privacy: .public)")
                 throw NetworkError.httpStatusCode(response.statusCode)
             }
 
             return data
         } catch let error as URLError {
+            AppLog.network.error("Catalog transport error: \(error.code.rawValue, privacy: .public)")
             throw NetworkError.transport(error)
         }
     }

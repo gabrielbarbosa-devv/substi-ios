@@ -228,7 +228,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P05-004 — Implementar pontuação por quantidade
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P1
 
@@ -247,8 +247,8 @@ Concluir Implementar pontuação por quantidade dentro do escopo definido e deix
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
 - [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia
@@ -360,12 +360,12 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P05-006 — Definir desempate
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P1
 
 Depende de:
-- SUB-P05-005
+- SUB-P05-004
 
 ### Contexto
 Esta tarefa transforma o plano da fase em um resultado pequeno e revisável: Definir desempate.
@@ -379,8 +379,8 @@ Concluir Definir desempate dentro do escopo definido e deixar o resultado pronto
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
 - [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia

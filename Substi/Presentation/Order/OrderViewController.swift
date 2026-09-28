@@ -1,3 +1,4 @@
+import SubstiDomain
 import UIKit
 
 @MainActor
@@ -7,6 +8,7 @@ final class OrderViewController: UIViewController {
     private let viewModel: OrderViewModel
     private let scrollView = UIScrollView()
     private let contentStackView = UIStackView()
+    private let actionContainer = UIView()
     private let chooseSubstituteButton = DSButton(title: "Escolher substituto")
     private let statusBanner = DSStatusBannerView(
         title: "Em preparação",
@@ -33,25 +35,57 @@ final class OrderViewController: UIViewController {
     private func configureView() {
         view.backgroundColor = DSColor.backgroundPrimary
         navigationItem.title = "Meu pedido"
+        navigationItem.backButtonTitle = "Voltar"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = DSColor.brandPrimary
     }
 
     private func buildHierarchy() {
+        let rootStackView = UIStackView(arrangedSubviews: [scrollView, actionContainer])
+        rootStackView.axis = .vertical
+        rootStackView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
+        actionContainer.translatesAutoresizingMaskIntoConstraints = false
+        chooseSubstituteButton.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.axis = .vertical
         contentStackView.alignment = .fill
         contentStackView.spacing = DSSpacing.large
 
-        view.addSubview(scrollView)
+        view.addSubview(rootStackView)
         scrollView.addSubview(contentStackView)
+        actionContainer.addSubview(chooseSubstituteButton)
+        actionContainer.backgroundColor = DSColor.backgroundPrimary
+        actionContainer.layer.borderColor = DSColor.borderDefault.cgColor
+        actionContainer.layer.borderWidth = 0.5
+        chooseSubstituteButton.accessibilityIdentifier = "order-choose-substitute"
+        chooseSubstituteButton.addTarget(
+            self,
+            action: #selector(didTapChooseSubstitute),
+            for: .primaryActionTriggered
+        )
 
         NSLayoutConstraint.activate([
-            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            rootStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            rootStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            rootStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            rootStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            chooseSubstituteButton.leadingAnchor.constraint(
+                equalTo: actionContainer.leadingAnchor,
+                constant: DSSpacing.medium
+            ),
+            chooseSubstituteButton.trailingAnchor.constraint(
+                equalTo: actionContainer.trailingAnchor,
+                constant: -DSSpacing.medium
+            ),
+            chooseSubstituteButton.topAnchor.constraint(
+                equalTo: actionContainer.topAnchor,
+                constant: DSSpacing.small
+            ),
+            chooseSubstituteButton.bottomAnchor.constraint(
+                equalTo: actionContainer.bottomAnchor,
+                constant: -DSSpacing.small
+            ),
             contentStackView.leadingAnchor.constraint(
                 equalTo: scrollView.contentLayoutGuide.leadingAnchor,
                 constant: DSSpacing.medium
@@ -112,7 +146,9 @@ final class OrderViewController: UIViewController {
                     state: .substituted
                 )
             }
-            contentStackView.addArrangedSubview(DSProductCardView(content: content))
+            let card = DSProductCardView(content: content)
+            card.accessibilityIdentifier = "order-product-\(item.product.id.rawValue)"
+            contentStackView.addArrangedSubview(card)
         }
 
         if viewModel.unavailableItemCount == 0 {
@@ -129,7 +165,7 @@ final class OrderViewController: UIViewController {
             message.textColor = DSColor.textSecondary
             message.numberOfLines = 0
             contentStackView.addArrangedSubview(message)
-            chooseSubstituteButton.isHidden = true
+            actionContainer.isHidden = true
         } else {
             let substitutionCount = viewModel.unavailableItemCount
             contentStackView.addArrangedSubview(
@@ -141,12 +177,7 @@ final class OrderViewController: UIViewController {
                 )
             )
 
-            chooseSubstituteButton.addTarget(
-                self,
-                action: #selector(didTapChooseSubstitute),
-                for: .primaryActionTriggered
-            )
-            contentStackView.addArrangedSubview(chooseSubstituteButton)
+            actionContainer.isHidden = false
         }
     }
 
