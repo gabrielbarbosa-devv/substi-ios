@@ -17,6 +17,12 @@ struct AppCoordinatorNavigationTests {
         )
         coordinator.start()
 
+        guard let launchViewController = navigationController.topViewController as? LaunchViewController else {
+            Issue.record("Expected the launch screen as the initial navigation root")
+            return
+        }
+        launchViewController.onAnimationCompleted?()
+
         guard let orderViewController = navigationController.topViewController as? OrderViewController else {
             Issue.record("Expected the order screen as the navigation root")
             return

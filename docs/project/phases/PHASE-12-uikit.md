@@ -896,3 +896,80 @@ A IA implementa a referência e descreve limites; Gabriel confere se os dados e 
 
 ### Notas para entrevista
 Explicar como a seleção explícita preserva a decisão da pessoa, por que a UI não mostra dados inexistentes e como a fronteira de callback prepara a navegação para a tela de comparação.
+
+## SUB-P12-014 — Criar abertura de marca acessível
+
+Estado: REVIEW
+
+Prioridade: P1
+
+Depende de:
+- SUB-P12-010
+- SUB-P11-016
+
+### Contexto
+Na abertura, a tela de lançamento do sistema deve evitar um clarão branco e conduzir à tela de pedido com identidade visual consistente.
+
+### Objetivo
+Alinhar a Launch Screen estática à identidade do Substi e apresentar uma animação curta antes do pedido.
+
+### Requisitos
+- Usar UIKit, tokens de design existentes e uma marca vetorial compartilhada.
+- Respeitar Reduce Motion e suportar aparência clara/escura.
+- A animação deve terminar no pedido; não simular progresso de rede, pois a API só é consultada ao abrir Sugestões.
+- Não adicionar dependências.
+
+### Critérios de aceite
+- [x] A Launch Screen estática e a abertura animada usam a mesma identidade e fundo.
+- [x] O primeiro frame do app não apresenta uma tela branca sem marca.
+- [x] A animação é breve, não simula progresso de rede e considera Reduce Motion.
+- [x] A abertura termina no pedido sem alterar a jornada existente.
+- [x] Build e fluxo de inicialização são validados no Simulator.
+
+### Conceitos de engenharia
+Launch Screen do iOS, ciclo de vida da ViewController, animações UIKit, Coordinator e acessibilidade de movimento.
+
+### Estudar antes da implementação
+Diferença entre a Launch Screen estática do sistema e uma tela animada do app; por que carregamento deve representar trabalho real.
+
+### Perguntas que preciso saber responder
+- Por que a Launch Screen do iOS não pode executar animações?
+- Por que não mostramos um spinner ou progresso falso ao iniciar?
+- Como a animação respeita Reduce Motion?
+- Como o Coordinator troca da abertura para o pedido?
+- Quem mantém o Coordinator vivo e há ciclo de retenção no callback?
+
+### Validação
+Build e test plan completo passaram no iPhone 16 Pro / iOS 18.6 Simulator. A jornada de UI e a auditoria XCTest de acessibilidade passaram após a introdução da Launch Screen.
+
+### Observabilidade
+Not applicable for this task.
+
+### Considerações de memória
+O callback de conclusão captura o Coordinator fracamente; o navigation controller mantém a LaunchViewController durante sua apresentação.
+
+### Considerações de concorrência
+Not applicable for this task. A animação UIKit e a composição inicial são executadas na MainActor.
+
+### Acessibilidade
+Respeitar `UIAccessibility.isReduceMotionEnabled`; marca decorativa não deve poluir a navegação VoiceOver.
+
+### Uso de IA
+A IA implementa o escopo e explica a diferença entre launch estático e animação; Gabriel avalia se a duração e o comportamento fazem sentido.
+
+### Arquivos esperados
+- `Substi/App/Coordinators/AppCoordinator.swift`
+- `Substi/Presentation/Launch/LaunchViewController.swift`
+- `Substi/Assets.xcassets/LaunchBackground.colorset/Contents.json`
+- `Substi/Assets.xcassets/SubstiMark.imageset/Contents.json`
+- `Substi/Assets.xcassets/SubstiMark.imageset/substi-mark.svg`
+- `Substi/LaunchScreen.storyboard`
+- `Substi.xcodeproj/project.pbxproj`
+- `docs/project/CURRENT.md`, `docs/project/BACKLOG.md` e este arquivo
+
+### Critérios para conclusão
+- [ ] Critérios de aceite e build validados; limites explicados a Gabriel.
+- [ ] Mover para REVIEW antes da análise; somente Gabriel marca DONE após revisão e compreensão.
+
+### Notas para entrevista
+Explicar por que uma Launch Screen estática acelera a percepção de resposta, enquanto a animação nativa é breve e não mascara trabalho de rede inexistente.

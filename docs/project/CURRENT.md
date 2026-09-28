@@ -10,15 +10,15 @@ A jornada Pedido → Sugestões → Comparação → Confirmação → Pedido at
 
 ## Fase atual
 
-Fechamento da DELIVERY TRACK — build, suíte de testes, documentação e revisão final.
+PHASE 12 — UIKit (acabamento da abertura do app)
 
 ## Tarefa atual
 
-Revisão de entrega das tasks agrupadas `SUB-P01-003`, `SUB-P03-001`–`003`, `SUB-P05-004`, `SUB-P05-006`, `SUB-P15-001`–`003` e `SUB-P16-008`.
+`SUB-P12-014` — Criar abertura de marca acessível
 
 ## Status
 
-REVIEW. Nenhuma task está `IN_PROGRESS` ou `READY`. Os itens implementados aguardam leitura e compreensão de Gabriel antes de `DONE`, conforme `AGENTS.md`.
+REVIEW. Não há task em `IN_PROGRESS`; `SUB-P12-014` aguarda revisão de Gabriel. As tasks de entrega anteriores continuam em REVIEW até Gabriel estudar e aprovar os resultados.
 
 ## Resultado nesta rodada
 
@@ -28,6 +28,7 @@ REVIEW. Nenhuma task está `IN_PROGRESS` ou `READY`. Os itens implementados agua
 - Jornada automatizada de quatro telas com catálogo controlado apenas no lançamento de UI test.
 - Logger nativo com categorias de rede e sugestões, sem dados pessoais/produtos nos eventos.
 - Revisões de contraste, Dynamic Type e rodapé de ação nas telas.
+- Launch Screen estática alinhada ao fundo semântico e abertura UIKit animada com marca vetorial; a transição respeita Reduce Motion e revela o Pedido sem fingir carregamento de rede.
 
 ## Evidência e limites
 
@@ -37,8 +38,10 @@ O app normal consulta a Open Food Facts; os testes de UI usam o catálogo determ
 
 O Simulator foi inicializado com o Xcode 16.4. `xcode-select -p` ainda aponta para Command Line Tools; o Terminal deve selecionar Xcode 16.4 em **Xcode → Settings → Locations → Command Line Tools** ou definir `DEVELOPER_DIR` para essa execução.
 
+Após a nova abertura, o build e o test plan completo passaram novamente: zero falhas e zero testes ignorados. O teste de navegação conclui a animação via callback determinístico antes de verificar o Coordinator.
+
 A configuração local de `DEVELOPMENT_TEAM` no projeto Xcode pertence à máquina e não deve ser publicada.
 
 ## Próximo passo
 
-Gabriel revisa o fluxo e estuda as decisões de modularização, ranking e dados demonstrativos. Só então as tasks em `REVIEW` passam a `DONE`. Possíveis evoluções estão no README, sem ampliar a entrega atual.
+Revisar a abertura do app e os limites registrados nesta task. Após a revisão de Gabriel, retornar ao fechamento da DELIVERY TRACK e às verificações manuais de API ao vivo, VoiceOver, Dynamic Type e Reduce Motion.

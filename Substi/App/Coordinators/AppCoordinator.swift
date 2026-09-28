@@ -19,7 +19,24 @@ final class AppCoordinator {
     }
 
     func start() {
-        navigationController.viewControllers = [makeOrderViewController(order: inventoryRepository.currentOrder())]
+        let launchViewController = LaunchViewController()
+        launchViewController.onAnimationCompleted = { [weak self] in
+            self?.showOrderAfterLaunch()
+        }
+        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.viewControllers = [launchViewController]
+    }
+
+    private func showOrderAfterLaunch() {
+        let orderViewController = makeOrderViewController(order: inventoryRepository.currentOrder())
+        navigationController.setNavigationBarHidden(false, animated: false)
+        UIView.transition(
+            with: navigationController.view,
+            duration: 0.24,
+            options: .transitionCrossDissolve
+        ) {
+            self.navigationController.setViewControllers([orderViewController], animated: false)
+        }
     }
 
     private func showSuggestions(for productID: ProductID) {

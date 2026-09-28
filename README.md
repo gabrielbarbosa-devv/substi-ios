@@ -28,6 +28,8 @@ flowchart LR
     D -->|Confirmar| E[Pedido atualizado · UIKit]
 ```
 
+Na abertura, uma Launch Screen estática mantém a identidade visual durante a inicialização do iOS. Em seguida, uma animação curta de marca conduz ao pedido e respeita Reduce Motion. A abertura não simula carregamento de rede: a consulta real começa quando a pessoa solicita sugestões.
+
 ### Capturas do aplicativo
 
 Capturas reais das cinco etapas, obtidas durante a jornada automatizada no iPhone 16 Pro Simulator (iOS 18.6). Os arquivos `docs/assets/*-reference.png` são mockups de referência, não screenshots do app.
