@@ -1,7 +1,7 @@
 import Foundation
 
 struct OpenFoodFactsProductResponseDTO: Decodable {
-    let product: ProductDTO
+    let product: ProductDTO?
 
     struct ProductDTO: Decodable {
         let code: String?

@@ -12,9 +12,18 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
 
         let navigationController = UINavigationController()
+        guard let apiBaseURL = URL(string: "https://world.openfoodfacts.org") else {
+            preconditionFailure("A URL base da Open Food Facts deve ser válida.")
+        }
+        let apiClient = URLSessionAPIClient(
+            baseURL: apiBaseURL,
+            userAgent: "Substi/1.0 (https://github.com/gabrielbarbosa-devv/substi-ios)"
+        )
+        let productRepository = OpenFoodFactsProductRepository(apiClient: apiClient)
         let coordinator = AppCoordinator(
             navigationController: navigationController,
-            inventoryRepository: DemoInventoryRepository()
+            inventoryRepository: DemoInventoryRepository(),
+            productRepository: productRepository
         )
         coordinator.start()
 

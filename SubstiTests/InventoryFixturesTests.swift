@@ -3,23 +3,20 @@ import Testing
 
 struct InventoryFixturesTests {
     @Test
-    func demoOrderHasMilkWithTwoComparableSubstitutes() throws {
+    func demoOrderProvidesValidatedBarcodeCandidatesForMilk() throws {
         let repository = DemoInventoryRepository()
-        let original = try #require(repository.currentOrder().items.first?.product)
-        let candidates = repository.substitutionCandidates(for: original.id)
+        let original = InventoryFixtures.unavailableProduct
+        let barcodes = repository.substitutionCandidateBarcodes(for: InventoryFixtures.unavailableProduct.id)
 
         #expect(original.category == "en:dairies")
         #expect(original.quantity == "1 L")
-        #expect(candidates.count == 2)
-        #expect(candidates.allSatisfy { $0.product.category == original.category })
-        #expect(candidates.allSatisfy { $0.product.quantity == original.quantity })
-        #expect(candidates.allSatisfy { $0.product.brand != original.brand })
+        #expect(barcodes == ["7898215151708", "7898080640611", "7896051111016"])
     }
 
     @Test
-    func fixtureReturnsNoCandidatesForUnknownProduct() {
+    func fixtureReturnsNoCandidateBarcodesForUnknownProduct() {
         let repository = DemoInventoryRepository()
 
-        #expect(repository.substitutionCandidates(for: ProductID(rawValue: "unknown")).isEmpty)
+        #expect(repository.substitutionCandidateBarcodes(for: ProductID(rawValue: "unknown")).isEmpty)
     }
 }

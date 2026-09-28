@@ -27,7 +27,10 @@ struct Endpoint {
     static func openFoodFactsProduct(barcode: String) -> Endpoint {
         Endpoint(
             path: "api/v3/product/\(barcode)",
-            method: .get
+            method: .get,
+            queryItems: [
+                URLQueryItem(name: "fields", value: "code,product_name,categories_tags,brands,quantity")
+            ]
         )
     }
 }

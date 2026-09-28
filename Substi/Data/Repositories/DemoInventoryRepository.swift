@@ -5,8 +5,8 @@ final class DemoInventoryRepository: InventoryRepository {
         order
     }
 
-    func substitutionCandidates(for productID: ProductID) -> [SubstitutionCandidate] {
-        InventoryFixtures.substitutionCandidates[productID] ?? []
+    func substitutionCandidateBarcodes(for productID: ProductID) -> [String] {
+        InventoryFixtures.substitutionCandidateBarcodes[productID] ?? []
     }
 
     func confirmSubstitution(
@@ -14,9 +14,9 @@ final class DemoInventoryRepository: InventoryRepository {
         with candidate: SubstitutionCandidate
     ) -> Order? {
         guard
-            InventoryFixtures.substitutionCandidates[originalProductID]?.contains(where: {
-                $0.product.id == candidate.product.id
-            }) == true,
+            InventoryFixtures.substitutionCandidateBarcodes[originalProductID]?.contains(
+                candidate.product.id.rawValue
+            ) == true,
             let itemIndex = order.items.firstIndex(where: { $0.product.id == originalProductID })
         else {
             return nil

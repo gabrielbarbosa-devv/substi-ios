@@ -30,11 +30,11 @@ Fases independentes de networking, concorrência mínima e Design Discovery pode
 | 2. Bootstrap | `SUB-P01-001`, `SUB-P01-002`, `SUB-P01-003`, `SUB-P01-005`, `SUB-P01-008`, `SUB-P01-009`, `SUB-P01-011` |
 | 3. Arquitetura mínima | `SUB-P02-001`, `SUB-P02-002`, `SUB-P02-005`, `SUB-P02-006`, `SUB-P02-007` |
 | 4. Domínio e ranking | `SUB-P04-002`–`SUB-P04-004`; `SUB-P05-001`–`SUB-P05-003` |
-| 5. Rede e Repository | `SUB-P06-001`, `SUB-P06-003`, `SUB-P06-004`, `SUB-P06-006`–`SUB-P06-011`; `SUB-P07-001`–`SUB-P07-003`, `SUB-P07-005`, `SUB-P07-010` |
+| 5. Rede e Repository | `SUB-P06-001`, `SUB-P06-003`, `SUB-P06-004`, `SUB-P06-006`–`SUB-P06-011`; `SUB-P07-001`–`SUB-P07-003`, `SUB-P07-005`, `SUB-P07-010`; conectar sugestões reais em `SUB-P13-010` |
 | 6. Concorrência mínima | `SUB-P08-001`, `SUB-P08-007`. Usar TaskGroup só se o fluxo final justificar. |
 | 7. Design Discovery e foundations | `SUB-P11-013`, `SUB-P11-015`–`SUB-P11-018`, `SUB-P11-020`, depois `SUB-P11-021`. Tokens semânticos; não escolher hex codes arbitrários. |
 | 8. Fluxo UIKit | `SUB-P11-005`, `SUB-P11-006`, `SUB-P11-008`, `SUB-P11-010`, `SUB-P11-022`; `SUB-P12-002`–`SUB-P12-006`, `SUB-P12-009`–`SUB-P12-011`. |
-| 9. Comparação SwiftUI | `SUB-P11-023`; `SUB-P13-001`, `SUB-P13-002`, `SUB-P13-004`–`SUB-P13-007`, `SUB-P13-009`. Só implementar componentes justificados pelo inventário. |
+| 9. Comparação SwiftUI e catálogo real | `SUB-P11-023`; `SUB-P13-001`, `SUB-P13-002`, `SUB-P13-004`–`SUB-P13-007`, `SUB-P13-009`–`SUB-P13-010`. Só implementar componentes justificados pelo inventário. |
 | 10. Qualidade e acessibilidade | `SUB-P14-001`–`SUB-P14-006`; `SUB-P16-001`, `SUB-P16-003`, `SUB-P16-004`. |
 | 11. Observabilidade e entrega | `SUB-P15-001`, `SUB-P15-002`; `SUB-P19-001`, `SUB-P19-004`, `SUB-P19-006`. |
 
@@ -128,7 +128,7 @@ As dependências abaixo são pré-requisitos reais; o número da fase, por si s�
 | 10 — Gerenciamento de memória | Revisar ownership e ciclo de vida dos objetos realmente implementados. Estudos avançados de profiling são futuros. | Fluxo UIKit | P1/P2 | TODO |
 | 11 — Design Discovery e Design System | Definir princípios, foundations e contratos de tela antes da implementação mínima. Resultado: linguagem própria do Substi, revisão de acessibilidade e tokens/componentes usados. | Fluxo de produto; pode ocorrer em paralelo ao domínio/API | P0/P1 | TODO |
 | 12 — UIKit | Implementar caminho principal de pedido e sugestões com View Code. Resultado: estados de UI e navegação via Coordinator. | Bootstrap e contratos de tela | P0/P1 | TODO |
-| 13 — Integração SwiftUI | Adicionar comparação de produto integrada à navegação UIKit. Coordinator mantém ownership da navegação. | Fluxo UIKit e contrato de tela | P0/P1 | TODO |
+| 13 — Integração SwiftUI | Integrar comparação à navegação UIKit e carregar candidatos reais da Open Food Facts, mantendo o inventário local de demonstração. | Fluxo UIKit, catálogo por barcode e contrato de tela | P0 | IN_PROGRESS |
 | 14 — Acessibilidade | Verificar necessidades essenciais no fluxo entregue: VoiceOver, Dynamic Type, contraste e alvos de toque. | Contratos e telas | P0/P1 | TODO |
 | 15 — Observabilidade | Adicionar logging nativo básico e orientação de privacidade; integrações avançadas ficam para depois. | Fluxo de dados/UI | P0/P1/P2 | TODO |
 | 16 — Testes | Testar primeiro a lógica e as fronteiras de maior risco. Resultado: ranking, mapper/rede, estados essenciais e, se houver tempo, um happy path de UI. | Caminhos de domínio/dados/UI | P0/P1/P2 | TODO |
