@@ -19,6 +19,7 @@ struct DSProductCardContent {
     let brand: String?
     let quantity: String?
     let image: UIImage?
+    let imageSymbolName: String
     let priceText: String?
     let statusText: String?
     let statusStyle: DSStatusBadgeView.Style?
@@ -29,6 +30,7 @@ struct DSProductCardContent {
         brand: String?,
         quantity: String?,
         image: UIImage? = nil,
+        imageSymbolName: String = "shippingbox",
         priceText: String? = nil,
         statusText: String?,
         statusStyle: DSStatusBadgeView.Style?,
@@ -38,6 +40,7 @@ struct DSProductCardContent {
         self.brand = brand
         self.quantity = quantity
         self.image = image
+        self.imageSymbolName = imageSymbolName
         self.priceText = priceText
         self.statusText = statusText
         self.statusStyle = statusStyle
@@ -77,7 +80,9 @@ final class DSProductCardView: UIView {
     }
 
     private func configure(content: DSProductCardContent) {
-        productImageView.image = content.image ?? UIImage(systemName: "shippingbox")
+        productImageView.image = content.image
+            ?? UIImage(systemName: content.imageSymbolName)
+            ?? UIImage(systemName: "shippingbox")
         productImageView.tintColor = DSColor.brandPrimary
         productImageView.contentMode = .scaleAspectFit
         productImageView.backgroundColor = DSColor.backgroundSecondary
@@ -173,6 +178,12 @@ final class DSProductCardView: UIView {
         accessibilityLabel = [content.name, accessibilityDetails]
             .filter { !$0.isEmpty }
             .joined(separator: ", ")
+    }
+
+    func setProductImage(_ image: UIImage) {
+        productImageView.image = image
+        productImageView.tintColor = nil
+        productImageView.contentMode = .scaleAspectFit
     }
 
     func configureSelection(isSelected: Bool, action: @escaping () -> Void) {

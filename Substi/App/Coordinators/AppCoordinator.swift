@@ -7,17 +7,20 @@ final class AppCoordinator {
     private let navigationController: UINavigationController
     private let inventoryRepository: any InventoryRepository
     private let loadCandidatesUseCase: LoadSubstitutionCandidatesUseCase
+    private let imageLoader: ProductImageLoader
     private let confirmSubstitutionUseCase: ConfirmSubstitutionUseCase
 
     init(
         navigationController: UINavigationController,
         inventoryRepository: any InventoryRepository,
         loadCandidatesUseCase: LoadSubstitutionCandidatesUseCase,
+        imageLoader: ProductImageLoader,
         confirmSubstitutionUseCase: ConfirmSubstitutionUseCase
     ) {
         self.navigationController = navigationController
         self.inventoryRepository = inventoryRepository
         self.loadCandidatesUseCase = loadCandidatesUseCase
+        self.imageLoader = imageLoader
         self.confirmSubstitutionUseCase = confirmSubstitutionUseCase
     }
 
@@ -55,7 +58,7 @@ final class AppCoordinator {
             candidateBarcodes: candidateBarcodes,
             loadCandidates: loadCandidatesUseCase
         )
-        let viewController = SuggestionsViewController(viewModel: viewModel)
+        let viewController = SuggestionsViewController(viewModel: viewModel, imageLoader: imageLoader)
         viewController.onShowComparison = { [weak self] candidate in
             self?.showComparison(originalItem: originalItem, candidate: candidate)
         }
@@ -70,6 +73,7 @@ final class AppCoordinator {
         )
         let comparisonView = ProductComparisonView(
             viewModel: viewModel,
+            imageLoader: imageLoader,
             onChooseAnother: { [weak self] in
                 self?.navigationController.popViewController(animated: true)
             },
@@ -92,6 +96,7 @@ final class AppCoordinator {
     ) {
         let confirmationView = ConfirmationView(
             viewModel: viewModel,
+            imageLoader: imageLoader,
             onConfirm: { [weak self] in
                 self?.confirmSubstitution(for: originalProductID, candidate: candidate)
             },

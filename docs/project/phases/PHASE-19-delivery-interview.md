@@ -882,3 +882,93 @@ Use Cases, repositórios de demonstração, ViewModel de sugestões, testes, doc
 
 ### Notas para entrevista
 Apresentar a jornada vertical, a fronteira real do domínio, o fluxo de falhas e cancelamento, e a razão para manter dados de pedido como demonstração local.
+
+## SUB-P19-014 — Exibir imagens reais do catálogo com fallback
+
+Status: REVIEW
+
+Priority: P1
+
+Depends on:
+- SUB-P06-009
+- SUB-P06-010
+- SUB-P13-010
+
+### Context
+
+Os cartões de produto ainda usam um símbolo genérico, embora a Open Food Facts exponha URLs de imagens frontais selecionadas. Fotos reais ajudam a pessoa a reconhecer e comparar alternativas; a API pode não fornecer uma imagem para todo produto.
+
+### Objective
+
+Exibir a imagem frontal da Open Food Facts nas sugestões, comparação e confirmação, mantendo conteúdo e interação utilizáveis quando a imagem estiver ausente ou falhar.
+
+### Requirements
+
+- Solicitar `selected_images` no endpoint de produto e mapear a URL frontal para `Product.imageURL` sem expor o DTO à apresentação.
+- Preferir a imagem `display` em português, depois outras opções documentadas, e aceitar produto sem imagem.
+- Buscar bytes de imagem por um contrato próprio e implementação `URLSession`; validar HTTPS, host esperado, status HTTP e tipo de conteúdo.
+- Carregar e decodificar imagens fora da responsabilidade das Views, compartilhar cache em memória entre UIKit e SwiftUI e cancelar tarefas quando a tela/sugestão sair de uso.
+- Exibir SF Symbols semânticos por categoria como fallback. Imagem ausente/erro não pode ocultar nome, marca, quantidade nem bloquear a escolha.
+- Preservar testes offline e registrar falhas de imagem sem dados do catálogo ou URL completa.
+- Documentar que as fotos vêm da Open Food Facts, são opcionais e não representam estoque ou preço da loja.
+
+### Acceptance Criteria
+
+- [x] A resposta DTO mapeia URL frontal válida para o produto e mantém `nil` quando ausente/inválida.
+- [x] Sugestões UIKit, comparação e confirmação SwiftUI usam a imagem real quando carregada.
+- [x] Falha, HTTP não 2xx, conteúdo que não seja imagem e host não permitido resultam no fallback sem quebrar a jornada.
+- [x] Imagens são cacheadas em memória e tarefas de tela canceladas não atualizam cartões removidos.
+- [x] Testes usam `URLProtocol`/fixtures, sem depender de acesso à Internet.
+- [x] Build e suíte de testes passam; README e diagrama de arquitetura descrevem o fluxo atualizado.
+
+### Engineering Concepts
+
+Repository boundary, DTO mapping, URLSession, cache evictável, cancelamento cooperativo, MVVM-C, fallbacks visuais e acessibilidade.
+
+### Study Before Implementation
+
+Revisar a estrutura `selected_images.front` da API, a fronteira Domain/Data e o ciclo de vida de `Task` em UIKit e `.task(id:)` em SwiftUI.
+
+### Questions I Must Be Able to Answer
+
+- Por que imagem é opcional no modelo de domínio?
+- Por que separar o repositório de imagens do repositório de metadados do produto?
+- O que impede uma URL externa arbitrária de ser carregada?
+- Quem mantém o cache e por que `NSCache` pode descartar imagens?
+- Como cancelamento e fallback preservam a experiência sem esconder o erro técnico?
+
+### Testing
+
+Testar URL mapeada, campos ausentes, resposta de imagem válida, status HTTP inválido, MIME inválido e host rejeitado usando respostas locais de `URLProtocol`. Fazer uma verificação manual do fluxo online; nenhum teste automatizado depende da API pública.
+
+### Observability
+
+Registrar transporte, status, MIME e decodificação com detalhes privados. Não registrar conteúdo da imagem nem URL completa.
+
+### Memory Considerations
+
+Usar cache de memória com custo limitado e evictável. Cancelar as Tasks vinculadas às sugestões ao reconstruir/sair da tela; as views SwiftUI cancelam `.task(id:)` quando URL ou lifecycle muda.
+
+### Concurrency Considerations
+
+Usar `async/await`; o carregador de apresentação é isolado por `@MainActor`, enquanto a transferência é feita por `URLSession`. Não adicionar GCD ou paralelismo manual.
+
+### Accessibility
+
+Imagem decorativa fica oculta ao VoiceOver; nome, quantidade e marca continuam no rótulo do cartão. Fallback visual não comunica sozinho estado ou compatibilidade.
+
+### AI Assistance
+
+A IA pode mapear o payload e implementar a costura pequena entre camadas. Gabriel revisa fonte da imagem, fallback, cancelamento, cache e validação.
+
+### Expected Files
+
+Modelo `Product`, contrato e Use Case de imagem, DTO/Mapper/Endpoint, repositório URLSession, carregador de apresentação, cartões UIKit e telas SwiftUI, composição no SceneDelegate/Coordinator, testes de rede/mapeamento, README e arquitetura.
+
+### Definition of Done
+
+Build/testes pertinentes passam, falha de imagem não interrompe a jornada, documentação descreve a fonte e limites, e Gabriel revisa o diff antes de mover para DONE.
+
+### Interview Notes
+
+Explicar que URLs selecionadas vêm do catálogo comunitário, que imagem é uma melhoria progressiva e não dado obrigatório do produto, e por que uma implementação com fallback é mais resiliente que acoplar a tela à rede.

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ProductComparisonView: View {
     let viewModel: ProductComparisonViewModel
+    let imageLoader: ProductImageLoader
     let onChooseAnother: () -> Void
     let onConfirmSubstitute: () -> Void
 
@@ -34,6 +35,11 @@ struct ProductComparisonView: View {
                         .foregroundStyle(Color(uiColor: DSColor.textSecondary))
                         .fixedSize(horizontal: false, vertical: true)
                         .accessibilityAddTraits(.isStaticText)
+
+                    Text("Fotos do catálogo: Open Food Facts · CC BY-SA 3.0")
+                        .font(.caption)
+                        .foregroundStyle(Color(uiColor: DSColor.textSecondary))
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.horizontal, DSSpacing.medium)
                 .padding(.top, DSSpacing.medium)
@@ -83,11 +89,12 @@ struct ProductComparisonView: View {
                 .background(Color(uiColor: isSubstitute ? DSColor.surfaceSuccess : DSColor.surfaceInformation))
                 .clipShape(RoundedRectangle(cornerRadius: DSRadius.medium))
 
-            Image(systemName: "shippingbox")
-                .font(.system(size: 38, weight: .regular))
-                .foregroundStyle(Color(uiColor: DSColor.brandPrimary))
-                .frame(maxWidth: .infinity, minHeight: 76)
-                .accessibilityHidden(true)
+            ProductImageView(
+                imageURL: item.imageURL,
+                fallbackSymbolName: item.imageSymbolName,
+                imageLoader: imageLoader
+            )
+            .frame(maxWidth: .infinity, minHeight: 76)
 
             Text(item.name)
                 .font(.headline)

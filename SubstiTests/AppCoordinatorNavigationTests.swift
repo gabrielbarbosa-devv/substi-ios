@@ -16,6 +16,9 @@ struct AppCoordinatorNavigationTests {
             loadCandidatesUseCase: LoadSubstitutionCandidatesUseCase(
                 productRepository: FixtureProductRepository()
             ),
+            imageLoader: ProductImageLoader(
+                loadImage: LoadProductImageUseCase(repository: URLSessionProductImageRepository())
+            ),
             confirmSubstitutionUseCase: ConfirmSubstitutionUseCase(
                 inventoryRepository: inventoryRepository
             )

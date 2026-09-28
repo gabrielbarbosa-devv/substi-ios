@@ -8,6 +8,8 @@ struct ProductComparisonViewModel {
         let category: String
         let quantity: String
         let price: String
+        let imageURL: URL?
+        let imageSymbolName: String
     }
 
     struct Row: Identifiable {
@@ -48,14 +50,18 @@ struct ProductComparisonViewModel {
             brand: originalProduct.brand ?? "Não informado",
             category: displayCategory(originalProduct.category),
             quantity: originalProduct.quantity ?? "Não informado",
-            price: formattedPrice(originalPrice)
+            price: formattedPrice(originalPrice),
+            imageURL: originalProduct.imageURL,
+            imageSymbolName: ProductImagePlaceholder.symbolName(for: originalProduct.category)
         )
         let substitute = Item(
             name: substituteProduct.name,
             brand: substituteProduct.brand ?? "Não informado",
             category: displayCategory(substituteProduct.category),
             quantity: substituteProduct.quantity ?? "Não informado",
-            price: "Não informado"
+            price: "Não informado",
+            imageURL: substituteProduct.imageURL,
+            imageSymbolName: ProductImagePlaceholder.symbolName(for: substituteProduct.category)
         )
 
         self.original = original

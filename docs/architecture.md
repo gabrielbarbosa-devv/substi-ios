@@ -5,9 +5,11 @@ O Substi usa uma composição pequena de **MVVM-C**: ViewControllers UIKit e vie
 ```text
 SceneDelegate — composition root
   ├── URLSessionAPIClient
+  ├── URLSessionProductImageRepository ──implements──> ProductImageRepository
   ├── OpenFoodFactsProductRepository ──implements──> ProductRepository
   ├── DemoInventoryRepository ─────────implements──> InventoryRepository
   ├── LoadSubstitutionCandidatesUseCase
+  ├── LoadProductImageUseCase → ProductImageLoader (cache de apresentação)
   ├── ConfirmSubstitutionUseCase
   └── AppCoordinator
         ├── cria OrderViewModel → OrderViewController (UIKit)
@@ -17,6 +19,18 @@ SceneDelegate — composition root
 Presentation → Application/UseCases → Domain contracts
      ▲                                      ▲
 AppCoordinator ── navega                  Data implementations
+```
+
+Imagens de catálogo seguem uma fronteira própria, pois bytes de imagem e metadados de produto têm validações e ciclos de carregamento diferentes:
+
+```text
+JSON.selected_images.front → Mapper → Product.imageURL
+                                         ↓
+UIKit / SwiftUI → ProductImageLoader → LoadProductImageUseCase
+                                          ↓
+                                ProductImageRepository
+                                          ↓
+                                  URLSession + cache HTTP
 ```
 
 ## Pastas e responsabilidades
@@ -47,6 +61,7 @@ O domínio agora é o pacote local `SubstiDomain` (Swift tools 6, iOS 16), impor
 - `ConfirmSubstitutionUseCase` valida a opção configurada, produz o pedido atualizado e pede ao repositório que o persista.
 - `ProductRepository` e `InventoryRepository` são fronteiras necessárias entre quem solicita os dados e suas fontes concretas. `OpenFoodFactsProductRepository` usa `APIClient`; `DemoInventoryRepository` encapsula o inventário de demonstração.
 - Respostas Open Food Facts passam por `DTO → Mapper → Product`; o domínio e a apresentação não recebem o DTO externo.
+- A URL frontal opcional é mapeada para `Product.imageURL`; `ProductImageRepository` busca os bytes, e `ProductImageLoader` compartilha cache de imagens decodificadas entre UIKit e SwiftUI. As Views não fazem chamadas HTTP.
 
 ## Direção das dependências
 

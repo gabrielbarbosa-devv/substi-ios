@@ -6,7 +6,7 @@ struct ProductRepositoryTests {
     @Test
     func mapsAPIResponseIntoDomainProduct() async throws {
         let response = Data(
-            #"{"product":{"code":"3017620422003","product_name":"Creme de avelã","categories_tags":["en:spreads"],"brands":"Marca exemplo","quantity":"350 g"}}"#.utf8
+            #"{"product":{"code":"3017620422003","product_name":"Creme de avelã","categories_tags":["en:spreads"],"brands":"Marca exemplo","quantity":"350 g","selected_images":{"front":{"display":{"pt":"https://images.openfoodfacts.org/example-pt.jpg","en":"https://images.openfoodfacts.org/example-en.jpg"}}}}}"#.utf8
         )
         let repository = OpenFoodFactsProductRepository(
             apiClient: StubAPIClient(responseData: response)
@@ -19,6 +19,7 @@ struct ProductRepositoryTests {
         #expect(product.category == "en:spreads")
         #expect(product.brand == "Marca exemplo")
         #expect(product.quantity == "350 g")
+        #expect(product.imageURL == URL(string: "https://images.openfoodfacts.org/example-pt.jpg"))
     }
 
     @Test

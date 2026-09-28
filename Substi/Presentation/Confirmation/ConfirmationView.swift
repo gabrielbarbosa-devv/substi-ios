@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ConfirmationView: View {
     let viewModel: ProductComparisonViewModel
+    let imageLoader: ProductImageLoader
     let onConfirm: () -> Void
     let onCancel: () -> Void
 
@@ -49,6 +50,11 @@ struct ConfirmationView: View {
                         .accessibilityLabel("Será substituído por")
 
                     productCard(viewModel.substitute, heading: "Substituir por", isSubstitute: true)
+
+                    Text("Foto do catálogo: Open Food Facts · CC BY-SA 3.0")
+                        .font(.caption)
+                        .foregroundStyle(Color(uiColor: DSColor.textSecondary))
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.horizontal, DSSpacing.medium)
                 .padding(.top, DSSpacing.large)
@@ -89,11 +95,12 @@ struct ConfirmationView: View {
         isSubstitute: Bool
     ) -> some View {
         HStack(alignment: .top, spacing: DSSpacing.medium) {
-            Image(systemName: "shippingbox")
-                .font(.system(size: 36))
-                .foregroundStyle(Color(uiColor: DSColor.brandPrimary))
-                .frame(width: 68, height: 76)
-                .accessibilityHidden(true)
+            ProductImageView(
+                imageURL: item.imageURL,
+                fallbackSymbolName: item.imageSymbolName,
+                imageLoader: imageLoader
+            )
+            .frame(width: 68, height: 76)
 
             VStack(alignment: .leading, spacing: DSSpacing.xxSmall) {
                 Text(heading)

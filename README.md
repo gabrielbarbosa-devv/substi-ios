@@ -115,10 +115,12 @@ O endpoint consultado é `GET /api/v3/product/{barcode}`, solicitando nome, cate
 
 | Fonte | O que fornece no app | Limite conhecido |
 | --- | --- | --- |
-| Open Food Facts | Nome, categoria, marca e quantidade do produto identificado pelo código de barras. | Dados comunitários podem estar ausentes, incompletos ou indisponíveis; não informam estoque da loja. Imagem e preço do substituto não são obtidos neste fluxo. |
+| Open Food Facts | Nome, categoria, marca, quantidade e URL opcional da imagem frontal do produto identificado pelo código de barras. | Dados comunitários podem estar ausentes, incompletos ou indisponíveis; não informam estoque nem preço da loja. Imagens podem faltar ou falhar e então são substituídas por SF Symbols. |
 | `DemoInventoryRepository` | Pedido inicial, produto indisponível e códigos de barras candidatos. Mantém a substituição confirmada em memória. | Não é um backend, não persiste após encerrar o app e não consulta estoque comercial. |
 
 No uso normal, as sugestões vêm da API real. O catálogo determinístico `DemoCatalogProductRepository` só é selecionado em build `DEBUG` com o argumento `--uitest-demo-catalog`, para tornar a jornada de UI repetível sem Internet. Isso não substitui a API no fluxo normal.
+
+As imagens vêm das URLs `selected_images` fornecidas pela Open Food Facts e são carregadas sob demanda; não há cópias de produtos de terceiros no bundle do app. O catálogo é comunitário, e uma foto ausente ou indisponível não impede comparar o texto do produto. Os cabeçalhos das três imagens usadas pelos barcodes da demonstração indicam [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/); preserve a atribuição visível no app e confira a licença da imagem específica ao redistribuir. Consulte também a [documentação oficial de imagens](https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/).
 
 O ranking é uma heurística determinística: prioriza igualdade textual normalizada de categoria, depois de quantidade; em empate, preserva a ordem recebida. Não estima porcentagens, não valida adequação com usuários e não usa ML. Mais detalhes em [requisitos do produto](docs/product-requirements.md).
 

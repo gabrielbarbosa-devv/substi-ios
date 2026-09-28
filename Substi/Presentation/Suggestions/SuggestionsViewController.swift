@@ -8,15 +8,18 @@ final class SuggestionsViewController: UIViewController {
     }
 
     private let viewModel: SuggestionsViewModel
+    private let imageLoader: ProductImageLoader
     private var loadTask: Task<Void, Never>?
+    private var imageTasks: [ProductID: Task<Void, Never>] = [:]
     private let contentStackView = UIStackView()
     private let resultsStackView = UIStackView()
     private let compareButton = DSButton(title: "Ver comparação")
     private var candidateCards: [ProductID: DSProductCardView] = [:]
     private var selectedCandidateID: ProductID?
 
-    init(viewModel: SuggestionsViewModel) {
+    init(viewModel: SuggestionsViewModel, imageLoader: ProductImageLoader) {
         self.viewModel = viewModel
+        self.imageLoader = imageLoader
         super.init(nibName: nil, bundle: nil)
         viewModel.onStateChange = { [weak self] state in
             self?.render(state: state)
@@ -25,6 +28,7 @@ final class SuggestionsViewController: UIViewController {
 
     deinit {
         loadTask?.cancel()
+        imageTasks.values.forEach { $0.cancel() }
     }
 
     @available(*, unavailable)
@@ -66,6 +70,9 @@ final class SuggestionsViewController: UIViewController {
                     name: viewModel.originalProduct.name,
                     brand: viewModel.originalProduct.brand,
                     quantity: viewModel.originalProduct.quantity,
+                    imageSymbolName: ProductImagePlaceholder.symbolName(
+                        for: viewModel.originalProduct.category
+                    ),
                     priceText: viewModel.originalPriceText,
                     statusText: "Produto original",
                     statusStyle: .information
@@ -75,6 +82,9 @@ final class SuggestionsViewController: UIViewController {
         contentStackView.addArrangedSubview(makeLabel("Alternativas disponíveis", style: .headline))
         contentStackView.addArrangedSubview(
             makeLabel("Confira categoria e quantidade antes de escolher.", style: .body, color: DSColor.textSecondary)
+        )
+        contentStackView.addArrangedSubview(
+            makeLabel("Fotos do catálogo: Open Food Facts · CC BY-SA 3.0", style: .footnote, color: DSColor.textSecondary)
         )
         contentStackView.addArrangedSubview(resultsStackView)
         actionContainer.addSubview(compareButton)
@@ -128,6 +138,8 @@ final class SuggestionsViewController: UIViewController {
     }
 
     private func render(state: SuggestionsViewModel.State) {
+        imageTasks.values.forEach { $0.cancel() }
+        imageTasks.removeAll()
         resultsStackView.arrangedSubviews.forEach { subview in
             resultsStackView.removeArrangedSubview(subview)
             subview.removeFromSuperview()
@@ -153,6 +165,7 @@ final class SuggestionsViewController: UIViewController {
                 card.accessibilityIdentifier = "suggestion-candidate-\(candidate.product.id.rawValue)"
                 candidateCards[candidate.product.id] = card
                 resultsStackView.addArrangedSubview(card)
+                loadImage(for: candidate, into: card)
                 configureSelection(for: candidate)
             }
             if failedCount > 0 {
@@ -190,6 +203,25 @@ final class SuggestionsViewController: UIViewController {
         loadTask?.cancel()
         let viewModel = self.viewModel
         loadTask = Task { await viewModel.loadCandidates() }
+    }
+
+    private func loadImage(for candidate: SubstitutionCandidate, into card: DSProductCardView) {
+        guard let imageURL = candidate.product.imageURL else { return }
+        let productID = candidate.product.id
+        let imageLoader = self.imageLoader
+        imageTasks[productID] = Task { [weak self] in
+            let image = await imageLoader.image(for: imageURL)
+            guard
+                !Task.isCancelled,
+                let self,
+                self.candidateCards[productID] === card,
+                let image
+            else {
+                return
+            }
+            card.setProductImage(image)
+            self.imageTasks[productID] = nil
+        }
     }
 
     private func makeRetryButton() -> UIButton {

@@ -29,7 +29,10 @@ struct Endpoint {
             path: "api/v3/product/\(barcode)",
             method: .get,
             queryItems: [
-                URLQueryItem(name: "fields", value: "code,product_name,categories_tags,brands,quantity")
+                URLQueryItem(
+                    name: "fields",
+                    value: "code,product_name,categories_tags,brands,quantity,selected_images"
+                )
             ]
         )
     }

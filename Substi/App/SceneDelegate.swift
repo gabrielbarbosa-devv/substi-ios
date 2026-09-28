@@ -16,9 +16,12 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let apiBaseURL = URL(string: "https://world.openfoodfacts.org") else {
             preconditionFailure("A URL base da Open Food Facts deve ser válida.")
         }
-        let apiClient = URLSessionAPIClient(
-            baseURL: apiBaseURL,
-            userAgent: "Substi/1.0 (https://github.com/gabrielbarbosa-devv/substi-ios)"
+        let userAgent = "Substi/1.0 (https://github.com/gabrielbarbosa-devv/substi-ios)"
+        let apiClient = URLSessionAPIClient(baseURL: apiBaseURL, userAgent: userAgent)
+        let imageLoader = ProductImageLoader(
+            loadImage: LoadProductImageUseCase(
+                repository: URLSessionProductImageRepository(userAgent: userAgent)
+            )
         )
         let productRepository: any ProductRepository
         #if DEBUG
@@ -37,6 +40,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             loadCandidatesUseCase: LoadSubstitutionCandidatesUseCase(
                 productRepository: productRepository
             ),
+            imageLoader: imageLoader,
             confirmSubstitutionUseCase: ConfirmSubstitutionUseCase(
                 inventoryRepository: inventoryRepository
             )

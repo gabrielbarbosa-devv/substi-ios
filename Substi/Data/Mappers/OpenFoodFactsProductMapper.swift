@@ -32,7 +32,8 @@ struct OpenFoodFactsProductMapper: Sendable {
             name: name,
             category: product.categoriesTags?.first,
             brand: nonEmpty(product.brands),
-            quantity: nonEmpty(product.quantity)
+            quantity: nonEmpty(product.quantity),
+            imageURL: validImageURL(product.selectedImages?.preferredFrontURL)
         )
     }
 
@@ -41,5 +42,16 @@ struct OpenFoodFactsProductMapper: Sendable {
             return nil
         }
         return value
+    }
+
+    private func validImageURL(_ value: String?) -> URL? {
+        guard
+            let value,
+            let url = URL(string: value),
+            url.scheme?.lowercased() == "https"
+        else {
+            return nil
+        }
+        return url
     }
 }

@@ -96,6 +96,7 @@ final class SuggestionsViewModel {
             name: candidate.product.name,
             brand: candidate.product.brand,
             quantity: candidate.product.quantity,
+            imageSymbolName: ProductImagePlaceholder.symbolName(for: candidate.product.category),
             statusText: evidence.isEmpty ? "Confira as diferenças" : evidence.joined(separator: " · "),
             statusStyle: evidence.isEmpty ? .information : .compatible
         )
