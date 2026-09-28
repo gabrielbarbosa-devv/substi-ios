@@ -194,6 +194,7 @@ final class SuggestionsViewController: UIViewController {
         configuration.image = UIImage(systemName: "arrow.clockwise")
         configuration.imagePadding = DSSpacing.xSmall
         let button = UIButton(configuration: configuration)
+        button.heightAnchor.constraint(greaterThanOrEqualToConstant: 44).isActive = true
         button.addTarget(self, action: #selector(didTapRetry), for: .primaryActionTriggered)
         return button
     }
