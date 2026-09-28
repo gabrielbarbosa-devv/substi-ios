@@ -17,7 +17,7 @@ IN_PROGRESS
 
 ## SUB-P02-001 — Escrever ADR de MVVM-C
 
-Estado: REVIEW
+Estado: DONE
 
 Prioridade: P0
 
@@ -36,9 +36,9 @@ Concluir Escrever ADR de MVVM-C dentro do escopo definido e deixar o resultado p
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
+- [x] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia
 MVVM-C, MVC, MVVM, VIP, VIPER, DI, dependency direction, SOLID.
@@ -73,17 +73,19 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [x] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [x] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [x] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
+### Registro de encerramento
+Gabriel solicitou explicitamente o encerramento desta task como `DONE` em 2026-09-27, após a apresentação da decisão, da implementação e da validação.
 ## SUB-P02-002 — Definir camadas e direção das dependências
 
-Estado: REVIEW
+Estado: DONE
 
 Prioridade: P0
 
@@ -102,9 +104,9 @@ Concluir Definir camadas e direção das dependências dentro do escopo definido
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
+- [x] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia
 MVVM-C, MVC, MVVM, VIP, VIPER, DI, dependency direction, SOLID.
@@ -139,14 +141,16 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [x] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [x] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [x] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
+### Registro de encerramento
+Gabriel solicitou explicitamente o encerramento desta task como `DONE` em 2026-09-27, após a apresentação da decisão, da implementação e da validação.
 ## SUB-P02-003 — Comparar MVC e MVVM
 
 Estado: TODO
@@ -281,7 +285,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P02-005 — Definir ownership do Coordinator
 
-Estado: REVIEW
+Estado: DONE
 
 Prioridade: P0
 
@@ -300,9 +304,9 @@ Concluir Definir ownership do Coordinator dentro do escopo definido e deixar o r
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
+- [x] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia
 MVVM-C, MVC, MVVM, VIP, VIPER, DI, dependency direction, SOLID.
@@ -337,17 +341,19 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [x] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [x] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [x] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
+### Registro de encerramento
+Gabriel solicitou explicitamente o encerramento desta task como `DONE` em 2026-09-27, após a apresentação da decisão, da implementação e da validação.
 ## SUB-P02-006 — Definir Composition Root
 
-Estado: REVIEW
+Estado: DONE
 
 Prioridade: P0
 
@@ -366,9 +372,9 @@ Concluir Definir Composition Root dentro do escopo definido e deixar o resultado
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
+- [x] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia
 MVVM-C, MVC, MVVM, VIP, VIPER, DI, dependency direction, SOLID.
@@ -403,17 +409,19 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [x] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [x] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [x] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
+### Registro de encerramento
+Gabriel solicitou explicitamente o encerramento desta task como `DONE` em 2026-09-27, após a apresentação da decisão, da implementação e da validação.
 ## SUB-P02-007 — Definir injeção de dependências
 
-Estado: REVIEW
+Estado: DONE
 
 Prioridade: P0
 
@@ -432,9 +440,9 @@ Concluir Definir injeção de dependências dentro do escopo definido e deixar o
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
+- [x] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia
 MVVM-C, MVC, MVVM, VIP, VIPER, DI, dependency direction, SOLID.
@@ -469,17 +477,19 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [x] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [x] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [x] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
+### Registro de encerramento
+Gabriel solicitou explicitamente o encerramento desta task como `DONE` em 2026-09-27, após a apresentação da decisão, da implementação e da validação.
 ## SUB-P02-008 — Definir fronteiras de protocolos
 
-Estado: REVIEW
+Estado: DONE
 
 Prioridade: P1
 
@@ -498,9 +508,9 @@ Concluir Definir fronteiras de protocolos dentro do escopo definido e deixar o r
 - Atualizar planejamento e documentação quando a tarefa for concluída.
 
 ### Critérios de aceite
-- [ ] O resultado foi produzido dentro do escopo combinado.
-- [ ] Decisões e trade-offs foram explicados e registrados.
-- [ ] Gabriel revisa o resultado e consegue explicar os conceitos principais.
+- [x] O resultado foi produzido dentro do escopo combinado.
+- [x] Decisões e trade-offs foram explicados e registrados.
+- [x] Gabriel revisa o resultado e consegue explicar os conceitos principais.
 
 ### Conceitos de engenharia
 MVVM-C, MVC, MVVM, VIP, VIPER, DI, dependency direction, SOLID.
@@ -535,14 +545,16 @@ A IA pode pesquisar, organizar alternativas, redigir uma mudança pequena e apon
 Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de implementar. Esta tarefa de planejamento não cria arquivos de implementação.
 
 ### Critérios para conclusão
-- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
-- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
-- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
-- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+- [x] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [x] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [x] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [x] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
+### Registro de encerramento
+Gabriel solicitou explicitamente o encerramento desta task como `DONE` em 2026-09-27, após a apresentação da decisão, da implementação e da validação.
 ## SUB-P02-009 — Revisar trade-offs de SOLID
 
 Estado: TODO
