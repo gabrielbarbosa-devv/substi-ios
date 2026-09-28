@@ -31,7 +31,11 @@ REVIEW. Nenhuma task está `IN_PROGRESS` ou `READY`. Os itens implementados agua
 
 ## Evidência e limites
 
-O build de Debug para iOS Simulator passou em Swift 6. As suites unitárias passaram em execução anterior; o teste end-to-end e as auditorias focadas passaram individualmente. A execução final combinada parou com `Mach error -308` quando o serviço do simulador encerrou o canal com o runner; isso é uma falha do ambiente de teste, então a suíte completa não tem resultado verde nesta rodada. As verificações de API ao vivo foram feitas em requisições diretas aos três códigos de barras; a jornada automatizada usa dados controlados. A auditoria automática de acessibilidade cobre as quatro telas. O teste da tela Pedido exclui o alerta de texto cortado causado por um cartão parcialmente visível na borda da rolagem; os demais alertas permanecem ativos. Dynamic Type ampliado e VoiceOver ainda exigem inspeção manual completa.
+Em 28/09, o test plan completo terminou como `Passed`, sem falhas ou testes ignorados, com Xcode 16.4 (16F6) no iPhone 16 Pro / iOS 18.6 Simulator. A execução serial (`-parallel-testing-enabled NO`) passou pelos testes unitários, pela jornada Pedido → Sugestões → Comparação → Confirmação → Pedido atualizado e pelas auditorias de acessibilidade/lançamento.
+
+O app normal consulta a Open Food Facts; os testes de UI usam o catálogo determinístico. A API foi conferida por requisições diretas aos códigos de barras da demonstração, mas falta uma validação manual documentada do fluxo completo usando a API ao vivo. A auditoria automática cobre as quatro telas; o teste de Pedido exclui o aviso `.textClipped` de um cartão parcialmente visível na borda da rolagem. Dynamic Type ampliado e VoiceOver ainda precisam de inspeção manual completa.
+
+O Simulator foi inicializado com o Xcode 16.4. `xcode-select -p` ainda aponta para Command Line Tools; o Terminal deve selecionar Xcode 16.4 em **Xcode → Settings → Locations → Command Line Tools** ou definir `DEVELOPER_DIR` para essa execução.
 
 A configuração local de `DEVELOPMENT_TEAM` no projeto Xcode pertence à máquina e não deve ser publicada.
 

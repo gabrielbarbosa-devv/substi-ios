@@ -30,11 +30,19 @@ flowchart LR
 
 ### Capturas do aplicativo
 
-Capturas reais do app no simulador, mostrando o pedido e a comparação. O fluxo automatizado percorre também Sugestões e Confirmação; ainda não há capturas dessas duas telas neste README. Os arquivos `docs/assets/*-reference.png` são mockups de referência, não screenshots do app.
+Capturas reais das cinco etapas, obtidas durante a jornada automatizada no iPhone 16 Pro Simulator (iOS 18.6). Os arquivos `docs/assets/*-reference.png` são mockups de referência, não screenshots do app.
 
-| Meu pedido · UIKit | Comparação · SwiftUI |
+| Meu pedido · UIKit | Sugestões · UIKit |
 | --- | --- |
-| ![Tela Meu pedido executada no simulador](docs/assets/screenshots/order.png) | ![Tela Comparação executada no simulador](docs/assets/screenshots/comparison.png) |
+| ![Tela Meu pedido executada no simulador](docs/assets/screenshots/order.png) | ![Tela Sugestões executada no simulador](docs/assets/screenshots/suggestions.png) |
+
+| Comparação · SwiftUI | Confirmação · SwiftUI |
+| --- | --- |
+| ![Tela Comparação executada no simulador](docs/assets/screenshots/comparison.png) | ![Tela Confirmação executada no simulador](docs/assets/screenshots/confirmation.png) |
+
+Após confirmar, o fluxo retorna ao pedido atualizado:
+
+![Pedido atualizado após a substituição](docs/assets/screenshots/order-updated.png)
 
 ## Arquitetura
 
@@ -180,11 +188,14 @@ Ferramentas de IA foram usadas como apoio à pesquisa, scaffolding, implementaç
 2. Selecione o esquema `Substi` e um simulador com iOS 16 ou posterior.
 3. Execute o app. O fluxo normal consulta Open Food Facts e requer conexão com a Internet.
 
+Para usar `xcodebuild` pelo Terminal, selecione o Xcode instalado em **Xcode → Settings → Locations → Command Line Tools**. A suíte de UI foi validada em execução serial para evitar falhas de inicialização de workers do Simulator.
+
 Para executar testes no simulador:
 
 ```bash
 xcodebuild -project Substi.xcodeproj -scheme Substi \
   -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+  -parallel-testing-enabled NO \
   CODE_SIGNING_ALLOWED=NO test
 ```
 
