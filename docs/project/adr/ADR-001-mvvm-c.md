@@ -14,6 +14,7 @@ Manter MVVM-C proporcional ao app:
 
 - `SceneDelegate` atua como composition root e cria implementações concretas;
 - `AppCoordinator` coordena navegação e composição das telas do fluxo;
+- operações de aplicação, incluindo carga de candidatos e confirmação, ficam em Use Cases;
 - Views UIKit/SwiftUI renderizam e encaminham ações;
 - ViewModels preparam os dados para as telas;
 - Use Case representa uma operação da aplicação quando há um objetivo claro;
@@ -21,12 +22,13 @@ Manter MVVM-C proporcional ao app:
 - `APIClient` isola o transporte HTTP dentro de `Data/Networking`.
 
 ```text
-Cena → Coordinator → View/ViewModel → Use Case → Repository protocol
-  └── cria implementações Data ───────────────────────────────┘
+Cena → compõe Use Cases + implementações Data
+View/ViewModel → Use Case → Repository protocol ← implementação Data
+Coordinator → navegação e composição das telas
 UIKit navigation → UIHostingController → SwiftUI comparison
 ```
 
-O Coordinator não acessa fixtures. A disponibilidade demonstrativa é fornecida pelo contrato de `InventoryRepository`, implementado por `DemoInventoryRepository`.
+O Coordinator não acessa fixtures nem executa alterações no pedido. A disponibilidade demonstrativa é fornecida pelo contrato de `InventoryRepository`, implementado por `DemoInventoryRepository`; a confirmação é coordenada por `ConfirmSubstitutionUseCase`.
 
 ## Alternativas consideradas
 
@@ -38,6 +40,7 @@ O Coordinator não acessa fixtures. A disponibilidade demonstrativa é fornecida
 
 - Navegação e apresentação podem ser lidas e discutidas separadamente.
 - Repositórios concretos podem ser trocados no ponto de composição sem fazer ViewModel ou Coordinator conhecer `URLSession`/DTOs.
+- Operações e mutações da aplicação são testáveis sem colocar regras de negócio no Coordinator ou no repositório de memória.
 - Testes podem fornecer implementações de repositório determinísticas.
 - O Coordinator ainda constrói objetos de apresentação; para o tamanho atual, isso é intencional e evita um container/Factory genérico.
 - `DemoInventoryRepository` mantém estado apenas em memória e não representa estoque real.
@@ -51,8 +54,9 @@ Validação desta etapa: suíte de testes do app e revisão do grafo de dependê
 
 ## Registro da implementação
 
-- `AppCoordinator` solicita `unavailableProductIDs` pelo contrato `InventoryRepository` e não importa/conhece `InventoryFixtures`.
+- `AppCoordinator` solicita dados do pedido pelo contrato `InventoryRepository` e não importa/conhece `InventoryFixtures`.
 - `DemoInventoryRepository` fornece os IDs configurados na fixture de demonstração.
 - Teste do repositório verifica a disponibilidade exposta pelo contrato.
+- `ConfirmSubstitutionUseCase` valida o código candidato e monta o novo `Order`; o repositório somente salva o resultado.
 - Suíte completa: 27 testes unitários e 7 testes de UI/launch aprovados; `git diff --check` aprovado.
 - Tasks relacionadas estão em `DONE` por solicitação explícita de Gabriel após a revisão da proposta e dos resultados.

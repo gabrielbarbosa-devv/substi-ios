@@ -4,11 +4,11 @@
 
 As 20 fases preservam a visão de aprendizado e evolução de engenharia do projeto. Elas não determinam a ordem de execução da entrega atual. A trilha de entrega é uma sequência vertical independente; prioridade e dependências indicam o que realmente precisa ser feito.
 
-**Estado da entrega:** a jornada de quatro telas, a consulta ao catálogo público, o domínio em pacote local e os testes essenciais foram implementados. As tasks novas desta rodada estão em `REVIEW`; as fases futuras continuam como opções de evolução. Veja o estado preciso em [CURRENT.md](CURRENT.md) e as limitações no [README](../../README.md).
+**Estado da entrega:** a jornada de quatro telas, a consulta ao catálogo público, o domínio em pacote local e os testes essenciais foram implementados. A revisão técnica final está em REVIEW, aguardando Gabriel, conforme [CURRENT.md](CURRENT.md); as demais fases continuam como opções de evolução. Veja também as limitações no [README](../../README.md).
 
-## DELIVERY TRACK — prazo: 28/09/2026, 11h
+## DELIVERY TRACK
 
-**Prazo final:** segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo` (horário de Brasília). Congelar novas funcionalidades às 9h30 e reservar o período até as 11h para build, testes essenciais, README e revisão final.
+A trilha de entrega descreve a sequência mínima para validar e apresentar o recorte funcional. Não é necessário concluir as 20 fases para entregar uma amostra técnica.
 
 A ordem de entrega percorre uma fatia funcional de ponta a ponta; não é necessário concluir as 20 fases em sequência:
 
@@ -40,7 +40,7 @@ Fases independentes de networking, concorrência mínima e Design Discovery pode
 | 10. Qualidade e acessibilidade | `SUB-P14-001`–`SUB-P14-006`; `SUB-P16-001`, `SUB-P16-003`, `SUB-P16-004`. |
 | 11. Observabilidade e entrega | `SUB-P15-001`, `SUB-P15-002`; `SUB-P19-001`, `SUB-P19-004`, `SUB-P19-006`. |
 
-P0 representa o mínimo que habilita a jornada completa e sua defesa técnica. Se a estimativa mostrar risco ao prazo, simplifique a solução e mantenha um caminho determinístico; não aumente a arquitetura para marcar mais tecnologias como concluídas.
+P0 representa o mínimo que habilita a jornada completa e sua defesa técnica. Simplifique soluções quando necessário e mantenha um caminho determinístico; não aumente a arquitetura para marcar mais tecnologias como concluídas.
 
 ### P1 — fazer se houver tempo
 
@@ -53,21 +53,19 @@ P0 representa o mínimo que habilita a jornada completa e sua defesa técnica. S
 
 Laboratório GCD completo, exemplo Objective-C, implementação de MetricKit, Crashlytics/Firebase/Remote Config, Fastlane/CD, Bazel/Buck, Core ML, cache em disco sofisticado e suíte extensa de snapshots/componentes. Permanecem documentados para estudo e entrevista; não podem atrasar o fluxo P0.
 
-### Marcos e corte de escopo
+### Marcos de qualidade
 
-- **Hoje, primeiro bloco:** fechar problema, MVP e fluxo; criar o projeto compilável e a arquitetura mínima.
-- **Hoje, bloco intermediário:** definir regra de ranking, consulta remota de produtos, fixture de inventário local e caminho de Repository. Limitar buscas de candidatos a aproximadamente 3–4 e preservar fixtures determinísticas para falhas ou rate limits.
-- **Hoje, bloco final:** concluir Design Discovery, foundations e contratos low-fi; depois implementar fluxo Pedido → Sugestões em UIKit e comparação em SwiftUI.
-- **Amanhã, antes das 7h:** ter fluxo coerente de ponta a ponta, estados loading/error/empty e acessibilidade essencial.
-- **Amanhã, 7h–9h30:** testes essenciais, Logger, revisão de warnings/ownership e README. Cortar polimento P1 se o fluxo ainda não estiver estável.
-- **Amanhã, 9h30–11h:** congelar funcionalidades; fazer build limpo, rodar testes críticos, confirmar README e limitações. Não iniciar feature nova.
+- Registrar problema, MVP e fluxo antes de ampliar a implementação.
+- Preservar uma integração reproduzível: API ao vivo no app e fixtures controladas nos testes.
+- Validar estados loading/content/empty/error, acessibilidade essencial e conclusão da jornada.
+- Antes de compartilhar, confirmar build e testes, revisar screenshots, README, limitações e estado do GitHub.
 
-### Riscos do prazo
+### Riscos da entrega
 
-- O escopo combina setup Xcode, API real, UIKit e SwiftUI em aproximadamente um dia; integração entre essas partes é o maior risco.
+- O fluxo depende de API pública de terceiros; cobertura incompleta, indisponibilidade e rate limits podem reduzir o número de alternativas exibidas.
 - Cobertura incompleta ou rate limits do Open Food Facts podem impedir várias alternativas previsíveis. Limitar consultas, representar resultados vazios/parciais com clareza e não depender da API ao vivo nos testes.
-- O terminal anteriormente não encontrou Command Line Tools configurados. Verificar a seleção do Xcode antes das tasks de build; sem ela, build e validação de projeto ficam bloqueados.
-- Cortar primeiro Figma detalhado, módulos extras, TaskGroup sem justificativa e componentes opcionais; preservar fluxo funcional e testes essenciais.
+- Manter pedido, inventário e preço do substituto explicitamente demonstrativos; não sugerir que o catálogo público valida disponibilidade comercial.
+- Evitar módulos, paralelismo, componentes e integrações de produção sem uma necessidade demonstrada.
 
 ## Plano completo — 20 fases
 
@@ -117,10 +115,10 @@ As dependências abaixo são pré-requisitos reais; o número da fase, por si s�
 
 | Fase | Objetivo e resultado esperado | Dependências | Prioridade | Estado |
 | --- | --- | --- | --- | --- |
-| 00 — Descoberta do produto | Definir problema, evidências, MVP, jornada e escopo do prazo antes de Swift. Resultado: decisões de produto registradas. | Nenhuma | P0/P1 | IN_PROGRESS |
+| 00 — Descoberta do produto | Definir problema, evidências, MVP, jornada e escopo antes de Swift. Resultado: decisões de produto registradas. | Nenhuma | P0/P1 | IN_PROGRESS |
 | 01 — Bootstrap | Criar e validar a base mínima de um app iOS nativo com configuração de linguagem, deployment e ponto de entrada UIKit. | Decisões da fase 00 | P0/P1 | IN_PROGRESS |
 | 02 — Arquitetura | Definir limites mínimos MVVM-C necessários para o fluxo. Resultado: Coordinator, composição e direção das dependências explicáveis. | Bootstrap | P0/P1 | TODO |
-| 03 — Modularização | Planejar módulos e avaliar limites de pacotes. Resultado: decisão documentada; dividir todo o projeto em pacotes não é requisito do prazo. | Arquitetura | P1/P2 | TODO |
+| 03 — Modularização | Planejar módulos e avaliar limites de pacotes. Resultado: decisão documentada; dividir todo o projeto em pacotes não é necessário neste recorte. | Arquitetura | P1/P2 | TODO |
 | 04 — Modelagem de domínio | Modelar somente pedido, produto e candidato essenciais. | Escopo do produto | P0/P1 | TODO |
 | 05 — Ranking e TDD | Definir e testar uma regra de ranking simples e determinística. Não inventar complexidade de pontuação. | Modelo de domínio | P0/P1 | TODO |
 | 06 — Networking | Acessar Open Food Facts com URLSession e limites claros. Resultado: uma consulta testável e DTO mapeado, respeitando rate limits. | Produto/código de barras | P0/P1 | IN_PROGRESS |

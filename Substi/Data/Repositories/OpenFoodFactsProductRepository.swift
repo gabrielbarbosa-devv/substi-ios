@@ -17,11 +17,26 @@ struct OpenFoodFactsProductRepository: ProductRepository {
         let data = try await apiClient.data(
             for: .openFoodFactsProduct(barcode: barcode)
         )
-        let response = try JSONDecoder().decode(
-            OpenFoodFactsProductResponseDTO.self,
-            from: data
-        )
+        let response: OpenFoodFactsProductResponseDTO
+        do {
+            response = try JSONDecoder().decode(
+                OpenFoodFactsProductResponseDTO.self,
+                from: data
+            )
+        } catch {
+            AppLog.network.error(
+                "Catalog response decoding failed: \(String(describing: error), privacy: .private)"
+            )
+            throw error
+        }
 
-        return try mapper.map(response)
+        do {
+            return try mapper.map(response)
+        } catch {
+            AppLog.network.error(
+                "Catalog product mapping failed: \(String(describing: error), privacy: .private)"
+            )
+            throw error
+        }
     }
 }

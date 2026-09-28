@@ -14,10 +14,11 @@ final class SuggestionsViewModel {
     let originalProduct: Product
     let originalPriceText: String?
     private let candidateBarcodes: [String]
-    private let loadProduct: LoadProductUseCase
+    private let loadCandidates: LoadSubstitutionCandidatesUseCase
     private let ranker: ProductSubstitutionRanker
     private(set) var state: State = .idle
     var onStateChange: ((State) -> Void)?
+    private var activeRequestID: UUID?
 
     var candidates: [SubstitutionCandidate] {
         guard case let .content(candidates, _) = state else { return [] }
@@ -28,12 +29,12 @@ final class SuggestionsViewModel {
         originalProduct: Product,
         originalPrice: Decimal?,
         candidateBarcodes: [String],
-        loadProduct: LoadProductUseCase,
+        loadCandidates: LoadSubstitutionCandidatesUseCase,
         ranker: ProductSubstitutionRanker = ProductSubstitutionRanker()
     ) {
         self.originalProduct = originalProduct
         self.candidateBarcodes = candidateBarcodes
-        self.loadProduct = loadProduct
+        self.loadCandidates = loadCandidates
         self.ranker = ranker
 
         let priceFormatter = NumberFormatter()
@@ -46,32 +47,36 @@ final class SuggestionsViewModel {
     }
 
     func loadCandidates() async {
-        state = .loading
-        onStateChange?(state)
+        let requestID = UUID()
+        activeRequestID = requestID
+        update(state: .loading)
 
-        var candidates: [SubstitutionCandidate] = []
-        var failedCount = 0
+        let outcome = await loadCandidates.execute(
+            originalProduct: originalProduct,
+            candidateBarcodes: candidateBarcodes
+        )
 
-        for barcode in candidateBarcodes {
-            guard !Task.isCancelled else { return }
-            do {
-                let product = try await loadProduct.execute(barcode: barcode)
-                candidates.append(SubstitutionCandidate(product: product))
-            } catch {
-                guard !Task.isCancelled else { return }
-                failedCount += 1
-            }
-        }
+        guard activeRequestID == requestID else { return }
+        activeRequestID = nil
 
-        if !candidates.isEmpty {
-            state = .content(ranker.rank(candidates, replacing: originalProduct), failedCount: failedCount)
+        switch outcome {
+        case let .loaded(candidates, failedCount):
+            update(state: .content(candidates, failedCount: failedCount))
             AppLog.suggestions.info(
                 "Candidates loaded: \(candidates.count, privacy: .public), failed: \(failedCount, privacy: .public)"
             )
-        } else {
-            state = failedCount == 0 ? .empty : .error
+        case .empty:
+            update(state: .empty)
+        case let .failed(failedCount):
+            update(state: .error)
             AppLog.suggestions.info("No candidates loaded; failed: \(failedCount, privacy: .public)")
+        case .cancelled:
+            update(state: .idle)
         }
+    }
+
+    private func update(state: State) {
+        self.state = state
         onStateChange?(state)
     }
 

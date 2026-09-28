@@ -82,13 +82,60 @@ struct SuggestionsViewModelTests {
         Issue.record("Expected an empty state")
     }
 
-    private func makeViewModel(repository: FixtureProductRepository, barcodes: [String]) -> SuggestionsViewModel {
+    @Test
+    func retryLoadsCandidatesAgainAfterFailure() async {
+        let repository = FailOnceProductRepository(product: product(id: "111", name: "Leite A"))
+        let viewModel = makeViewModel(repository: repository, barcodes: ["111"])
+
+        await viewModel.loadCandidates()
+        if case .error = viewModel.state {
+            // The first request intentionally fails so this test can verify the retry path.
+        } else {
+            Issue.record("Expected the first request to fail")
+            return
+        }
+
+        await viewModel.loadCandidates()
+
+        #expect(viewModel.candidates.map(\.product.id.rawValue) == ["111"])
+        #expect(await repository.requestCount == 2)
+    }
+
+    @Test
+    func cancelledLoadReturnsToIdle() async {
+        let viewModel = makeViewModel(
+            repository: SlowProductRepository(),
+            barcodes: ["111"]
+        )
+        let task = Task { await viewModel.loadCandidates() }
+
+        while !isLoading(viewModel) {
+            await Task.yield()
+        }
+        task.cancel()
+        await task.value
+
+        if case .idle = viewModel.state {
+            return
+        }
+        Issue.record("A cancelled request should not leave the screen in a loading state")
+    }
+
+    private func makeViewModel(
+        repository: any ProductRepository,
+        barcodes: [String]
+    ) -> SuggestionsViewModel {
         SuggestionsViewModel(
             originalProduct: product(id: "original", name: "Leite original"),
             originalPrice: nil,
             candidateBarcodes: barcodes,
-            loadProduct: LoadProductUseCase(productRepository: repository)
+            loadCandidates: LoadSubstitutionCandidatesUseCase(productRepository: repository)
         )
+    }
+
+    private func isLoading(_ viewModel: SuggestionsViewModel) -> Bool {
+        if case .loading = viewModel.state { return true }
+        return false
     }
 
     private func product(id: String, name: String) -> Product {
@@ -110,6 +157,34 @@ private struct FixtureProductRepository: ProductRepository {
             throw ProductRepositoryTestError.notFound
         }
         return product
+    }
+}
+
+private actor FailOnceProductRepository: ProductRepository {
+    private let product: Product
+    private(set) var requestCount = 0
+
+    init(product: Product) {
+        self.product = product
+    }
+
+    func product(barcode: String) async throws -> Product {
+        requestCount += 1
+        guard requestCount > 1 else { throw ProductRepositoryTestError.notFound }
+        return product
+    }
+}
+
+private struct SlowProductRepository: ProductRepository {
+    func product(barcode: String) async throws -> Product {
+        try await Task.sleep(nanoseconds: 60_000_000_000)
+        return Product(
+            id: ProductID(rawValue: barcode),
+            name: "Leite",
+            category: "en:dairies",
+            brand: nil,
+            quantity: "1 L"
+        )
     }
 }
 

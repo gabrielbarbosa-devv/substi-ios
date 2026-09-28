@@ -168,14 +168,14 @@ final class OrderViewController: UIViewController {
             actionContainer.isHidden = true
         } else {
             let substitutionCount = viewModel.unavailableItemCount
-            contentStackView.addArrangedSubview(
-                DSInfoBannerView(
+            let substitutionBanner = DSInfoBannerView(
                     title: substitutionCount == 1
                         ? "1 item precisa de substituição"
                         : "\(substitutionCount) itens precisam de substituição",
                     subtitle: "Escolha uma alternativa para continuar com seu pedido."
                 )
-            )
+            substitutionBanner.accessibilityIdentifier = "order-substitution-info"
+            contentStackView.addArrangedSubview(substitutionBanner)
 
             actionContainer.isHidden = false
         }

@@ -84,9 +84,7 @@ Para concorrência, desenhe uma linha do tempo. Para memória, mostre o grafo de
 
 ## Direção de produto e entrega
 
-O prazo documentado é 28 de setembro de 2026, às 11h, em `America/Sao_Paulo`. Consulte `docs/project/ROADMAP.md` e `CURRENT.md` para a trilha de entrega atualizada.
-
-Priorize uma pequena jornada realista de substituição, clara e funcional, e decisões proporcionais ao prazo. Não tente implementar todas as 20 fases antes da entrega. Estudos sem benefício direto ficam como evolução futura. Não copie o iFood: pesquise princípios de design, padrões iOS e grocery/e-commerce, e defina uma identidade simples para o Substi.
+Priorize uma pequena jornada realista de substituição, clara e funcional, e decisões proporcionais ao escopo atual. As 20 fases representam a visão de evolução do projeto, não uma obrigação de implementação integral. Estudos sem benefício direto à entrega permanecem como evolução futura. Não copie o iFood: pesquise princípios de design, padrões iOS e grocery/e-commerce, e defina uma identidade simples para o Substi.
 
 ## Arquitetura
 

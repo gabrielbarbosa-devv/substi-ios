@@ -6,16 +6,19 @@ import SwiftUI
 final class AppCoordinator {
     private let navigationController: UINavigationController
     private let inventoryRepository: any InventoryRepository
-    private let loadProductUseCase: LoadProductUseCase
+    private let loadCandidatesUseCase: LoadSubstitutionCandidatesUseCase
+    private let confirmSubstitutionUseCase: ConfirmSubstitutionUseCase
 
     init(
         navigationController: UINavigationController,
         inventoryRepository: any InventoryRepository,
-        productRepository: any ProductRepository
+        loadCandidatesUseCase: LoadSubstitutionCandidatesUseCase,
+        confirmSubstitutionUseCase: ConfirmSubstitutionUseCase
     ) {
         self.navigationController = navigationController
         self.inventoryRepository = inventoryRepository
-        loadProductUseCase = LoadProductUseCase(productRepository: productRepository)
+        self.loadCandidatesUseCase = loadCandidatesUseCase
+        self.confirmSubstitutionUseCase = confirmSubstitutionUseCase
     }
 
     func start() {
@@ -50,7 +53,7 @@ final class AppCoordinator {
             originalProduct: originalItem.product,
             originalPrice: originalItem.price,
             candidateBarcodes: candidateBarcodes,
-            loadProduct: loadProductUseCase
+            loadCandidates: loadCandidatesUseCase
         )
         let viewController = SuggestionsViewController(viewModel: viewModel)
         viewController.onShowComparison = { [weak self] candidate in
@@ -107,7 +110,7 @@ final class AppCoordinator {
     }
 
     private func confirmSubstitution(for originalProductID: ProductID, candidate: SubstitutionCandidate) {
-        guard let updatedOrder = inventoryRepository.confirmSubstitution(
+        guard let updatedOrder = confirmSubstitutionUseCase.execute(
             for: originalProductID,
             with: candidate
         ) else {

@@ -7,14 +7,16 @@ SceneDelegate — composition root
   ├── URLSessionAPIClient
   ├── OpenFoodFactsProductRepository ──implements──> ProductRepository
   ├── DemoInventoryRepository ─────────implements──> InventoryRepository
+  ├── LoadSubstitutionCandidatesUseCase
+  ├── ConfirmSubstitutionUseCase
   └── AppCoordinator
         ├── cria OrderViewModel → OrderViewController (UIKit)
         ├── cria SuggestionsViewModel → SuggestionsViewController (UIKit)
         └── cria ProductComparisonViewModel → UIHostingController (SwiftUI)
 
 Presentation → Application/UseCases → Domain contracts
-                                         ▲
-Data implementations ───────────────────┘
+     ▲                                      ▲
+AppCoordinator ── navega                  Data implementations
 ```
 
 ## Pastas e responsabilidades
@@ -22,7 +24,7 @@ Data implementations ───────────────────�
 | Pasta | Responsabilidade atual |
 | --- | --- |
 | `Substi/App` | Ciclo de vida da aplicação, composição inicial e navegação. |
-| `Substi/Application/UseCases` | Operações de aplicação que coordenam um objetivo, como carregar um produto. |
+| `Substi/Application/UseCases` | Operações da aplicação: buscar e ordenar candidatos, confirmar uma substituição. |
 | `Packages/SubstiDomain/Sources/SubstiDomain/Models` | Tipos centrais do produto e do pedido, sem dependência de UIKit/SwiftUI. |
 | `Packages/SubstiDomain/Sources/SubstiDomain/Repositories` | Contratos que a aplicação/domínio precisam para obter ou atualizar dados. |
 | `Packages/SubstiDomain/Sources/SubstiDomain/Services` | Regras de domínio, como ranking de candidatos. |
@@ -37,11 +39,12 @@ O domínio agora é o pacote local `SubstiDomain` (Swift tools 6, iOS 16), impor
 
 ## Responsabilidades e fluxo
 
-- `SceneDelegate` é o ponto de composição: cria cliente HTTP e repositórios concretos, injeta os contratos no `AppCoordinator` e mantém o Coordinator durante a cena.
-- `AppCoordinator` mantém o `UINavigationController`, decide as transições e constrói ViewModels/Views para os fluxos. Não deve ler fixtures nem fazer requisições diretamente.
+- `SceneDelegate` é o ponto de composição: cria cliente HTTP, repositórios e casos de uso, injeta suas dependências e mantém o Coordinator durante a cena.
+- `AppCoordinator` mantém o `UINavigationController`, decide as transições e constrói ViewModels/Views para os fluxos. Pode consultar o contrato do inventário para montar o fluxo, mas não executa a mutação do pedido nem faz requisições HTTP.
 - ViewControllers UIKit e views SwiftUI renderizam dados de apresentação e encaminham ações. Não fazem chamadas de rede.
 - ViewModels transformam modelos em conteúdo próprio da tela. O `OrderViewModel` recebe os IDs indisponíveis por parâmetro e não conhece `InventoryFixtures`.
-- `LoadProductUseCase` expressa o objetivo de carregar um produto usando o contrato `ProductRepository`.
+- `LoadSubstitutionCandidatesUseCase` coordena as consultas configuradas, preserva resultados parciais, aplica o ranking e interrompe o trabalho quando cancelado.
+- `ConfirmSubstitutionUseCase` valida a opção configurada, produz o pedido atualizado e pede ao repositório que o persista.
 - `ProductRepository` e `InventoryRepository` são fronteiras necessárias entre quem solicita os dados e suas fontes concretas. `OpenFoodFactsProductRepository` usa `APIClient`; `DemoInventoryRepository` encapsula o inventário de demonstração.
 - Respostas Open Food Facts passam por `DTO → Mapper → Product`; o domínio e a apresentação não recebem o DTO externo.
 
@@ -54,7 +57,7 @@ Presentation ──> DesignSystem
 DesignSystem ──X──> Feature, Domain, Data ou Networking
 ```
 
-Em termos de SOLID, a aplicação usa **SRP** ao separar navegação, estado de tela, regra de domínio, transporte e mapeamento. Usa **DIP** nas fronteiras de repositório: Coordinator/Use Case recebem contratos; Data fornece implementações. Isso não exige um protocolo para cada tipo. Por exemplo, `LoadProductUseCase` é um valor concreto porque não há necessidade atual de substituí-lo isoladamente.
+Em termos de SOLID, a aplicação usa **SRP** ao separar navegação, estado de tela, coordenação de operações, regra de domínio, transporte e mapeamento. Usa **DIP** nas fronteiras de repositório: casos de uso recebem contratos; Data fornece implementações. Isso não exige um protocolo para cada tipo.
 
 ## Ownership do fluxo
 
@@ -65,7 +68,7 @@ SceneDelegate ──strong──> AppCoordinator ──strong──> UINavigatio
                                        e UseCase                    └──> ViewModels
 ```
 
-O `SceneDelegate` mantém o Coordinator em uma propriedade enquanto a cena existe. O Coordinator mantém o navigation controller e os repositórios. Closures de retorno das telas capturam o Coordinator com `[weak self]`, evitando que uma tela mantida pela navegação forme um ciclo com o Coordinator. SwiftUI é apresentado pelo UIKit com `UIHostingController`; o Coordinator permanece responsável pelo fluxo.
+O `SceneDelegate` mantém o Coordinator em uma propriedade enquanto a cena existe. O Coordinator mantém o navigation controller, o contrato de leitura do inventário e os casos de uso. Closures de retorno das telas capturam o Coordinator com `[weak self]`, evitando que uma tela mantida pela navegação forme um ciclo com o Coordinator. SwiftUI é apresentado pelo UIKit com `UIHostingController`; o Coordinator permanece responsável pelo fluxo.
 
 ## Decisão e limites
 

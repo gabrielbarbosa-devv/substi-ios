@@ -24,10 +24,34 @@ final class SubstiUITests: XCTestCase {
             throw XCTSkip("A auditoria de acessibilidade do XCTest requer iOS 17 ou posterior.")
         }
         try app.performAccessibilityAudit { issue in
-            // XCTest reports a scrollable card as clipped when it crosses the viewport edge.
-            // The screenshot is reviewed separately at larger content sizes.
+            // A card crossing a scroll viewport edge is expected; large-text scrolling is tested separately.
             issue.auditType == .textClipped
         }
+    }
+
+    @MainActor
+    func testOrderContentCanScrollAtAccessibilityTextSize() throws {
+        XCUIDevice.shared.orientation = .portrait
+        let app = XCUIApplication()
+        app.launchArguments += [
+            "-UIPreferredContentSizeCategoryName",
+            "UICTContentSizeCategoryAccessibilityXXXL"
+        ]
+        app.launch()
+
+        let chooseButton = app.buttons["order-choose-substitute"]
+        let substitutionBanner = app.descendants(matching: .any)["order-substitution-info"]
+        XCTAssertTrue(chooseButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(substitutionBanner.waitForExistence(timeout: 5))
+
+        let content = app.scrollViews.firstMatch
+        for _ in 0..<6 where substitutionBanner.frame.maxY > chooseButton.frame.minY {
+            content.swipeUp()
+        }
+
+        XCTAssertTrue(chooseButton.isHittable)
+        XCTAssertTrue(substitutionBanner.exists)
+        XCTAssertLessThanOrEqual(substitutionBanner.frame.maxY, chooseButton.frame.minY)
     }
 
     @MainActor

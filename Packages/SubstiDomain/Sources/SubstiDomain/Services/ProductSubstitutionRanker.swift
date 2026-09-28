@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ProductSubstitutionRanker {
+public struct ProductSubstitutionRanker: Sendable {
     public init() {}
 
     public func rank(
@@ -43,6 +43,8 @@ public struct ProductSubstitutionRanker {
     }
 
     private func normalized(_ value: String) -> String {
-        value.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        value
+            .filter { !$0.isWhitespace }
+            .lowercased()
     }
 }

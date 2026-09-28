@@ -10,7 +10,7 @@ Princípios, foundations, contratos low-fi, revisão de acessibilidade e apenas 
 A descoberta de design usa as decisões pertinentes de produto e pode ocorrer em paralelo com domínio e rede. A implementação depende dos materiais aprovados, não da conclusão cronológica de todo o plano de engenharia.
 
 ## Prioridade
-P0: HIG focado, princípios, foundations, estrutura low-fi, inventário, acessibilidade e componentes usados. P1: pesquisa de referências do iFood e grocery, direção high-fi e snapshots. Prazo final: 28/09/2026 às 11h, em `America/Sao_Paulo`.
+P0: HIG focado, princípios, foundations, estrutura low-fi, inventário, acessibilidade e componentes usados. P1: pesquisa de referências do iFood e grocery, direção high-fi e snapshots. A priorização da trilha de entrega é mantida em `docs/project/ROADMAP.md`.
 
 ## Estado
 IN_PROGRESS

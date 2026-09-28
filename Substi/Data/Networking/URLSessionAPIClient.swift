@@ -13,6 +13,7 @@ struct URLSessionAPIClient: APIClient {
 
     func data(for endpoint: Endpoint) async throws -> Data {
         guard let url = endpoint.url(relativeTo: baseURL) else {
+            AppLog.network.error("Catalog endpoint could not be resolved against the configured base URL")
             throw NetworkError.invalidURL
         }
 
@@ -24,6 +25,7 @@ struct URLSessionAPIClient: APIClient {
             let (data, response) = try await session.data(for: request)
 
             guard let response = response as? HTTPURLResponse else {
+                AppLog.network.error("Catalog returned a non-HTTP response")
                 throw NetworkError.invalidResponse
             }
 

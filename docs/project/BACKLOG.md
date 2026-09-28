@@ -231,3 +231,4 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P19-010 | Discutir evolução com ML | 19 | P2 | TODO |
 | SUB-P19-011 | Executar entrevista simulada | 19 | P1 | TODO |
 | SUB-P19-012 | Defender trade-offs | 19 | P1 | TODO |
+| SUB-P19-013 | Fechar revisão técnica da entrega | 19 | P0 | REVIEW |

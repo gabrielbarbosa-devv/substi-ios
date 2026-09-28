@@ -13,7 +13,7 @@ Resultados pertinentes da FASE 18.
 Consulte as prioridades das tasks. Trabalho P1/P2 não pode comprometer a entrega essencial P0.
 
 ## Estado
-TODO
+REVIEW
 
 ## SUB-P19-001 — Escrever README final
 
@@ -806,3 +806,79 @@ Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de impl
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
+
+## SUB-P19-013 — Fechar revisão técnica da entrega
+
+Estado: REVIEW
+
+Prioridade: P0
+
+Depende de:
+- Nenhuma
+
+### Contexto
+Antes de compartilhar o projeto, é necessário alinhar arquitetura, diagnóstico de falhas, acessibilidade, integração real com a API e documentação às evidências do código.
+
+### Objetivo
+Resolver os achados de maior impacto da revisão e deixar explícitos os limites que permanecem próprios de uma aplicação demonstrativa.
+
+### Requisitos
+- Fazer a confirmação do pedido por um caso de uso; manter o repositório responsável por persistir o pedido demonstrativo.
+- Fazer o carregamento sequencial, a ordenação e a agregação de falhas dos candidatos em um caso de uso testável.
+- Registrar falhas HTTP, transporte, decodificação e mapeamento sem registrar dados de produto ou dados pessoais.
+- Testar cancelamento, nova tentativa, confirmação e o comportamento de rolagem com Dynamic Type ampliado.
+- Validar diretamente a API pública com os códigos configurados; testes automatizados continuam sem dependência da internet.
+- Remover prazos vencidos dos documentos de orientação e atualizar evidências visuais da aplicação quando o ambiente permitir.
+
+### Critérios de aceite
+- [x] O Coordinator conduz a navegação sem realizar a mutação do pedido.
+- [x] O domínio continua separado do transporte e da apresentação.
+- [x] Sucesso parcial, falha total, lista vazia e cancelamento têm resultados determinísticos cobertos por testes.
+- [x] Logs preservam diagnósticos técnicos com privacidade; a interface continua apresentando mensagens seguras e compreensíveis.
+- [x] A API ao vivo responde aos códigos configurados e o README descreve corretamente seus limites.
+- [x] Textos e ações do pedido podem ser alcançados em Dynamic Type ampliado; a auditoria de texto cortado tem justificativa restrita.
+- [x] Prazo vencido removido de `AGENTS.md`, `CURRENT.md` e `ROADMAP.md`.
+- [x] Build e suíte de testes passam; as capturas do README correspondem à versão atual.
+
+### Conceitos de engenharia
+SRP, Dependency Inversion, MVVM-C, Use Cases, Repository, Swift Concurrency, cancelamento, OSLog, Dynamic Type e testes determinísticos.
+
+### Estudar antes da implementação
+Revisar o limite entre Coordinator, Use Case e Repository; cancellation cooperativa; logging com níveis de privacidade; auditorias de acessibilidade e configuração de fonte preferida em testes.
+
+### Perguntas que preciso saber responder
+- Por que a mutação do pedido não pertence ao Coordinator nem ao repositório de memória?
+- Como os resultados parciais preservam candidatos válidos sem ocultar falhas?
+- O que muda quando uma tarefa de carregamento é cancelada ou substituída por uma tentativa nova?
+- Quais erros entram no log e por que os detalhes ficam privados?
+- Como foi validada a API sem tornar os testes dependentes da internet?
+- Por que pastas de camadas não equivalem a módulos Swift separados?
+
+### Validação
+Executar testes unitários/UI no simulador e consultar os endpoints públicos configurados. Registrar claramente quais passos foram manuais e quais foram automatizados.
+
+### Observabilidade
+Registrar categoria e causa técnica das falhas de rede/decodificação/mapeamento sem conteúdo do catálogo ou dados pessoais.
+
+### Considerações de memória
+Verificar o ciclo de vida da `Task` da tela de sugestões e as capturas fracas dos callbacks de navegação.
+
+### Considerações de concorrência
+Preservar chamadas sequenciais, cancelamento cooperativo e estado de apresentação isolado por `@MainActor`; não usar `TaskGroup` sem necessidade medida.
+
+### Acessibilidade
+Verificar rolagem e alvo do CTA em Dynamic Type ampliado; revisar manualmente VoiceOver antes de declarar essa validação completa.
+
+### Uso de IA
+A IA pode executar as mudanças delimitadas, organizar evidências e sugerir testes. Gabriel revisa o comportamento, interpreta as evidências e defende os trade-offs.
+
+### Arquivos esperados
+Use Cases, repositórios de demonstração, ViewModel de sugestões, testes, documentação de arquitetura/entrega, README e capturas existentes.
+
+### Critérios para conclusão
+- [x] Verificações aplicáveis passam; limitações não verificadas estão descritas.
+- [x] Documentação e estado atualizados, e a task foi movida para REVIEW.
+- [ ] Gabriel revisa, explica o resultado e os trade-offs antes de mover a task para DONE.
+
+### Notas para entrevista
+Apresentar a jornada vertical, a fronteira real do domínio, o fluxo de falhas e cancelamento, e a razão para manter dados de pedido como demonstração local.

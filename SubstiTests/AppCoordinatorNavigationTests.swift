@@ -13,7 +13,12 @@ struct AppCoordinatorNavigationTests {
         let coordinator = AppCoordinator(
             navigationController: navigationController,
             inventoryRepository: inventoryRepository,
-            productRepository: FixtureProductRepository()
+            loadCandidatesUseCase: LoadSubstitutionCandidatesUseCase(
+                productRepository: FixtureProductRepository()
+            ),
+            confirmSubstitutionUseCase: ConfirmSubstitutionUseCase(
+                inventoryRepository: inventoryRepository
+            )
         )
         coordinator.start()
 

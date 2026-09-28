@@ -49,6 +49,15 @@ struct ProductSubstitutionRankerTests {
         #expect(ranked.map(\.product.id.rawValue) == ["same", "different"])
     }
 
+    @Test func quantityComparisonIgnoresWhitespaceAndLetterCase() {
+        let original = product(id: "original", category: "en:dairies", quantity: "1 L")
+        let equivalent = candidate(id: "equivalent", category: "en:dairies", quantity: "1l")
+
+        #expect(
+            ProductSubstitutionRanker().quantityScore(for: equivalent, replacing: original) == 1
+        )
+    }
+
     @Test func equalEvidenceKeepsCatalogOrder() {
         let original = product(id: "original", category: nil, quantity: nil)
         let first = candidate(id: "first", category: nil, quantity: nil)

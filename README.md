@@ -32,7 +32,7 @@ Na abertura, uma Launch Screen estática mantém a identidade visual durante a i
 
 ### Capturas do aplicativo
 
-Capturas reais das cinco etapas, obtidas durante a jornada automatizada no iPhone 16 Pro Simulator (iOS 18.6). Os arquivos `docs/assets/*-reference.png` são mockups de referência, não screenshots do app.
+Capturas reais das cinco etapas, obtidas durante a jornada automatizada no iPhone 16 Pro Simulator (iOS 18.6). Os arquivos `docs/assets/*-reference.png` são mockups de referência, não screenshots do app. O teste usa catálogo determinístico para reproduzir as mesmas telas; a execução normal foi validada separadamente com a API real e carregou os três candidatos configurados sem falhas.
 
 | Meu pedido · UIKit | Sugestões · UIKit |
 | --- | --- |
@@ -61,12 +61,14 @@ flowchart TB
     S --> SV[SuggestionsViewModel]
     C --> CV[ProductComparisonViewModel]
     F --> CV
-    SV --> UC[LoadProductUseCase]
+    SV --> UC[LoadSubstitutionCandidatesUseCase]
     UC --> PR[ProductRepository · contrato no domínio]
     PR -. implementação .-> RP[OpenFoodFactsProductRepository]
     RP --> CL[URLSessionAPIClient]
     AC --> IR[DemoInventoryRepository]
     IR -. implementa .-> IC[InventoryRepository · contrato no domínio]
+    AC --> CS[ConfirmSubstitutionUseCase]
+    CS --> IC
 ```
 
 O domínio é um pacote local Swift Package Manager (`SubstiDomain`), sem dependência de UIKit ou SwiftUI. As pastas `App`, `Application`, `Data`, `Presentation`, `DesignSystem` e `Observability` ficam no target do app. Extrair todas as camadas em pacotes separados aumentaria a configuração e a superfície de APIs sem uma necessidade atual.
@@ -77,7 +79,7 @@ O domínio é um pacote local Swift Package Manager (`SubstiDomain`), sem depend
 | --- | --- |
 | View / ViewController | Renderiza dados de apresentação e encaminha ações da pessoa. |
 | ViewModel | Mantém e transforma o estado consumido pela tela. |
-| Use Case | Expressa a operação de carregar um produto por meio do contrato `ProductRepository`. |
+| Use Case | Coordena uma operação da aplicação: carregar candidatos com falhas parciais e ranking, ou confirmar e persistir uma substituição. |
 | Repository | Separa o pedido local e o catálogo remoto das partes que consomem os dados. |
 | Coordinator | Constrói telas e conduz a navegação UIKit e SwiftUI. |
 | Composition Root | Cria implementações concretas e injeta dependências no início da cena. |
@@ -93,7 +95,7 @@ O fluxo atravessa UIKit e SwiftUI e precisa atualizar o pedido após a confirma�
 ```mermaid
 flowchart LR
     View[SuggestionsViewController] --> VM[SuggestionsViewModel]
-    VM --> UseCase[LoadProductUseCase]
+    VM --> UseCase[LoadSubstitutionCandidatesUseCase]
     UseCase --> Contract[ProductRepository · contrato]
     Contract --> Repo[OpenFoodFactsProductRepository]
     Repo --> Client[URLSessionAPIClient]
@@ -128,7 +130,7 @@ O Design System contém foundations semânticas de cor, tipografia, espaçamento
 
 ## Concorrência e memória
 
-`URLSession` é chamado com `async/await`. `SuggestionsViewModel` é isolada por `@MainActor` porque seu estado é consumido pela interface. A ViewController mantém a `Task` de carregamento e a cancela no `deinit`; as requisições dos poucos candidatos configurados são sequenciais, com checagens de cancelamento. Não há `TaskGroup`, GCD, cache actor ou paralelismo no fluxo principal: não há medição ou necessidade que justifique essa complexidade.
+`URLSession` é chamado com `async/await`. `SuggestionsViewModel` é isolada por `@MainActor` porque seu estado é consumido pela interface. `LoadSubstitutionCandidatesUseCase` consulta sequencialmente os poucos códigos configurados, mantém resultados parciais, ordena os candidatos e respeita cancelamento. A ViewController mantém a `Task` e a cancela no `deinit`; identificadores de requisição impedem uma operação cancelada de sobrescrever uma tentativa mais recente. Não há `TaskGroup`, GCD, cache actor ou paralelismo no fluxo principal: não há medição ou necessidade que justifique essa complexidade.
 
 O `SceneDelegate` mantém o `AppCoordinator` durante a cena. O Coordinator controla o `UINavigationController`; closures de retorno das telas capturam o Coordinator com `[weak self]` para não criar ciclos de retenção. Veja [concorrência](docs/concurrency.md) e [gerenciamento de memória](docs/memory-management.md).
 
@@ -136,15 +138,15 @@ O `SceneDelegate` mantém o `AppCoordinator` durante a cena. O Coordinator contr
 
 Sugestões modelam `idle`, `loading`, `content`, `empty` e `error`. Se algumas chamadas falham, produtos carregados com sucesso continuam disponíveis e a interface informa a falha parcial; se todas falham, a pessoa pode tentar novamente. Erros HTTP, de transporte, decodificação e mapeamento ficam separados dos textos de apresentação.
 
-O `Logger` do sistema usa categorias de rede e sugestões. Os registros incluem status HTTP, códigos de erro de transporte e contagens, sem nomes de produtos ou dados pessoais. Não há Analytics, crash reporting, Signposts ou métricas de produção configurados.
+O `Logger` do sistema usa categorias de rede e sugestões. Registra status HTTP, códigos de transporte, falhas de decodificação/mapeamento e contagens. Detalhes técnicos de erros ficam com privacidade `.private`; nomes de produtos, códigos de barras e dados pessoais não são registrados. Não há Analytics, crash reporting, Signposts ou métricas de produção configurados.
 
 ## Testes e acessibilidade
 
 - **Unitários:** modelos/fixtures do pedido, ranking, mapeamento, endpoints, cliente HTTP com `URLProtocol`, repositórios, Use Case e ViewModels.
-- **UI:** jornada Pedido → Sugestões → Comparação → Confirmação → Pedido atualizado, usando catálogo determinístico apenas no teste; também há auditorias de acessibilidade XCTest para as telas.
+- **UI:** jornada Pedido → Sugestões → Comparação → Confirmação → Pedido atualizado, usando catálogo determinístico apenas no teste; também há auditorias de acessibilidade XCTest e um teste de rolagem com Dynamic Type ampliado.
 - **Snapshot:** não há Snapshot Testing configurado.
 
-Views usam labels/hints e identificadores de acessibilidade onde necessários; os textos usam estilos do sistema e Dynamic Type. As auditorias XCTest verificam as telas suportadas pelo simulador. A tela Pedido exclui do teste automático o aviso `.textClipped` de um cartão parcialmente visível na borda da rolagem; esse comportamento ainda merece inspeção manual em tamanhos de texto ampliados e com VoiceOver.
+Views usam labels/hints e identificadores de acessibilidade onde necessários; os textos usam estilos do sistema e Dynamic Type. As auditorias XCTest verificam as telas suportadas pelo simulador. O pedido permite rolar todo o conteúdo com fonte ampliada; a auditoria ignora o falso positivo `.textClipped` gerado por cartões parcialmente visíveis na borda da rolagem. VoiceOver ainda requer inspeção manual.
 
 ## Organização do código
 
@@ -161,7 +163,7 @@ SubstiTests/             testes unitários e de integração local
 SubstiUITests/           jornada e auditorias de acessibilidade
 ```
 
-O `SceneDelegate` é o ponto de montagem manual: constrói `URLSessionAPIClient`, `OpenFoodFactsProductRepository`, `DemoInventoryRepository` e `AppCoordinator`. Protocolos são usados nos limites que precisam permitir fontes substituíveis nos testes; tipos concretos são mantidos onde outra implementação não traria benefício. Essa composição aplica Dependency Inversion nos limites de dados sem adicionar um framework de injeção.
+O `SceneDelegate` é o ponto de montagem manual: constrói cliente e repositórios concretos, compõe os Use Cases e os injeta no `AppCoordinator`. Protocolos são usados nos limites que precisam permitir fontes substituíveis nos testes; tipos concretos são mantidos onde outra implementação não traria benefício. Essa composição aplica Dependency Inversion nos limites de dados sem adicionar um framework de injeção.
 
 ## Decisões e trade-offs
 

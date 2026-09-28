@@ -30,10 +30,16 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         #else
         productRepository = OpenFoodFactsProductRepository(apiClient: apiClient)
         #endif
+        let inventoryRepository = DemoInventoryRepository()
         let coordinator = AppCoordinator(
             navigationController: navigationController,
-            inventoryRepository: DemoInventoryRepository(),
-            productRepository: productRepository
+            inventoryRepository: inventoryRepository,
+            loadCandidatesUseCase: LoadSubstitutionCandidatesUseCase(
+                productRepository: productRepository
+            ),
+            confirmSubstitutionUseCase: ConfirmSubstitutionUseCase(
+                inventoryRepository: inventoryRepository
+            )
         )
         coordinator.start()
 

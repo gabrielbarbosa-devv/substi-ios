@@ -1,47 +1,32 @@
 # Trabalho atual
 
-## Prazo
-
-Segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo`.
-
 ## Trilha de entrega
 
-A jornada Pedido → Sugestões → Comparação → Confirmação → Pedido atualizado está implementada. A execução normal consulta a Open Food Facts para dados de produtos; pedido e disponibilidade permanecem demonstrativos em memória. As 20 fases são a visão completa de engenharia, não uma promessa de implementação integral para o desafio.
+A jornada Pedido → Sugestões → Comparação → Confirmação → Pedido atualizado está implementada. No uso normal, o app consulta a API Open Food Facts; pedido, estoque e confirmação são demonstrativos em memória. As 20 fases são uma visão de evolução, não uma obrigação para apresentar este recorte.
 
 ## Fase atual
 
-PHASE 12 — UIKit (acabamento da abertura do app)
+PHASE 19 — Entrega e entrevista
 
 ## Tarefa atual
 
-`SUB-P12-014` — Criar abertura de marca acessível
+`SUB-P19-013` — Fechar revisão técnica da entrega
 
 ## Status
 
-REVIEW. Não há task em `IN_PROGRESS`; `SUB-P12-014` aguarda revisão de Gabriel. As tasks de entrega anteriores continuam em REVIEW até Gabriel estudar e aprovar os resultados.
+REVIEW. Implementação e evidências estão prontas para revisão de Gabriel; a task não está DONE.
 
-## Resultado nesta rodada
+## Verificações realizadas
 
-- Swift 6 Language Mode habilitado nos targets do app e de testes.
-- `SubstiDomain` extraído para um Swift Package local; demais camadas continuam separadas por responsabilidade no target principal.
-- Ranking determinístico: categoria, depois quantidade textual, depois ordem original; linguagem da UI evita prometer “melhores” opções sem validação.
-- Jornada automatizada de quatro telas com catálogo controlado apenas no lançamento de UI test.
-- Logger nativo com categorias de rede e sugestões, sem dados pessoais/produtos nos eventos.
-- Revisões de contraste, Dynamic Type e rodapé de ação nas telas.
-- Launch Screen estática alinhada ao fundo semântico e abertura UIKit animada com marca vetorial; a transição respeita Reduce Motion e revela o Pedido sem fingir carregamento de rede.
-
-## Evidência e limites
-
-Em 28/09, o test plan completo terminou como `Passed`, sem falhas ou testes ignorados, com Xcode 16.4 (16F6) no iPhone 16 Pro / iOS 18.6 Simulator. A execução serial (`-parallel-testing-enabled NO`) passou pelos testes unitários, pela jornada Pedido → Sugestões → Comparação → Confirmação → Pedido atualizado e pelas auditorias de acessibilidade/lançamento.
-
-O app normal consulta a Open Food Facts; os testes de UI usam o catálogo determinístico. A API foi conferida por requisições diretas aos códigos de barras da demonstração, mas falta uma validação manual documentada do fluxo completo usando a API ao vivo. A auditoria automática cobre as quatro telas; o teste de Pedido exclui o aviso `.textClipped` de um cartão parcialmente visível na borda da rolagem. Dynamic Type ampliado e VoiceOver ainda precisam de inspeção manual completa.
-
-O Simulator foi inicializado com o Xcode 16.4. `xcode-select -p` ainda aponta para Command Line Tools; o Terminal deve selecionar Xcode 16.4 em **Xcode → Settings → Locations → Command Line Tools** ou definir `DEVELOPER_DIR` para essa execução.
-
-Após a nova abertura, o build e o test plan completo passaram novamente: zero falhas e zero testes ignorados. O teste de navegação conclui a animação via callback determinístico antes de verificar o Coordinator.
-
-A configuração local de `DEVELOPMENT_TEAM` no projeto Xcode pertence à máquina e não deve ser publicada.
+- Build e suíte completa passaram em Xcode 16.4 / iPhone 16 Pro Simulator (iOS 18.6): 35 testes unitários, 5 testes UI e 4 testes de lançamento.
+- A jornada automatizada Pedido → Sugestões → Comparação → Confirmação → Pedido atualizado passou com catálogo determinístico. Os testes de rede usam `URLProtocol`, sem depender da Internet.
+- Executei o app normal no simulador, sem `--uitest-demo-catalog`: o log registrou `Candidates loaded: 3, failed: 0`, e a tela apresentou metadados reais da API.
+- Consultei diretamente os três códigos de barras configurados; todos retornaram nome, marca, categoria e quantidade. A API pode devolver categorias amplas/inconsistentes e `1 L`/`1l`; o ranking compara texto normalizado e não é uma recomendação validada.
+- Logs cobrem status HTTP, transporte, decodificação, mapeamento e falhas parciais sem expor detalhes privados. Testes cobrem falha parcial/total, lista vazia, nova tentativa e cancelamento.
+- Dynamic Type ampliado permite alcançar o aviso e a ação após rolagem; auditorias XCTest passaram. VoiceOver ainda precisa de inspeção manual.
+- As capturas atuais do README vêm da jornada de teste reproduzível. Mudanças desta revisão não alteraram a composição visual das telas.
+- Prazos vencidos foram removidos de `AGENTS.md`, `CURRENT.md`, `ROADMAP.md` e da introdução da Phase 11. `DEVELOPMENT_TEAM` permanece configuração local e não deve ser publicado.
 
 ## Próximo passo
 
-Revisar a abertura do app e os limites registrados nesta task. Após a revisão de Gabriel, retornar ao fechamento da DELIVERY TRACK e às verificações manuais de API ao vivo, VoiceOver, Dynamic Type e Reduce Motion.
+Gabriel revisa as decisões, os limites e as evidências; após entender e aprovar o resultado, pode mover `SUB-P19-013` para DONE. Antes de compartilhar, faça uma checagem manual de VoiceOver no simulador/dispositivo.
