@@ -13,11 +13,11 @@ Resultados pertinentes da FASE 01.
 Consulte as prioridades das tasks. Trabalho P1/P2 não pode comprometer a entrega essencial P0.
 
 ## Estado
-TODO
+IN_PROGRESS
 
 ## SUB-P02-001 — Escrever ADR de MVVM-C
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -83,7 +83,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P02-002 — Definir camadas e direção das dependências
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -281,7 +281,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P02-005 — Definir ownership do Coordinator
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -347,7 +347,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P02-006 — Definir Composition Root
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -413,7 +413,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P02-007 — Definir injeção de dependências
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P0
 
@@ -479,7 +479,7 @@ Explicar propósito, alternativas, trade-offs, validação e como a decisão pod
 
 ## SUB-P02-008 — Definir fronteiras de protocolos
 
-Estado: TODO
+Estado: REVIEW
 
 Prioridade: P1
 
