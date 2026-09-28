@@ -8,6 +8,8 @@ Referência visual da tela Escolher substituto: [suggestions-screen-reference.pn
 
 Referência visual da tela Comparação: [comparison-screen-reference.png](../../assets/comparison-screen-reference.png). A imagem orienta a comparação lado a lado; preço do substituto, nutrição, fotos individuais e percentual de compatibilidade não estão nos dados atuais e não serão simulados.
 
+Referência visual da tela Confirmação: [confirmation-screen-reference.png](../../assets/confirmation-screen-reference.png). Ela orienta a revisão final da troca; os dados ausentes continuam identificados como não informados.
+
 ## Pedido
 
 ### Purpose
@@ -122,11 +124,11 @@ Navigation Bar UIKit nativa, cartões e linhas SwiftUI locais à feature. A tela
 - Content: recebe original e candidato selecionado.
 - Loading/empty/error: não se aplicam enquanto os dados são passados sincronamente pelo Coordinator.
 - Preço ausente do candidato: “Não informado”.
-- Confirmação: botão visível e desabilitado; a etapa de confirmação ainda não foi implementada.
+- Confirmação: CTA abre a folha de confirmação do candidato escolhido.
 
 ### Actions
 
-Voltar para Sugestões pela ação entregue pelo Coordinator. A View não controla `UINavigationController`. A confirmação fica para uma task futura.
+Voltar para Sugestões ou abrir a confirmação pela ação entregue pelo Coordinator. A View não controla `UINavigationController`.
 
 ### Accessibility
 
@@ -139,3 +141,48 @@ Nenhum evento é enviado; analytics não está implementado.
 ### Limites dos dados demonstrativos
 
 O preço do item original vem de `OrderItem`; `SubstitutionCandidate` não contém preço. A API e as fixtures também não fornecem foto individual, nutrição nem percentual de compatibilidade. A comparação apresenta nome, marca, categoria, quantidade e preço quando disponível. Categorias conhecidas da fixture recebem rótulos em português.
+
+## Confirmação
+
+### Purpose
+
+Revisar a substituição escolhida antes de atualizar o pedido demonstrativo.
+
+### User Goal
+
+Confirmar conscientemente a troca ou cancelar e voltar à comparação.
+
+### Information Hierarchy
+
+1. Pergunta explícita de confirmação.
+2. Produto original e seus dados conhecidos.
+3. Produto substituto e seus dados conhecidos.
+4. Ações “Confirmar substituição” e “Cancelar”.
+
+### Components
+
+Folha nativa apresentada pelo Coordinator e conteúdo SwiftUI. Usa semantic colors, fontes de sistema e espaçamentos existentes; não cria componentes compartilhados novos.
+
+### States
+
+- Content: apresenta original e candidato selecionado.
+- Candidate price: “Não informado”, pois o candidato não possui preço nos dados locais.
+- Success: ao confirmar, o pedido local mostra o candidato como substituído.
+- Failure: se o repositório não aceitar o candidato, apresenta mensagem e mantém a folha aberta.
+- Cancel: fecha a folha sem alterar o pedido.
+
+### Actions
+
+O Coordinator apresenta e dispensa a folha. Confirmar solicita a alteração ao `InventoryRepository` demonstrativo e substitui a tela raiz pelo pedido atualizado. Cancelar dispensa a folha.
+
+### Accessibility
+
+Título com trait de cabeçalho, cartões agrupados com seus dados em texto, ícone decorativo oculto, Dynamic Type e botões com alvo nativo.
+
+### Analytics
+
+Nenhum evento é enviado; analytics não está implementado.
+
+### Limites dos dados demonstrativos
+
+A atualização existe somente em memória durante a sessão. Não representa estoque, autorização nem alteração de um pedido real. A referência contém foto, preço e percentual de compatibilidade que não existem nas fixtures; esses valores não são simulados.

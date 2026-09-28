@@ -78,34 +78,59 @@ final class OrderViewController: UIViewController {
     private func render() {
         contentStackView.addArrangedSubview(statusBanner)
 
-        let unavailableItems = viewModel.items.filter { $0.availability == .unavailable }
-        if unavailableItems.isEmpty {
-            let emptyLabel = UILabel()
-            emptyLabel.text = "Seu pedido ainda não tem produtos indisponíveis."
-            emptyLabel.font = DSTypography.body
-            emptyLabel.adjustsFontForContentSizeCategory = true
-            emptyLabel.textColor = DSColor.textSecondary
-            emptyLabel.numberOfLines = 0
-            contentStackView.addArrangedSubview(emptyLabel)
-            chooseSubstituteButton.isHidden = true
-        } else {
-            for item in viewModel.items {
-                let isUnavailable = item.availability == .unavailable
-                contentStackView.addArrangedSubview(
-                    DSProductCardView(
-                        content: DSProductCardContent(
-                            name: item.product.name,
-                            brand: item.product.brand,
-                            quantity: item.product.quantity,
-                            priceText: item.priceText,
-                            statusText: isUnavailable ? "Indisponível" : nil,
-                            statusStyle: isUnavailable ? .unavailable : nil,
-                            state: isUnavailable ? .unavailable : .available
-                        )
-                    )
+        for item in viewModel.items {
+            let content: DSProductCardContent
+            switch item.availability {
+            case .available:
+                content = DSProductCardContent(
+                    name: item.product.name,
+                    brand: item.product.brand,
+                    quantity: item.product.quantity,
+                    priceText: item.priceText,
+                    statusText: nil,
+                    statusStyle: nil,
+                    state: .available
+                )
+            case .unavailable:
+                content = DSProductCardContent(
+                    name: item.product.name,
+                    brand: item.product.brand,
+                    quantity: item.product.quantity,
+                    priceText: item.priceText,
+                    statusText: "Indisponível",
+                    statusStyle: .unavailable,
+                    state: .unavailable
+                )
+            case .substituted:
+                content = DSProductCardContent(
+                    name: item.product.name,
+                    brand: item.product.brand,
+                    quantity: item.product.quantity,
+                    priceText: item.priceText,
+                    statusText: "Substituído",
+                    statusStyle: .substituted,
+                    state: .substituted
                 )
             }
+            contentStackView.addArrangedSubview(DSProductCardView(content: content))
+        }
 
+        if viewModel.unavailableItemCount == 0 {
+            let message = UILabel()
+            let hasSubstitution = viewModel.items.contains {
+                if case .substituted = $0.availability { return true }
+                return false
+            }
+            message.text = hasSubstitution
+                ? "Substituição confirmada. Seu pedido foi atualizado."
+                : "Seu pedido ainda não tem produtos indisponíveis."
+            message.font = DSTypography.body
+            message.adjustsFontForContentSizeCategory = true
+            message.textColor = DSColor.textSecondary
+            message.numberOfLines = 0
+            contentStackView.addArrangedSubview(message)
+            chooseSubstituteButton.isHidden = true
+        } else {
             let substitutionCount = viewModel.unavailableItemCount
             contentStackView.addArrangedSubview(
                 DSInfoBannerView(

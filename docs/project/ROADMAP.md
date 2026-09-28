@@ -30,11 +30,11 @@ Fases independentes de networking, concorrência mínima e Design Discovery pode
 | 2. Bootstrap | `SUB-P01-001`, `SUB-P01-002`, `SUB-P01-003`, `SUB-P01-005`, `SUB-P01-008`, `SUB-P01-009`, `SUB-P01-011` |
 | 3. Arquitetura mínima | `SUB-P02-001`, `SUB-P02-002`, `SUB-P02-005`, `SUB-P02-006`, `SUB-P02-007` |
 | 4. Domínio e ranking | `SUB-P04-002`–`SUB-P04-004`; `SUB-P05-001`–`SUB-P05-003` |
-| 5. Rede e Repository | `SUB-P06-001`, `SUB-P06-003`, `SUB-P06-004`, `SUB-P06-006`–`SUB-P06-011`; `SUB-P07-001`–`SUB-P07-003`, `SUB-P07-005` |
+| 5. Rede e Repository | `SUB-P06-001`, `SUB-P06-003`, `SUB-P06-004`, `SUB-P06-006`–`SUB-P06-011`; `SUB-P07-001`–`SUB-P07-003`, `SUB-P07-005`, `SUB-P07-010` |
 | 6. Concorrência mínima | `SUB-P08-001`, `SUB-P08-007`. Usar TaskGroup só se o fluxo final justificar. |
 | 7. Design Discovery e foundations | `SUB-P11-013`, `SUB-P11-015`–`SUB-P11-018`, `SUB-P11-020`, depois `SUB-P11-021`. Tokens semânticos; não escolher hex codes arbitrários. |
 | 8. Fluxo UIKit | `SUB-P11-005`, `SUB-P11-006`, `SUB-P11-008`, `SUB-P11-010`, `SUB-P11-022`; `SUB-P12-002`–`SUB-P12-006`, `SUB-P12-009`–`SUB-P12-011`. |
-| 9. Comparação SwiftUI | `SUB-P11-023`; `SUB-P13-001`, `SUB-P13-002`, `SUB-P13-004`–`SUB-P13-007`. Só implementar componentes justificados pelo inventário. |
+| 9. Comparação SwiftUI | `SUB-P11-023`; `SUB-P13-001`, `SUB-P13-002`, `SUB-P13-004`–`SUB-P13-007`, `SUB-P13-009`. Só implementar componentes justificados pelo inventário. |
 | 10. Qualidade e acessibilidade | `SUB-P14-001`–`SUB-P14-006`; `SUB-P16-001`, `SUB-P16-003`, `SUB-P16-004`. |
 | 11. Observabilidade e entrega | `SUB-P15-001`, `SUB-P15-002`; `SUB-P19-001`, `SUB-P19-004`, `SUB-P19-006`. |
 

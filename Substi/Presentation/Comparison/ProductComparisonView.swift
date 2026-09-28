@@ -3,6 +3,7 @@ import SwiftUI
 struct ProductComparisonView: View {
     let viewModel: ProductComparisonViewModel
     let onChooseAnother: () -> Void
+    let onConfirmSubstitute: () -> Void
 
     var body: some View {
         ScrollView {
@@ -47,16 +48,14 @@ struct ProductComparisonView: View {
 
     private var actionBar: some View {
         VStack(spacing: DSSpacing.small) {
-            Button(action: {}) {
+            Button(action: onConfirmSubstitute) {
                 Text("Escolher este substituto")
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, DSSpacing.medium)
             }
             .buttonStyle(ComparisonPrimaryButtonStyle())
-            .disabled(true)
-            .opacity(0.55)
-            .accessibilityHint("A confirmação da substituição será adicionada em uma próxima etapa.")
+            .accessibilityHint("Revise o resumo antes de confirmar a substituição.")
 
             Button("Ver outras opções", action: onChooseAnother)
                 .font(.body.weight(.semibold))

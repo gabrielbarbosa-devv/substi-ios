@@ -627,3 +627,79 @@ Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de impl
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
+
+## SUB-P07-010 — Atualizar pedido demonstrativo após confirmação
+
+Estado: REVIEW
+
+Prioridade: P0
+
+Depende de:
+- SUB-P07-002
+- SUB-P07-003
+
+### Contexto
+O fluxo precisa refletir a escolha confirmada ao retornar ao pedido. Até aqui o contrato do repositório oferecia somente leitura, então a tela não podia afirmar que uma substituição foi concluída.
+
+### Objetivo
+Permitir que o repositório local de demonstração substitua um item pelo candidato escolhido e mantenha a alteração durante a sessão atual.
+
+### Requisitos
+- Adicionar ao contrato de inventário uma operação explícita de confirmação.
+- Aceitar somente candidatos associados ao produto original na fixture.
+- Preservar a referência ao produto original no `OrderItem` atualizado e não inventar preço para o candidato.
+- Manter a atualização somente em memória; não introduzir persistência nem representar uma alteração de pedido de loja real.
+
+### Critérios de aceite
+- [x] O pedido local passa a conter o candidato confirmado e a referência ao produto substituído.
+- [x] Candidato inválido ou item original ausente não altera o pedido e retorna falha representável.
+- [x] O preço ausente do candidato continua ausente.
+- [x] A atualização é declaradamente limitada à sessão atual e às fixtures.
+- [x] Build do app passa no Xcode 16.4 para iOS Simulator.
+
+### Conceitos de engenharia
+Repository boundary, estado mutável encapsulado, valor de retorno opcional e value semantics.
+
+### Estudar antes da implementação
+Revisar por que uma operação de escrita pertence à fronteira do inventário, quem mantém o estado em memória e como a validação protege a fixture.
+
+### Perguntas que preciso saber responder
+- Por que o contrato do repositório precisou de uma operação de confirmação?
+- Por que o armazenamento é uma classe com estado interno nesta fixture?
+- Como sabemos que a opção confirmada pertence ao item original?
+- O que se perde quando o processo é encerrado?
+
+### Validação
+Compilar o app. A operação é síncrona e usa somente dados locais; não requer API ao vivo.
+
+### Observabilidade
+Not applicable for this task.
+
+### Considerações de memória
+O Coordinator mantém o repositório durante a sessão; ele deixa de ser mantido junto com o grafo principal do app. Não há ciclo de referência criado pela operação.
+
+### Considerações de concorrência
+A operação é síncrona e chamada pelo Coordinator no fluxo principal. Nenhum trabalho concorrente é introduzido.
+
+### Acessibilidade
+Not applicable for this task.
+
+### Uso de IA
+A IA organizou a operação mínima e apontou o limite entre dados demonstrativos e estoque real; Gabriel revisa a mutação e o ciclo de vida do estado.
+
+### Arquivos esperados
+- `Substi/Domain/Models/OrderItem.swift`
+- `Substi/Domain/Repositories/InventoryRepository.swift`
+- `Substi/Data/Repositories/DemoInventoryRepository.swift`
+- `docs/project/phases/PHASE-07-repository.md`
+- `docs/project/BACKLOG.md`
+- `docs/project/CURRENT.md`
+
+### Critérios para conclusão
+- [ ] Critérios de aceite atendidos e evidências revisadas por Gabriel.
+- [ ] Verificações aplicáveis passam; o que não se aplica está justificado.
+- [ ] Documentação e estado atualizados; Gabriel explica o resultado e os trade-offs.
+- [ ] Mover para REVIEW antes da análise de Gabriel; usar DONE somente após revisão e compreensão explícitas.
+
+### Notas para entrevista
+Explicar por que a alteração local não comprova estoque nem confirma uma operação em serviço de mercado.
