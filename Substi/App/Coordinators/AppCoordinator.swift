@@ -115,7 +115,7 @@ final class AppCoordinator {
     private func makeOrderViewController(order: Order) -> OrderViewController {
         let viewModel = OrderViewModel(
             order: order,
-            unavailableProductIDs: InventoryFixtures.unavailableProductIDs
+            unavailableProductIDs: inventoryRepository.unavailableProductIDs
         )
         let viewController = OrderViewController(viewModel: viewModel)
         viewController.onChooseSubstitute = { [weak self] productID in

@@ -11,6 +11,7 @@ struct InventoryFixturesTests {
         #expect(original.category == "en:dairies")
         #expect(original.quantity == "1 L")
         #expect(barcodes == ["7898215151708", "7898080640611", "7896051111016"])
+        #expect(repository.unavailableProductIDs == [original.id])
     }
 
     @Test

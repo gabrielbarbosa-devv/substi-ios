@@ -19,7 +19,7 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P00-013 | Revisar descoberta com Gabriel | 00 | P1 | TODO |
 | SUB-P01-001 | Criar projeto Xcode | 01 | P0 | DONE |
 | SUB-P01-002 | Configurar Bundle ID e deployment target | 01 | P0 | REVIEW |
-| SUB-P01-003 | Ativar Swift 6 Language Mode | 01 | P0 | TODO |
+| SUB-P01-003 | Ativar Swift 6 Language Mode | 01 | P0 | READY |
 | SUB-P01-004 | Inspecionar estrutura do Xcode | 01 | P1 | TODO |
 | SUB-P01-005 | Adicionar target de testes unitários | 01 | P0 | TODO |
 | SUB-P01-006 | Adicionar target de testes de UI | 01 | P1 | TODO |
@@ -28,14 +28,14 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P01-009 | Inicializar Git e arquivos ignorados | 01 | P0 | TODO |
 | SUB-P01-010 | Preparar README e primeiro commit | 01 | P1 | TODO |
 | SUB-P01-011 | Substituir template SwiftUI por entrada UIKit | 01 | P0 | REVIEW |
-| SUB-P02-001 | Escrever ADR de MVVM-C | 02 | P0 | READY |
-| SUB-P02-002 | Definir camadas e direção das dependências | 02 | P0 | TODO |
+| SUB-P02-001 | Escrever ADR de MVVM-C | 02 | P0 | REVIEW |
+| SUB-P02-002 | Definir camadas e direção das dependências | 02 | P0 | REVIEW |
 | SUB-P02-003 | Comparar MVC e MVVM | 02 | P1 | TODO |
 | SUB-P02-004 | Comparar VIP e VIPER | 02 | P1 | TODO |
-| SUB-P02-005 | Definir ownership do Coordinator | 02 | P0 | TODO |
-| SUB-P02-006 | Definir Composition Root | 02 | P0 | TODO |
-| SUB-P02-007 | Definir injeção de dependências | 02 | P0 | TODO |
-| SUB-P02-008 | Definir fronteiras de protocolos | 02 | P1 | TODO |
+| SUB-P02-005 | Definir ownership do Coordinator | 02 | P0 | REVIEW |
+| SUB-P02-006 | Definir Composition Root | 02 | P0 | REVIEW |
+| SUB-P02-007 | Definir injeção de dependências | 02 | P0 | REVIEW |
+| SUB-P02-008 | Definir fronteiras de protocolos | 02 | P1 | REVIEW |
 | SUB-P02-009 | Revisar trade-offs de SOLID | 02 | P1 | TODO |
 | SUB-P02-010 | Revisar arquitetura | 02 | P1 | TODO |
 | SUB-P03-001 | Planejar módulos e grafo de dependências | 03 | P1 | TODO |

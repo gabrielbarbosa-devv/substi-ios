@@ -1,6 +1,10 @@
 final class DemoInventoryRepository: InventoryRepository {
     private var order = InventoryFixtures.order
 
+    var unavailableProductIDs: Set<ProductID> {
+        InventoryFixtures.unavailableProductIDs
+    }
+
     func currentOrder() -> Order {
         order
     }

@@ -155,7 +155,7 @@ Explicar a função do Bundle ID, a separação entre app/test bundles e como o 
 
 ## SUB-P01-003 — Ativar Swift 6 Language Mode
 
-Estado: TODO
+Estado: READY
 
 Prioridade: P0
 

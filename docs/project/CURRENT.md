@@ -6,72 +6,75 @@ Segunda-feira, 28 de setembro de 2026, às 11h, em `America/Sao_Paulo` (horário
 
 ## Trilha de entrega
 
-O fluxo funcional Pedido → Sugestões reais → Comparação → Confirmação está implementado. Estamos fechando acessibilidade essencial, verificações de build/testes e documentação da entrega. As 20 fases permanecem como plano de engenharia; não são uma lista obrigatória antes da entrega.
+O fluxo Pedido → Sugestões reais → Comparação → Confirmação está implementado. Estamos fechando qualidade de entrega; as 20 fases continuam como plano completo, sem serem uma lista obrigatória antes da entrega.
 
 ## Fase atual
 
-FASE 02 — Arquitetura mínima
+FASE 01 — Bootstrap (trilha de entrega)
 
 ## Tarefa atual
 
-SUB-P02-001 — Escrever ADR de MVVM-C
+SUB-P01-003 — Ativar Swift 6 Language Mode
 
 ## Status
 
-READY — próxima task após a auditoria P0 da Fase 14; será documentada a arquitetura que já existe e corrigidos limites de dependência reais, sem reorganização cosmética.
+READY — arquitetura MVVM-C mínima documentada e correção de fronteira concluídas em branch própria, aguardando revisão do Gabriel. A próxima alteração de código deve habilitar Swift 6 Language Mode e tratar os diagnósticos resultantes.
 
 ## Objetivo
 
-Registrar decisão MVVM-C, estrutura de pastas e responsabilidades existentes para que a arquitetura seja legível e defensável.
-
-## Modelo visual da arquitetura existente
-
-```text
-SceneDelegate (composition root)
-  ├── monta URLSessionAPIClient + repositories
-  └── inicia AppCoordinator
-        ├── controla UINavigationController
-        ├── constrói ViewControllers + ViewModels
-        └── apresenta Comparison/Confirmation com UIHostingController
-
-Presentation → Application/UseCases → Domain/Repository protocols
-                                      ↑
-                         Data/Repository implementations
-```
-
-As pastas atuais refletem estas responsabilidades: `App/Coordinators`, `Application/UseCases`, `Domain`, `Data`, `Presentation` e `DesignSystem`. Evitar mover arquivos sem evidência de uma fronteira incorreta; documentar e corrigir violações reais de dependência quando encontradas.
+Validar o código atual no modo de linguagem Swift 6 e corrigir problemas de concorrência/isolamento identificados pelo compilador, sem silenciar diagnósticos indevidamente.
 
 ## Por que agora
 
-A Fase 14 P0 tem critérios e resultados automatizados/estáticos registrados em REVIEW. A próxima prioridade P0 é explicar/documentar a arquitetura real. O exame encontrou uma dependência concreta do Coordinator em `InventoryFixtures`; a próxima mudança vai removê-la por meio do contrato de inventário já existente, sem criar protocolo novo.
+O toolchain planejado é Swift 6.1 e a documentação estabelece Swift 6 Language Mode como objetivo. Validar isso antes de ampliar o código reduz risco de acumular violações de concorrência perto da entrega.
+
+## Arquitetura atual aguardando revisão
+
+```text
+SceneDelegate (composition root)
+  ├── cria URLSessionAPIClient + repositories concretos
+  └── mantém AppCoordinator
+        ├── coordena UINavigationController
+        ├── conecta ViewControllers e ViewModels UIKit
+        └── apresenta comparação SwiftUI via UIHostingController
+
+Presentation → Application/UseCases → Domain contracts
+Data implementations ───────────────> Domain contracts
+```
+
+As pastas atuais já estão separadas por responsabilidade. A etapa não criou módulos nem moveu arquivos sem necessidade. A dependência do Coordinator em `InventoryFixtures` foi removida: indisponibilidade agora é fornecida pelo contrato existente de `InventoryRepository`.
+
+## Tasks aguardando revisão de Gabriel
+
+- SUB-P14-001–006 — auditoria e critérios essenciais de acessibilidade.
+- SUB-P13-007 — retorno à tela de sugestões.
+- SUB-P13-009 — confirmação da substituição.
+- SUB-P02-001 — ADR MVVM-C.
+- SUB-P02-002 — camadas e direção das dependências.
+- SUB-P02-005 — ownership do Coordinator.
+- SUB-P02-006 — Composition Root.
+- SUB-P02-007 — injeção de dependências.
+- SUB-P02-008 — fronteiras de protocolos.
+
+Nenhuma task está `IN_PROGRESS`; apenas SUB-P01-003 está `READY`.
 
 ## Evidência de validação
 
-- Suíte completa no iPhone 16 Pro Simulator, iOS 18.6, x86_64: 27 testes unitários e 7 testes UI/launch passaram.
-- Teste adicional `testOrderScreenPassesAccessibilityAudit`: passou no iOS 18.6.
-- `performAccessibilityAudit` exige iOS 17+; o teste pula explicitamente em runtimes anteriores. Deployment target do app permanece iOS 16.
-- O auditor verifica a tela que está visível; não valida por si só VoiceOver manual nem o restante da navegação.
-- Aviso de build conhecido: extração de metadados de App Intents é ignorada porque o app não usa `AppIntents`; nenhum warning Swift novo foi observado na compilação validada.
+- Suíte completa no iPhone 16 Pro Simulator, iOS 18.6, x86_64: 27 testes unitários e 7 testes UI/launch passaram na revisão de acessibilidade.
+- Suíte completa após a alteração do contrato `InventoryRepository`: 27 testes unitários e 7 testes de UI/launch passaram (`TEST SUCCEEDED`).
+- `git diff --check`: passou.
+- Warning conhecido: processamento de metadados App Intents é ignorado porque o app não usa `AppIntents`.
 
-## Tasks em revisão
+## Limites conhecidos
 
-- SUB-P14-001 — critérios observáveis de acessibilidade (aguarda revisão de Gabriel).
-- SUB-P14-002–006 — auditoria de tela inicial, revisão estática e correção do alvo de toque (aguarda revisão de Gabriel).
-- SUB-P13-007 — retorno à tela de sugestões.
-- SUB-P13-009 — confirmação da substituição.
-- Outras tasks marcadas `REVIEW` nas fases anteriores permanecem aguardando revisão/aprendizado, conforme os arquivos de fase.
-
-## Bloqueios e limites conhecidos
-
-- Teste manual com VoiceOver e Accessibility Inspector ainda não foi realizado nesta etapa.
-- A UI Test auditada automaticamente até agora é apenas Pedido. Sugestões/Comparação/Confirmação ainda precisam ser auditadas por navegação ou inspeção manual.
-- A API Open Food Facts fornece informações públicas de produtos; pedido, estoque e substituição permanecem dados demonstrativos em memória, sem persistência ou integração com inventário real.
-- A configuração local de Development Team em `Substi.xcodeproj/project.pbxproj` é uma alteração da máquina e não faz parte desta branch.
+- Open Food Facts fornece dados públicos de produtos. Pedido, estoque e substituição permanecem dados demonstrativos em memória.
+- Auditoria automatizada cobre a tela Pedido; revisão manual de VoiceOver/Dynamic Type e demais telas ainda é necessária.
+- A configuração local de Development Team em `Substi.xcodeproj/project.pbxproj` é da máquina e não pertence a esta alteração.
 
 ## Próxima task
 
-SUB-P02-001 — Escrever ADR de MVVM-C; alinhar `docs/architecture.md` ao código real, revisar responsabilidades e limites antes de mover pastas.
+SUB-P01-003 — Ativar Swift 6 Language Mode. Fazer em uma branch própria, preservar as configurações locais de assinatura e executar a suíte completa.
 
 ## Último marco
 
-A suíte completa passou após iniciar o Simulator explicitamente e desabilitar execução paralela. A auditoria automatizada da tela Pedido também passou. A primeira tentativa da suíte completa ficou travada no serviço do Simulator e foi cancelada; o resultado cancelado não foi tratado como falha do código.
+PR #30 foi mergeado na `main` para a etapa P0 de acessibilidade. A arquitetura existente foi registrada em `docs/architecture.md` e `docs/project/adr/ADR-001-mvvm-c.md`; o Coordinator deixou de consultar fixtures diretamente. A suíte completa passou após essa mudança.
