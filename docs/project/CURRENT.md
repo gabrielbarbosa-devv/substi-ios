@@ -14,37 +14,31 @@ FASE 13 — Integração com SwiftUI
 
 ## Tarefa atual
 
-SUB-P13-010 — Carregar sugestões reais da Open Food Facts
+SUB-P13-006 — Validar UIKit para SwiftUI
 
 ## Status
 
-REVIEW — código, build e testes prontos; aguarda Gabriel revisar e explicar antes de qualquer task seguinte. Não marcar DONE automaticamente.
+REVIEW — bridge UIKit/SwiftUI verificada no código e no Simulator; build e 29 testes passaram. Aguarda Gabriel revisar e explicar antes da próxima task.
 
 ## Objetivo
 
-Buscar por barcode até três produtos reais na Open Food Facts ao abrir Sugestões, exibir estados recuperáveis e manter seleção/comparação/confirmação existentes.
+Confirmar que o Coordinator apresenta Comparação SwiftUI por `UIHostingController` no stack UIKit e passa os dados do candidato escolhido sem inventar preço ou atributos ausentes.
 
 ## Modelo visual
 
 ```text
-Pedido e indisponibilidade local
-           ↓
-AppCoordinator → SuggestionsViewModel
-                       ↓
-                  LoadProductUseCase
-                       ↓
-ProductRepository → URLSession → Open Food Facts
-                       ↓
-                DTO → Mapper → Product
-                       ↓
-         loading / opções / vazio / erro + retry
-                       ↓
-            Comparação SwiftUI → Confirmação
+Pedido → Sugestões (UIKit)
+               ↓ seleção
+        AppCoordinator
+               ↓ push
+ UIHostingController<ProductComparisonView>
+               ↓
+       Comparação (SwiftUI)
 ```
 
 ## Por que agora
 
-A tela de comparação e confirmação já existe, mas as sugestões eram somente dados artificiais. Esta tarefa conecta ao app a infraestrutura de rede construída nas fases 06–08. Catálogo real não representa disponibilidade nem preço de uma loja.
+O catálogo real já está conectado e aprovado por Gabriel. Esta verificação confirma que a comparação em SwiftUI permanece integrada ao fluxo UIKit; validar o retorno da navegação é a task seguinte, após revisão.
 
 ## Revisões pendentes
 
@@ -57,11 +51,13 @@ A tela de comparação e confirmação já existe, mas as sugestões eram soment
 
 ## Bloqueios e limites
 
+- A suíte completa passou: 29 testes (26 unitários e 3 de UI/launch), sem falhas, no iPhone 16 Pro Simulator (iOS 18.6, x86_64). Os testes de UI atuais não percorrem ações/telas além de launch; a comparação com um candidato real já foi observada no Simulator durante a integração da API.
+- O target padrão usa arquitetura x86_64 porque o ambiente é Mac Intel; validar em dispositivo físico não faz parte desta task.
 - Os barcodes `7898215151708` (Piracanjuba), `7898080640611` (Italac) e `7896051111016` (Itambé) responderam ao endpoint v3 com nome, marca, categoria e quantidade em 27/09/2026. O conteúdo pode mudar ou ficar indisponível.
 - Preços e imagens individuais dos candidatos não estão nos dados locais; a confirmação não os inventa.
 - A troca é mantida somente em memória durante a sessão e volta à fixture original após encerrar o processo. Não altera serviço externo nem representa estoque real.
 - A referência visual usa preço, imagem e percentual ilustrativos que não existem na fixture; esses dados não foram simulados.
-- Build para iOS Simulator passou no Xcode 16.4; 26 testes unitários passaram no iPhone 16 Pro Simulator (iOS 18.6). A tela Comparação foi observada com um candidato real (Italac); revisão de Gabriel permanece pendente. A tela de falha de rede não foi forçada manualmente no Simulator; a falha é coberta por testes determinísticos do ViewModel.
+- Na SUB-P13-010, a tela Comparação foi observada com um candidato real (Italac). A tela de falha de rede não foi forçada manualmente no Simulator; a falha e os resultados parciais são cobertos por testes determinísticos do ViewModel.
 - Xcode reportou somente que a extração de metadados de App Intents foi ignorada porque o app não usa `AppIntents`; não é warning do código Swift alterado.
 - SUB-P08-001 e SUB-P09-001–009 continuam em REVIEW até Gabriel revisar e explicar o aprendizado.
 
@@ -73,12 +69,11 @@ A tela de comparação e confirmação já existe, mas as sugestões eram soment
 - SUB-P13-004 — Apresentar com UIHostingController
 - SUB-P13-005 — Manter navegação no Coordinator
 - SUB-P13-009 — Criar confirmação da substituição
-- SUB-P13-010 — Carregar sugestões reais da Open Food Facts
 
 ## Próxima task
 
-Após a revisão de SUB-P13-010, retomar SUB-P13-006 — Validar UIKit para SwiftUI. Nenhuma outra task está IN_PROGRESS.
+SUB-P13-007 — Validar fluxo de retorno. Permanece TODO até a revisão de SUB-P13-006. Nenhuma outra task está IN_PROGRESS.
 
 ## Último marco
 
-SUB-P07-010 e SUB-P13-009 foram implementadas na branch `feature/sub-p07-010-confirm-substitution`. SUB-P13-010 foi implementada na branch `feature/sub-p13-010-live-product-suggestions` e movida para REVIEW. Build e 26 testes unitários passaram; candidatos reais foram consultados no endpoint v3. O workspace já continha uma alteração local em `Substi.xcodeproj/project.pbxproj`; ela pertence à configuração do desenvolvedor e não faz parte desta mudança.
+SUB-P13-010 foi aprovada por Gabriel; PR #27 está na `main`. SUB-P13-006 validou a comparação SwiftUI hospedada pela navegação UIKit; build e 29 testes passaram e a task está em REVIEW na branch `feature/sub-p13-006-validate-uikit-swiftui`. O workspace mantém uma alteração local em `Substi.xcodeproj/project.pbxproj` (Development Team) fora desta mudança.
