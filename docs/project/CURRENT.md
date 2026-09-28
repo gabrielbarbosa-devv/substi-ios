@@ -18,7 +18,7 @@ SUB-P01-003 — Ativar Swift 6 Language Mode
 
 ## Status
 
-READY — arquitetura MVVM-C mínima documentada e correção de fronteira concluídas em branch própria, aguardando revisão do Gabriel. A próxima alteração de código deve habilitar Swift 6 Language Mode e tratar os diagnósticos resultantes.
+READY — tasks P0 de arquitetura MVVM-C foram encerradas e integradas à `main`. A próxima alteração de código deve habilitar Swift 6 Language Mode e tratar os diagnósticos resultantes.
 
 ## Objetivo
 
@@ -28,7 +28,7 @@ Validar o código atual no modo de linguagem Swift 6 e corrigir problemas de con
 
 O toolchain planejado é Swift 6.1 e a documentação estabelece Swift 6 Language Mode como objetivo. Validar isso antes de ampliar o código reduz risco de acumular violações de concorrência perto da entrega.
 
-## Arquitetura atual aguardando revisão
+## Arquitetura atual concluída para a trilha de entrega
 
 ```text
 SceneDelegate (composition root)
@@ -42,19 +42,13 @@ Presentation → Application/UseCases → Domain contracts
 Data implementations ───────────────> Domain contracts
 ```
 
-As pastas atuais já estão separadas por responsabilidade. A etapa não criou módulos nem moveu arquivos sem necessidade. A dependência do Coordinator em `InventoryFixtures` foi removida: indisponibilidade agora é fornecida pelo contrato existente de `InventoryRepository`.
+As pastas atuais já estão separadas por responsabilidade. A etapa não criou módulos nem moveu arquivos sem necessidade. A dependência do Coordinator em `InventoryFixtures` foi removida: indisponibilidade agora é fornecida pelo contrato existente de `InventoryRepository`. As tasks P0 de arquitetura foram marcadas `DONE` a pedido de Gabriel.
 
 ## Tasks aguardando revisão de Gabriel
 
 - SUB-P14-001–006 — auditoria e critérios essenciais de acessibilidade.
 - SUB-P13-007 — retorno à tela de sugestões.
 - SUB-P13-009 — confirmação da substituição.
-- SUB-P02-001 — ADR MVVM-C.
-- SUB-P02-002 — camadas e direção das dependências.
-- SUB-P02-005 — ownership do Coordinator.
-- SUB-P02-006 — Composition Root.
-- SUB-P02-007 — injeção de dependências.
-- SUB-P02-008 — fronteiras de protocolos.
 
 Nenhuma task está `IN_PROGRESS`; apenas SUB-P01-003 está `READY`.
 
@@ -77,4 +71,4 @@ SUB-P01-003 — Ativar Swift 6 Language Mode. Fazer em uma branch própria, pres
 
 ## Último marco
 
-PR #30 foi mergeado na `main` para a etapa P0 de acessibilidade. A arquitetura existente foi registrada em `docs/architecture.md` e `docs/project/adr/ADR-001-mvvm-c.md`; o Coordinator deixou de consultar fixtures diretamente. A suíte completa passou após essa mudança.
+PR #30 foi mergeado na `main` para a etapa P0 de acessibilidade. PR #31 concluiu as tasks de arquitetura e corrigiu o acesso do Coordinator às fixtures. A suíte completa passou após as alterações: 27 testes unitários e 7 testes de UI/launch.

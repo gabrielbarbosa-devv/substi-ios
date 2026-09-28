@@ -1,6 +1,6 @@
 # ADR-001 — MVVM-C mínimo para o fluxo do Substi
 
-- **Estado:** Proposta aplicada ao código atual; aguardando revisão de Gabriel.
+- **Estado:** Aprovada por Gabriel para a arquitetura atual em 2026-09-27.
 - **Data:** 2026-09-27.
 - **Tasks relacionadas:** SUB-P02-001, SUB-P02-002, SUB-P02-005, SUB-P02-006, SUB-P02-007, SUB-P02-008.
 
@@ -47,7 +47,7 @@ O Coordinator não acessa fixtures. A disponibilidade demonstrativa é fornecida
 
 A decisão prioriza um fluxo explicável com poucas abstrações. Se o número de fluxos/coordinators crescer, ou se composição e navegação ficarem difíceis de manter, revisar a composição por feature e o ciclo de vida dos Coordinators. Não introduzir essas estruturas preventivamente.
 
-Validação desta etapa: suíte de testes do app e revisão do grafo de dependências. A aceitação final do ADR e das tasks relacionadas depende da revisão e explicação de Gabriel.
+Validação desta etapa: suíte de testes do app e revisão do grafo de dependências. Gabriel aprovou o encerramento das tasks relacionadas em 2026-09-27.
 
 ## Registro da implementação
 
@@ -55,4 +55,4 @@ Validação desta etapa: suíte de testes do app e revisão do grafo de dependê
 - `DemoInventoryRepository` fornece os IDs configurados na fixture de demonstração.
 - Teste do repositório verifica a disponibilidade exposta pelo contrato.
 - Suíte completa: 27 testes unitários e 7 testes de UI/launch aprovados; `git diff --check` aprovado.
-- Tasks relacionadas estão em `REVIEW`; não foram marcadas como `DONE`.
+- Tasks relacionadas estão em `DONE` por solicitação explícita de Gabriel após a revisão da proposta e dos resultados.
