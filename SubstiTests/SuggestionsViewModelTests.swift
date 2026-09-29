@@ -125,20 +125,12 @@ struct SuggestionsViewModelTests {
         repository: any ProductRepository,
         barcodes: [String]
     ) -> SuggestionsViewModel {
-        let originalProduct = product(id: "original", name: "Leite original")
-        let inventoryRepository = FixtureInventoryRepository(
-            order: Order(items: [OrderItem(product: originalProduct)]),
-            candidateBarcodes: barcodes
-        )
-        guard let viewModel = SuggestionsViewModel(
-            productID: originalProduct.id,
-            inventoryRepository: inventoryRepository,
+        SuggestionsViewModel(
+            originalProduct: product(id: "original", name: "Leite original"),
+            originalPrice: nil,
+            candidateBarcodes: barcodes,
             loadCandidates: LoadSubstitutionCandidatesUseCase(productRepository: repository)
-        ) else {
-            Issue.record("Expected the original product in the fixture order")
-            fatalError("Test fixture must contain the original product")
-        }
-        return viewModel
+        )
     }
 
     private func isLoading(_ viewModel: SuggestionsViewModel) -> Bool {
@@ -154,28 +146,6 @@ struct SuggestionsViewModelTests {
             brand: "Marca",
             quantity: "1 L"
         )
-    }
-}
-
-private final class FixtureInventoryRepository: InventoryRepository {
-    private var order: Order
-    private let candidateBarcodes: [String]
-
-    var unavailableProductIDs: Set<ProductID> { [] }
-
-    init(order: Order, candidateBarcodes: [String]) {
-        self.order = order
-        self.candidateBarcodes = candidateBarcodes
-    }
-
-    func currentOrder() -> Order { order }
-
-    func substitutionCandidateBarcodes(for productID: ProductID) -> [String] {
-        candidateBarcodes
-    }
-
-    func saveOrder(_ order: Order) {
-        self.order = order
     }
 }
 

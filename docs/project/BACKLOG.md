@@ -38,7 +38,6 @@ Este arquivo é somente o índice; os detalhes ficam nos arquivos de fase. P0 id
 | SUB-P02-008 | Definir fronteiras de protocolos | 02 | P1 | DONE |
 | SUB-P02-009 | Revisar trade-offs de SOLID | 02 | P1 | TODO |
 | SUB-P02-010 | Revisar arquitetura | 02 | P1 | TODO |
-| SUB-P02-011 | Separar navegação da composição de telas | 02 | P1 | REVIEW |
 | SUB-P03-001 | Planejar módulos e grafo de dependências | 03 | P1 | REVIEW |
 | SUB-P03-002 | Criar Swift Package local | 03 | P1 | REVIEW |
 | SUB-P03-003 | Adicionar módulo SubstiDomain | 03 | P1 | REVIEW |

@@ -12,7 +12,6 @@ final class SuggestionsViewModel {
     }
 
     let originalProduct: Product
-    let originalOrderItem: OrderItem
     let originalPriceText: String?
     private let candidateBarcodes: [String]
     private let loadCandidates: LoadSubstitutionCandidatesUseCase
@@ -26,20 +25,15 @@ final class SuggestionsViewModel {
         return candidates
     }
 
-    init?(
-        productID: ProductID,
-        inventoryRepository: any InventoryRepository,
+    init(
+        originalProduct: Product,
+        originalPrice: Decimal?,
+        candidateBarcodes: [String],
         loadCandidates: LoadSubstitutionCandidatesUseCase,
         ranker: ProductSubstitutionRanker = ProductSubstitutionRanker()
     ) {
-        let order = inventoryRepository.currentOrder()
-        guard let originalOrderItem = order.items.first(where: { $0.product.id == productID }) else {
-            return nil
-        }
-
-        self.originalOrderItem = originalOrderItem
-        self.originalProduct = originalOrderItem.product
-        self.candidateBarcodes = inventoryRepository.substitutionCandidateBarcodes(for: productID)
+        self.originalProduct = originalProduct
+        self.candidateBarcodes = candidateBarcodes
         self.loadCandidates = loadCandidates
         self.ranker = ranker
 
@@ -47,7 +41,7 @@ final class SuggestionsViewModel {
         priceFormatter.numberStyle = .currency
         priceFormatter.locale = Locale(identifier: "pt_BR")
         priceFormatter.currencyCode = "BRL"
-        originalPriceText = originalOrderItem.price.flatMap {
+        originalPriceText = originalPrice.flatMap {
             priceFormatter.string(from: $0 as NSDecimalNumber)
         }
     }
