@@ -94,12 +94,19 @@ final class AppCoordinator {
         candidate: SubstitutionCandidate,
         viewModel: ProductComparisonViewModel
     ) {
+        let confirmationViewModel = ConfirmationViewModel(
+            originalProductID: originalProductID,
+            candidate: candidate,
+            confirmSubstitution: confirmSubstitutionUseCase
+        )
+        confirmationViewModel.onConfirmed = { [weak self] updatedOrder in
+            self?.showConfirmedOrder(updatedOrder)
+        }
+
         let confirmationView = ConfirmationView(
-            viewModel: viewModel,
+            productViewModel: viewModel,
+            viewModel: confirmationViewModel,
             imageLoader: imageLoader,
-            onConfirm: { [weak self] in
-                self?.confirmSubstitution(for: originalProductID, candidate: candidate)
-            },
             onCancel: { [weak self] in
                 self?.navigationController.dismiss(animated: true)
             }
@@ -114,21 +121,7 @@ final class AppCoordinator {
         navigationController.present(hostingController, animated: true)
     }
 
-    private func confirmSubstitution(for originalProductID: ProductID, candidate: SubstitutionCandidate) {
-        guard let updatedOrder = confirmSubstitutionUseCase.execute(
-            for: originalProductID,
-            with: candidate
-        ) else {
-            let alert = UIAlertController(
-                title: "Não foi possível confirmar",
-                message: "A opção selecionada não está mais disponível nos dados de demonstração.",
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            navigationController.presentedViewController?.present(alert, animated: true)
-            return
-        }
-
+    private func showConfirmedOrder(_ updatedOrder: Order) {
         navigationController.dismiss(animated: true) { [weak self] in
             guard let self else { return }
             self.navigationController.setViewControllers(

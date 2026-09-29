@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct ConfirmationView: View {
-    let viewModel: ProductComparisonViewModel
+    let productViewModel: ProductComparisonViewModel
+    @ObservedObject var viewModel: ConfirmationViewModel
     let imageLoader: ProductImageLoader
-    let onConfirm: () -> Void
     let onCancel: () -> Void
 
     var body: some View {
@@ -42,14 +42,14 @@ struct ConfirmationView: View {
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
 
-                    productCard(viewModel.original, heading: "Item original", isSubstitute: false)
+                    productCard(productViewModel.original, heading: "Item original", isSubstitute: false)
 
                     Image(systemName: "arrow.down")
                         .font(.title3.weight(.semibold))
                         .foregroundStyle(Color(uiColor: DSColor.textPrimary))
                         .accessibilityLabel("Será substituído por")
 
-                    productCard(viewModel.substitute, heading: "Substituir por", isSubstitute: true)
+                    productCard(productViewModel.substitute, heading: "Substituir por", isSubstitute: true)
 
                     Text("Foto do catálogo: Open Food Facts · CC BY-SA 3.0")
                         .font(.caption)
@@ -64,11 +64,26 @@ struct ConfirmationView: View {
             actionBar
         }
         .background(Color(uiColor: DSColor.backgroundPrimary))
+        .alert(
+            "Não foi possível confirmar",
+            isPresented: Binding(
+                get: { viewModel.state == .failed },
+                set: { isPresented in
+                    if !isPresented {
+                        viewModel.dismissError()
+                    }
+                }
+            )
+        ) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("A opção escolhida não está mais disponível. Escolha outra alternativa.")
+        }
     }
 
     private var actionBar: some View {
         VStack(spacing: DSSpacing.small) {
-            Button(action: onConfirm) {
+            Button(action: viewModel.confirm) {
                 Text("Confirmar substituição")
                     .font(.headline)
                     .frame(maxWidth: .infinity, minHeight: 52)
