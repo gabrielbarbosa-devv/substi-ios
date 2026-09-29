@@ -18,7 +18,9 @@ struct OrderViewModel {
 
     let items: [Item]
 
-    init(order: Order, unavailableProductIDs: Set<ProductID>) {
+    init(inventoryRepository: any InventoryRepository, order: Order? = nil) {
+        let order = order ?? inventoryRepository.currentOrder()
+        let unavailableProductIDs = inventoryRepository.unavailableProductIDs
         let priceFormatter = NumberFormatter()
         priceFormatter.numberStyle = .currency
         priceFormatter.locale = Locale(identifier: "pt_BR")

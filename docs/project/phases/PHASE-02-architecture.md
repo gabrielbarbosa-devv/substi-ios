@@ -81,8 +81,6 @@ Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de impl
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
 
-### Registro de encerramento
-Gabriel solicitou explicitamente o encerramento desta task como `DONE` em 2026-09-27, após a apresentação da decisão, da implementação e da validação.
 ## SUB-P02-002 — Definir camadas e direção das dependências
 
 Estado: DONE
@@ -686,3 +684,51 @@ Somente arquivos pertinentes à fase; confirmar os caminhos exatos antes de impl
 
 ### Notas para entrevista
 Explicar propósito, alternativas, trade-offs, validação e como a decisão poderia mudar em escala maior.
+
+## SUB-P02-011 — Separar navegação da composição de telas
+
+Estado: REVIEW
+
+Prioridade: P1
+
+Depende de:
+- SUB-P02-002
+- SUB-P02-005
+
+### Contexto
+O `AppCoordinator` coordena rotas, mas também constrói ViewModels, UIKit controllers e telas SwiftUI. Isso faz a navegação conhecer detalhes de composição e dependências de apresentação.
+
+### Objetivo
+Manter o Coordinator focado em transições; mover a montagem das telas para uma Factory específica. Leituras locais simples continuam no Repository e são solicitadas pelos ViewModels. Extrair Use Cases somente quando houver comportamento de aplicação próprio.
+
+### Requisitos
+- Não colocar navegação nem tipos UIKit/SwiftUI nos Use Cases.
+- Não alterar a regra de confirmação nem o comportamento das telas.
+- Usar os contratos existentes de `InventoryRepository`.
+- Não criar Use Cases que apenas repassem leituras do Repository.
+- Manter a implementação pequena e coberta por testes determinísticos.
+
+### Critérios de aceite
+- [x] `AppCoordinator` contém decisões e transições de navegação, sem construir Views/ViewControllers/ViewModels.
+- [x] Uma Factory específica monta as telas e injeta dependências.
+- [x] ViewModels obtêm os dados de tela locais por meio do contrato `InventoryRepository`.
+- [x] Não foram adicionados Use Cases de encaminhamento para consultas simples.
+- [x] A jornada de navegação existente permanece coberta por teste.
+- [x] O papel de cada camada e os trade-offs estão documentados.
+
+### Conceitos de engenharia
+SRP, Separation of Concerns, MVVM-C, Use Case, Repository, composição de telas e testes determinísticos.
+
+### Validação
+`git diff --check` passou. A suíte de ViewModel e navegação não pôde ser executada neste ambiente: `xcodebuild` está instalado, mas o active developer directory aponta para Command Line Tools, sem Xcode selecionado. Revisar o grafo de dependências concluído por inspeção.
+
+### Arquivos esperados
+`AppScreenFactory.swift`, `AppCoordinator.swift`, `SceneDelegate.swift`, ViewModels afetados, testes, `ADR-001-mvvm-c.md`, `BACKLOG.md` e `CURRENT.md`.
+
+### Critérios para conclusão
+- [x] Verificações aplicáveis passam ou a limitação do ambiente é registrada.
+- [x] Documentação e estado atualizados.
+- [x] Mover para REVIEW; Gabriel revisa e explica antes de marcar DONE.
+
+### Registro de encerramento
+Gabriel solicitou explicitamente o encerramento desta task como `DONE` em 2026-09-27, após a apresentação da decisão, da implementação e da validação.

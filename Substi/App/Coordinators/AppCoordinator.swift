@@ -1,40 +1,29 @@
 import SubstiDomain
 import UIKit
-import SwiftUI
 
+/// Owns route transitions for the app flow; screen construction is delegated to AppScreenFactory.
 @MainActor
 final class AppCoordinator {
     private let navigationController: UINavigationController
-    private let inventoryRepository: any InventoryRepository
-    private let loadCandidatesUseCase: LoadSubstitutionCandidatesUseCase
-    private let imageLoader: ProductImageLoader
-    private let confirmSubstitutionUseCase: ConfirmSubstitutionUseCase
+    private let screenFactory: AppScreenFactory
 
-    init(
-        navigationController: UINavigationController,
-        inventoryRepository: any InventoryRepository,
-        loadCandidatesUseCase: LoadSubstitutionCandidatesUseCase,
-        imageLoader: ProductImageLoader,
-        confirmSubstitutionUseCase: ConfirmSubstitutionUseCase
-    ) {
+    init(navigationController: UINavigationController, screenFactory: AppScreenFactory) {
         self.navigationController = navigationController
-        self.inventoryRepository = inventoryRepository
-        self.loadCandidatesUseCase = loadCandidatesUseCase
-        self.imageLoader = imageLoader
-        self.confirmSubstitutionUseCase = confirmSubstitutionUseCase
+        self.screenFactory = screenFactory
     }
 
     func start() {
-        let launchViewController = LaunchViewController()
-        launchViewController.onAnimationCompleted = { [weak self] in
+        let launchViewController = screenFactory.makeLaunchViewController { [weak self] in
             self?.showOrderAfterLaunch()
         }
         navigationController.setNavigationBarHidden(true, animated: false)
-        navigationController.viewControllers = [launchViewController]
+        navigationController.setViewControllers([launchViewController], animated: false)
     }
 
     private func showOrderAfterLaunch() {
-        let orderViewController = makeOrderViewController(order: inventoryRepository.currentOrder())
+        let orderViewController = screenFactory.makeOrderViewController { [weak self] productID in
+            self?.showSuggestions(for: productID)
+        }
         navigationController.setNavigationBarHidden(false, animated: false)
         UIView.transition(
             with: navigationController.view,
@@ -46,100 +35,65 @@ final class AppCoordinator {
     }
 
     private func showSuggestions(for productID: ProductID) {
-        let order = inventoryRepository.currentOrder()
-        guard let originalItem = order.items.first(where: { $0.product.id == productID }) else {
+        guard let viewController = screenFactory.makeSuggestionsViewController(
+            for: productID,
+            onShowComparison: { [weak self] originalItem, candidate in
+                self?.showComparison(originalItem: originalItem, candidate: candidate)
+            }
+        ) else {
             return
-        }
-
-        let candidateBarcodes = inventoryRepository.substitutionCandidateBarcodes(for: productID)
-        let viewModel = SuggestionsViewModel(
-            originalProduct: originalItem.product,
-            originalPrice: originalItem.price,
-            candidateBarcodes: candidateBarcodes,
-            loadCandidates: loadCandidatesUseCase
-        )
-        let viewController = SuggestionsViewController(viewModel: viewModel, imageLoader: imageLoader)
-        viewController.onShowComparison = { [weak self] candidate in
-            self?.showComparison(originalItem: originalItem, candidate: candidate)
         }
         navigationController.pushViewController(viewController, animated: true)
     }
 
     private func showComparison(originalItem: OrderItem, candidate: SubstitutionCandidate) {
-        let viewModel = ProductComparisonViewModel(
-            originalProduct: originalItem.product,
-            originalPrice: originalItem.price,
-            substituteProduct: candidate.product
-        )
-        let comparisonView = ProductComparisonView(
-            viewModel: viewModel,
-            imageLoader: imageLoader,
+        let viewController = screenFactory.makeComparisonViewController(
+            originalItem: originalItem,
+            candidate: candidate,
             onChooseAnother: { [weak self] in
                 self?.navigationController.popViewController(animated: true)
             },
-            onConfirmSubstitute: { [weak self] in
+            onConfirmSubstitute: { [weak self] originalProductID, candidate, productViewModel in
                 self?.showConfirmation(
-                    originalProductID: originalItem.product.id,
+                    originalProductID: originalProductID,
                     candidate: candidate,
-                    viewModel: viewModel
+                    productViewModel: productViewModel
                 )
             }
         )
-        let hostingController = UIHostingController(rootView: comparisonView)
-        navigationController.pushViewController(hostingController, animated: true)
+        navigationController.pushViewController(viewController, animated: true)
     }
 
     private func showConfirmation(
         originalProductID: ProductID,
         candidate: SubstitutionCandidate,
-        viewModel: ProductComparisonViewModel
+        productViewModel: ProductComparisonViewModel
     ) {
-        let confirmationViewModel = ConfirmationViewModel(
+        let viewController = screenFactory.makeConfirmationViewController(
             originalProductID: originalProductID,
             candidate: candidate,
-            confirmSubstitution: confirmSubstitutionUseCase
-        )
-        confirmationViewModel.onConfirmed = { [weak self] updatedOrder in
-            self?.showConfirmedOrder(updatedOrder)
-        }
-
-        let confirmationView = ConfirmationView(
-            productViewModel: viewModel,
-            viewModel: confirmationViewModel,
-            imageLoader: imageLoader,
+            productViewModel: productViewModel,
+            onConfirmed: { [weak self] updatedOrder in
+                self?.showConfirmedOrder(updatedOrder)
+            },
             onCancel: { [weak self] in
                 self?.navigationController.dismiss(animated: true)
             }
         )
-        let hostingController = UIHostingController(rootView: confirmationView)
-        hostingController.modalPresentationStyle = .pageSheet
-        if let sheet = hostingController.sheetPresentationController {
-            sheet.detents = [.large()]
-            sheet.prefersGrabberVisible = true
-            sheet.preferredCornerRadius = DSRadius.large
-        }
-        navigationController.present(hostingController, animated: true)
+        navigationController.present(viewController, animated: true)
     }
 
     private func showConfirmedOrder(_ updatedOrder: Order) {
         navigationController.dismiss(animated: true) { [weak self] in
             guard let self else { return }
+            let orderViewController = self.screenFactory.makeOrderViewController(order: updatedOrder) {
+                [weak self] productID in
+                self?.showSuggestions(for: productID)
+            }
             self.navigationController.setViewControllers(
-                [self.makeOrderViewController(order: updatedOrder)],
+                [orderViewController],
                 animated: false
             )
         }
-    }
-
-    private func makeOrderViewController(order: Order) -> OrderViewController {
-        let viewModel = OrderViewModel(
-            order: order,
-            unavailableProductIDs: inventoryRepository.unavailableProductIDs
-        )
-        let viewController = OrderViewController(viewModel: viewModel)
-        viewController.onChooseSubstitute = { [weak self] productID in
-            self?.showSuggestions(for: productID)
-        }
-        return viewController
     }
 }

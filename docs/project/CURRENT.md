@@ -4,21 +4,18 @@
 
 A jornada Pedido → Sugestões → Comparação → Confirmação → Pedido atualizado está implementada. No uso normal, o app consulta a API Open Food Facts; pedido, estoque e confirmação são demonstrativos em memória. As 20 fases são uma visão de evolução, não uma obrigação para apresentar este recorte.
 
-## Fase atual
+## Atividade técnica atual
 
-PHASE 19 — Entrega e entrevista
-
-## Tarefa atual
-
-`SUB-P19-014` — Exibir imagens reais do catálogo com fallback
+`SUB-P02-011` — Separar navegação da composição de telas
 
 ## Status
 
-REVIEW. Imagens opcionais da Open Food Facts aparecem nas telas quando disponíveis; fallback, validação de URL e testes offline estão implementados.
+REVIEW. O Coordinator mantém as transições de rota; a AppScreenFactory monta as telas e injeta dependências. Os ViewModels consultam o contrato InventoryRepository para os dados locais simples. Use Cases permanecem nas operações com comportamento de aplicação próprio. A execução dos testes aguarda o Xcode, indisponível no ambiente de linha de comando atual.
 
-## Estado da tarefa anterior
+## Revisões de entrega preservadas
 
-`SUB-P19-013` — Fechar revisão técnica da entrega: REVIEW. A implementação e evidências anteriores continuam aguardando revisão de Gabriel.
+- `SUB-P19-014` — Exibir imagens reais do catálogo com fallback: REVIEW.
+- `SUB-P19-013` — Fechar revisão técnica da entrega: REVIEW.
 
 ## Verificações anteriores
 
@@ -34,4 +31,4 @@ REVIEW. Imagens opcionais da Open Food Facts aparecem nas telas quando disponív
 
 ## Próximo passo
 
-Gabriel revisa `SUB-P19-014`, explica as decisões e o fluxo visual; somente então decide se move a tarefa para DONE.
+Gabriel revisa `SUB-P02-011`, executa os testes no Xcode e explica a divisão de responsabilidades antes de mover a tarefa para DONE. As tarefas `SUB-P19-013` e `SUB-P19-014` continuam em REVIEW.

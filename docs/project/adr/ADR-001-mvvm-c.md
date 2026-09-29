@@ -13,8 +13,9 @@ O fluxo precisa mostrar o pedido em UIKit, carregar candidatos de produto por um
 Manter MVVM-C proporcional ao app:
 
 - `SceneDelegate` atua como composition root e cria implementações concretas;
-- `AppCoordinator` coordena navegação e composição das telas do fluxo;
-- operações de aplicação, incluindo carga de candidatos e confirmação, ficam em Use Cases;
+- `AppCoordinator` coordena rotas e transições;
+- `AppScreenFactory` monta as telas e injeta seus ViewModels e dependências;
+- regras e operações de aplicação com comportamento próprio ficam em Use Cases;
 - Views UIKit/SwiftUI renderizam e encaminham ações;
 - ViewModels preparam os dados para as telas;
 - Use Case representa uma operação da aplicação quando há um objetivo claro;
@@ -22,13 +23,15 @@ Manter MVVM-C proporcional ao app:
 - `APIClient` isola o transporte HTTP dentro de `Data/Networking`.
 
 ```text
-Cena → compõe Use Cases + implementações Data
-View/ViewModel → Use Case → Repository protocol ← implementação Data
-Coordinator → navegação e composição das telas
+Cena → compõe dependências concretas → AppScreenFactory
+ViewController/SwiftUI View → ViewModel → Use Case (quando há comportamento de aplicação)
+ViewModel → Repository protocol ← implementação Data
+Coordinator → rotas e transições
+AppScreenFactory → composição de telas e injeção de dependências
 UIKit navigation → UIHostingController → SwiftUI comparison
 ```
 
-O Coordinator não acessa fixtures nem executa alterações no pedido. A disponibilidade demonstrativa é fornecida pelo contrato de `InventoryRepository`, implementado por `DemoInventoryRepository`; a confirmação é coordenada por `ConfirmSubstitutionUseCase`.
+O Coordinator não consulta repositórios nem constrói telas. `OrderViewModel` e `SuggestionsViewModel` consultam `InventoryRepository` para leituras locais síncronas; o repositório continua sendo a fronteira de acesso aos dados. `LoadSubstitutionCandidatesUseCase` mantém a orquestração de consultas ao catálogo e o resultado parcial; `ConfirmSubstitutionUseCase` valida e persiste a substituição demonstrativa. Não criamos Use Cases para repassar chamadas simples do repositório.
 
 ## Alternativas consideradas
 
@@ -42,7 +45,7 @@ O Coordinator não acessa fixtures nem executa alterações no pedido. A disponi
 - Repositórios concretos podem ser trocados no ponto de composição sem fazer ViewModel ou Coordinator conhecer `URLSession`/DTOs.
 - Operações e mutações da aplicação são testáveis sem colocar regras de negócio no Coordinator ou no repositório de memória.
 - Testes podem fornecer implementações de repositório determinísticas.
-- O Coordinator ainda constrói objetos de apresentação; para o tamanho atual, isso é intencional e evita um container/Factory genérico.
+- `AppScreenFactory` adiciona uma fronteira explícita de composição. Para este fluxo pequeno ela deve continuar específica, sem virar um factory genérico ou Service Locator.
 - `DemoInventoryRepository` mantém estado apenas em memória e não representa estoque real.
 - O projeto ainda está em um único target Xcode; pastas organizam responsabilidades, mas não são módulos com isolamento do compilador.
 
@@ -54,7 +57,9 @@ Validação desta etapa: suíte de testes do app e revisão do grafo de dependê
 
 ## Registro da implementação
 
-- `AppCoordinator` solicita dados do pedido pelo contrato `InventoryRepository` e não importa/conhece `InventoryFixtures`.
+- `AppCoordinator` decide e executa transições de navegação; a montagem das telas fica em `AppScreenFactory`.
+- `OrderViewModel` e `SuggestionsViewModel` obtêm os dados locais necessários através do contrato `InventoryRepository`, sem Use Cases de encaminhamento.
+- A cena constrói o grafo de dependências e injeta a Factory no Coordinator.
 - `DemoInventoryRepository` fornece os IDs configurados na fixture de demonstração.
 - Teste do repositório verifica a disponibilidade exposta pelo contrato.
 - `ConfirmSubstitutionUseCase` valida o código candidato e monta o novo `Order`; o repositório somente salva o resultado.

@@ -10,18 +10,22 @@ struct AppCoordinatorNavigationTests {
     func choosingAnotherReturnsToTheSameSuggestionsControllerWithoutConfirming() throws {
         let navigationController = UINavigationController()
         let inventoryRepository = DemoInventoryRepository()
-        let coordinator = AppCoordinator(
-            navigationController: navigationController,
+        let imageLoader = ProductImageLoader(
+            loadImage: LoadProductImageUseCase(repository: URLSessionProductImageRepository())
+        )
+        let screenFactory = AppScreenFactory(
             inventoryRepository: inventoryRepository,
             loadCandidatesUseCase: LoadSubstitutionCandidatesUseCase(
                 productRepository: FixtureProductRepository()
             ),
-            imageLoader: ProductImageLoader(
-                loadImage: LoadProductImageUseCase(repository: URLSessionProductImageRepository())
-            ),
+            imageLoader: imageLoader,
             confirmSubstitutionUseCase: ConfirmSubstitutionUseCase(
                 inventoryRepository: inventoryRepository
             )
+        )
+        let coordinator = AppCoordinator(
+            navigationController: navigationController,
+            screenFactory: screenFactory
         )
         coordinator.start()
 
